@@ -14,6 +14,8 @@
 
 #include "OI.h"
 
+#include "Utilities/AutoScriptSelector.h"
+
 class Robot : public IterativeRobot {
 public:
 	Command *autonomousCommand;
@@ -24,6 +26,7 @@ public:
 	static LowerClaw* lowerClaw;
 	static Dolley* dolley;
 	static Lift* lift;
+	static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();
