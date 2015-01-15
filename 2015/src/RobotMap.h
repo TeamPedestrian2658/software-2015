@@ -4,6 +4,14 @@
 
 class RobotMap {
 public:
+	static SendableChooser *autoChooser;
+
+	static Talon *driveLeft;
+	static Talon *driveRight;
+
+	static Solenoid *shifterLeft;
+	static Solenoid *shifterRight;
+
 	static void init();
 };
 #endif

@@ -10,7 +10,7 @@
 AutoScriptSelector::AutoScriptSelector(string directory) :
 	_directory(directory)
 {
-	_chooser = new SendableChooser();
+	_chooser = RobotMap::autoChooser;
 
 	discoverFiles();
 	initSendableChooser();
