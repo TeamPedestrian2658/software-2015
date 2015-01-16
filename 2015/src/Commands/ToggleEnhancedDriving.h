@@ -1,13 +1,13 @@
-#ifndef ShiftLow_H
-#define ShiftLow_H
+#ifndef ToggleEnhancedDriving_H
+#define ToggleEnhancedDriving_H
 
 #include "../Robot.h"
 #include "WPILib.h"
 
-class ShiftLow: public Command
+class ToggleEnhancedDriving: public Command
 {
 public:
-	ShiftLow();
+	ToggleEnhancedDriving();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

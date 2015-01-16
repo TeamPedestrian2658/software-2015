@@ -2,13 +2,13 @@
 
 ShiftLow::ShiftLow()
 {
-	_drivetrain = Robot::drivetrain;
+
 }
 
 // Called just before this Command runs the first time
 void ShiftLow::Initialize()
 {
-	_drivetrain->shiftLow();
+	Robot::drivetrain->shiftLow();
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -6,6 +6,7 @@
 
 const double MAX_VELOCITY = 0;
 const double ENHANCE_SCALAR = 0.9;
+const double SLOW_SCALAR = 0.75;
 
 class DriveWithJoystick: public Command
 {

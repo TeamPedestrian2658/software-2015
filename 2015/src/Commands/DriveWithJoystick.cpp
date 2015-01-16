@@ -20,8 +20,13 @@ void DriveWithJoystick::Execute()
 {
 	if (_drivetrain->enhanceEnabled()) {
 		if (_drivetrain->tankEnabled()) {
-			_leftVelocity = _driverStick->GetRawAxis(0) * MAX_VELOCITY;
-			_rightVelocity = _driverStick->GetRawAxis(1) * MAX_VELOCITY;
+			if (_drivetrain->slowEnabled()) {
+				_leftVelocity = _driverStick->GetRawAxis(0) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = _driverStick->GetRawAxis(1) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+			} else {
+				_leftVelocity = _driverStick->GetRawAxis(0) * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = _driverStick->GetRawAxis(1) * ENHANCE_SCALAR * MAX_VELOCITY;
+			}
 		} else {
 			double leftJoy =_driverStick->GetRawAxis(0) + _driverStick->GetRawAxis(2);
 			double rightJoy = _driverStick->GetRawAxis(0) - _driverStick->GetRawAxis(2);
@@ -38,12 +43,22 @@ void DriveWithJoystick::Execute()
 				rightJoy = -1.0;
 			}
 
-			_leftVelocity = leftJoy * ENHANCE_SCALAR * MAX_VELOCITY;
+			if (_drivetrain->slowEnabled()) {
+				_leftVelocity = leftJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = rightJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+			} else {
+				_leftVelocity = leftJoy * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = rightJoy * ENHANCE_SCALAR * MAX_VELOCITY;
+			}
 		}
 		_drivetrain->set(_leftVelocity, _rightVelocity);
 	} else {
 		if (_drivetrain->tankEnabled()) {
-			_drivetrain->setRaw(_driverStick->GetRawAxis(0), _driverStick->GetRawAxis(1));
+			if (_drivetrain->slowEnabled()) {
+				_drivetrain->setRaw(SLOW_SCALAR * _driverStick->GetRawAxis(0), SLOW_SCALAR * _driverStick->GetRawAxis(1));
+			} else {
+				_drivetrain->setRaw(_driverStick->GetRawAxis(0), _driverStick->GetRawAxis(1));
+			}
 		} else {
 			double leftJoy =_driverStick->GetRawAxis(0) + _driverStick->GetRawAxis(2);
 			double rightJoy = _driverStick->GetRawAxis(0) - _driverStick->GetRawAxis(2);
@@ -60,7 +75,11 @@ void DriveWithJoystick::Execute()
 				rightJoy = -1.0;
 			}
 
-			_drivetrain->setRaw(leftJoy, rightJoy);
+			if (_drivetrain->slowEnabled()) {
+				_drivetrain->setRaw(SLOW_SCALAR * leftJoy, SLOW_SCALAR * rightJoy);
+			} else {
+				_drivetrain->setRaw(leftJoy, rightJoy);
+			}
 		}
 	}
 }

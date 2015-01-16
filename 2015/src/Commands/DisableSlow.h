@@ -1,13 +1,13 @@
-#ifndef ShiftLow_H
-#define ShiftLow_H
+#ifndef DisableSlow_H
+#define DisableSlow_H
 
 #include "../Robot.h"
 #include "WPILib.h"
 
-class ShiftLow: public Command
+class DisableSlow: public Command
 {
 public:
-	ShiftLow();
+	DisableSlow();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

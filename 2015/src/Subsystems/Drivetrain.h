@@ -21,6 +21,7 @@ private:
 	SendableChooser *_chooser;
 
 	bool _enhanceEnabled;
+	bool _slowEnabled;
 
 public:
 	Drivetrain();
@@ -32,12 +33,16 @@ public:
 	void set(double leftVelocity, double rightVelocity);
 	void setRaw(double left, double right);
 
-	void changeEncoderMode(bool velocity);
+	void setEncoderMode(bool velocity);
+	bool encoderMode();
 
 	bool tankEnabled();
 
 	void enableEnhancedDriving(bool enable);
 	bool enhanceEnabled();
+
+	void enableSlow(bool enable);
+	bool slowEnabled();
 };
 
 #endif

@@ -9,6 +9,8 @@ private:
 	Joystick* driverStick;
 
 	JoystickButton* driveShifter;
+	JoystickButton* driveEnhance;
+	JoystickButton* driveSlow;
 public:
 	OI();
  

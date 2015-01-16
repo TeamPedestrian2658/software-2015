@@ -9,6 +9,14 @@ OI::OI() {
 	driveShifter = new JoystickButton(driverStick, 0);
 	driveShifter->WhenPressed(new ShiftHigh());
 	driveShifter->WhenReleased(new ShiftLow());
+
+	driveEnhance = new JoystickButton(driverStick, 1);
+	driveEnhance->WhenPressed(new ToggleEnhancedDriving());
+
+	driveSlow = new JoystickButton(driverStick, 2);
+	driveSlow->WhenPressed(new EnableSlow());
+	driveSlow->WhenReleased(new DisableSlow());
+
 }
 
 Joystick* OI::getOperatorStick() {
