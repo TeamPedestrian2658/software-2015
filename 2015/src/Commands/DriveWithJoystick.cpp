@@ -2,10 +2,11 @@
 
 DriveWithJoystick::DriveWithJoystick()
 {
+	_drivetrain = Robot::drivetrain;
 	_driverStick = Robot::oi->getDriverStick();
 	_rightVelocity = 0;
 	_leftVelocity = 0;
-	Requires(Robot::drivetrain);
+	Requires(_drivetrain);
 }
 
 // Called just before this Command runs the first time
@@ -17,18 +18,18 @@ void DriveWithJoystick::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute()
 {
-	if (Robot::drivetrain->enhanceEnabled()) {
-		if (Robot::drivetrain->tankEnabled()) {
-			if (Robot::drivetrain->slowEnabled()) {
-				_leftVelocity = _driverStick->GetRawAxis(0) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = _driverStick->GetRawAxis(1) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+	if (_drivetrain->enhanceEnabled()) {
+		if (_drivetrain->tankEnabled()) {
+			if (_drivetrain->slowEnabled()) {
+				_leftVelocity = _driverStick->GetRawAxis(1) * -1 * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = _driverStick->GetRawAxis(5) * -1 * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
 			} else {
-				_leftVelocity = _driverStick->GetRawAxis(0) * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = _driverStick->GetRawAxis(1) * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = _driverStick->GetRawAxis(1) * -1 * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = _driverStick->GetRawAxis(5) * -1 * ENHANCE_SCALAR * MAX_VELOCITY;
 			}
 		} else {
-			double leftJoy =_driverStick->GetRawAxis(0) + _driverStick->GetRawAxis(2);
-			double rightJoy = _driverStick->GetRawAxis(0) - _driverStick->GetRawAxis(2);
+			double leftJoy = _driverStick->GetRawAxis(1) - _driverStick->GetRawAxis(4);
+			double rightJoy = _driverStick->GetRawAxis(1) + _driverStick->GetRawAxis(4);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;
@@ -42,7 +43,7 @@ void DriveWithJoystick::Execute()
 				rightJoy = -1.0;
 			}
 
-			if (Robot::drivetrain->slowEnabled()) {
+			if (_drivetrain->slowEnabled()) {
 				_leftVelocity = leftJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
 				_rightVelocity = rightJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
 			} else {
@@ -50,17 +51,17 @@ void DriveWithJoystick::Execute()
 				_rightVelocity = rightJoy * ENHANCE_SCALAR * MAX_VELOCITY;
 			}
 		}
-		Robot::drivetrain->set(_leftVelocity, _rightVelocity);
+		_drivetrain->set(_leftVelocity, _rightVelocity);
 	} else {
-		if (Robot::drivetrain->tankEnabled()) {
-			if (Robot::drivetrain->slowEnabled()) {
-				Robot::drivetrain->setRaw(SLOW_SCALAR * _driverStick->GetRawAxis(0), SLOW_SCALAR * _driverStick->GetRawAxis(1));
+		if (_drivetrain->tankEnabled()) {
+			if (_drivetrain->slowEnabled()) {
+				_drivetrain->setRaw(SLOW_SCALAR * -1 * _driverStick->GetRawAxis(1), SLOW_SCALAR * -1 * _driverStick->GetRawAxis(5));
 			} else {
-				Robot::drivetrain->setRaw(_driverStick->GetRawAxis(0), _driverStick->GetRawAxis(1));
+				_drivetrain->setRaw(-1 * _driverStick->GetRawAxis(1), -1 * _driverStick->GetRawAxis(5));
 			}
 		} else {
-			double leftJoy =_driverStick->GetRawAxis(0) + _driverStick->GetRawAxis(2);
-			double rightJoy = _driverStick->GetRawAxis(0) - _driverStick->GetRawAxis(2);
+			double leftJoy =_driverStick->GetRawAxis(1) - _driverStick->GetRawAxis(4);
+			double rightJoy = _driverStick->GetRawAxis(1) + _driverStick->GetRawAxis(4);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;
@@ -74,10 +75,10 @@ void DriveWithJoystick::Execute()
 				rightJoy = -1.0;
 			}
 
-			if (Robot::drivetrain->slowEnabled()) {
-				Robot::drivetrain->setRaw(SLOW_SCALAR * leftJoy, SLOW_SCALAR * rightJoy);
+			if (_drivetrain->slowEnabled()) {
+				_drivetrain->setRaw(SLOW_SCALAR * leftJoy, SLOW_SCALAR * rightJoy);
 			} else {
-				Robot::drivetrain->setRaw(leftJoy, rightJoy);
+				_drivetrain->setRaw(leftJoy, rightJoy);
 			}
 		}
 	}

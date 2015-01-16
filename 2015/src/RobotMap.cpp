@@ -42,7 +42,4 @@ void RobotMap::init() {
 	driveControllerRight->SetSetpoint(0);
 
 	driveChooser = new SendableChooser();
-
-	LiveWindow* lw = LiveWindow::GetInstance();
-
 }

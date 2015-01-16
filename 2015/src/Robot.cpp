@@ -29,8 +29,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	if (autonomousCommand != NULL)
-		autonomousCommand->Start();
+
 }
 
 void Robot::AutonomousPeriodic() {
@@ -38,8 +37,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-	if (autonomousCommand != NULL)
-		autonomousCommand->Cancel();
+
 }
 
 void Robot::TeleopPeriodic() {

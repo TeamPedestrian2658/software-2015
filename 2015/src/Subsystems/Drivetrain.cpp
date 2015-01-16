@@ -22,6 +22,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
 	_enhanceEnabled = true;
+	_controllerLeft->Enable();
+	_controllerRight->Enable();
 	SmartDashboard::PutBoolean("Enhanced Driving", _enhanceEnabled);
 
 	_slowEnabled = false;
@@ -67,6 +69,14 @@ bool Drivetrain::tankEnabled() {
 
 void Drivetrain::enableEnhancedDriving(bool enable) {
 	_enhanceEnabled = enable;
+	SmartDashboard::PutBoolean("Enhanced Driving", _enhanceEnabled);
+	if (enable) {
+		_controllerLeft->Enable();
+		_controllerRight->Enable();
+	} else {
+		_controllerLeft->Disable();
+		_controllerRight->Disable();
+	}
 }
 
 bool Drivetrain::enhanceEnabled() {
@@ -75,6 +85,7 @@ bool Drivetrain::enhanceEnabled() {
 
 void Drivetrain::enableSlow(bool enable) {
 	_slowEnabled = enable;
+	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
 }
 
 bool Drivetrain::slowEnabled() {
