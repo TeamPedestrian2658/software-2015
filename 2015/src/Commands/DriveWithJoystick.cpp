@@ -1,11 +1,16 @@
 #include "DriveWithJoystick.h"
+#include "../RobotMap.h"
 
 DriveWithJoystick::DriveWithJoystick()
 {
 	_drivetrain = Robot::drivetrain;
 	_driverStick = Robot::oi->getDriverStick();
+	_constants = RobotMap::constants;
 	_rightVelocity = 0;
 	_leftVelocity = 0;
+	MAX_VELOCITY = _constants->driveConstants.maxVelocity;
+	ENHANCE_SCALAR = _constants->driveConstants.enhanceScalar;
+	SLOW_SCALAR = _constants->driveConstants.slowScalar;
 	Requires(_drivetrain);
 }
 
@@ -18,6 +23,7 @@ void DriveWithJoystick::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute()
 {
+
 	if (_drivetrain->enhanceEnabled()) {
 		if (_drivetrain->tankEnabled()) {
 			if (_drivetrain->slowEnabled()) {

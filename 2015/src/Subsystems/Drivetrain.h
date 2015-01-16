@@ -3,9 +3,12 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "../Utilities/PIDEncoder.h"
+#include "../Utilities/Constants.h"
 
 class Drivetrain: public Subsystem {
 private:
+	Constants *_constants;
+
 	Talon *_talonLeft;
 	Talon *_talonRight;
 

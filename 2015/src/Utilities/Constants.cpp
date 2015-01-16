@@ -7,7 +7,7 @@
 
 #include "Constants.h"
 
-Constants::Constants() {
+Constants::Constants() {						//values set at runtime
 	drivePorts.talonLeftPort = 0;
 	drivePorts.talonRightPort = 1;
 	drivePorts.shifterLeftModule = 0;
@@ -24,6 +24,13 @@ Constants::Constants() {
 	oiPorts.shiftButton = 6;
 	oiPorts.slowButton = 5;
 	oiPorts.toggleEnhanceButton = 8;
+
+	shifterStates.highGear = true;
+	shifterStates.lowGear = false;
+
+	driveConstants.maxVelocity = 0;
+	driveConstants.enhanceScalar = 0.9;
+	driveConstants.slowScalar = 0.75;
 }
 
 Constants::~Constants() {

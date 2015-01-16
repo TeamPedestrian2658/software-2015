@@ -4,6 +4,8 @@
 #include "../Commands/DriveWithJoystick.h"
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
+	_constants = RobotMap::constants;
+
 	_talonLeft = RobotMap::driveTalonLeft;
 	_talonRight = RobotMap::driveTalonRight;
 
@@ -35,13 +37,13 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::shiftHigh() {
-	_shifterLeft->Set(true);
-	_shifterRight->Set(true);
+	_shifterLeft->Set(_constants->shifterStates.highGear);
+	_shifterRight->Set(_constants->shifterStates.highGear);
 }
 
 void Drivetrain::shiftLow() {
-	_shifterLeft->Set(false);
-	_shifterRight->Set(false);
+	_shifterLeft->Set(_constants->shifterStates.lowGear);
+	_shifterRight->Set(_constants->shifterStates.lowGear);
 }
 
 void Drivetrain::set(double leftVelocity, double rightVelocity) {
