@@ -1,6 +1,8 @@
 #include "Drivetrain.h"
 #include "../RobotMap.h"
 
+#include "../Commands/DriveWithJoystick.h"
+
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_talonLeft = RobotMap::driveTalonLeft;
 	_talonRight = RobotMap::driveTalonRight;

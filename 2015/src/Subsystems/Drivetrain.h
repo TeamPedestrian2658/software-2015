@@ -3,7 +3,6 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "../Utilities/PIDEncoder.h"
-#include "../Commands/DriveWithJoystick.h"
 
 class Drivetrain: public Subsystem {
 private:

@@ -2,6 +2,12 @@
 
 #include "SmartDashboard/SmartDashboard.h"
 
+#include "Commands/ShiftHigh.h"
+#include "Commands/ShiftLow.h"
+#include "Commands/ToggleEnhancedDriving.h"
+#include "Commands/EnableSlow.h"
+#include "Commands/DisableSlow.h"
+
 OI::OI() {
 	operatorStick = new Joystick(1);
 	driverStick = new Joystick(0);
