@@ -11,6 +11,7 @@
 class Constants {
 public:
 	Constants();
+	Preferences *_preferences;
 	struct DrivePorts {
 		int talonLeftPort;
 		int talonRightPort;

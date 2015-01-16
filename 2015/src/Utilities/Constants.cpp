@@ -7,33 +7,50 @@
 
 #include "Constants.h"
 
-Constants::Constants() {						//values set at runtime
-	drivePorts.talonLeftPort = 0;
-	drivePorts.talonRightPort = 1;
-	drivePorts.shifterLeftModule = 0;
-	drivePorts.shifterRightModule = 0;
-	drivePorts.shifterLeftPort = 0;
-	drivePorts.shifterRightPort = 1;
-	drivePorts.encoderLeftPortA = 0;
-	drivePorts.encoderLeftPortB = 1;
-	drivePorts.encoderRightPortA = 2;
-	drivePorts.encoderRightPortB = 3;
+Constants::Constants() {
+	_preferences = Preferences::GetInstance();
 
-	oiPorts.driverPort = 0;
-	oiPorts.operatorPort = 1;
-	oiPorts.shiftButton = 6;
-	oiPorts.slowButton = 5;
-	oiPorts.toggleEnhanceButton = 8;
+	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 0);
+	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 1);
+	drivePorts.shifterLeftModule = _preferences->GetInt("ShifterLeftModule", 0);
+	drivePorts.shifterRightModule = _preferences->GetInt("ShifterRightModule", 0);
+	drivePorts.shifterLeftPort = _preferences->GetInt("ShifterLeftPort", 0);
+	drivePorts.shifterRightPort = _preferences->GetInt("ShifterRightPort", 1);
+	drivePorts.encoderLeftPortA = _preferences->GetInt("EncoderLeftPortA", 0);
+	drivePorts.encoderLeftPortB = _preferences->GetInt("EncoderLeftPortB", 1);
+	drivePorts.encoderRightPortA = _preferences->GetInt("EncoderRightPortA", 2);
+	drivePorts.encoderRightPortB = _preferences->GetInt("EncoderRightPortB", 3);
 
-	shifterStates.highGear = true;
-	shifterStates.lowGear = false;
+	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
+	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
+	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);
+	oiPorts.slowButton = _preferences->GetInt("SlowButton", 5);
+	oiPorts.toggleEnhanceButton = _preferences->GetInt("ToggleEnhanceButton", 8);
 
-	driveConstants.maxVelocity = 0;
-	driveConstants.enhanceScalar = 0.9;
-	driveConstants.slowScalar = 0.75;
+	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
+	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
+
+	driveConstants.maxVelocity = _preferences->GetBoolean("MaxVelocity", 0);
+	driveConstants.enhanceScalar = _preferences->GetBoolean("EnhanceScalar", 0.9);
+	driveConstants.slowScalar = _preferences->GetBoolean("SlowScalar", 0.75);
 }
 
 Constants::~Constants() {
 	// TODO Auto-generated destructor stub
 }
 
+double Constants::getDriveP() {
+
+}
+
+double Constants::getDriveI() {
+
+}
+
+double Constants::getDriveD() {
+
+}
+
+double Constants::getDriveF() {
+
+}
