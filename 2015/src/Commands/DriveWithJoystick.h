@@ -11,7 +11,6 @@ const double SLOW_SCALAR = 0.75;
 class DriveWithJoystick: public Command
 {
 private:
-	Drivetrain *_drivetrain;
 	Joystick *_driverStick;
 	double _leftVelocity;
 	double _rightVelocity;

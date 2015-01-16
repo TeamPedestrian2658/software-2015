@@ -3,6 +3,12 @@
 
 #include "WPILib.h"
 
+#include "Commands/ShiftHigh.h"
+#include "Commands/ShiftLow.h"
+#include "Commands/ToggleEnhancedDriving.h"
+#include "Commands/EnableSlow.h"
+#include "Commands/DisableSlow.h"
+
 class OI {
 private:
 	Joystick* operatorStick;

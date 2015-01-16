@@ -19,8 +19,8 @@
 class Robot : public IterativeRobot {
 public:
 	Command *autonomousCommand;
-	static OI *oi;
 	LiveWindow *lw;
+	static OI *oi;
 	static Drivetrain* drivetrain;
 	static UpperClaw* upperClaw;
 	static LowerClaw* lowerClaw;
