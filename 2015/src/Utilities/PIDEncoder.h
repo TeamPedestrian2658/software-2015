@@ -10,16 +10,15 @@
 
 #include "WPILib.h"
 
-class PIDEncoder : Encoder {
+class PIDEncoder : public Encoder {
 private:
 	bool _useVelocity;
 public:
-	PIDEncoder(
-			uint32_t aChannel,
-			uint32_t bChannel,
-			bool useVelocity = true,
-			bool reverseDirection=false,
-			EncodingType encodingType=k4X);
+	PIDEncoder(uint32_t aChannel,
+			   uint32_t bChannel,
+			   bool useVelocity = true,
+			   bool reverseDirection = false,
+			   EncodingType encodingType = k4X);
 	virtual ~PIDEncoder();
 	double PIDGet();
 	void setMode(bool velocity);

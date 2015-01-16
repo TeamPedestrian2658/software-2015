@@ -7,6 +7,8 @@ class OI {
 private:
 	Joystick* operatorStick;
 	Joystick* driverStick;
+
+	JoystickButton* driveShifter;
 public:
 	OI();
  

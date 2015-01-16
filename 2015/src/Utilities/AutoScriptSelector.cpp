@@ -6,6 +6,7 @@
  */
 
 #include "AutoScriptSelector.h"
+#include "../RobotMap.h"
 
 AutoScriptSelector::AutoScriptSelector(string directory) :
 	_directory(directory)

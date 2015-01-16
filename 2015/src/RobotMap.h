@@ -1,6 +1,7 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 #include "WPILib.h"
+#include "Utilities/PIDEncoder.h"
 
 class RobotMap {
 public:

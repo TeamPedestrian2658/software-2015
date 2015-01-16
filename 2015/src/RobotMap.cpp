@@ -22,15 +22,17 @@ void RobotMap::init() {
 	autoChooser = new SendableChooser();
 
 	driveTalonLeft = new Talon(0);
+	driveTalonLeft->Set(0);
 	driveTalonRight = new Talon(1);
+	driveTalonRight->Set(0);
 
 	driveShifterLeft = new Solenoid(0, 0);
 	driveShifterLeft->Set(false);
 	driveShifterRight = new Solenoid(0, 1);
 	driveShifterRight->Set(false);
 
-	driveEncoderLeft = new Encoder(0, 1);
-	driveEncoderRight = new Encoder(2, 3);
+	driveEncoderLeft = new PIDEncoder(0, 1, true);
+	driveEncoderRight = new PIDEncoder(2, 3, true);
 
 	driveControllerLeft = new PIDController(1, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);

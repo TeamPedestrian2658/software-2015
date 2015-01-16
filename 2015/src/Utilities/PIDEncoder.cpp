@@ -9,9 +9,9 @@
 
 PIDEncoder::PIDEncoder(uint32_t aChannel,
 					   uint32_t bChannel,
-					   bool useVelocity = true,
-					   bool reverseDirection=false,
-					   EncodingType encodingType=k4X) :
+					   bool useVelocity,
+					   bool reverseDirection,
+					   EncodingType encodingType) :
 					   Encoder(aChannel, bChannel, reverseDirection, encodingType), _useVelocity(useVelocity)
 
 {
@@ -19,7 +19,7 @@ PIDEncoder::PIDEncoder(uint32_t aChannel,
 }
 
 PIDEncoder::~PIDEncoder() {
-	~Encoder();
+
 }
 
 double PIDEncoder::PIDGet() {
