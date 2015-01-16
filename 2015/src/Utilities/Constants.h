@@ -11,6 +11,25 @@
 class Constants {
 public:
 	Constants();
+	struct DrivePorts {
+		int talonLeftPort;
+		int talonRightPort;
+		int shifterLeftModule;
+		int shifterRightModule;
+		int shifterLeftPort;
+		int shifterRightPort;
+		int encoderLeftPortA;
+		int encoderLeftPortB;
+		int encoderRightPortA;
+		int encoderRightPortB;
+	} drivePorts;
+	struct OIPorts {
+		int driverPort;
+		int operatorPort;
+		int shiftButton;
+		int slowButton;
+		int toggleEnhanceButton;
+	} oiPorts;
 	virtual ~Constants();
 };
 

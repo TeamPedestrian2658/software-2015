@@ -2,9 +2,12 @@
 #define ROBOTMAP_H
 #include "WPILib.h"
 #include "Utilities/PIDEncoder.h"
+#include "Utilities/Constants.h"
 
 class RobotMap {
 public:
+	static Constants *constants;
+
 	static SendableChooser *autoChooser;
 
 	static Talon *driveTalonLeft;

@@ -1,6 +1,8 @@
 #include "RobotMap.h"
 #include "LiveWindow/LiveWindow.h"
 
+Constants *RobotMap::constants = NULL;
+
 SendableChooser *RobotMap::autoChooser = NULL;
 
 Talon *RobotMap::driveTalonLeft = NULL;
@@ -19,20 +21,22 @@ SendableChooser *RobotMap::driveChooser = NULL;
 
 void RobotMap::init() {
 
+	constants = new Constants();
+
 	autoChooser = new SendableChooser();
 
-	driveTalonLeft = new Talon(0);
+	driveTalonLeft = new Talon(constants->drivePorts.talonLeftPort);
 	driveTalonLeft->Set(0);
-	driveTalonRight = new Talon(1);
+	driveTalonRight = new Talon(constants->drivePorts.talonRightPort);
 	driveTalonRight->Set(0);
 
-	driveShifterLeft = new Solenoid(0, 0);
+	driveShifterLeft = new Solenoid(constants->drivePorts.shifterLeftModule, constants->drivePorts.shifterLeftPort);
 	driveShifterLeft->Set(false);
-	driveShifterRight = new Solenoid(0, 1);
+	driveShifterRight = new Solenoid(constants->drivePorts.shifterRightModule, constants->drivePorts.shifterRightPort);
 	driveShifterRight->Set(false);
 
-	driveEncoderLeft = new PIDEncoder(0, 1, true);
-	driveEncoderRight = new PIDEncoder(2, 3, true);
+	driveEncoderLeft = new PIDEncoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB, true);
+	driveEncoderRight = new PIDEncoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB, true);
 
 	driveControllerLeft = new PIDController(1, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);

@@ -3,8 +3,13 @@
 
 #include "WPILib.h"
 
+#include "Utilities/Constants.h"
+
 class OI {
 private:
+
+	Constants *constants;
+
 	Joystick* operatorStick;
 	Joystick* driverStick;
 

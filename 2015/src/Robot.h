@@ -15,6 +15,7 @@
 #include "OI.h"
 
 #include "Utilities/AutoScriptSelector.h"
+#include "Utilities/Constants.h"
 
 class Robot : public IterativeRobot {
 public:
