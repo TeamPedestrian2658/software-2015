@@ -2,7 +2,6 @@
 #define DRIVETRAIN_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
-#include "../Utilities/PIDEncoder.h"
 #include "../Utilities/Constants.h"
 
 class Drivetrain: public Subsystem {
@@ -12,8 +11,8 @@ private:
 	Talon *_talonLeft;
 	Talon *_talonRight;
 
-	PIDEncoder *_encoderLeft;
-	PIDEncoder *_encoderRight;
+	Encoder *_encoderLeft;
+	Encoder *_encoderRight;
 
 	PIDController *_controllerLeft;
 	PIDController *_controllerRight;
@@ -41,7 +40,6 @@ public:
 	void setRaw(double left, double right);
 
 	void setEncoderMode(bool velocity);
-	bool encoderMode();
 
 	bool tankEnabled();
 

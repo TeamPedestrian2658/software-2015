@@ -11,8 +11,8 @@ Talon *RobotMap::driveTalonRight = NULL;
 Solenoid *RobotMap::driveShifterLeft = NULL;
 Solenoid *RobotMap::driveShifterRight = NULL;
 
-PIDEncoder *RobotMap::driveEncoderLeft = NULL;
-PIDEncoder *RobotMap::driveEncoderRight = NULL;
+Encoder *RobotMap::driveEncoderLeft = NULL;
+Encoder *RobotMap::driveEncoderRight = NULL;
 
 PIDController *RobotMap::driveControllerLeft = NULL;
 PIDController *RobotMap::driveControllerRight = NULL;
@@ -25,24 +25,30 @@ void RobotMap::init() {
 	autoChooser = new SendableChooser();
 
 	driveTalonLeft = new Talon(constants->drivePorts.talonLeftPort);
-	driveTalonLeft->Set(0);
 	driveTalonRight = new Talon(constants->drivePorts.talonRightPort);
-	driveTalonRight->Set(0);
 
 	driveShifterLeft = new Solenoid(constants->drivePorts.shifterLeftModule, constants->drivePorts.shifterLeftPort);
 	driveShifterLeft->Set(constants->shifterStates.lowGear);
 	driveShifterRight = new Solenoid(constants->drivePorts.shifterRightModule, constants->drivePorts.shifterRightPort);
 	driveShifterRight->Set(constants->shifterStates.lowGear);
 
-	driveEncoderLeft = new PIDEncoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB, true);
-	driveEncoderRight = new PIDEncoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB, true);
+	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB);
+	driveEncoderLeft->SetDistancePerPulse(0);
+	driveEncoderLeft->SetPIDSourceParameter(PIDSource::kRate);
+
+	driveEncoderRight = new Encoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB);
+	driveEncoderRight->SetDistancePerPulse(0);
+	driveEncoderRight->SetPIDSourceParameter(PIDSource::kRate);
 
 	driveControllerLeft = new PIDController(0, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);
-	driveControllerLeft->SetSetpoint(0);
+	driveControllerLeft->SetOutputRange(-1, 1);
+	driveControllerLeft->Disable();
+
 	driveControllerRight = new PIDController(0, 0, 0, 0, driveEncoderRight, driveTalonRight);
 	driveControllerRight->SetContinuous(false);
-	driveControllerRight->SetSetpoint(0);
+	driveControllerRight->SetOutputRange(-1, 1);
+	driveControllerRight->Disable();
 
 	driveChooser = new SendableChooser();
 }

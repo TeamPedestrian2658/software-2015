@@ -35,6 +35,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	SmartDashboard::PutBoolean("High Gear", _highGear);
 
 	updatePIDCoefficients();
+	enableEnhancedDriving(true);
 }
     
 void Drivetrain::InitDefaultCommand() {
@@ -72,12 +73,13 @@ void Drivetrain::setRaw(double left, double right) {
 }
 
 void Drivetrain::setEncoderMode(bool velocity) {
-	_encoderLeft->setMode(velocity);
-	_encoderRight->setMode(velocity);
-}
-
-bool Drivetrain::encoderMode() {
-	return _encoderLeft->getMode();
+	if (velocity) {
+		_encoderLeft->SetPIDSourceParameter(PIDSource::kRate);
+		_encoderRight->SetPIDSourceParameter(PIDSource::kRate);
+	} else {
+		_encoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
+		_encoderRight->SetPIDSourceParameter(PIDSource::kDistance);
+	}
 }
 
 bool Drivetrain::tankEnabled() {

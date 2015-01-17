@@ -1,7 +1,6 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 #include "WPILib.h"
-#include "Utilities/PIDEncoder.h"
 #include "Utilities/Constants.h"
 
 class RobotMap {
@@ -16,8 +15,8 @@ public:
 	static Solenoid *driveShifterLeft;
 	static Solenoid *driveShifterRight;
 
-	static PIDEncoder *driveEncoderLeft;
-	static PIDEncoder *driveEncoderRight;
+	static Encoder *driveEncoderLeft;
+	static Encoder *driveEncoderRight;
 
 	static PIDController *driveControllerLeft;
 	static PIDController *driveControllerRight;
