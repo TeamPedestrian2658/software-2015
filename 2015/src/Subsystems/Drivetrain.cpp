@@ -61,10 +61,7 @@ bool Drivetrain::isHighGear() {
 	return _highGear;
 }
 
-void Drivetrain::set(double leftVelocity, double rightVelocity) {				//F must equal velocity
-	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, leftVelocity);
-	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, rightVelocity);
-
+void Drivetrain::set(double leftVelocity, double rightVelocity) {
 	_controllerLeft->SetSetpoint(leftVelocity);
 	_controllerRight->SetSetpoint(rightVelocity);
 }
@@ -112,13 +109,14 @@ bool Drivetrain::slowEnabled() {
 	return _slowEnabled;
 }
 
-void Drivetrain::updatePIDCoefficients() {								//F is ignored here
+void Drivetrain::updatePIDCoefficients() {
 	PIDProfile profile = _constants->getDriveProfile(_highGear, 0);
 	_profile.p = profile.p;
 	_profile.i = profile.i;
 	_profile.d = profile.d;
-	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d);
-	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d);
+	_profile.f = profile.f;
+	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
+	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 }
 
 PIDProfile Drivetrain::getPIDCoefficients() {
