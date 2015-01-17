@@ -18,7 +18,7 @@ void Robot::RobotInit() {
 	oi = new OI();
 	selector = new AutoScriptSelector("/home/lvuser/scripts");
 	lw = LiveWindow::GetInstance();
-  }
+}
 
 void Robot::DisabledInit(){
 

@@ -9,7 +9,6 @@
 #define SRC_UTILITIES_CONSTANTS_H_
 
 #include "WPILib.h"
-#include <vector>
 
 struct PIDProfile {
 		double p;
@@ -51,7 +50,7 @@ public:
 		double enhanceScalar;
 		double slowScalar;
 	} driveConstants;
-	PIDProfile driveProfiles[10];
+	PIDProfile driveProfiles[10];			//0-4 are for low gear, 5-9 are for high gear
 	virtual ~Constants();
 
 	PIDProfile getDriveProfile(bool highGear, int items);

@@ -41,5 +41,9 @@ Constants::~Constants() {
 }
 
 PIDProfile Constants::getDriveProfile(bool highGear, int items) {
-	return highGear ? driveProfiles[1 + items] : driveProfiles[0 + items];
+	if (highGear == shifterStates.highGear) {
+		return driveProfiles[1 + items];
+	} else {
+		return driveProfiles[0 + items];
+	}
 }

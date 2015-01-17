@@ -31,7 +31,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_slowEnabled = false;
 	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
 
-	_highGear = false;
+	_highGear = _constants->shifterStates.lowGear;			//begin in low gear
 	SmartDashboard::PutBoolean("High Gear", _highGear);
 
 	updatePIDCoefficients();
@@ -42,16 +42,18 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::shiftHigh() {
-	_shifterLeft->Set(_constants->shifterStates.highGear);
-	_shifterRight->Set(_constants->shifterStates.highGear);
-	_highGear = true;
+	bool val = _constants->shifterStates.highGear;
+	_shifterLeft->Set(val);
+	_shifterRight->Set(val);
+	_highGear = val;
 	updatePIDCoefficients();
 }
 
 void Drivetrain::shiftLow() {
-	_shifterLeft->Set(_constants->shifterStates.lowGear);
-	_shifterRight->Set(_constants->shifterStates.lowGear);
-	_highGear = false;
+	bool val = _constants->shifterStates.lowGear;
+	_shifterLeft->Set(val);
+	_shifterRight->Set(val);
+	_highGear = val;
 	updatePIDCoefficients();
 }
 

@@ -20,7 +20,6 @@ PIDController *RobotMap::driveControllerRight = NULL;
 SendableChooser *RobotMap::driveChooser = NULL;
 
 void RobotMap::init() {
-
 	constants = new Constants();
 
 	autoChooser = new SendableChooser();
