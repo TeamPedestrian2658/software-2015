@@ -30,6 +30,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 
 	_slowEnabled = false;
 	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
+
+	_highGear = false;
+	SmartDashboard::PutBoolean("High Gear", _highGear);
+
+	updatePIDCoefficients();
 }
     
 void Drivetrain::InitDefaultCommand() {
@@ -39,14 +44,25 @@ void Drivetrain::InitDefaultCommand() {
 void Drivetrain::shiftHigh() {
 	_shifterLeft->Set(_constants->shifterStates.highGear);
 	_shifterRight->Set(_constants->shifterStates.highGear);
+	_highGear = true;
+	updatePIDCoefficients();
 }
 
 void Drivetrain::shiftLow() {
 	_shifterLeft->Set(_constants->shifterStates.lowGear);
 	_shifterRight->Set(_constants->shifterStates.lowGear);
+	_highGear = false;
+	updatePIDCoefficients();
 }
 
-void Drivetrain::set(double leftVelocity, double rightVelocity) {
+bool Drivetrain::isHighGear() {
+	return _highGear;
+}
+
+void Drivetrain::set(double leftVelocity, double rightVelocity) {				//F must equal velocity
+	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, leftVelocity);
+	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, rightVelocity);
+
 	_controllerLeft->SetSetpoint(leftVelocity);
 	_controllerRight->SetSetpoint(rightVelocity);
 }
@@ -92,4 +108,17 @@ void Drivetrain::enableSlow(bool enable) {
 
 bool Drivetrain::slowEnabled() {
 	return _slowEnabled;
+}
+
+void Drivetrain::updatePIDCoefficients() {								//F is ignored here
+	PIDProfile profile = _constants->getDriveProfile(_highGear, 0);
+	_profile.p = profile.p;
+	_profile.i = profile.i;
+	_profile.d = profile.d;
+	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d);
+	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d);
+}
+
+PIDProfile Drivetrain::getPIDCoefficients() {
+	return _profile;
 }

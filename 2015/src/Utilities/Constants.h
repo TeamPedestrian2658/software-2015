@@ -8,6 +8,16 @@
 #ifndef SRC_UTILITIES_CONSTANTS_H_
 #define SRC_UTILITIES_CONSTANTS_H_
 
+#include "WPILib.h"
+#include <vector>
+
+struct PIDProfile {
+		double p;
+		double i;
+		double d;
+		double f;
+};
+
 class Constants {
 public:
 	Constants();
@@ -36,16 +46,15 @@ public:
 		bool lowGear;
 	} shifterStates;
 	struct DriveConstants {
-		double maxVelocity;
+		double maxVelocityHigh;
+		double maxVelocityLow;
 		double enhanceScalar;
 		double slowScalar;
 	} driveConstants;
+	PIDProfile driveProfiles[10];
 	virtual ~Constants();
 
-	double getDriveP();
-	double getDriveI();
-	double getDriveD();
-	double getDriveF();
+	PIDProfile getDriveProfile(bool highGear, int items);
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */

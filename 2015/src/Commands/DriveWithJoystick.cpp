@@ -8,7 +8,7 @@ DriveWithJoystick::DriveWithJoystick()
 	_constants = RobotMap::constants;
 	_rightVelocity = 0;
 	_leftVelocity = 0;
-	MAX_VELOCITY = _constants->driveConstants.maxVelocity;
+	MAX_VELOCITY = 0;
 	ENHANCE_SCALAR = _constants->driveConstants.enhanceScalar;
 	SLOW_SCALAR = _constants->driveConstants.slowScalar;
 	Requires(_drivetrain);
@@ -23,6 +23,11 @@ void DriveWithJoystick::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute()
 {
+	if (_drivetrain->isHighGear()) {
+		MAX_VELOCITY = _constants->driveConstants.maxVelocityHigh;
+	} else {
+		MAX_VELOCITY = _constants->driveConstants.maxVelocityLow;
+	}
 
 	if (_drivetrain->enhanceEnabled()) {
 		if (_drivetrain->tankEnabled()) {

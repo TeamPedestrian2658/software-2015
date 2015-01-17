@@ -38,10 +38,10 @@ void RobotMap::init() {
 	driveEncoderLeft = new PIDEncoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB, true);
 	driveEncoderRight = new PIDEncoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB, true);
 
-	driveControllerLeft = new PIDController(1, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
+	driveControllerLeft = new PIDController(0, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);
 	driveControllerLeft->SetSetpoint(0);
-	driveControllerRight = new PIDController(1, 0, 0, 0, driveEncoderRight, driveTalonRight);
+	driveControllerRight = new PIDController(0, 0, 0, 0, driveEncoderRight, driveTalonRight);
 	driveControllerRight->SetContinuous(false);
 	driveControllerRight->SetSetpoint(0);
 

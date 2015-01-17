@@ -21,10 +21,13 @@ private:
 	Solenoid *_shifterLeft;
 	Solenoid *_shifterRight;
 
+	PIDProfile _profile;
+
 	SendableChooser *_chooser;
 
 	bool _enhanceEnabled;
 	bool _slowEnabled;
+	bool _highGear;
 
 public:
 	Drivetrain();
@@ -32,6 +35,7 @@ public:
 
 	void shiftHigh();
 	void shiftLow();
+	bool isHighGear();
 
 	void set(double leftVelocity, double rightVelocity);
 	void setRaw(double left, double right);
@@ -46,6 +50,9 @@ public:
 
 	void enableSlow(bool enable);
 	bool slowEnabled();
+
+	void updatePIDCoefficients();
+	PIDProfile getPIDCoefficients();
 };
 
 #endif
