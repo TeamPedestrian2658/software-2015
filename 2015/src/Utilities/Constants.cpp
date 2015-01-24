@@ -40,12 +40,6 @@ Constants::~Constants() {
 }
 
 PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, int items) {
-	if (highGear == shifterStates.highGear) {
-		return driveProfiles[5 + items];
-	} else {
-		return driveProfiles[0 + items];
-	}
-
 	if (encoderVelocityMode) {
 		if (highGear == shifterStates.highGear) {
 			return driveProfiles[0 + items];		//high gear velocity
@@ -59,5 +53,4 @@ PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, i
 			return driveProfiles[15 + items];		//low gear position
 		}
 	}
-
 }
