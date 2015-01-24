@@ -80,7 +80,7 @@ void Drivetrain::setEncoderMode(bool velocity) {
 }
 
 bool Drivetrain::encoderVelocityMode() {
-	return _encoderVelocityMode();
+	return _encoderVelocityMode;
 }
 
 bool Drivetrain::tankEnabled() {
@@ -120,6 +120,11 @@ void Drivetrain::updatePIDCoefficients() {
 	_profile.f = profile.f;
 	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
+
+	SmartDashboard::PutNumber("Drive P", _profile.p);
+	SmartDashboard::PutNumber("Drive I", _profile.i);
+	SmartDashboard::PutNumber("Drive D", _profile.d);
+	SmartDashboard::PutNumber("Drive F", _profile.f);
 }
 
 PIDProfile Drivetrain::getPIDCoefficients() {

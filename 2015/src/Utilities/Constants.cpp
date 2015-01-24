@@ -6,6 +6,7 @@
  */
 
 #include "Constants.h"
+#include "../Commands/UpdatePIDProfiles.h"
 
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
@@ -33,6 +34,9 @@ Constants::Constants() {
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.75);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0);
+
+	updatePIDProfiles();
+	SmartDashboard::PutData(new UpdatePIDProfiles());
 }
 
 Constants::~Constants() {
@@ -53,4 +57,8 @@ PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, i
 			return driveProfiles[15 + items];		//low gear position
 		}
 	}
+}
+
+void Constants::updatePIDProfiles() {
+
 }

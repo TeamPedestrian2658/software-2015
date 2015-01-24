@@ -53,6 +53,7 @@ public:
 	virtual ~Constants();
 
 	PIDProfile getDriveProfile(bool highGear, bool encoderVelocityMode, int items);
+	void updatePIDProfiles();
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */
