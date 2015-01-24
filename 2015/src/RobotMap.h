@@ -12,8 +12,7 @@ public:
 	static Talon *driveTalonLeft;
 	static Talon *driveTalonRight;
 
-	static Solenoid *driveShifterLeft;
-	static Solenoid *driveShifterRight;
+	static Solenoid *driveShifter;
 
 	static Encoder *driveEncoderLeft;
 	static Encoder *driveEncoderRight;

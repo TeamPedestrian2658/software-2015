@@ -17,8 +17,7 @@ private:
 	PIDController *_controllerLeft;
 	PIDController *_controllerRight;
 
-	Solenoid *_shifterLeft;
-	Solenoid *_shifterRight;
+	Solenoid *_shifter;
 
 	PIDProfile _profile;
 

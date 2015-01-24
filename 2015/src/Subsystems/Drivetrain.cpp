@@ -15,8 +15,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_controllerLeft = RobotMap::driveControllerLeft;
 	_controllerRight = RobotMap::driveControllerRight;
 
-	_shifterLeft = RobotMap::driveShifterLeft;
-	_shifterRight = RobotMap::driveShifterRight;
+	_shifter = RobotMap::driveShifter;
 
 	_chooser = RobotMap::driveChooser;
 	_chooser->AddDefault("Tank", new bool(true));
@@ -43,18 +42,14 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::shiftHigh() {
-	bool val = _constants->shifterStates.highGear;
-	_shifterLeft->Set(val);
-	_shifterRight->Set(val);
-	_highGear = val;
+	_shifter->Set(_constants->shifterStates.highGear);
+	_highGear = _constants->shifterStates.highGear;
 	updatePIDCoefficients();
 }
 
 void Drivetrain::shiftLow() {
-	bool val = _constants->shifterStates.lowGear;
-	_shifterLeft->Set(val);
-	_shifterRight->Set(val);
-	_highGear = val;
+	_shifter->Set(_constants->shifterStates.lowGear);
+	_highGear = _constants->shifterStates.lowGear;
 	updatePIDCoefficients();
 }
 

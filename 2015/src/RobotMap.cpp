@@ -8,8 +8,7 @@ SendableChooser *RobotMap::autoChooser = NULL;
 Talon *RobotMap::driveTalonLeft = NULL;
 Talon *RobotMap::driveTalonRight = NULL;
 
-Solenoid *RobotMap::driveShifterLeft = NULL;
-Solenoid *RobotMap::driveShifterRight = NULL;
+Solenoid *RobotMap::driveShifter = NULL;
 
 Encoder *RobotMap::driveEncoderLeft = NULL;
 Encoder *RobotMap::driveEncoderRight = NULL;
@@ -27,10 +26,8 @@ void RobotMap::init() {
 	driveTalonLeft = new Talon(constants->drivePorts.talonLeftPort);
 	driveTalonRight = new Talon(constants->drivePorts.talonRightPort);
 
-	driveShifterLeft = new Solenoid(constants->drivePorts.shifterLeftModule, constants->drivePorts.shifterLeftPort);
-	driveShifterLeft->Set(constants->shifterStates.lowGear);
-	driveShifterRight = new Solenoid(constants->drivePorts.shifterRightModule, constants->drivePorts.shifterRightPort);
-	driveShifterRight->Set(constants->shifterStates.lowGear);
+	driveShifter = new Solenoid(constants->drivePorts.shifterModule, constants->drivePorts.shifterPort);
+	driveShifter->Set(constants->shifterStates.lowGear);
 
 	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB);
 	driveEncoderLeft->SetDistancePerPulse(0);

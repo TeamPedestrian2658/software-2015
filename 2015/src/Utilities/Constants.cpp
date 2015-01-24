@@ -12,10 +12,8 @@ Constants::Constants() {
 
 	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 0);
 	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 1);
-	drivePorts.shifterLeftModule = _preferences->GetInt("ShifterLeftModule", 0);
-	drivePorts.shifterRightModule = _preferences->GetInt("ShifterRightModule", 0);
-	drivePorts.shifterLeftPort = _preferences->GetInt("ShifterLeftPort", 0);
-	drivePorts.shifterRightPort = _preferences->GetInt("ShifterRightPort", 1);
+	drivePorts.shifterModule = _preferences->GetInt("ShifterModule", 0);
+	drivePorts.shifterPort = _preferences->GetInt("ShifterPort", 0);
 	drivePorts.encoderLeftPortA = _preferences->GetInt("EncoderLeftPortA", 0);
 	drivePorts.encoderLeftPortB = _preferences->GetInt("EncoderLeftPortB", 1);
 	drivePorts.encoderRightPortA = _preferences->GetInt("EncoderRightPortA", 2);

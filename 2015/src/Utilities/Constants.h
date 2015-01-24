@@ -24,10 +24,8 @@ public:
 	struct DrivePorts {
 		int talonLeftPort;
 		int talonRightPort;
-		int shifterLeftModule;
-		int shifterRightModule;
-		int shifterLeftPort;
-		int shifterRightPort;
+		int shifterModule;
+		int shifterPort;
 		int encoderLeftPortA;
 		int encoderLeftPortB;
 		int encoderRightPortA;
