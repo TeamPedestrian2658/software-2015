@@ -30,11 +30,11 @@ void RobotMap::init() {
 	driveShifter->Set(constants->shifterStates.lowGear);
 
 	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB);
-	driveEncoderLeft->SetDistancePerPulse(0);
+	driveEncoderLeft->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderLeft->SetPIDSourceParameter(PIDSource::kRate);
 
 	driveEncoderRight = new Encoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB);
-	driveEncoderRight->SetDistancePerPulse(0);
+	driveEncoderRight->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderRight->SetPIDSourceParameter(PIDSource::kRate);
 
 	driveControllerLeft = new PIDController(0, 0, 0, 0, driveEncoderLeft, driveTalonLeft);

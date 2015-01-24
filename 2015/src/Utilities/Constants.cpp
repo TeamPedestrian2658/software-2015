@@ -32,16 +32,32 @@ Constants::Constants() {
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.75);
+	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0);
 }
 
 Constants::~Constants() {
 	// TODO Auto-generated destructor stub
 }
 
-PIDProfile Constants::getDriveProfile(bool highGear, int items) {
+PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, int items) {
 	if (highGear == shifterStates.highGear) {
-		return driveProfiles[1 + items];
+		return driveProfiles[5 + items];
 	} else {
 		return driveProfiles[0 + items];
 	}
+
+	if (encoderVelocityMode) {
+		if (highGear == shifterStates.highGear) {
+			return driveProfiles[0 + items];		//high gear velocity
+		} else {
+			return driveProfiles[5 + items];		//low gear velocity
+		}
+	} else {
+		if (highGear == shifterStates.highGear) {
+			return driveProfiles[10 + items];		//high gear position
+		} else {
+			return driveProfiles[15 + items];		//low gear position
+		}
+	}
+
 }

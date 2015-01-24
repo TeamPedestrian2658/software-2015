@@ -47,11 +47,12 @@ public:
 		double maxVelocityLow;
 		double enhanceScalar;
 		double slowScalar;
+		double distancePerPulse;
 	} driveConstants;
-	PIDProfile driveProfiles[10];			//0-4 are for low gear, 5-9 are for high gear
+	PIDProfile driveProfiles[20];
 	virtual ~Constants();
 
-	PIDProfile getDriveProfile(bool highGear, int items);
+	PIDProfile getDriveProfile(bool highGear, bool encoderVelocityMode, int items);
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */

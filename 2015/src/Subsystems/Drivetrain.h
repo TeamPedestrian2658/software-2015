@@ -23,6 +23,7 @@ private:
 
 	SendableChooser *_chooser;
 
+	bool _encoderVelocityMode;
 	bool _enhanceEnabled;
 	bool _slowEnabled;
 	bool _highGear;
@@ -39,6 +40,7 @@ public:
 	void setRaw(double left, double right);
 
 	void setEncoderMode(bool velocity);
+	bool encoderVelocityMode();
 
 	bool tankEnabled();
 

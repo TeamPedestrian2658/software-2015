@@ -22,19 +22,18 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_chooser->AddObject("Arcade", new bool(false));
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
-	_enhanceEnabled = true;
-	_controllerLeft->Enable();
-	_controllerRight->Enable();
+	_encoderVelocityMode = true;
+	setEncoderMode(_encoderVelocityMode);
+	SmartDashboard::PutBoolean("Encoder Velocity Mode", _encoderVelocityMode);
+
+	enableEnhancedDriving(true);
 	SmartDashboard::PutBoolean("Enhanced Driving", _enhanceEnabled);
 
 	_slowEnabled = false;
 	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
 
-	_highGear = _constants->shifterStates.lowGear;			//begin in low gear
+	shiftLow();
 	SmartDashboard::PutBoolean("High Gear", _highGear);
-
-	updatePIDCoefficients();
-	enableEnhancedDriving(true);
 }
     
 void Drivetrain::InitDefaultCommand() {
@@ -68,6 +67,9 @@ void Drivetrain::setRaw(double left, double right) {
 }
 
 void Drivetrain::setEncoderMode(bool velocity) {
+	_encoderVelocityMode = velocity;
+	SmartDashboard::PutBoolean("Encoder Velocity Mode", _encoderVelocityMode);
+
 	if (velocity) {
 		_encoderLeft->SetPIDSourceParameter(PIDSource::kRate);
 		_encoderRight->SetPIDSourceParameter(PIDSource::kRate);
@@ -75,6 +77,10 @@ void Drivetrain::setEncoderMode(bool velocity) {
 		_encoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
 		_encoderRight->SetPIDSourceParameter(PIDSource::kDistance);
 	}
+}
+
+bool Drivetrain::encoderVelocityMode() {
+	return _encoderVelocityMode();
 }
 
 bool Drivetrain::tankEnabled() {
@@ -107,7 +113,7 @@ bool Drivetrain::slowEnabled() {
 }
 
 void Drivetrain::updatePIDCoefficients() {
-	PIDProfile profile = _constants->getDriveProfile(_highGear, 0);
+	PIDProfile profile = _constants->getDriveProfile(_highGear, _encoderVelocityMode, 0);
 	_profile.p = profile.p;
 	_profile.i = profile.i;
 	_profile.d = profile.d;
