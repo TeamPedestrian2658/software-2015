@@ -121,10 +121,16 @@ void Drivetrain::updatePIDCoefficients() {
 	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
-	SmartDashboard::PutNumber("Drive P", _profile.p);
-	SmartDashboard::PutNumber("Drive I", _profile.i);
-	SmartDashboard::PutNumber("Drive D", _profile.d);
-	SmartDashboard::PutNumber("Drive F", _profile.f);
+	SmartDashboard::PutNumber("Left Drive P", _controllerLeft->GetP());
+	SmartDashboard::PutNumber("Left Drive I", _controllerLeft->GetP());
+	SmartDashboard::PutNumber("Left Drive D", _controllerLeft->GetP());
+	SmartDashboard::PutNumber("Left Drive F", _controllerLeft->GetP());
+
+	SmartDashboard::PutNumber("Right Drive P", _controllerRight->GetP());
+	SmartDashboard::PutNumber("Right Drive I", _controllerRight->GetI());
+	SmartDashboard::PutNumber("Right Drive D", _controllerRight->GetD());
+	SmartDashboard::PutNumber("Right Drive F", _controllerRight->GetF());
+
 }
 
 PIDProfile Drivetrain::getPIDCoefficients() {
