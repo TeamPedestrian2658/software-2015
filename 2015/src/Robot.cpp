@@ -6,7 +6,7 @@ LowerClaw* Robot::lowerClaw = 0;
 Dolley* Robot::dolley = 0;
 Lift* Robot::lift = 0;
 OI* Robot::oi = 0;
-AutoScriptSelector* Robot::selector = 0;
+//AutoScriptSelector* Robot::selector = 0;
 
 void Robot::RobotInit() {
 	RobotMap::init();
@@ -16,7 +16,7 @@ void Robot::RobotInit() {
 	dolley = new Dolley();
 	lift = new Lift();
 	oi = new OI();
-	selector = new AutoScriptSelector("/home/lvuser/scripts");
+	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	lw = LiveWindow::GetInstance();
 }
 

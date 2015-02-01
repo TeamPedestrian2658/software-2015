@@ -26,7 +26,7 @@ public:
 	static LowerClaw* lowerClaw;
 	static Dolley* dolley;
 	static Lift* lift;
-	static AutoScriptSelector* selector;
+	//static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();
