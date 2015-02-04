@@ -5,6 +5,7 @@ UpperClaw* Robot::upperClaw = 0;
 LowerClaw* Robot::lowerClaw = 0;
 Dolly* Robot::dolly = 0;
 Lift* Robot::lift = 0;
+ToteMover* Robot::toteMover = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
 
@@ -15,6 +16,7 @@ void Robot::RobotInit() {
 	lowerClaw = new LowerClaw();
 	dolly = new Dolly();
 	lift = new Lift();
+	toteMover = new ToteMover();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	lw = LiveWindow::GetInstance();

@@ -45,6 +45,9 @@ public:
 		int dollyModule;
 		int dollyPort;
 	} dollyPorts;
+	struct ToteMoverPorts {
+		int toteMoverPort;
+	} toteMoverPorts;
 	struct OIPorts {
 		int driverPort;
 		int operatorPort;
@@ -52,6 +55,8 @@ public:
 		int slowButton;
 		int toggleEnhanceDriveButton;
 		int toggleDollyButton;
+		int toteMoverLeftButton;
+		int toteMoverRightButton;
 	} oiPorts;
 	struct ShifterStates {
 		bool highGear;
@@ -61,6 +66,11 @@ public:
 		bool back;
 		bool forward;
 	} dollyStates;
+	struct ToteMoverStates {
+		double moveTotesLeft;
+		double moveTotesRight;
+		double stop;
+	} toteMoverStates;
 	struct DriveConstants {
 		double maxVelocityHigh;
 		double maxVelocityLow;

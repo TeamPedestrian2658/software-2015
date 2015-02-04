@@ -30,6 +30,8 @@ public:
 
 	static Solenoid *dollyCylinder;
 
+	static Talon *toteMoverTalon;
+
 	static void init();
 };
 #endif

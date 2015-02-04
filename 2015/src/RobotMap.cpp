@@ -26,6 +26,8 @@ Solenoid *RobotMap::lowerClawBrake = NULL;
 
 Solenoid *RobotMap::dollyCylinder = NULL;
 
+Talon *RobotMap::toteMoverTalon = NULL;
+
 void RobotMap::init() {
 	constants = new Constants();
 
@@ -64,6 +66,8 @@ void RobotMap::init() {
 	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
 
 	dollyCylinder = new Solenoid(constants->dollyPorts.dollyModule, constants->dollyPorts.dollyPort);
+
+	toteMoverTalon = new Talon(constants->toteMoverPorts.toteMoverPort);
 }
 
 

@@ -18,6 +18,9 @@ private:
 	JoystickButton* driveSlow;
 
 	JoystickButton *dollyToggle;
+
+	JoystickButton *toteMoverLeft;
+	JoystickButton *toteMoverRight;
 public:
 	OI();
  

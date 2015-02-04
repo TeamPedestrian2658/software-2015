@@ -11,6 +11,7 @@
 #include "Subsystems/Lift.h"
 #include "Subsystems/LowerClaw.h"
 #include "Subsystems/UpperClaw.h"
+#include "Subsystems/ToteMover.h"
 
 #include "OI.h"
 
@@ -26,6 +27,7 @@ public:
 	static LowerClaw* lowerClaw;
 	static Dolly* dolly;
 	static Lift* lift;
+	static ToteMover* toteMover;
 	//static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();

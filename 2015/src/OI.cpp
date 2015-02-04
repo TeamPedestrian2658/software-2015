@@ -10,6 +10,7 @@
 #include "Commands/EnableSlow.h"
 #include "Commands/DisableSlow.h"
 #include "Commands/ToggleDolly.h"
+#include "Commands/SetToteMover.h"
 
 OI::OI() {
 
@@ -31,6 +32,14 @@ OI::OI() {
 
 	dollyToggle = new JoystickButton(operatorStick, constants->oiPorts.toggleDollyButton);
 	dollyToggle->WhenPressed(new ToggleDolly());
+
+	toteMoverLeft = new JoystickButton(operatorStick, constants->oiPorts.toteMoverLeftButton);
+	toteMoverLeft->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesLeft));
+	toteMoverLeft->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
+
+	toteMoverRight = new JoystickButton(operatorStick, constants->oiPorts.toteMoverRightButton);
+	toteMoverRight->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesRight));
+	toteMoverRight->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
 }
 
 Joystick* OI::getOperatorStick() {

@@ -11,8 +11,8 @@
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
 
-	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 0);
-	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 1);
+	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 3);
+	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 4);
 	drivePorts.shifterModule = _preferences->GetInt("ShifterModule", 0);
 	drivePorts.shifterPort = _preferences->GetInt("ShifterPort", 0);
 	drivePorts.encoderLeftPortA = _preferences->GetInt("EncoderLeftPortA", 0);
@@ -32,18 +32,26 @@ Constants::Constants() {
 	dollyPorts.dollyModule = _preferences->GetInt("DollyModule", 0);
 	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 5);
 
+	toteMoverPorts.toteMoverPort = _preferences->GetInt("ToteMoverPort", 5);
+
 	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
 	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
 	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);
 	oiPorts.slowButton = _preferences->GetInt("SlowButton", 5);
 	oiPorts.toggleEnhanceDriveButton = _preferences->GetInt("ToggleEnhanceDriveButton", 8);
 	oiPorts.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 3);
+	oiPorts.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 2);
+	oiPorts.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 1);
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
 	dollyStates.back = _preferences->GetBoolean("DollyBack", true);
 	dollyStates.forward = _preferences->GetBoolean("DollyForward", false);
+
+	toteMoverStates.moveTotesLeft = _preferences->GetDouble("MoveTotesLeft", -1);
+	toteMoverStates.moveTotesRight = _preferences->GetDouble("MoveTotesRight", 1);
+	toteMoverStates.stop = _preferences->GetDouble("ToteMoverStop", 0);
 
 	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 0);
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);
