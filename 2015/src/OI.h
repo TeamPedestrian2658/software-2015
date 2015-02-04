@@ -16,6 +16,8 @@ private:
 	JoystickButton* driveShifter;
 	JoystickButton* driveEnhance;
 	JoystickButton* driveSlow;
+
+	JoystickButton *dollyToggle;
 public:
 	OI();
  

@@ -41,25 +41,26 @@ public:
 		int lowerBrakeModule;
 		int lowerBrakePort;
 	} clawPorts;
-	struct DolleyPorts {
-		int dolleyModule;
-		int dolleyPort;
-	} dolleyPorts;
+	struct DollyPorts {
+		int dollyModule;
+		int dollyPort;
+	} dollyPorts;
 	struct OIPorts {
 		int driverPort;
 		int operatorPort;
 		int shiftButton;
 		int slowButton;
-		int toggleEnhanceButton;
+		int toggleEnhanceDriveButton;
+		int toggleDollyButton;
 	} oiPorts;
 	struct ShifterStates {
 		bool highGear;
 		bool lowGear;
 	} shifterStates;
-	struct DolleyStates {
+	struct DollyStates {
 		bool back;
 		bool forward;
-	} dolleyStates;
+	} dollyStates;
 	struct DriveConstants {
 		double maxVelocityHigh;
 		double maxVelocityLow;

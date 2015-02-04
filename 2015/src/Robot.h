@@ -6,7 +6,7 @@
 #include "RobotMap.h"
 #include "LiveWindow/LiveWindow.h"
 
-#include "Subsystems/Dolley.h"
+#include "Subsystems/Dolly.h"
 #include "Subsystems/Drivetrain.h"
 #include "Subsystems/Lift.h"
 #include "Subsystems/LowerClaw.h"
@@ -24,7 +24,7 @@ public:
 	static Drivetrain* drivetrain;
 	static UpperClaw* upperClaw;
 	static LowerClaw* lowerClaw;
-	static Dolley* dolley;
+	static Dolly* dolly;
 	static Lift* lift;
 	//static AutoScriptSelector* selector;
 	virtual void RobotInit();

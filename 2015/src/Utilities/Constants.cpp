@@ -29,20 +29,21 @@ Constants::Constants() {
 	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
 	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 4);
 
-	dolleyPorts.dolleyModule = _preferences->GetInt("DolleyModule", 0);
-	dolleyPorts.dolleyPort = _preferences->GetInt("DolleyPort", 5);
+	dollyPorts.dollyModule = _preferences->GetInt("DollyModule", 0);
+	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 5);
 
 	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
 	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
 	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);
 	oiPorts.slowButton = _preferences->GetInt("SlowButton", 5);
-	oiPorts.toggleEnhanceButton = _preferences->GetInt("ToggleEnhanceButton", 8);
+	oiPorts.toggleEnhanceDriveButton = _preferences->GetInt("ToggleEnhanceDriveButton", 8);
+	oiPorts.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 3);
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
-	dolleyStates.back = _preferences->GetBoolean("DolleyBack", true);
-	dolleyStates.forward = _preferences->GetBoolean("DolleyForward", false);
+	dollyStates.back = _preferences->GetBoolean("DollyBack", true);
+	dollyStates.forward = _preferences->GetBoolean("DollyForward", false);
 
 	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 0);
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);

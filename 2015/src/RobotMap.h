@@ -28,7 +28,7 @@ public:
 	static Solenoid *lowerClawGrabber;
 	static Solenoid *lowerClawBrake;
 
-	static Solenoid *dolleyCylinder;
+	static Solenoid *dollyCylinder;
 
 	static void init();
 };

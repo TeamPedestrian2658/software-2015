@@ -3,7 +3,7 @@
 Drivetrain* Robot::drivetrain = 0;
 UpperClaw* Robot::upperClaw = 0;
 LowerClaw* Robot::lowerClaw = 0;
-Dolley* Robot::dolley = 0;
+Dolly* Robot::dolly = 0;
 Lift* Robot::lift = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
@@ -13,7 +13,7 @@ void Robot::RobotInit() {
 	drivetrain = new Drivetrain();
 	upperClaw = new UpperClaw();
 	lowerClaw = new LowerClaw();
-	dolley = new Dolley();
+	dolly = new Dolly();
 	lift = new Lift();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");

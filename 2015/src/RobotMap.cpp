@@ -24,7 +24,7 @@ Solenoid *RobotMap::upperClawBrake = NULL;
 Solenoid *RobotMap::lowerClawGrabber = NULL;
 Solenoid *RobotMap::lowerClawBrake = NULL;
 
-Solenoid *RobotMap::dolleyCylinder = NULL;
+Solenoid *RobotMap::dollyCylinder = NULL;
 
 void RobotMap::init() {
 	constants = new Constants();
@@ -63,7 +63,7 @@ void RobotMap::init() {
 	lowerClawGrabber = new Solenoid(constants->clawPorts.lowerGrabberModule, constants->clawPorts.lowerGrabberPort);
 	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
 
-	dolleyCylinder = new Solenoid(constants->dolleyPorts.dolleyModule, constants->dolleyPorts.dolleyPort);
+	dollyCylinder = new Solenoid(constants->dollyPorts.dollyModule, constants->dollyPorts.dollyPort);
 }
 
 

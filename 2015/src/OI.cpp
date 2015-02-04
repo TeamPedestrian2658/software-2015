@@ -9,6 +9,7 @@
 #include "Commands/ToggleEnhancedDriving.h"
 #include "Commands/EnableSlow.h"
 #include "Commands/DisableSlow.h"
+#include "Commands/ToggleDolly.h"
 
 OI::OI() {
 
@@ -21,13 +22,15 @@ OI::OI() {
 	driveShifter->WhenPressed(new ShiftHigh());
 	driveShifter->WhenReleased(new ShiftLow());
 
-	driveEnhance = new JoystickButton(driverStick, constants->oiPorts.toggleEnhanceButton);
+	driveEnhance = new JoystickButton(driverStick, constants->oiPorts.toggleEnhanceDriveButton);
 	driveEnhance->WhenPressed(new ToggleEnhancedDriving());
 
 	driveSlow = new JoystickButton(driverStick, constants->oiPorts.slowButton);
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
 
+	dollyToggle = new JoystickButton(operatorStick, constants->oiPorts.toggleDollyButton);
+	dollyToggle->WhenPressed(new ToggleDolly());
 }
 
 Joystick* OI::getOperatorStick() {

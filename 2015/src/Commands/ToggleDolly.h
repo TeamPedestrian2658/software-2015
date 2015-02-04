@@ -1,10 +1,10 @@
 #ifndef ToggleDolly_H
 #define ToggleDolly_H
 
-#include "../CommandBase.h"
+#include "../Robot.h"
 #include "WPILib.h"
 
-class ToggleDolly: public CommandBase
+class ToggleDolly: public Command
 {
 public:
 	ToggleDolly();

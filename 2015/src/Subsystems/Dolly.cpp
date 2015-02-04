@@ -3,7 +3,7 @@
 
 Dolly::Dolly() : Subsystem("Dolly") {
 	_constants = RobotMap::constants;
-	_cylinder = RobotMap::dolleyCylinder;
+	_cylinder = RobotMap::dollyCylinder;
 }
     
 void Dolly::InitDefaultCommand() {
@@ -12,14 +12,14 @@ void Dolly::InitDefaultCommand() {
 
 void Dolly::setDolly(bool back) {
 	if (back) {
-		_cylinder->Set(_constants->dolleyStates.back);
+		_cylinder->Set(_constants->dollyStates.back);
 	} else {
-		_cylinder->Set(_constants->dolleyStates.forward);
+		_cylinder->Set(_constants->dollyStates.forward);
 	}
 }
 
 bool Dolly::dollyBack() {
-	if (_cylinder->Get() == _constants->dolleyStates.back) {
+	if (_cylinder->Get() == _constants->dollyStates.back) {
 		return true;
 	} else {
 		return false;
