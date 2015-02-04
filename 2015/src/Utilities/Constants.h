@@ -31,6 +31,20 @@ public:
 		int encoderRightPortA;
 		int encoderRightPortB;
 	} drivePorts;
+	struct ClawPorts {
+		int upperGrabberModule;
+		int upperGrabberPort;
+		int upperBrakeModule;
+		int upperBrakePort;
+		int lowerGrabberModule;
+		int lowerGrabberPort;
+		int lowerBrakeModule;
+		int lowerBrakePort;
+	} clawPorts;
+	struct DolleyPorts {
+		int dolleyModule;
+		int dolleyPort;
+	} dolleyPorts;
 	struct OIPorts {
 		int driverPort;
 		int operatorPort;
@@ -42,6 +56,10 @@ public:
 		bool highGear;
 		bool lowGear;
 	} shifterStates;
+	struct DolleyStates {
+		bool back;
+		bool forward;
+	} dolleyStates;
 	struct DriveConstants {
 		double maxVelocityHigh;
 		double maxVelocityLow;

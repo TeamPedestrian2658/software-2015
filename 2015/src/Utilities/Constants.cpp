@@ -20,6 +20,18 @@ Constants::Constants() {
 	drivePorts.encoderRightPortA = _preferences->GetInt("EncoderRightPortA", 2);
 	drivePorts.encoderRightPortB = _preferences->GetInt("EncoderRightPortB", 3);
 
+	clawPorts.upperGrabberModule = _preferences->GetInt("UpperGrabberModule, 0");
+	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 1);
+	clawPorts.upperBrakeModule = _preferences->GetInt("UpperBrakeModule", 0);
+	clawPorts.upperBrakePort = _preferences->GetInt("UpperBrakePort", 2);
+	clawPorts.lowerGrabberModule = _preferences->GetInt("LowerGrabberModule", 0);
+	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 3);
+	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
+	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 4);
+
+	dolleyPorts.dolleyModule = _preferences->GetInt("DolleyModule", 0);
+	dolleyPorts.dolleyPort = _preferences->GetInt("DolleyPort", 5);
+
 	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
 	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
 	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);
@@ -28,6 +40,9 @@ Constants::Constants() {
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
+
+	dolleyStates.back = _preferences->GetBoolean("DolleyBack", true);
+	dolleyStates.forward = _preferences->GetBoolean("DolleyForward", false);
 
 	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 0);
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);

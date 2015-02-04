@@ -18,6 +18,14 @@ PIDController *RobotMap::driveControllerRight = NULL;
 
 SendableChooser *RobotMap::driveChooser = NULL;
 
+Solenoid *RobotMap::upperClawGrabber = NULL;
+Solenoid *RobotMap::upperClawBrake = NULL;
+
+Solenoid *RobotMap::lowerClawGrabber = NULL;
+Solenoid *RobotMap::lowerClawBrake = NULL;
+
+Solenoid *RobotMap::dolleyCylinder = NULL;
+
 void RobotMap::init() {
 	constants = new Constants();
 
@@ -48,4 +56,38 @@ void RobotMap::init() {
 	driveControllerRight->Disable();
 
 	driveChooser = new SendableChooser();
+
+	upperClawGrabber = new Solenoid(constants->clawPorts.upperGrabberModule, constants->clawPorts.upperGrabberPort);
+	upperClawBrake = new Solenoid(constants->clawPorts.upperBrakeModule, constants->clawPorts.upperBrakePort);
+
+	lowerClawGrabber = new Solenoid(constants->clawPorts.lowerGrabberModule, constants->clawPorts.lowerGrabberPort);
+	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
+
+	dolleyCylinder = new Solenoid(constants->dolleyPorts.dolleyModule, constants->dolleyPorts.dolleyPort);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

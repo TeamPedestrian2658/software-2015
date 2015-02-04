@@ -22,6 +22,14 @@ public:
 
 	static SendableChooser *driveChooser;
 
+	static Solenoid *upperClawGrabber;
+	static Solenoid *upperClawBrake;
+
+	static Solenoid *lowerClawGrabber;
+	static Solenoid *lowerClawBrake;
+
+	static Solenoid *dolleyCylinder;
+
 	static void init();
 };
 #endif
