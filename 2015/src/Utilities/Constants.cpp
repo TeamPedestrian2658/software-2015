@@ -84,5 +84,69 @@ PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, i
 }
 
 void Constants::updatePIDProfiles() {
+	driveProfiles[0].p = _preferences->GetDouble("DriveProfile0P", 0);
+	driveProfiles[0].i = _preferences->GetDouble("DriveProfile0I", 0);
+	driveProfiles[0].d = _preferences->GetDouble("DriveProfile0D", 0);
+	driveProfiles[0].f = _preferences->GetDouble("DriveProfile0F", 0);
 
+	driveProfiles[1].p = _preferences->GetDouble("DriveProfile1P", 0);
+	driveProfiles[1].i = _preferences->GetDouble("DriveProfile1I", 0);
+	driveProfiles[1].d = _preferences->GetDouble("DriveProfile1D", 0);
+	driveProfiles[1].f = _preferences->GetDouble("DriveProfile1F", 0);
+
+	driveProfiles[2].p = _preferences->GetDouble("DriveProfile2P", 0);
+	driveProfiles[2].i = _preferences->GetDouble("DriveProfile2I", 0);
+	driveProfiles[2].d = _preferences->GetDouble("DriveProfile2D", 0);
+	driveProfiles[2].f = _preferences->GetDouble("DriveProfile2F", 0);
+
+	driveProfiles[3].p = _preferences->GetDouble("DriveProfile3P", 0);
+	driveProfiles[3].i = _preferences->GetDouble("DriveProfile3I", 0);
+	driveProfiles[3].d = _preferences->GetDouble("DriveProfile3D", 0);
+	driveProfiles[3].f = _preferences->GetDouble("DriveProfile3F", 0);
+
+	driveProfiles[4].p = _preferences->GetDouble("DriveProfile4P", 0);
+	driveProfiles[4].i = _preferences->GetDouble("DriveProfile4I", 0);
+	driveProfiles[4].d = _preferences->GetDouble("DriveProfile4D", 0);
+	driveProfiles[4].f = _preferences->GetDouble("DriveProfile4F", 0);
+
+	driveProfiles[5].p = _preferences->GetDouble("DriveProfile5P", 0);
+	driveProfiles[5].i = _preferences->GetDouble("DriveProfile5I", 0);
+	driveProfiles[5].d = _preferences->GetDouble("DriveProfile5D", 0);
+	driveProfiles[5].f = _preferences->GetDouble("DriveProfile5F", 0);
+
+	driveProfiles[6].p = _preferences->GetDouble("DriveProfile6P", 0);
+	driveProfiles[6].i = _preferences->GetDouble("DriveProfile6I", 0);
+	driveProfiles[6].d = _preferences->GetDouble("DriveProfile6D", 0);
+	driveProfiles[6].f = _preferences->GetDouble("DriveProfile6F", 0);
+
+	driveProfiles[7].p = _preferences->GetDouble("DriveProfile7P", 0);
+	driveProfiles[7].i = _preferences->GetDouble("DriveProfile7I", 0);
+	driveProfiles[7].d = _preferences->GetDouble("DriveProfile7D", 0);
+	driveProfiles[7].f = _preferences->GetDouble("DriveProfile7F", 0);
+
+	driveProfiles[8].p = _preferences->GetDouble("DriveProfile8P", 0);
+	driveProfiles[8].i = _preferences->GetDouble("DriveProfile8I", 0);
+	driveProfiles[8].d = _preferences->GetDouble("DriveProfile8D", 0);
+	driveProfiles[8].f = _preferences->GetDouble("DriveProfile8F", 0);
+
+	driveProfiles[9].p = _preferences->GetDouble("DriveProfile9P", 0);
+	driveProfiles[9].i = _preferences->GetDouble("DriveProfile9I", 0);
+	driveProfiles[9].d = _preferences->GetDouble("DriveProfile9D", 0);
+	driveProfiles[9].f = _preferences->GetDouble("DriveProfile9F", 0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
