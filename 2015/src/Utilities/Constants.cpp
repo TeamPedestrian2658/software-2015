@@ -34,6 +34,8 @@ Constants::Constants() {
 
 	toteMoverPorts.toteMoverPort = _preferences->GetInt("ToteMoverPort", 5);
 
+	compressorPorts.compressorModule = _preferences->GetInt("CompressorModule", 0);
+
 	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
 	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
 	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);

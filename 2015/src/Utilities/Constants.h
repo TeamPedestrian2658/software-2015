@@ -48,6 +48,9 @@ public:
 	struct ToteMoverPorts {
 		int toteMoverPort;
 	} toteMoverPorts;
+	struct CompressorPorts {
+		int compressorModule;
+	} compressorPorts;
 	struct OIPorts {
 		int driverPort;
 		int operatorPort;

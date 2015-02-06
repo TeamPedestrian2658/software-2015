@@ -28,6 +28,8 @@ Solenoid *RobotMap::dollyCylinder = NULL;
 
 Talon *RobotMap::toteMoverTalon = NULL;
 
+Compressor *RobotMap::compressor = NULL;
+
 void RobotMap::init() {
 	constants = new Constants();
 
@@ -68,6 +70,9 @@ void RobotMap::init() {
 	dollyCylinder = new Solenoid(constants->dollyPorts.dollyModule, constants->dollyPorts.dollyPort);
 
 	toteMoverTalon = new Talon(constants->toteMoverPorts.toteMoverPort);
+
+	compressor = new Compressor(constants->compressorPorts.compressorModule);
+	compressor->Start();
 }
 
 

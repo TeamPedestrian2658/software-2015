@@ -32,6 +32,8 @@ public:
 
 	static Talon *toteMoverTalon;
 
+	static Compressor *compressor;
+
 	static void init();
 };
 #endif
