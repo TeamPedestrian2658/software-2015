@@ -75,6 +75,8 @@ Constants::Constants() {
 
 	updatePIDProfiles();
 	SmartDashboard::PutData(new UpdatePIDProfiles());
+	SmartDashboard::PutData(new CompressorOn());
+	SmartDashboard::PutData(new CompressorOff());
 }
 
 Constants::~Constants() {
