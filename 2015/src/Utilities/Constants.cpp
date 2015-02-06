@@ -57,7 +57,7 @@ Constants::Constants() {
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.75);
-	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0);
+	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.147262);
 
 	updatePIDProfiles();
 	SmartDashboard::PutData(new UpdatePIDProfiles());

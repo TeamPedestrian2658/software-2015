@@ -62,7 +62,7 @@ void Drivetrain::set(double leftVelocity, double rightVelocity) {
 }
 
 void Drivetrain::setRaw(double left, double right) {
-	_talonLeft->Set(left);
+	_talonLeft->Set(-left);
 	_talonRight->Set(right);
 }
 
@@ -118,7 +118,7 @@ void Drivetrain::updatePIDCoefficients() {
 	_profile.i = profile.i;
 	_profile.d = profile.d;
 	_profile.f = profile.f;
-	_controllerLeft->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
+	_controllerLeft->SetPID(-_profile.p, -_profile.i, -_profile.d, -_profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
 	SmartDashboard::PutNumber("Left Drive P", _controllerLeft->GetP());

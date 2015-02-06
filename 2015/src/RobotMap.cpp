@@ -39,11 +39,11 @@ void RobotMap::init() {
 	driveShifter = new Solenoid(constants->drivePorts.shifterModule, constants->drivePorts.shifterPort);
 	driveShifter->Set(constants->shifterStates.lowGear);
 
-	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB);
+	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB, false);
 	driveEncoderLeft->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderLeft->SetPIDSourceParameter(PIDSource::kRate);
 
-	driveEncoderRight = new Encoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB);
+	driveEncoderRight = new Encoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB, true);
 	driveEncoderRight->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderRight->SetPIDSourceParameter(PIDSource::kRate);
 
