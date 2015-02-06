@@ -16,6 +16,7 @@ void Dolly::setDolly(bool back) {
 	} else {
 		_cylinder->Set(_constants->dollyStates.forward);
 	}
+	_constants->reducePressure(_constants->pneumaticConstants.dollyActuationLoss);
 }
 
 bool Dolly::dollyBack() {

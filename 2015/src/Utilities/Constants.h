@@ -81,11 +81,24 @@ public:
 		double slowScalar;
 		double distancePerPulse;
 	} driveConstants;
+	struct PneumaticConstants {
+		double startingPressure;
+		double currentPressure;
+		double compressorOnPressure;
+		double shifterActuationLoss;
+		double dollyActuationLoss;
+		double upperClawGrabberActuationLoss;
+		double upperClawBrakeActuationLoss;
+		double lowerClawGrabberActuationLoss;
+		double lowerClawBrakeActuationLoss;
+	} pneumaticConstants;
 	PIDProfile driveProfiles[20];
 	virtual ~Constants();
 
 	PIDProfile getDriveProfile(bool highGear, bool encoderVelocityMode, int items);
 	void updatePIDProfiles();
+
+	void reducePressure(double pressureLoss);
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */

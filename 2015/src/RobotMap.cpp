@@ -72,7 +72,7 @@ void RobotMap::init() {
 	toteMoverTalon = new Talon(constants->toteMoverPorts.toteMoverPort);
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
-	compressor->Start();
+	compressor->Stop();
 }
 
 

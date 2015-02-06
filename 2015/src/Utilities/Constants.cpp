@@ -7,6 +7,8 @@
 
 #include "Constants.h"
 #include "../Commands/UpdatePIDProfiles.h"
+#include "../Commands/CompressorOn.h"
+#include "../Commands/CompressorOff.h"
 
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
@@ -60,6 +62,16 @@ Constants::Constants() {
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.75);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.147262);
+
+	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
+	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
+	pneumaticConstants.compressorOnPressure = _preferences->GetDouble("CompressorOnPressure", 80);
+	pneumaticConstants.shifterActuationLoss = _preferences->GetDouble("ShifterActuationLoss", 0);
+	pneumaticConstants.dollyActuationLoss = _preferences->GetDouble("DollyActuationLoss", 0);
+	pneumaticConstants.upperClawGrabberActuationLoss = _preferences->GetDouble("UpperClawGrabberActuationLoss", 0);
+	pneumaticConstants.upperClawBrakeActuationLoss = _preferences->GetDouble("UpperClawBrakeActuationLoss", 0);
+	pneumaticConstants.lowerClawGrabberActuationLoss = _preferences->GetDouble("LowerClawGrabberActuationLoss", 0);
+	pneumaticConstants.lowerClawBrakeActuationLoss = _preferences->GetDouble("LowerClawBrakeActuationLoss", 0);
 
 	updatePIDProfiles();
 	SmartDashboard::PutData(new UpdatePIDProfiles());
@@ -137,7 +149,13 @@ void Constants::updatePIDProfiles() {
 	driveProfiles[9].f = _preferences->GetDouble("DriveProfile9F", 0);
 }
 
-
+void Constants::reducePressure(double pressureLoss) {
+	pneumaticConstants.currentPressure -= pressureLoss;
+	if (pneumaticConstants.currentPressure < pneumaticConstants.compressorOnPressure) {
+		Command *c = new CompressorOn();
+		c->Start();
+	}
+}
 
 
 

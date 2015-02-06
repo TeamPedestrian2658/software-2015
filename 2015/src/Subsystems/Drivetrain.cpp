@@ -44,12 +44,14 @@ void Drivetrain::shiftHigh() {
 	_shifter->Set(_constants->shifterStates.highGear);
 	_highGear = _constants->shifterStates.highGear;
 	updatePIDCoefficients();
+	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
 }
 
 void Drivetrain::shiftLow() {
 	_shifter->Set(_constants->shifterStates.lowGear);
 	_highGear = _constants->shifterStates.lowGear;
 	updatePIDCoefficients();
+	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
 }
 
 bool Drivetrain::isHighGear() {
