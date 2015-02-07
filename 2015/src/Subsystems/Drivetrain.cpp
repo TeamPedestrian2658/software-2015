@@ -42,19 +42,23 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::shiftHigh() {
-	_shifter->Set(_constants->shifterStates.highGear);
-	_highGear = _constants->shifterStates.highGear;
-	updatePIDCoefficients();
-	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-	SmartDashboard::PutString("Gear", "HIGH");
+	if (!isHighGear()) {
+		_shifter->Set(_constants->shifterStates.highGear);
+		_highGear = _constants->shifterStates.highGear;
+		updatePIDCoefficients();
+		_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
+		SmartDashboard::PutString("Gear", "HIGH");
+	}
 }
 
 void Drivetrain::shiftLow() {
-	_shifter->Set(_constants->shifterStates.lowGear);
-	_highGear = _constants->shifterStates.lowGear;
-	updatePIDCoefficients();
-	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-	SmartDashboard::PutString("Gear", "LOW");
+	if (isHighGear()) {
+		_shifter->Set(_constants->shifterStates.lowGear);
+		_highGear = _constants->shifterStates.lowGear;
+		updatePIDCoefficients();
+		_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
+		SmartDashboard::PutString("Gear", "LOW");
+	}
 }
 
 bool Drivetrain::isHighGear() {

@@ -12,19 +12,31 @@ void UpperClaw::InitDefaultCommand() {
 }
 
 void UpperClaw::grab() {
-	_grabber->Set(_constants->clawStates.upperClawGrab);
+	if (!isClawClosed()) {
+		_grabber->Set(_constants->clawStates.upperClawGrab);
+		_constants->reducePressure(_constants->pneumaticConstants.upperClawGrabberActuationLoss);
+	}
 }
 
 void UpperClaw::release() {
-	_grabber->Set(!_constants->clawStates.upperClawGrab);
+	if (isClawClosed()) {
+		_grabber->Set(!_constants->clawStates.upperClawGrab);
+		_constants->reducePressure(_constants->pneumaticConstants.upperClawGrabberActuationLoss);
+	}
 }
 
 void UpperClaw::brakeOn() {
-	_brake->Set(_constants->clawStates.upperClawBrakeOn);
+	if (!isBrakeOn()) {
+		_brake->Set(_constants->clawStates.upperClawBrakeOn);
+		_constants->reducePressure(_constants->pneumaticConstants.upperClawBrakeActuationLoss);
+	}
 }
 
 void UpperClaw::brakeOff() {
-	_brake->Set(!_constants->clawStates.upperClawBrakeOn);
+	if (isBrakeOn()) {
+		_brake->Set(!_constants->clawStates.upperClawBrakeOn);
+		_constants->reducePressure(_constants->pneumaticConstants.upperClawBrakeActuationLoss);
+	}
 }
 
 bool UpperClaw::isClawClosed() {
