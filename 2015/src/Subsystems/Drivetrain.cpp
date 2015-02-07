@@ -14,12 +14,13 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 
 	_controllerLeft = RobotMap::driveControllerLeft;
 	_controllerRight = RobotMap::driveControllerRight;
+	updatePIDCoefficients();
 
 	_shifter = RobotMap::driveShifter;
 
 	_chooser = RobotMap::driveChooser;
-	_chooser->AddDefault("Tank", new int(0));
-	_chooser->AddObject("Arcade", new int(1));
+	_chooser->AddDefault("Tank", new bool(true));
+	_chooser->AddObject("Arcade", new bool(false));
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
 	_encoderVelocityMode = true;
@@ -88,11 +89,7 @@ bool Drivetrain::encoderVelocityMode() {
 }
 
 bool Drivetrain::tankEnabled() {
-	if (*(int*)_chooser->GetSelected() == 0) {
-		return true;
-	} else {
-		return false;
-	}
+	return *(bool*)_chooser->GetSelected();
 }
 
 void Drivetrain::enableEnhancedDriving(bool enable) {
