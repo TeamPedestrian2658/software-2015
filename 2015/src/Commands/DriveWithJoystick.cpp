@@ -32,15 +32,15 @@ void DriveWithJoystick::Execute()
 	if (_drivetrain->enhanceEnabled()) {
 		if (_drivetrain->tankEnabled()) {
 			if (_drivetrain->slowEnabled()) {
-				_leftVelocity = _driverStick->GetRawAxis(1) * -1 * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = _driverStick->GetRawAxis(5) * -1 * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = -_driverStick->GetRawAxis(_constants->driverAxes.rightY) * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
 			} else {
-				_leftVelocity = _driverStick->GetRawAxis(1) * -1 * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = _driverStick->GetRawAxis(5) * -1 * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) * ENHANCE_SCALAR * MAX_VELOCITY;
+				_rightVelocity = -_driverStick->GetRawAxis(_constants->driverAxes.rightY) * ENHANCE_SCALAR * MAX_VELOCITY;
 			}
 		} else {
-			double leftJoy = (_driverStick->GetRawAxis(1) * -1) + _driverStick->GetRawAxis(4);
-			double rightJoy =( _driverStick->GetRawAxis(1) * -1) - _driverStick->GetRawAxis(4);
+			double leftJoy = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) + _driverStick->GetRawAxis(_constants->driverAxes.rightX);
+			double rightJoy = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) - _driverStick->GetRawAxis(_constants->driverAxes.rightX);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;
@@ -66,13 +66,13 @@ void DriveWithJoystick::Execute()
 	} else {
 		if (_drivetrain->tankEnabled()) {
 			if (_drivetrain->slowEnabled()) {
-				_drivetrain->setRaw(SLOW_SCALAR * -1 * _driverStick->GetRawAxis(1), SLOW_SCALAR * -1 * _driverStick->GetRawAxis(5));
+				_drivetrain->setRaw(SLOW_SCALAR * -_driverStick->GetRawAxis(_constants->driverAxes.leftY), SLOW_SCALAR * -_driverStick->GetRawAxis(_constants->driverAxes.rightY));
 			} else {
-				_drivetrain->setRaw(-1 * _driverStick->GetRawAxis(1), -1 * _driverStick->GetRawAxis(5));
+				_drivetrain->setRaw(-_driverStick->GetRawAxis(_constants->driverAxes.leftY), -_driverStick->GetRawAxis(_constants->driverAxes.rightY));
 			}
 		} else {
-			double leftJoy = (_driverStick->GetRawAxis(1) *-1 ) + _driverStick->GetRawAxis(4);
-			double rightJoy = (_driverStick->GetRawAxis(1) * -1) - _driverStick->GetRawAxis(4);
+			double leftJoy = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) + _driverStick->GetRawAxis(_constants->driverAxes.rightX);
+			double rightJoy = -_driverStick->GetRawAxis(_constants->driverAxes.leftY) - _driverStick->GetRawAxis(_constants->driverAxes.rightX);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;

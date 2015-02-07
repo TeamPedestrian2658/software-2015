@@ -40,12 +40,24 @@ Constants::Constants() {
 
 	oiPorts.driverPort = _preferences->GetInt("DriverPort", 0);
 	oiPorts.operatorPort = _preferences->GetInt("OperatorPort", 1);
-	oiPorts.shiftButton = _preferences->GetInt("ShiftButton", 6);
-	oiPorts.slowButton = _preferences->GetInt("SlowButton", 5);
-	oiPorts.toggleEnhanceDriveButton = _preferences->GetInt("ToggleEnhanceDriveButton", 8);
-	oiPorts.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 3);
-	oiPorts.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 2);
-	oiPorts.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 1);
+
+	driverButtons.shiftButton = _preferences->GetInt("ShiftButton", 6);
+	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
+	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
+
+	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 3);
+	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 2);
+	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 1);
+
+	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
+	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);
+	driverAxes.rightX = _preferences->GetInt("DriverRightX", 4);
+	driverAxes.rightY = _preferences->GetInt("DriverRightY", 5);
+
+	operatorAxes.leftX = _preferences->GetInt("OperatorLeftX", 0);
+	operatorAxes.leftY = _preferences->GetInt("OperatorLeftY", 0);
+	operatorAxes.rightX = _preferences->GetInt("OperatorRightX", 0);
+	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 0);
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);

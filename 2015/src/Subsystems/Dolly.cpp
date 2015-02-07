@@ -20,9 +20,5 @@ void Dolly::setDolly(bool back) {
 }
 
 bool Dolly::dollyBack() {
-	if (_cylinder->Get() == _constants->dollyStates.back) {
-		return true;
-	} else {
-		return false;
-	}
+	return (_cylinder->Get() == _constants->dollyStates.back);
 }

@@ -54,13 +54,29 @@ public:
 	struct OIPorts {
 		int driverPort;
 		int operatorPort;
+	} oiPorts;
+	struct DriverButtons {
 		int shiftButton;
 		int slowButton;
-		int toggleEnhanceDriveButton;
+		int toggleEnhancedDriveButton;
+	} driverButtons;
+	struct OperatorButtons {
 		int toggleDollyButton;
 		int toteMoverLeftButton;
 		int toteMoverRightButton;
-	} oiPorts;
+	} operatorButtons;
+	struct DriverAxes {
+		int leftX;
+		int leftY;
+		int rightX;
+		int rightY;
+	} driverAxes;
+	struct OperatorAxes {
+		int leftX;
+		int leftY;
+		int rightX;
+		int rightY;
+	} operatorAxes;
 	struct ShifterStates {
 		bool highGear;
 		bool lowGear;

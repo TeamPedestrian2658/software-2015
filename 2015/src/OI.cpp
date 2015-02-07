@@ -19,25 +19,25 @@ OI::OI() {
 	operatorStick = new Joystick(constants->oiPorts.operatorPort);
 	driverStick = new Joystick(constants->oiPorts.driverPort);
 
-	driveShifter = new JoystickButton(driverStick, constants->oiPorts.shiftButton);
+	driveShifter = new JoystickButton(driverStick, constants->driverButtons.shiftButton);
 	driveShifter->WhenPressed(new ShiftHigh());
 	driveShifter->WhenReleased(new ShiftLow());
 
-	driveEnhance = new JoystickButton(driverStick, constants->oiPorts.toggleEnhanceDriveButton);
+	driveEnhance = new JoystickButton(driverStick, constants->driverButtons.toggleEnhancedDriveButton);
 	driveEnhance->WhenPressed(new ToggleEnhancedDriving());
 
-	driveSlow = new JoystickButton(driverStick, constants->oiPorts.slowButton);
+	driveSlow = new JoystickButton(driverStick, constants->driverButtons.slowButton);
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
 
-	dollyToggle = new JoystickButton(operatorStick, constants->oiPorts.toggleDollyButton);
+	dollyToggle = new JoystickButton(operatorStick, constants->operatorButtons.toggleDollyButton);
 	dollyToggle->WhenPressed(new ToggleDolly());
 
-	toteMoverLeft = new JoystickButton(operatorStick, constants->oiPorts.toteMoverLeftButton);
+	toteMoverLeft = new JoystickButton(operatorStick, constants->operatorButtons.toteMoverLeftButton);
 	toteMoverLeft->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesLeft));
 	toteMoverLeft->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
 
-	toteMoverRight = new JoystickButton(operatorStick, constants->oiPorts.toteMoverRightButton);
+	toteMoverRight = new JoystickButton(operatorStick, constants->operatorButtons.toteMoverRightButton);
 	toteMoverRight->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesRight));
 	toteMoverRight->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
 }
