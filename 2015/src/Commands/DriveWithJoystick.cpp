@@ -39,8 +39,8 @@ void DriveWithJoystick::Execute()
 				_rightVelocity = _driverStick->GetRawAxis(5) * -1 * ENHANCE_SCALAR * MAX_VELOCITY;
 			}
 		} else {
-			double leftJoy = _driverStick->GetRawAxis(1) - _driverStick->GetRawAxis(4);
-			double rightJoy = _driverStick->GetRawAxis(1) + _driverStick->GetRawAxis(4);
+			double leftJoy = (_driverStick->GetRawAxis(1) * -1) + _driverStick->GetRawAxis(4);
+			double rightJoy =( _driverStick->GetRawAxis(1) * -1) - _driverStick->GetRawAxis(4);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;
@@ -71,8 +71,8 @@ void DriveWithJoystick::Execute()
 				_drivetrain->setRaw(-1 * _driverStick->GetRawAxis(1), -1 * _driverStick->GetRawAxis(5));
 			}
 		} else {
-			double leftJoy =_driverStick->GetRawAxis(1) - _driverStick->GetRawAxis(4);
-			double rightJoy = _driverStick->GetRawAxis(1) + _driverStick->GetRawAxis(4);
+			double leftJoy = (_driverStick->GetRawAxis(1) *-1 ) + _driverStick->GetRawAxis(4);
+			double rightJoy = (_driverStick->GetRawAxis(1) * -1) - _driverStick->GetRawAxis(4);
 
 			if (leftJoy > 1.0) {
 				leftJoy = 1.0;

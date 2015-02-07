@@ -18,8 +18,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_shifter = RobotMap::driveShifter;
 
 	_chooser = RobotMap::driveChooser;
-	_chooser->AddDefault("Tank", new bool(true));
-	_chooser->AddObject("Arcade", new bool(false));
+	_chooser->AddDefault("Tank", new int(0));
+	_chooser->AddObject("Arcade", new int(1));
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
 	_encoderVelocityMode = true;
@@ -45,6 +45,7 @@ void Drivetrain::shiftHigh() {
 	_highGear = _constants->shifterStates.highGear;
 	updatePIDCoefficients();
 	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
+	SmartDashboard::PutBoolean("High Gear", _constants->shifterStates.highGear);
 }
 
 void Drivetrain::shiftLow() {
@@ -52,6 +53,7 @@ void Drivetrain::shiftLow() {
 	_highGear = _constants->shifterStates.lowGear;
 	updatePIDCoefficients();
 	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
+	SmartDashboard::PutBoolean("High Gear", _constants->shifterStates.lowGear);
 }
 
 bool Drivetrain::isHighGear() {
@@ -86,7 +88,11 @@ bool Drivetrain::encoderVelocityMode() {
 }
 
 bool Drivetrain::tankEnabled() {
-	return _chooser->GetSelected();
+	if (*(int*)_chooser->GetSelected() == 0) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void Drivetrain::enableEnhancedDriving(bool enable) {

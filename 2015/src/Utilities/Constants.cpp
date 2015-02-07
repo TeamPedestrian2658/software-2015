@@ -16,23 +16,23 @@ Constants::Constants() {
 	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 3);
 	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 4);
 	drivePorts.shifterModule = _preferences->GetInt("ShifterModule", 0);
-	drivePorts.shifterPort = _preferences->GetInt("ShifterPort", 0);
+	drivePorts.shifterPort = _preferences->GetInt("ShifterPort", 5);
 	drivePorts.encoderLeftPortA = _preferences->GetInt("EncoderLeftPortA", 0);
 	drivePorts.encoderLeftPortB = _preferences->GetInt("EncoderLeftPortB", 1);
 	drivePorts.encoderRightPortA = _preferences->GetInt("EncoderRightPortA", 2);
 	drivePorts.encoderRightPortB = _preferences->GetInt("EncoderRightPortB", 3);
 
 	clawPorts.upperGrabberModule = _preferences->GetInt("UpperGrabberModule, 0");
-	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 1);
+	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 0);
 	clawPorts.upperBrakeModule = _preferences->GetInt("UpperBrakeModule", 0);
-	clawPorts.upperBrakePort = _preferences->GetInt("UpperBrakePort", 2);
+	clawPorts.upperBrakePort = _preferences->GetInt("UpperBrakePort", 1);
 	clawPorts.lowerGrabberModule = _preferences->GetInt("LowerGrabberModule", 0);
-	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 3);
+	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 2);
 	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
-	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 4);
+	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 3);
 
 	dollyPorts.dollyModule = _preferences->GetInt("DollyModule", 0);
-	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 5);
+	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 4);
 
 	toteMoverPorts.toteMoverPort = _preferences->GetInt("ToteMoverPort", 5);
 
@@ -61,7 +61,7 @@ Constants::Constants() {
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 0);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.75);
-	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.147262);
+	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.0490874);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
@@ -74,9 +74,9 @@ Constants::Constants() {
 	pneumaticConstants.lowerClawBrakeActuationLoss = _preferences->GetDouble("LowerClawBrakeActuationLoss", 0);
 
 	updatePIDProfiles();
-	SmartDashboard::PutData(new UpdatePIDProfiles());
-	SmartDashboard::PutData(new CompressorOn());
-	SmartDashboard::PutData(new CompressorOff());
+	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
+	SmartDashboard::PutData("CompressorOn", new CompressorOn());
+	SmartDashboard::PutData("CompressorOff", new CompressorOff());
 }
 
 Constants::~Constants() {
@@ -154,8 +154,8 @@ void Constants::updatePIDProfiles() {
 void Constants::reducePressure(double pressureLoss) {
 	pneumaticConstants.currentPressure -= pressureLoss;
 	if (pneumaticConstants.currentPressure < pneumaticConstants.compressorOnPressure) {
-		Command *c = new CompressorOn();
-		c->Start();
+		//Command *c = new CompressorOn();
+		//c->Start();
 	}
 }
 
