@@ -50,6 +50,11 @@ Constants::Constants() {
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
+	clawStates.upperClawGrab = _preferences->GetBoolean("UpperClawGrab", true);
+	clawStates.upperClawBrakeOn = _preferences->GetBoolean("UpperClawBrakeOn", false);
+	clawStates.lowerClawGrab = _preferences->GetBoolean("LowerClawGrab", true);
+	clawStates.lowerClawBrakeOn = _preferences->GetBoolean("LowerClawBrakeOn", false);
+
 	dollyStates.back = _preferences->GetBoolean("DollyBack", true);
 	dollyStates.forward = _preferences->GetBoolean("DollyForward", false);
 

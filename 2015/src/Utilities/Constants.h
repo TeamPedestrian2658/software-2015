@@ -65,6 +65,12 @@ public:
 		bool highGear;
 		bool lowGear;
 	} shifterStates;
+	struct ClawStates {
+		bool upperClawGrab;
+		bool upperClawBrakeOn;
+		bool lowerClawGrab;
+		bool lowerClawBrakeOn;
+	} clawStates;
 	struct DollyStates {
 		bool back;
 		bool forward;

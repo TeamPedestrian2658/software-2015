@@ -138,7 +138,6 @@ void Drivetrain::updatePIDCoefficients() {
 	SmartDashboard::PutNumber("Right Drive I", _controllerRight->GetI());
 	SmartDashboard::PutNumber("Right Drive D", _controllerRight->GetD());
 	SmartDashboard::PutNumber("Right Drive F", _controllerRight->GetF());
-
 }
 
 PIDProfile Drivetrain::getPIDCoefficients() {
