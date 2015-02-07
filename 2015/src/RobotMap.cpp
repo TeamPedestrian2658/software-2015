@@ -1,6 +1,8 @@
 #include "RobotMap.h"
 #include "LiveWindow/LiveWindow.h"
 
+LiveWindow *RobotMap::liveWindow = NULL;
+
 Constants *RobotMap::constants = NULL;
 
 SendableChooser *RobotMap::autoChooser = NULL;

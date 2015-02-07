@@ -5,7 +5,7 @@
 
 class RobotMap {
 public:
-	LiveWindow *liveWindow;
+	static LiveWindow *liveWindow;
 
 	static Constants *constants;
 
