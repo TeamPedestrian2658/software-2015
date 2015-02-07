@@ -5,6 +5,8 @@
 
 class RobotMap {
 public:
+	LiveWindow *liveWindow;
+
 	static Constants *constants;
 
 	static SendableChooser *autoChooser;

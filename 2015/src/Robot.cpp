@@ -19,7 +19,7 @@ void Robot::RobotInit() {
 	toteMover = new ToteMover();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
-	lw = LiveWindow::GetInstance();
+	liveWindow = LiveWindow::GetInstance();
 }
 
 void Robot::DisabledInit(){
@@ -47,7 +47,7 @@ void Robot::TeleopPeriodic() {
 }
 
 void Robot::TestPeriodic() {
-	lw->Run();
+	liveWindow->Run();
 }
 
 START_ROBOT_CLASS(Robot);

@@ -20,7 +20,7 @@
 
 class Robot : public IterativeRobot {
 public:
-	LiveWindow *lw;
+	LiveWindow *liveWindow;
 	static OI *oi;
 	static Drivetrain* drivetrain;
 	static UpperClaw* upperClaw;
