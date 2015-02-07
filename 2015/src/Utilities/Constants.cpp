@@ -94,6 +94,8 @@ Constants::Constants() {
 	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
 	SmartDashboard::PutData("CompressorOn", new CompressorOn());
 	SmartDashboard::PutData("CompressorOff", new CompressorOff());
+	SmartDashboard::PutNumber("Current Pressure", pneumaticConstants.currentPressure);
+	SmartDashboard::PutString("Compressor", "OFF");
 }
 
 Constants::~Constants() {
@@ -173,7 +175,9 @@ void Constants::reducePressure(double pressureLoss) {
 	if (pneumaticConstants.currentPressure < pneumaticConstants.compressorOnPressure) {
 		//Command *c = new CompressorOn();
 		//c->Start();
+		SmartDashboard::PutString("Compressor", "ON");
 	}
+	SmartDashboard::PutNumber("Current Pressure", pneumaticConstants.currentPressure);
 }
 
 

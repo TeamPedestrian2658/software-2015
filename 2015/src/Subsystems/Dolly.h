@@ -12,8 +12,10 @@ public:
 	Dolly();
 	void InitDefaultCommand();
 
-	void setDolly(bool back);
-	bool dollyBack();
+	void dollyBack();
+	void dollyForward();
+
+	bool isDollyBack();
 };
 
 #endif

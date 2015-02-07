@@ -25,16 +25,16 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 
 	_encoderVelocityMode = true;
 	setEncoderMode(_encoderVelocityMode);
-	SmartDashboard::PutBoolean("Encoder Velocity Mode", _encoderVelocityMode);
+	SmartDashboard::PutString("Encoder Mode", "VELOCITY");
 
 	enableEnhancedDriving(true);
-	SmartDashboard::PutBoolean("Enhanced Driving", _enhanceEnabled);
+	SmartDashboard::PutString("Enhanced Driving", "ENABLED");
 
 	_slowEnabled = false;
-	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
+	SmartDashboard::PutString("Slow Mode", "DISABLED");
 
 	shiftLow();
-	SmartDashboard::PutBoolean("High Gear", _highGear);
+	SmartDashboard::PutString("Gear", "LOW");
 }
     
 void Drivetrain::InitDefaultCommand() {
@@ -46,7 +46,7 @@ void Drivetrain::shiftHigh() {
 	_highGear = _constants->shifterStates.highGear;
 	updatePIDCoefficients();
 	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-	SmartDashboard::PutBoolean("High Gear", _constants->shifterStates.highGear);
+	SmartDashboard::PutString("Gear", "HIGH");
 }
 
 void Drivetrain::shiftLow() {
@@ -54,7 +54,7 @@ void Drivetrain::shiftLow() {
 	_highGear = _constants->shifterStates.lowGear;
 	updatePIDCoefficients();
 	_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-	SmartDashboard::PutBoolean("High Gear", _constants->shifterStates.lowGear);
+	SmartDashboard::PutString("Gear", "LOW");
 }
 
 bool Drivetrain::isHighGear() {
@@ -73,14 +73,14 @@ void Drivetrain::setRaw(double left, double right) {
 
 void Drivetrain::setEncoderMode(bool velocity) {
 	_encoderVelocityMode = velocity;
-	SmartDashboard::PutBoolean("Encoder Velocity Mode", _encoderVelocityMode);
-
 	if (velocity) {
 		_encoderLeft->SetPIDSourceParameter(PIDSource::kRate);
 		_encoderRight->SetPIDSourceParameter(PIDSource::kRate);
+		SmartDashboard::PutString("Encoder Mode", "VELOCITY");
 	} else {
 		_encoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
 		_encoderRight->SetPIDSourceParameter(PIDSource::kDistance);
+		SmartDashboard::PutString("Encoder Mode", "POSITION");
 	}
 }
 
@@ -94,13 +94,14 @@ bool Drivetrain::tankEnabled() {
 
 void Drivetrain::enableEnhancedDriving(bool enable) {
 	_enhanceEnabled = enable;
-	SmartDashboard::PutBoolean("Enhanced Driving", _enhanceEnabled);
 	if (enable) {
 		_controllerLeft->Enable();
 		_controllerRight->Enable();
+		SmartDashboard::PutString("Enhanced Driving", "ENABLED");
 	} else {
 		_controllerLeft->Disable();
 		_controllerRight->Disable();
+		SmartDashboard::PutString("Enhanced Driving", "DISABLED");
 	}
 }
 
@@ -110,7 +111,11 @@ bool Drivetrain::enhanceEnabled() {
 
 void Drivetrain::enableSlow(bool enable) {
 	_slowEnabled = enable;
-	SmartDashboard::PutBoolean("Slow Mode", _slowEnabled);
+	if (_slowEnabled) {
+		SmartDashboard::PutString("Slow Mode", "ENABLED");
+	} else {
+		SmartDashboard::PutString("Slow Mode", "DISABLED");
+	}
 }
 
 bool Drivetrain::slowEnabled() {

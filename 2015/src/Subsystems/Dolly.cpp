@@ -10,15 +10,20 @@ void Dolly::InitDefaultCommand() {
 
 }
 
-void Dolly::setDolly(bool back) {
-	if (back) {
+void Dolly::dollyBack() {
+	if (!isDollyBack()) {
 		_cylinder->Set(_constants->dollyStates.back);
-	} else {
-		_cylinder->Set(_constants->dollyStates.forward);
+		_constants->reducePressure(_constants->pneumaticConstants.dollyActuationLoss);
 	}
-	_constants->reducePressure(_constants->pneumaticConstants.dollyActuationLoss);
 }
 
-bool Dolly::dollyBack() {
+void Dolly::dollyForward() {
+	if (isDollyBack()) {
+		_cylinder->Set(_constants->dollyStates.forward);
+		_constants->reducePressure(_constants->pneumaticConstants.dollyActuationLoss);
+	}
+}
+
+bool Dolly::isDollyBack() {
 	return (_cylinder->Get() == _constants->dollyStates.back);
 }
