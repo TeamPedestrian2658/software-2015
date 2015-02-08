@@ -43,34 +43,34 @@ void RobotMap::init() {
 
 	driveTalonLeft = new Talon(constants->drivePorts.talonLeftPort);
 	driveTalonRight = new Talon(constants->drivePorts.talonRightPort);
-	liveWindow->AddActuator("Drive", "Left Talon", driveTalonLeft);
-	liveWindow->AddActuator("Drive", "Right Talon", driveTalonRight);
+	liveWindow->AddActuator("Left Drive", "Left Talon", driveTalonLeft);
+	liveWindow->AddActuator("Right Drive", "Right Talon", driveTalonRight);
 
 	driveShifter = new Solenoid(constants->drivePorts.shifterModule, constants->drivePorts.shifterPort);
 	driveShifter->Set(constants->shifterStates.lowGear);
-	liveWindow->AddActuator("Drive", "Shifter", driveShifter);
+	liveWindow->AddActuator("Shifter", "Shifter", driveShifter);
 
 	driveEncoderLeft = new Encoder(constants->drivePorts.encoderLeftPortA, constants->drivePorts.encoderLeftPortB, false);
 	driveEncoderLeft->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderLeft->SetPIDSourceParameter(PIDSource::kRate);
-	liveWindow->AddSensor("Drive", "Left Encoder", driveEncoderLeft);
+	liveWindow->AddSensor("Left Drive", "Left Encoder", driveEncoderLeft);
 
 	driveEncoderRight = new Encoder(constants->drivePorts.encoderRightPortA, constants->drivePorts.encoderRightPortB, true);
 	driveEncoderRight->SetDistancePerPulse(constants->driveConstants.distancePerPulse);
 	driveEncoderRight->SetPIDSourceParameter(PIDSource::kRate);
-	liveWindow->AddSensor("Drive", "Right Encoder", driveEncoderRight);
+	liveWindow->AddSensor("Right Drive", "Right Encoder", driveEncoderRight);
 
 	driveControllerLeft = new PIDController(0, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);
 	driveControllerLeft->SetOutputRange(-1, 1);
 	driveControllerLeft->Disable();
-	liveWindow->AddActuator("Drive", "Left PID Controller", driveControllerLeft);
+	liveWindow->AddActuator("Left Drive", "Left PID Controller", driveControllerLeft);
 
 	driveControllerRight = new PIDController(0, 0, 0, 0, driveEncoderRight, driveTalonRight);
 	driveControllerRight->SetContinuous(false);
 	driveControllerRight->SetOutputRange(-1, 1);
 	driveControllerRight->Disable();
-	liveWindow->AddActuator("Drive", "Right PID Controller", driveControllerRight);
+	liveWindow->AddActuator("Right Drive", "Right PID Controller", driveControllerRight);
 
 	driveChooser = new SendableChooser();
 
