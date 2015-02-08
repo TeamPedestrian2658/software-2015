@@ -36,6 +36,8 @@ public:
 
 	static Compressor *compressor;
 
+	static PowerDistributionPanel *powerDistributionPanel;
+
 	static void init();
 };
 #endif

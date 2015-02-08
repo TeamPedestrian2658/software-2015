@@ -18,6 +18,8 @@
 #include "Utilities/AutoScriptSelector.h"
 #include "Utilities/Constants.h"
 
+#include "Commands/Utilities/PowerDistributionPanelMonitor.h"
+
 class Robot : public IterativeRobot {
 public:
 	LiveWindow *liveWindow;
@@ -28,6 +30,7 @@ public:
 	static Dolly* dolly;
 	static Lift* lift;
 	static ToteMover* toteMover;
+	static PowerDistributionPanelMonitor *monitor;
 	//static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();

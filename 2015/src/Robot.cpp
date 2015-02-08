@@ -6,6 +6,7 @@ LowerClaw* Robot::lowerClaw = 0;
 Dolly* Robot::dolly = 0;
 Lift* Robot::lift = 0;
 ToteMover* Robot::toteMover = 0;
+PowerDistributionPanelMonitor *Robot::monitor = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
 
@@ -17,6 +18,7 @@ void Robot::RobotInit() {
 	dolly = new Dolly();
 	lift = new Lift();
 	toteMover = new ToteMover();
+	monitor = new PowerDistributionPanelMonitor();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	liveWindow = LiveWindow::GetInstance();
@@ -31,7 +33,9 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-
+	if (!monitor->IsRunning()) {
+		monitor->Start();
+	}
 }
 
 void Robot::AutonomousPeriodic() {
@@ -39,7 +43,9 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-
+	if (!monitor->IsRunning()) {
+		monitor->Start();
+	}
 }
 
 void Robot::TeleopPeriodic() {

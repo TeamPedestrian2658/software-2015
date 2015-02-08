@@ -32,6 +32,8 @@ Talon *RobotMap::toteMoverTalon = NULL;
 
 Compressor *RobotMap::compressor = NULL;
 
+PowerDistributionPanel *RobotMap::powerDistributionPanel = NULL;
+
 void RobotMap::init() {
 	liveWindow = LiveWindow::GetInstance();
 
@@ -90,6 +92,9 @@ void RobotMap::init() {
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
 	compressor->Stop();
+
+	powerDistributionPanel = new PowerDistributionPanel();
+	powerDistributionPanel->ClearStickyFaults();
 }
 
 
