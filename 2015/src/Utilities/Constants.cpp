@@ -45,9 +45,13 @@ Constants::Constants() {
 	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
 
-	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 3);
-	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 2);
-	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 1);
+	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 1);
+	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 0);
+	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 2);
+	operatorButtons.upperClawGrabButton = _preferences->GetInt("UpperClawGrabButton", 5);
+	operatorButtons.upperClawReleaseButton = _preferences->GetInt("UpperClawReleaseButton", 7);
+	operatorButtons.lowerClawGrabButton = _preferences->GetInt("LowerClawGrabButton", 4);
+	operatorButtons.lowerClawReleaseButton = _preferences->GetInt("LowerClawReleaseButton", 6);
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);
@@ -55,17 +59,17 @@ Constants::Constants() {
 	driverAxes.rightY = _preferences->GetInt("DriverRightY", 5);
 
 	operatorAxes.leftX = _preferences->GetInt("OperatorLeftX", 0);
-	operatorAxes.leftY = _preferences->GetInt("OperatorLeftY", 0);
-	operatorAxes.rightX = _preferences->GetInt("OperatorRightX", 0);
-	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 0);
+	operatorAxes.leftY = _preferences->GetInt("OperatorLeftY", 1);
+	operatorAxes.rightX = _preferences->GetInt("OperatorRightX", 2);
+	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 3);
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
 	clawStates.upperClawGrab = _preferences->GetBoolean("UpperClawGrab", true);
-	clawStates.upperClawBrakeOn = _preferences->GetBoolean("UpperClawBrakeOn", false);
+	clawStates.upperClawBrakeOn = _preferences->GetBoolean("UpperClawBrakeOn", true);
 	clawStates.lowerClawGrab = _preferences->GetBoolean("LowerClawGrab", true);
-	clawStates.lowerClawBrakeOn = _preferences->GetBoolean("LowerClawBrakeOn", false);
+	clawStates.lowerClawBrakeOn = _preferences->GetBoolean("LowerClawBrakeOn", true);
 
 	dollyStates.back = _preferences->GetBoolean("DollyBack", true);
 	dollyStates.forward = _preferences->GetBoolean("DollyForward", false);
@@ -83,7 +87,7 @@ Constants::Constants() {
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
 	pneumaticConstants.compressorOnPressure = _preferences->GetDouble("CompressorOnPressure", 80);
-	pneumaticConstants.shifterActuationLoss = _preferences->GetDouble("ShifterActuationLoss", 0);
+	pneumaticConstants.shifterActuationLoss = _preferences->GetDouble("ShifterActuationLoss", 5);
 	pneumaticConstants.dollyActuationLoss = _preferences->GetDouble("DollyActuationLoss", 0);
 	pneumaticConstants.upperClawGrabberActuationLoss = _preferences->GetDouble("UpperClawGrabberActuationLoss", 0);
 	pneumaticConstants.upperClawBrakeActuationLoss = _preferences->GetDouble("UpperClawBrakeActuationLoss", 0);
@@ -173,8 +177,8 @@ void Constants::updatePIDProfiles() {
 void Constants::reducePressure(double pressureLoss) {
 	pneumaticConstants.currentPressure -= pressureLoss;
 	if (pneumaticConstants.currentPressure < pneumaticConstants.compressorOnPressure) {
-		//Command *c = new CompressorOn();
-		//c->Start();
+		Command *c = new CompressorOn();
+		c->Start();
 		SmartDashboard::PutString("Compressor", "ON");
 	}
 	SmartDashboard::PutNumber("Current Pressure", pneumaticConstants.currentPressure);

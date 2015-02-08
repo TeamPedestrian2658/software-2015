@@ -10,6 +10,7 @@ CompressorOff::CompressorOff()
 void CompressorOff::Initialize()
 {
 	RobotMap::compressor->Stop();
+	SmartDashboard::PutString("Compressor", "OFF");
 }
 
 // Called repeatedly when this Command is scheduled to run

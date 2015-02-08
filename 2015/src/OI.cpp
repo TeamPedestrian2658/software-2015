@@ -11,6 +11,10 @@
 #include "Commands/DisableSlow.h"
 #include "Commands/ToggleDolly.h"
 #include "Commands/SetToteMover.h"
+#include "Commands/UpperClawGrab.h"
+#include "Commands/UpperClawRelease.h"
+#include "Commands/LowerClawGrab.h"
+#include "Commands/LowerClawRelease.h"
 
 OI::OI() {
 
@@ -40,6 +44,18 @@ OI::OI() {
 	toteMoverRight = new JoystickButton(operatorStick, constants->operatorButtons.toteMoverRightButton);
 	toteMoverRight->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesRight));
 	toteMoverRight->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
+
+	upperClawGrab = new JoystickButton(operatorStick, constants->operatorButtons.upperClawGrabButton);
+	upperClawGrab->WhenPressed(new UpperClawGrab());
+
+	upperClawRelease = new JoystickButton(operatorStick, constants->operatorButtons.upperClawReleaseButton);
+	upperClawRelease->WhenPressed(new UpperClawRelease());
+
+	lowerClawGrab = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawGrabButton);
+	lowerClawGrab->WhenPressed(new LowerClawGrab());
+
+	lowerClawRelease = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawReleaseButton);
+	lowerClawRelease->WhenPressed(new LowerClawRelease());
 }
 
 Joystick* OI::getOperatorStick() {

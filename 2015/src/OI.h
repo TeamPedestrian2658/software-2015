@@ -21,6 +21,12 @@ private:
 
 	JoystickButton *toteMoverLeft;
 	JoystickButton *toteMoverRight;
+
+	JoystickButton *upperClawGrab;
+	JoystickButton *upperClawRelease;
+
+	JoystickButton *lowerClawGrab;
+	JoystickButton *lowerClawRelease;
 public:
 	OI();
  

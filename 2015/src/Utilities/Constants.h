@@ -64,6 +64,10 @@ public:
 		int toggleDollyButton;
 		int toteMoverLeftButton;
 		int toteMoverRightButton;
+		int upperClawGrabButton;
+		int upperClawReleaseButton;
+		int lowerClawGrabButton;
+		int lowerClawReleaseButton;
 	} operatorButtons;
 	struct DriverAxes {
 		int leftX;

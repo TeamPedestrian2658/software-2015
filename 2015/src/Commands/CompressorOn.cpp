@@ -10,6 +10,7 @@ CompressorOn::CompressorOn()
 void CompressorOn::Initialize()
 {
 	RobotMap::compressor->Start();
+	SmartDashboard::PutString("Compressor", "ON");
 }
 
 // Called repeatedly when this Command is scheduled to run
