@@ -25,7 +25,7 @@ void LowerClaw::release() {
 	if (isClawClosed()) {
 		_grabber->Set(!_constants->clawStates.lowerClawGrab);
 		_constants->reducePressure(_constants->pneumaticConstants.lowerClawGrabberActuationLoss);
-		SmartDashboard::PutString("Lower Claw", "CLOSED");
+		SmartDashboard::PutString("Lower Claw", "OPEN");
 	}
 }
 

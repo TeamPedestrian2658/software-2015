@@ -45,13 +45,13 @@ Constants::Constants() {
 	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
 
-	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 1);
-	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 0);
-	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 2);
-	operatorButtons.upperClawGrabButton = _preferences->GetInt("UpperClawGrabButton", 5);
-	operatorButtons.upperClawReleaseButton = _preferences->GetInt("UpperClawReleaseButton", 7);
-	operatorButtons.lowerClawGrabButton = _preferences->GetInt("LowerClawGrabButton", 4);
-	operatorButtons.lowerClawReleaseButton = _preferences->GetInt("LowerClawReleaseButton", 6);
+	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 2);
+	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 1);
+	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 3);
+	operatorButtons.upperClawGrabButton = _preferences->GetInt("UpperClawGrabButton", 6);
+	operatorButtons.upperClawReleaseButton = _preferences->GetInt("UpperClawReleaseButton", 8);
+	operatorButtons.lowerClawGrabButton = _preferences->GetInt("LowerClawGrabButton", 5);
+	operatorButtons.lowerClawReleaseButton = _preferences->GetInt("LowerClawReleaseButton", 7);
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);
@@ -176,9 +176,10 @@ void Constants::updatePIDProfiles() {
 
 void Constants::reducePressure(double pressureLoss) {
 	pneumaticConstants.currentPressure -= pressureLoss;
-	if (pneumaticConstants.currentPressure < pneumaticConstants.compressorOnPressure) {
+	if (pneumaticConstants.currentPressure <= pneumaticConstants.compressorOnPressure) {
 		Command *c = new CompressorOn();
 		c->Start();
+		pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
 		SmartDashboard::PutString("Compressor", "ON");
 	}
 	SmartDashboard::PutNumber("Current Pressure", pneumaticConstants.currentPressure);
