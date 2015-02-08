@@ -1,13 +1,13 @@
-#ifndef CompressorOn_H
-#define CompressorOn_H
+#ifndef CompressorOff_H
+#define CompressorOff_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class CompressorOn: public Command
+class CompressorOff: public Command
 {
 public:
-	CompressorOn();
+	CompressorOff();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

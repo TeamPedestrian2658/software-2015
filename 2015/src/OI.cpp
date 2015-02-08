@@ -4,17 +4,17 @@
 
 #include "RobotMap.h"
 
-#include "Commands/ShiftHigh.h"
-#include "Commands/ShiftLow.h"
-#include "Commands/ToggleEnhancedDriving.h"
-#include "Commands/EnableSlow.h"
-#include "Commands/DisableSlow.h"
-#include "Commands/ToggleDolly.h"
-#include "Commands/SetToteMover.h"
-#include "Commands/UpperClawGrab.h"
-#include "Commands/UpperClawRelease.h"
-#include "Commands/LowerClawGrab.h"
-#include "Commands/LowerClawRelease.h"
+#include "Commands/Drivetrain/ShiftHigh.h"
+#include "Commands/Drivetrain/ShiftLow.h"
+#include "Commands/Drivetrain/ToggleEnhancedDriving.h"
+#include "Commands/Drivetrain/EnableSlow.h"
+#include "Commands/Drivetrain/DisableSlow.h"
+#include "Commands/Dolly/ToggleDolly.h"
+#include "Commands/ToteMover/SetToteMover.h"
+#include "Commands/UpperClaw/UpperClawGrab.h"
+#include "Commands/UpperClaw/UpperClawRelease.h"
+#include "Commands/LowerClaw/LowerClawGrab.h"
+#include "Commands/LowerClaw/LowerClawRelease.h"
 
 OI::OI() {
 

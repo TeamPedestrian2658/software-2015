@@ -1,13 +1,13 @@
-#ifndef DisableSlow_H
-#define DisableSlow_H
+#ifndef LowerClawGrab_H
+#define LowerClawGrab_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class DisableSlow: public Command
+class LowerClawGrab: public Command
 {
 public:
-	DisableSlow();
+	LowerClawGrab();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

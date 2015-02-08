@@ -1,7 +1,7 @@
 #ifndef LowerClawRelease_H
 #define LowerClawRelease_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
 class LowerClawRelease: public Command

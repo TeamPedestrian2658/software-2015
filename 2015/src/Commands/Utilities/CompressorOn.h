@@ -1,13 +1,13 @@
-#ifndef ToggleDolly_H
-#define ToggleDolly_H
+#ifndef CompressorOn_H
+#define CompressorOn_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class ToggleDolly: public Command
+class CompressorOn: public Command
 {
 public:
-	ToggleDolly();
+	CompressorOn();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -1,7 +1,7 @@
 #ifndef UpperClawBrakeOn_H
 #define UpperClawBrakeOn_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
 class UpperClawBrakeOn: public Command

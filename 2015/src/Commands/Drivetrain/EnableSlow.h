@@ -1,13 +1,13 @@
-#ifndef DollyForward_H
-#define DollyForward_H
+#ifndef EnableSlow_H
+#define EnableSlow_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class DollyForward: public Command
+class EnableSlow: public Command
 {
 public:
-	DollyForward();
+	EnableSlow();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

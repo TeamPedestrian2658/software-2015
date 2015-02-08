@@ -1,9 +1,9 @@
 #ifndef DriveWithJoystick_H
 #define DriveWithJoystick_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
-#include "../Utilities/Constants.h"
+#include "../../Utilities/Constants.h"
 
 class DriveWithJoystick: public Command
 {

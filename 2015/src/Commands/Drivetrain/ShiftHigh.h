@@ -1,13 +1,13 @@
-#ifndef ShiftLow_H
-#define ShiftLow_H
+#ifndef ShiftHigh_H
+#define ShiftHigh_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class ShiftLow: public Command
+class ShiftHigh: public Command
 {
 public:
-	ShiftLow();
+	ShiftHigh();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -1,13 +1,13 @@
-#ifndef UpperClawGrab_H
-#define UpperClawGrab_H
+#ifndef DisableSlow_H
+#define DisableSlow_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class UpperClawGrab: public Command
+class DisableSlow: public Command
 {
 public:
-	UpperClawGrab();
+	DisableSlow();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

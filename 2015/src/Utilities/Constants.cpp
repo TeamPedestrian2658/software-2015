@@ -6,9 +6,9 @@
  */
 
 #include "Constants.h"
-#include "../Commands/UpdatePIDProfiles.h"
-#include "../Commands/CompressorOn.h"
-#include "../Commands/CompressorOff.h"
+#include "../Commands/Utilities/UpdatePIDProfiles.h"
+#include "../Commands/Utilities/CompressorOn.h"
+#include "../Commands/Utilities/CompressorOff.h"
 
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();

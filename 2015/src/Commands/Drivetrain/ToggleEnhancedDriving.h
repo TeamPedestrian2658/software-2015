@@ -1,7 +1,7 @@
 #ifndef ToggleEnhancedDriving_H
 #define ToggleEnhancedDriving_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
 class ToggleEnhancedDriving: public Command

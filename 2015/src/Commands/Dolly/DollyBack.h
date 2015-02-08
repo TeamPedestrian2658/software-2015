@@ -1,13 +1,13 @@
-#ifndef LowerClawGrab_H
-#define LowerClawGrab_H
+#ifndef DollyBack_H
+#define DollyBack_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
-class LowerClawGrab: public Command
+class DollyBack: public Command
 {
 public:
-	LowerClawGrab();
+	DollyBack();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

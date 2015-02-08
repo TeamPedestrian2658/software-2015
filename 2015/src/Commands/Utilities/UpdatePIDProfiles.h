@@ -1,7 +1,7 @@
 #ifndef UpdatePIDProfiles_H
 #define UpdatePIDProfiles_H
 
-#include "../Robot.h"
+#include "../../Robot.h"
 #include "WPILib.h"
 
 class UpdatePIDProfiles: public Command

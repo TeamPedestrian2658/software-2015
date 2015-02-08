@@ -1,7 +1,7 @@
 #include "Drivetrain.h"
 #include "../RobotMap.h"
 
-#include "../Commands/DriveWithJoystick.h"
+#include "../Commands/Drivetrain/DriveWithJoystick.h"
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_constants = RobotMap::constants;
