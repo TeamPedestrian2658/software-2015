@@ -14,7 +14,6 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 
 	_controllerLeft = RobotMap::driveControllerLeft;
 	_controllerRight = RobotMap::driveControllerRight;
-	updatePIDCoefficients();
 
 	_shifter = RobotMap::driveShifter;
 
@@ -33,8 +32,10 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_slowEnabled = false;
 	SmartDashboard::PutString("Slow Mode", "DISABLED");
 
-	shiftLow();
+	_highGear = false;
 	SmartDashboard::PutString("Gear", "LOW");
+
+	updatePIDCoefficients();
 }
     
 void Drivetrain::InitDefaultCommand() {
@@ -62,7 +63,7 @@ void Drivetrain::shiftLow() {
 }
 
 bool Drivetrain::isHighGear() {
-	return _highGear;
+	return (_shifter->Get() == _constants->shifterStates.highGear);
 }
 
 void Drivetrain::set(double leftVelocity, double rightVelocity) {
@@ -136,9 +137,9 @@ void Drivetrain::updatePIDCoefficients() {
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
 	SmartDashboard::PutNumber("Left Drive P", _controllerLeft->GetP());
-	SmartDashboard::PutNumber("Left Drive I", _controllerLeft->GetP());
-	SmartDashboard::PutNumber("Left Drive D", _controllerLeft->GetP());
-	SmartDashboard::PutNumber("Left Drive F", _controllerLeft->GetP());
+	SmartDashboard::PutNumber("Left Drive I", _controllerLeft->GetI());
+	SmartDashboard::PutNumber("Left Drive D", _controllerLeft->GetD());
+	SmartDashboard::PutNumber("Left Drive F", _controllerLeft->GetF());
 
 	SmartDashboard::PutNumber("Right Drive P", _controllerRight->GetP());
 	SmartDashboard::PutNumber("Right Drive I", _controllerRight->GetI());
