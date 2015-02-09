@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 
 #include "../Commands/Drivetrain/DriveWithJoystick.h"
+#include "../Commands/Drivetrain/DetermineMaxVelocity.h"
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_constants = RobotMap::constants;
@@ -36,6 +37,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	SmartDashboard::PutString("Gear", "LOW");
 
 	updatePIDCoefficients();
+
+	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 }
     
 void Drivetrain::InitDefaultCommand() {
