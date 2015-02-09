@@ -19,6 +19,7 @@
 #include "Utilities/Constants.h"
 
 #include "Commands/Utilities/PowerDistributionPanelMonitor.h"
+#include "Commands/Utilities/DriverStickRumbleManager.h"
 
 class Robot : public IterativeRobot {
 public:
@@ -31,6 +32,7 @@ public:
 	static Lift* lift;
 	static ToteMover* toteMover;
 	static PowerDistributionPanelMonitor *monitor;
+	static DriverStickRumbleManager *rumbleManager;
 	//static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();

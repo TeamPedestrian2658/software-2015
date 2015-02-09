@@ -7,6 +7,7 @@ Dolly* Robot::dolly = 0;
 Lift* Robot::lift = 0;
 ToteMover* Robot::toteMover = 0;
 PowerDistributionPanelMonitor *Robot::monitor = 0;
+DriverStickRumbleManager *Robot::rumbleManager = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
 
@@ -19,6 +20,7 @@ void Robot::RobotInit() {
 	lift = new Lift();
 	toteMover = new ToteMover();
 	monitor = new PowerDistributionPanelMonitor();
+	rumbleManager = new DriverStickRumbleManager();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	liveWindow = LiveWindow::GetInstance();
@@ -45,6 +47,9 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	if (!monitor->IsRunning()) {
 		monitor->Start();
+	}
+	if (!rumbleManager->IsRunning()) {
+		rumbleManager->Start();
 	}
 }
 
