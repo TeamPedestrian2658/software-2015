@@ -63,13 +63,13 @@ void RobotMap::init() {
 	driveControllerLeft = new PIDController(0, 0, 0, 0, driveEncoderLeft, driveTalonLeft);
 	driveControllerLeft->SetContinuous(false);
 	driveControllerLeft->SetOutputRange(-1, 1);
-	driveControllerLeft->Disable();
+	driveControllerLeft->Reset();
 	liveWindow->AddActuator("Left Drive", "Left PID Controller", driveControllerLeft);
 
 	driveControllerRight = new PIDController(0, 0, 0, 0, driveEncoderRight, driveTalonRight);
 	driveControllerRight->SetContinuous(false);
 	driveControllerRight->SetOutputRange(-1, 1);
-	driveControllerRight->Disable();
+	driveControllerRight->Reset();
 	liveWindow->AddActuator("Right Drive", "Right PID Controller", driveControllerRight);
 
 	driveChooser = new SendableChooser();

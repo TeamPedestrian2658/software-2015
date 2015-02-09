@@ -9,7 +9,7 @@ DisableSlow::DisableSlow()
 // Called just before this Command runs the first time
 void DisableSlow::Initialize()
 {
-	Robot::drivetrain->enableSlow(false);
+	Robot::drivetrain->disableSlow();
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -45,10 +45,12 @@ public:
 
 	bool tankEnabled();
 
-	void enableEnhancedDriving(bool enable);
+	void enableEnhancedDriving();
+	void disableEnhancedDriving();
 	bool enhanceEnabled();
 
-	void enableSlow(bool enable);
+	void enableSlow();
+	void disableSlow();
 	bool slowEnabled();
 
 	void updatePIDCoefficients();

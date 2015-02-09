@@ -6,6 +6,8 @@
 
 class ShiftHigh: public Command
 {
+private:
+	Drivetrain *drivetrain;
 public:
 	ShiftHigh();
 	void Initialize();

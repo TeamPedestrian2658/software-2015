@@ -9,7 +9,11 @@ ToggleEnhancedDriving::ToggleEnhancedDriving()
 // Called just before this Command runs the first time
 void ToggleEnhancedDriving::Initialize()
 {
-	Robot::drivetrain->enableEnhancedDriving(!Robot::drivetrain->enhanceEnabled());
+	if (Robot::drivetrain->enhanceEnabled()) {
+		Robot::drivetrain->disableEnhancedDriving();
+	} else {
+		Robot::drivetrain->enableEnhancedDriving();
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run

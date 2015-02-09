@@ -82,8 +82,8 @@ Constants::Constants() {
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 150);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
-
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.0490874);
+	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.75);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;

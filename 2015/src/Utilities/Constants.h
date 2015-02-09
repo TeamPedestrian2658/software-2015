@@ -106,6 +106,7 @@ public:
 		double enhanceScalar;
 		double slowScalar;
 		double distancePerPulse;
+		double shiftTime;
 	} driveConstants;
 	struct PneumaticConstants {
 		double startingPressure;

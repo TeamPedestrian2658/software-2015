@@ -6,6 +6,8 @@
 
 class ShiftLow: public Command
 {
+private:
+	Drivetrain *drivetrain;
 public:
 	ShiftLow();
 	void Initialize();
