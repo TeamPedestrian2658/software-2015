@@ -103,10 +103,13 @@ public:
 	struct DriveConstants {
 		double maxVelocityHigh;
 		double maxVelocityLow;
+		double maxAccelerationHigh;
+		double maxAccelerationLow;
 		double enhanceScalar;
 		double slowScalar;
 		double distancePerPulse;
 		double shiftTime;
+		double velocityTestSampleTime;
 	} driveConstants;
 	struct PneumaticConstants {
 		double startingPressure;

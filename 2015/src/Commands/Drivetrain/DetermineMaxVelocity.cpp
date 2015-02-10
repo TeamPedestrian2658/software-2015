@@ -6,7 +6,7 @@ DetermineMaxVelocity::DetermineMaxVelocity()
 	_drivetrain = Robot::drivetrain;
 	_maxVelocity = 0;
 	Requires(_drivetrain);
-	SetTimeout(4);
+	SetTimeout(RobotMap::constants->driveConstants.velocityTestSampleTime);
 }
 
 // Called just before this Command runs the first time
@@ -34,7 +34,7 @@ bool DetermineMaxVelocity::IsFinished()
 // Called once after isFinished returns true
 void DetermineMaxVelocity::End()
 {
-	Robot::drivetrain->setRaw(0.0, 0.0);
+	Robot::drivetrain->setRaw(0, 0);
 	Robot::drivetrain->enableEnhancedDriving();
 	SmartDashboard::PutNumber("Max Velocity", _maxVelocity);
 }

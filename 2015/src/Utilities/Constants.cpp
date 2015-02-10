@@ -80,10 +80,13 @@ Constants::Constants() {
 
 	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 520);
 	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 150);
+	driveConstants.maxAccelerationHigh = _preferences->GetDouble("MaxAccelerationHigh", 0);
+	driveConstants.maxAccelerationLow = _preferences->GetDouble("MaxAccelerationLow", 0);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.0490874);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
+	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
