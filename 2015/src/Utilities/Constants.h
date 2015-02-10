@@ -110,6 +110,7 @@ public:
 		double distancePerPulse;
 		double shiftTime;
 		double velocityTestSampleTime;
+		double sCurveTimeoutMultiplier;
 	} driveConstants;
 	struct PneumaticConstants {
 		double startingPressure;

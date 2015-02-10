@@ -87,6 +87,7 @@ Constants::Constants() {
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.0490874);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
 	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
+	driveConstants.sCurveTimeoutMultiplier = _preferences->GetDouble("SCurveTimeoutMultiplier", 1.2);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
