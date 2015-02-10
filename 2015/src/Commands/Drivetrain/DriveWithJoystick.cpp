@@ -102,15 +102,15 @@ void DriveWithJoystick::Execute()
 		double rightOutput = RobotMap::driveTalonRight->Get();
 
 		if (leftOutput < 0) {
-			_driverStick->SetRumble(Joystick::kLeftRumble, -leftOutput);
+			_oi->getDriverStick()->SetRumble(Joystick::kLeftRumble, -leftOutput);
 		} else {
-			_driverStick->SetRumble(Joystick::kLeftRumble, leftOutput);
+			_oi->getDriverStick()->SetRumble(Joystick::kLeftRumble, leftOutput);
 		}
 
 		if (rightOutput < 0) {
-			_driverStick->SetRumble(Joystick::kRightRumble, -rightOutput);
+			_oi->getDriverStick()->SetRumble(Joystick::kRightRumble, -rightOutput);
 		} else {
-			_driverStick->SetRumble(Joystick::kRightRumble, rightOutput);
+			_oi->getDriverStick()->SetRumble(Joystick::kRightRumble, rightOutput);
 		}
 	}
 }
