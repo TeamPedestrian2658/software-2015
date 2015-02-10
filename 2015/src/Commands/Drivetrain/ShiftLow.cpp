@@ -27,7 +27,7 @@ bool ShiftLow::IsFinished()
 // Called once after isFinished returns true
 void ShiftLow::End()
 {
-	drivetrain->shiftHigh();
+	drivetrain->shiftLow();
 	drivetrain->disableSlow();
 }
 

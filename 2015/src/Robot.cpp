@@ -25,7 +25,8 @@ void Robot::RobotInit() {
 }
 
 void Robot::DisabledInit(){
-
+	oi->getDriverStick()->SetRumble(Joystick::kLeftRumble, 0);
+	oi->getDriverStick()->SetRumble(Joystick::kRightRumble, 0);
 }
 
 void Robot::DisabledPeriodic() {
