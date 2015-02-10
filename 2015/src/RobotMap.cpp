@@ -19,6 +19,7 @@ PIDController *RobotMap::driveControllerLeft = NULL;
 PIDController *RobotMap::driveControllerRight = NULL;
 
 SendableChooser *RobotMap::driveChooser = NULL;
+SendableChooser *RobotMap::driveRumbleChooser = NULL;
 
 Solenoid *RobotMap::upperClawGrabber = NULL;
 Solenoid *RobotMap::upperClawBrake = NULL;
@@ -73,6 +74,7 @@ void RobotMap::init() {
 	liveWindow->AddActuator("Right Drive", "Right PID Controller", driveControllerRight);
 
 	driveChooser = new SendableChooser();
+	driveRumbleChooser = new SendableChooser();
 
 	upperClawGrabber = new Solenoid(constants->clawPorts.upperGrabberModule, constants->clawPorts.upperGrabberPort);
 	upperClawBrake = new Solenoid(constants->clawPorts.upperBrakeModule, constants->clawPorts.upperBrakePort);

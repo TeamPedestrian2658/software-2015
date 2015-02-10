@@ -23,6 +23,7 @@ public:
 	static PIDController *driveControllerRight;
 
 	static SendableChooser *driveChooser;
+	static SendableChooser *driveRumbleChooser;
 
 	static Solenoid *upperClawGrabber;
 	static Solenoid *upperClawBrake;

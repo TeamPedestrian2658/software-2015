@@ -22,6 +22,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_chooser->AddObject("Arcade", new bool(false));
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
+	_rumbleChooser = RobotMap::driveRumbleChooser;
+	_rumbleChooser->AddDefault("Rumble On", new bool(true));
+	_rumbleChooser->AddObject("Rumble Off", new bool(false));
+	SmartDashboard::PutData("Drive Rumble", _rumbleChooser);
+
 	_encoderVelocityMode = true;
 	setEncoderMode(_encoderVelocityMode);
 	SmartDashboard::PutString("Encoder Mode", "VELOCITY");
@@ -95,6 +100,10 @@ bool Drivetrain::encoderVelocityMode() {
 
 bool Drivetrain::tankEnabled() {
 	return *(bool*)_chooser->GetSelected();
+}
+
+bool Drivetrain::rumbleEnabled() {
+	return *(bool*)_rumbleChooser->GetSelected();
 }
 
 void Drivetrain::enableEnhancedDriving() {

@@ -23,6 +23,7 @@ private:
 	PIDProfile _profile;
 
 	SendableChooser *_chooser;
+	SendableChooser *_rumbleChooser;
 
 	bool _encoderVelocityMode;
 	bool _enhanceEnabled;
@@ -44,6 +45,8 @@ public:
 	bool encoderVelocityMode();
 
 	bool tankEnabled();
+
+	bool rumbleEnabled();
 
 	void enableEnhancedDriving();
 	void disableEnhancedDriving();

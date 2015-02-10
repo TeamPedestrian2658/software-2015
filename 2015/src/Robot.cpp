@@ -22,6 +22,8 @@ void Robot::RobotInit() {
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	liveWindow = LiveWindow::GetInstance();
+
+	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 }
 
 void Robot::DisabledInit(){
@@ -47,7 +49,6 @@ void Robot::TeleopInit() {
 	if (!monitor->IsRunning()) {
 		monitor->Start();
 	}
-	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 }
 
 void Robot::TeleopPeriodic() {
