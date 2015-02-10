@@ -93,6 +93,21 @@ void DriveWithJoystick::Execute()
 			}
 		}
 	}
+
+	double leftOutput = RobotMap::driveTalonLeft->Get();
+	double rightOutput = RobotMap::driveTalonRight->Get();
+
+	if (leftOutput < 0) {
+		_driverStick->SetRumble(Joystick::kLeftRumble, -leftOutput);
+	} else {
+		_driverStick->SetRumble(Joystick::kLeftRumble, leftOutput);
+	}
+
+	if (rightOutput < 0) {
+		_driverStick->SetRumble(Joystick::kRightRumble, -rightOutput);
+	} else {
+		_driverStick->SetRumble(Joystick::kRightRumble, rightOutput);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
