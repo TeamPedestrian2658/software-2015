@@ -12,6 +12,9 @@ private:
 
 	bool _isComplete;
 
+	double _enhancedMaxVelocityLow;
+	double _enhancedMaxVelocityHigh;
+
 	double _totalTime;
 	double _leftDistance;
 	double _rightDistance;
@@ -41,6 +44,8 @@ private:
 
 	double _leftK;
 	double _rightK;
+
+	void adjustFinalVelocities();
 
 public:
 	DriveSCurve(double totalTime,

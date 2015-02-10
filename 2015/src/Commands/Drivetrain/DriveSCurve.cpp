@@ -19,29 +19,34 @@ DriveSCurve::DriveSCurve(double totalTime,
 
 	_isComplete = false;
 
-	double _leftInitialVelocity = 0;
-	double _rightInitialVelocity = 0;
+	_enhancedMaxVelocityLow = RobotMap::constants->driveConstants.enhanceScalar
+			* RobotMap::constants->driveConstants.maxVelocityLow;
+	_enhancedMaxVelocityHigh = RobotMap::constants->driveConstants.enhanceScalar
+			* RobotMap::constants->driveConstants.maxVelocityHigh;
 
-	double _leftMiddleVelocity = 0;
-	double _rightMiddleVelocity = 0;
+	_leftInitialVelocity = 0;
+	_rightInitialVelocity = 0;
 
-	double _leftMiddleAcceleration1 = 0;
-	double _rightMiddleAcceleration1 = 0;
+	_leftMiddleVelocity = 0;
+	_rightMiddleVelocity = 0;
 
-	double _leftMiddleAcceleration2 = 0;
-	double _rightMiddleAcceleration2 = 0;
+	_leftMiddleAcceleration1 = 0;
+	_rightMiddleAcceleration1 = 0;
 
-	double _leftI = 0;
-	double _rightI = 0;
+	_leftMiddleAcceleration2 = 0;
+	_rightMiddleAcceleration2 = 0;
 
-	double _leftH = 0;
-	double _rightH = 0;
+	_leftI = 0;
+	_rightI = 0;
 
-	double _leftJ = 0;
-	double _rightJ = 0;
+	_leftH = 0;
+	_rightH = 0;
 
-	double _leftK = 0;
-	double _rightK = 0;
+	_leftJ = 0;
+	_rightJ = 0;
+
+	_leftK = 0;
+	_rightK = 0;
 }
 
 // Called just before this Command runs the first time
@@ -49,6 +54,8 @@ void DriveSCurve::Initialize()
 {
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
+
+	adjustFinalVelocities();
 
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
@@ -71,6 +78,7 @@ void DriveSCurve::Initialize()
 	_leftK = (_leftMiddleAcceleration2 * _totalTime);
 	_rightK = (_rightMiddleAcceleration2 * _totalTime);
 
+	//_drivetrain->enableEnhancedDriving();
 	_timer->Reset();
 	_timer->Start();
 }
@@ -110,6 +118,9 @@ void DriveSCurve::Execute()
 		_isComplete = true;
 		_timer->Stop();
 	}
+
+	SmartDashboard::PutNumber("Left Velocity", RobotMap::driveEncoderLeft->GetRate());
+	SmartDashboard::PutNumber("Right Velocity", RobotMap::driveEncoderRight->GetRate());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -129,4 +140,26 @@ void DriveSCurve::End()
 void DriveSCurve::Interrupted()
 {
 	End();
+}
+
+void DriveSCurve::adjustFinalVelocities() {
+	if (_leftFinalVelocity > _enhancedMaxVelocityLow) {
+		_drivetrain->shiftHigh();
+		if (_leftFinalVelocity > _enhancedMaxVelocityHigh) {
+			_leftFinalVelocity = _enhancedMaxVelocityHigh;
+		}
+	} else {
+		_drivetrain->shiftLow();
+	}
+
+	if (_rightFinalVelocity > _enhancedMaxVelocityLow) {
+		_drivetrain->shiftHigh();
+		if (_rightFinalVelocity > _enhancedMaxVelocityHigh) {
+			_rightFinalVelocity = _enhancedMaxVelocityHigh;
+		}
+	} else {
+		_drivetrain->shiftLow();
+	}
+
+
 }

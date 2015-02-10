@@ -74,6 +74,9 @@ bool Drivetrain::isHighGear() {
 void Drivetrain::set(double leftVelocity, double rightVelocity) {
 	_controllerLeft->SetSetpoint(leftVelocity);
 	_controllerRight->SetSetpoint(rightVelocity);
+
+	SmartDashboard::PutNumber("Left Setpoint", leftVelocity);
+	SmartDashboard::PutNumber("Right Setpoint", rightVelocity);
 }
 
 void Drivetrain::setRaw(double left, double right) {
