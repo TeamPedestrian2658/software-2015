@@ -9,7 +9,7 @@ class DriveWithJoystick: public Command
 {
 private:
 	Drivetrain *_drivetrain;
-	Joystick *_driverStick;
+	OI *_oi;
 	Constants *_constants;
 	double _leftVelocity;
 	double _rightVelocity;
