@@ -8,6 +8,7 @@ class DetermineMaxVelocity: public Command
 {
 private:
 	Drivetrain *_drivetrain;
+	Timer *_timer;
 	double _maxVelocity;
 public:
 	DetermineMaxVelocity();

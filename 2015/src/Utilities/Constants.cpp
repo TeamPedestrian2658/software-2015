@@ -79,7 +79,7 @@ Constants::Constants() {
 	toteMoverStates.stop = _preferences->GetDouble("ToteMoverStop", 0);
 
 	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 520);
-	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 150);
+	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 140);
 	driveConstants.maxAccelerationHigh = _preferences->GetDouble("MaxAccelerationHigh", 0);
 	driveConstants.maxAccelerationLow = _preferences->GetDouble("MaxAccelerationLow", 0);
 	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
@@ -87,6 +87,7 @@ Constants::Constants() {
 	driveConstants.distancePerPulse = _preferences->GetDouble("DistancePerPulse", 0.0490874);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
 	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
+	driveConstants.velocityTestAccelerationTime = _preferences->GetDouble("VelocityTestAccelerationTime", 2);
 	driveConstants.sCurveTimeoutMultiplier = _preferences->GetDouble("SCurveTimeoutMultiplier", 1.2);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
