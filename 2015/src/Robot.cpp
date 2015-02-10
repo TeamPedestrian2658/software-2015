@@ -47,6 +47,7 @@ void Robot::TeleopInit() {
 	if (!monitor->IsRunning()) {
 		monitor->Start();
 	}
+	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 }
 
 void Robot::TeleopPeriodic() {

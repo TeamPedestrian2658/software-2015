@@ -19,6 +19,7 @@
 #include "Utilities/Constants.h"
 
 #include "Commands/Utilities/PowerDistributionPanelMonitor.h"
+#include "Commands/Drivetrain/DetermineMaxVelocity.h"
 
 class Robot : public IterativeRobot {
 public:
