@@ -46,6 +46,7 @@ private:
 	double _rightK;
 
 	void adjustFinalVelocities();
+	void adjustTotalTime();
 
 public:
 	DriveSCurve(double totalTime,

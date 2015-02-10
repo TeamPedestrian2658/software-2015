@@ -60,6 +60,8 @@ void DriveSCurve::Initialize()
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 
+	adjustTotalTime();
+
 	_leftMiddleAcceleration1 = (4.5 * ((_leftMiddleVelocity - _leftInitialVelocity) / (_totalTime)));
 	_rightMiddleAcceleration1 = (4.5 * ((_rightMiddleVelocity - _rightInitialVelocity) / (_totalTime)));
 
@@ -143,23 +145,77 @@ void DriveSCurve::Interrupted()
 }
 
 void DriveSCurve::adjustFinalVelocities() {
-	if (_leftFinalVelocity > _enhancedMaxVelocityLow) {
+	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _leftFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
 		if (_leftFinalVelocity > _enhancedMaxVelocityHigh) {
 			_leftFinalVelocity = _enhancedMaxVelocityHigh;
+		} else if (_leftFinalVelocity < -_enhancedMaxVelocityHigh) {
+			_leftFinalVelocity = -_enhancedMaxVelocityHigh;
 		}
 	} else {
 		_drivetrain->shiftLow();
 	}
 
-	if (_rightFinalVelocity > _enhancedMaxVelocityLow) {
+	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
 		if (_rightFinalVelocity > _enhancedMaxVelocityHigh) {
 			_rightFinalVelocity = _enhancedMaxVelocityHigh;
+		} else if (_rightFinalVelocity < -_enhancedMaxVelocityHigh) {
+			_rightFinalVelocity = -_enhancedMaxVelocityHigh;
+		}
+	} else {
+		_drivetrain->shiftLow();
+	}
+}
+
+void DriveSCurve::adjustTotalTime() {
+	double actualTimeLeft = _totalTime;
+	double actualTimeRight = _totalTime;
+
+	if (_leftMiddleVelocity > _enhancedMaxVelocityLow) {
+		_drivetrain->shiftHigh();
+		if (_leftMiddleVelocity > _enhancedMaxVelocityHigh) {
+			actualTimeLeft = (3 * _leftDistance) /
+					((2 * _enhancedMaxVelocityHigh) + (_leftInitialVelocity / 2) + (_leftFinalVelocity / 2));
 		}
 	} else {
 		_drivetrain->shiftLow();
 	}
 
+	if (_rightMiddleVelocity > _enhancedMaxVelocityLow) {
+		_drivetrain->shiftHigh();
+		if (_rightMiddleVelocity > _enhancedMaxVelocityHigh) {
+			actualTimeRight = (3 * _rightDistance) /
+					((2 * _enhancedMaxVelocityHigh) + (_rightInitialVelocity / 2) + (_rightFinalVelocity / 2));
+		}
+	} else {
+		_drivetrain->shiftLow();
+	}
 
+	if (actualTimeLeft >= actualTimeRight) {
+		_totalTime = actualTimeLeft;
+	} else if (actualTimeRight > actualTimeLeft) {
+		_totalTime = actualTimeRight;
+	}
+
+	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
+	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
