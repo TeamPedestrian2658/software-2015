@@ -32,6 +32,16 @@ public:
  
 	Joystick* getDriverStick();
 	Joystick* getOperatorStick();
+
+	double getDriverStickLeftX();
+	double getDriverStickLeftY();
+	double getDriverStickRightX();
+	double getDriverStickRightY();
+
+	double getOperatorStickLeftX();
+	double getOperatorStickLeftY();
+	double getOperatorStickRightX();
+	double getOperatorStickRightY();
 };
 
 #endif

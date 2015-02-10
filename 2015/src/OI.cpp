@@ -65,3 +65,47 @@ Joystick* OI::getOperatorStick() {
 Joystick* OI::getDriverStick() {
 	return driverStick;
 }
+
+double OI::getDriverStickLeftX() {
+	return driverStick->GetRawAxis(constants->driverAxes.leftX);
+}
+
+double OI::getDriverStickLeftY() {
+	return driverStick->GetRawAxis(constants->driverAxes.leftY);
+}
+
+double OI::getDriverStickRightX() {
+	return driverStick->GetRawAxis(constants->driverAxes.rightX);
+}
+
+double OI::getDriverStickRightY() {
+	return driverStick->GetRawAxis(constants->driverAxes.rightY);
+}
+
+double OI::getOperatorStickLeftX() {
+	return operatorStick->GetRawAxis(constants->operatorAxes.leftX);
+}
+
+double OI::getOperatorStickLeftY() {
+	return operatorStick->GetRawAxis(constants->operatorAxes.leftY);
+}
+
+double OI::getOperatorStickRightX() {
+	return operatorStick->GetRawAxis(constants->operatorAxes.rightX);
+}
+
+double OI::getOperatorStickRightY() {
+	return operatorStick->GetRawAxis(constants->operatorAxes.rightY);
+}
+
+
+
+
+
+
+
+
+
+
+
+
