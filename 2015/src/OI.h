@@ -27,6 +27,8 @@ private:
 
 	JoystickButton *lowerClawGrab;
 	JoystickButton *lowerClawRelease;
+
+	JoystickButton *sCurveLeft;
 public:
 	OI();
  

@@ -16,6 +16,8 @@
 #include "Commands/LowerClaw/LowerClawGrab.h"
 #include "Commands/LowerClaw/LowerClawRelease.h"
 
+#include "Commands/Drivetrain/DriveSCurve.h"
+
 OI::OI() {
 
 	constants = RobotMap::constants;
@@ -56,6 +58,9 @@ OI::OI() {
 
 	lowerClawRelease = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawReleaseButton);
 	lowerClawRelease->WhenPressed(new LowerClawRelease());
+
+	sCurveLeft = new JoystickButton(driverStick, 1);
+	sCurveLeft->WhenPressed(new DriveSCurve(3, 20000, 20000, 0, 0));
 }
 
 Joystick* OI::getOperatorStick() {

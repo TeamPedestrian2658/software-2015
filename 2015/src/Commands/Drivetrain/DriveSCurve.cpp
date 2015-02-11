@@ -15,7 +15,6 @@ DriveSCurve::DriveSCurve(double totalTime,
 	Requires(_drivetrain);
 
 	_timer = new Timer();
-	SetTimeout(_totalTime * RobotMap::constants->driveConstants.sCurveTimeoutMultiplier);
 
 	_isComplete = false;
 
