@@ -41,6 +41,17 @@ public:
 		int lowerBrakeModule;
 		int lowerBrakePort;
 	} clawPorts;
+	struct LiftPorts {
+		int lowerTalonLeftPort;
+		int lowerTalonRightPort;
+		int upperTalonPort;
+		int lowerEncoderLeftPortA;
+		int lowerEncoderLeftPortB;
+		int lowerEncoderRightPortA;
+		int lowerEncoderRightPortB;
+		int upperEncoderPortA;
+		int upperEncoderPortB;
+	} liftPorts;
 	struct DollyPorts {
 		int dollyModule;
 		int dollyPort;

@@ -31,6 +31,14 @@ Solenoid *RobotMap::dollyCylinder = NULL;
 
 Talon *RobotMap::toteMoverTalon = NULL;
 
+Talon *RobotMap::lowerLiftTalonLeft = NULL;
+Talon *RobotMap::lowerLiftTalonRight = NULL;
+Talon *RobotMap::upperLiftTalon = NULL;
+
+Encoder *RobotMap::lowerLiftEncoderLeft = NULL;
+Encoder *RobotMap::lowerLiftEncoderRight = NULL;
+Encoder *RobotMap::upperLiftEncoder = NULL;
+
 Compressor *RobotMap::compressor = NULL;
 
 PowerDistributionPanel *RobotMap::powerDistributionPanel = NULL;
@@ -91,6 +99,14 @@ void RobotMap::init() {
 
 	toteMoverTalon = new Talon(constants->toteMoverPorts.toteMoverPort);
 	liveWindow->AddActuator("Tote Mover", "Talon", toteMoverTalon);
+
+	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);
+	lowerLiftTalonRight = new Talon(constants->liftPorts.lowerTalonRightPort);
+	upperLiftTalon = new Talon(constants->liftPorts.upperTalonPort);
+
+	lowerLiftEncoderLeft = new Encoder(constants->liftPorts.lowerEncoderLeftPortA, constants->liftPorts.lowerEncoderLeftPortB, false);
+	lowerLiftEncoderRight = new Encoder(constants->liftPorts.lowerEncoderRightPortA, constants->liftPorts.lowerEncoderRightPortB, false);
+	upperLiftEncoder = new Encoder(constants->liftPorts.upperEncoderPortA, constants->liftPorts.upperEncoderPortB, false);
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
 	compressor->Stop();

@@ -13,14 +13,14 @@
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
 
-	drivePorts.talonLeftPort = _preferences->GetInt("TalonLeftPort", 3);
-	drivePorts.talonRightPort = _preferences->GetInt("TalonRightPort", 4);
+	drivePorts.talonLeftPort = _preferences->GetInt("DriveTalonLeftPort", 3);
+	drivePorts.talonRightPort = _preferences->GetInt("DriveTalonRightPort", 4);
 	drivePorts.shifterModule = _preferences->GetInt("ShifterModule", 0);
 	drivePorts.shifterPort = _preferences->GetInt("ShifterPort", 5);
-	drivePorts.encoderLeftPortA = _preferences->GetInt("EncoderLeftPortA", 0);
-	drivePorts.encoderLeftPortB = _preferences->GetInt("EncoderLeftPortB", 1);
-	drivePorts.encoderRightPortA = _preferences->GetInt("EncoderRightPortA", 2);
-	drivePorts.encoderRightPortB = _preferences->GetInt("EncoderRightPortB", 3);
+	drivePorts.encoderLeftPortA = _preferences->GetInt("DriveEncoderLeftPortA", 0);
+	drivePorts.encoderLeftPortB = _preferences->GetInt("DriveEncoderLeftPortB", 1);
+	drivePorts.encoderRightPortA = _preferences->GetInt("DriveEncoderRightPortA", 2);
+	drivePorts.encoderRightPortB = _preferences->GetInt("DriveEncoderRightPortB", 3);
 
 	clawPorts.upperGrabberModule = _preferences->GetInt("UpperGrabberModule, 0");
 	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 0);
@@ -30,6 +30,16 @@ Constants::Constants() {
 	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 2);
 	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
 	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 3);
+
+	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 0);
+	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 1);
+	liftPorts.upperTalonPort = _preferences->GetInt("LiftUpperTalonPort", 2);
+	liftPorts.lowerEncoderLeftPortA = _preferences->GetInt("LiftLowerEncoderLeftPortA", 4);
+	liftPorts.lowerEncoderLeftPortB = _preferences->GetInt("LiftLowerEncoderLeftPortB", 5);
+	liftPorts.lowerEncoderRightPortA = _preferences->GetInt("LiftLowerEncoderRightPortA", 6);
+	liftPorts.lowerEncoderRightPortB = _preferences->GetInt("LiftLowerEncoderRightPortB", 7);
+	liftPorts.upperEncoderPortA = _preferences->GetInt("LiftUpperEncoderPortA", 8);
+	liftPorts.upperEncoderPortB = _preferences->GetInt("LiftUpperEncoderPortB", 9);
 
 	dollyPorts.dollyModule = _preferences->GetInt("DollyModule", 0);
 	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 4);

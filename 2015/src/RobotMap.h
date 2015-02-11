@@ -35,6 +35,14 @@ public:
 
 	static Talon *toteMoverTalon;
 
+	static Talon *lowerLiftTalonLeft;
+	static Talon *lowerLiftTalonRight;
+	static Talon *upperLiftTalon;
+
+	static Encoder *lowerLiftEncoderLeft;
+	static Encoder *lowerLiftEncoderRight;
+	static Encoder *upperLiftEncoder;
+
 	static Compressor *compressor;
 
 	static PowerDistributionPanel *powerDistributionPanel;
