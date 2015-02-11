@@ -43,7 +43,7 @@ void DetermineMaxVelocity::End()
 	Robot::drivetrain->setRaw(0, 0);
 	Robot::drivetrain->enableEnhancedDriving();
 
-	_timer->Stop()
+	_timer->Stop();
 	_maxVelocityLeft /= _numSamples;
 	_maxVelocityRight /= _numSamples;
 

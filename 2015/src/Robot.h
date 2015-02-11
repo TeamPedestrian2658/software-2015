@@ -21,6 +21,7 @@
 #include "Commands/Utilities/PowerDistributionPanelMonitor.h"
 #include "Commands/Drivetrain/DetermineMaxVelocity.h"
 #include "Commands/Drivetrain/DriveSCurve.h"
+#include "Commands/Drivetrain/DriveTrapezoidal.h"
 
 class Robot : public IterativeRobot {
 public:
