@@ -79,7 +79,7 @@ void DriveSCurve::Initialize()
 	_leftK = (_leftMiddleAcceleration2 * _totalTime);
 	_rightK = (_rightMiddleAcceleration2 * _totalTime);
 
-	//_drivetrain->enableEnhancedDriving();
+	_drivetrain->enableEnhancedDriving();
 	_timer->Reset();
 	_timer->Start();
 }

@@ -55,6 +55,7 @@ void DriveTrapezoidal::Initialize()
 	_leftAcceleration2 = (3 * (_leftFinalVelocity - _leftMiddleVelocity)) / _totalTime;
 	_rightAcceleration2 = (3 * (_rightFinalVelocity - _rightMiddleVelocity)) / _totalTime;
 
+	_drivetrain->enableEnhancedDriving();
 	_timer->Reset();
 	_timer->Start();
 }
@@ -73,6 +74,7 @@ void DriveTrapezoidal::Execute()
 	} else if (currentTime < _totalTime) {
 		double left = (_leftAcceleration2 * currentTime) - (2 * _leftFinalVelocity) + (3 * _leftMiddleVelocity);
 		double right = (_rightAcceleration2 * currentTime) - (2 * _rightFinalVelocity) + (3 * _rightMiddleVelocity);
+		_drivetrain->set(left, right);
 	} else {
 		_isComplete = true;
 		_timer->Stop();
