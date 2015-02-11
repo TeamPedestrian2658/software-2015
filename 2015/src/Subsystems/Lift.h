@@ -21,7 +21,8 @@ private:
 	PIDController *_lowerRightController;
 	PIDController *_upperController;
 
-	PIDProfile _profile;
+	PIDProfile _lowerProfile;
+	PIDProfile _upperProfile;
 
 public:
 	Lift();
@@ -46,7 +47,8 @@ public:
 	double getUpperRaw();
 
 	void updatePIDCoefficients();
-	PIDProfile getPIDCoefficients();
+	PIDProfile getLowerPIDCoefficients();
+	PIDProfile getUpperPIDCoefficients();
 };
 
 #endif
