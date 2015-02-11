@@ -24,6 +24,9 @@ private:
 	PIDProfile _lowerProfile;
 	PIDProfile _upperProfile;
 
+	bool _lowerAutomatic;
+	bool _upperAutomatic;
+
 public:
 	Lift();
 	void InitDefaultCommand();
@@ -41,9 +44,15 @@ public:
 	void setUpperRaw(double value);
 
 	double getLowerHeight();
+	double getLowerLeftHeight();
+	double getLowerRightHeight();
+
 	double getUpperHeight();
 
 	double getLowerRaw();
+	double getLowerLeftRaw();
+	double getLowerRightRaw();
+
 	double getUpperRaw();
 
 	void updatePIDCoefficients();

@@ -123,14 +123,16 @@ public:
 	} driveConstants;
 	struct LiftConstants {
 		double distancePerPulse;
-		double lowerClawMaxHeight;
-		double upperClawMaxHeight;
 		double lowerClawWidth;
 		double upperClawWidth;
 		double bufferFromTop;
 		double bufferBetweenClaws;
 		double bufferFromBottom;
 	} liftConstants;
+	struct LiftHeights {
+		double lowerClawMaxHeight;
+		double upperClawMaxHeight;
+	} liftHeights;
 	struct PneumaticConstants {
 		double startingPressure;
 		double currentPressure;

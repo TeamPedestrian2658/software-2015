@@ -98,13 +98,14 @@ Constants::Constants() {
 	driveConstants.velocityTestAccelerationTime = _preferences->GetDouble("VelocityTestAccelerationTime", 2);
 
 	liftConstants.distancePerPulse = _preferences->GetDouble("LiftDistancePerPulse", 0);
-	liftConstants.lowerClawMaxHeight = _preferences->GetDouble("LowerClawMaxHeight", 0);
-	liftConstants.upperClawMaxHeight = _preferences->GetDouble("UpperClawMaxHeight", 0);
 	liftConstants.lowerClawWidth = _preferences->GetDouble("LowerClawWidth", 0);
 	liftConstants.upperClawWidth = _preferences->GetDouble("UpperClawWidth", 0);
 	liftConstants.bufferFromTop = _preferences->GetDouble("BufferFromTop", 0);
 	liftConstants.bufferBetweenClaws = _preferences->GetDouble("BufferBetweenClaws", 0);
 	liftConstants.bufferFromBottom = _preferences->GetDouble("BufferFromBottom", 0);
+
+	liftHeights.lowerClawMaxHeight = _preferences->GetDouble("LowerClawMaxHeight", 0);
+	liftHeights.upperClawMaxHeight = _preferences->GetDouble("UpperClawMaxHeight", 0);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
