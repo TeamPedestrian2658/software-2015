@@ -39,6 +39,10 @@ Encoder *RobotMap::lowerLiftEncoderLeft = NULL;
 Encoder *RobotMap::lowerLiftEncoderRight = NULL;
 Encoder *RobotMap::upperLiftEncoder = NULL;
 
+PIDController *RobotMap::liftControllerLowerLeft = NULL;
+PIDController *RobotMap::liftControllerLowerRight = NULL;
+PIDController *RobotMap::liftControllerUpper = NULL;
+
 Compressor *RobotMap::compressor = NULL;
 
 PowerDistributionPanel *RobotMap::powerDistributionPanel = NULL;
@@ -103,10 +107,42 @@ void RobotMap::init() {
 	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);
 	lowerLiftTalonRight = new Talon(constants->liftPorts.lowerTalonRightPort);
 	upperLiftTalon = new Talon(constants->liftPorts.upperTalonPort);
+	liveWindow->AddActuator("Lower Lift", "Left Talon", lowerLiftTalonLeft);
+	liveWindow->AddActuator("Lower Lift", "Right Talon", lowerLiftTalonRight);
+	liveWindow->AddActuator("Upper Lift", "Talon", upperLiftTalon);
 
 	lowerLiftEncoderLeft = new Encoder(constants->liftPorts.lowerEncoderLeftPortA, constants->liftPorts.lowerEncoderLeftPortB, false);
+	lowerLiftEncoderLeft->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	lowerLiftEncoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
+	liveWindow->AddSensor("Lower Lift", "Encoder Left", lowerLiftEncoderLeft);
+
 	lowerLiftEncoderRight = new Encoder(constants->liftPorts.lowerEncoderRightPortA, constants->liftPorts.lowerEncoderRightPortB, false);
+	lowerLiftEncoderRight->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	lowerLiftEncoderRight->SetPIDSourceParameter(PIDSource::kDistance);
+	liveWindow->AddSensor("Lower Lift", "Encoder Right", lowerLiftEncoderRight);
+
 	upperLiftEncoder = new Encoder(constants->liftPorts.upperEncoderPortA, constants->liftPorts.upperEncoderPortB, false);
+	upperLiftEncoder->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	upperLiftEncoder->SetPIDSourceParameter(PIDSource::kDistance);
+	liveWindow->AddSensor("Upper Lift", "Encoder", upperLiftEncoder);
+
+	liftControllerLowerLeft = new PIDController(0, 0, 0, 0, lowerLiftEncoderLeft, lowerLiftTalonLeft);
+	liftControllerLowerLeft->SetContinuous(false);
+	liftControllerLowerLeft->SetOutputRange(-1, 1);
+	liftControllerLowerLeft->Reset();
+	liveWindow->AddActuator("Lower Lift", "Left Controller", liftControllerLowerLeft);
+
+	liftControllerLowerRight = new PIDController(0, 0, 0, 0, lowerLiftEncoderRight, lowerLiftTalonRight);
+	liftControllerLowerRight->SetContinuous(false);
+	liftControllerLowerRight->SetOutputRange(-1, 1);
+	liftControllerLowerRight->Reset();
+	liveWindow->AddActuator("Lower Lift", "Right Controller", liftControllerLowerRight);
+
+	liftControllerUpper = new PIDController(0, 0, 0, 0, upperLiftEncoder, upperLiftTalon);
+	liftControllerUpper->SetContinuous(false);
+	liftControllerUpper->SetOutputRange(-1, 1);
+	liftControllerUpper->Reset();
+	liveWindow->AddActuator("Upper Lift", "Controller", liftControllerUpper);
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
 	compressor->Stop();

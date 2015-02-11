@@ -43,6 +43,10 @@ public:
 	static Encoder *lowerLiftEncoderRight;
 	static Encoder *upperLiftEncoder;
 
+	static PIDController *liftControllerLowerLeft;
+	static PIDController *liftControllerLowerRight;
+	static PIDController *liftControllerUpper;
+
 	static Compressor *compressor;
 
 	static PowerDistributionPanel *powerDistributionPanel;

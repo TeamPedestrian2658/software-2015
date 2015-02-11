@@ -121,6 +121,9 @@ public:
 		double velocityTestSampleTime;
 		double velocityTestAccelerationTime;
 	} driveConstants;
+	struct LiftConstants {
+		double distancePerPulse;
+	} liftConstants;
 	struct PneumaticConstants {
 		double startingPressure;
 		double currentPressure;
