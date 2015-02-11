@@ -1,15 +1,15 @@
-#include "DriveSCurve.h"
+#include "DriveTrapezoidal.h"
 
-DriveSCurve::DriveSCurve(double totalTime,
-						 double leftDistance,
-						 double rightDistance,
-						 double leftFinalVelocity,
-						 double rightFinalVelocity) :
-						 _totalTime(totalTime),
-						 _leftDistance(leftDistance),
-						 _rightDistance(rightDistance),
-						 _leftFinalVelocity(leftFinalVelocity),
-						 _rightFinalVelocity(rightFinalVelocity)
+DriveTrapezoidal::DriveTrapezoidal(double totalTime,
+		 	 	 	 	 	 	   double leftDistance,
+								   double rightDistance,
+								   double leftFinalVelocity,
+								   double rightFinalVelocity) :
+								   _totalTime(totalTime),
+								   _leftDistance(leftDistance),
+								   _rightDistance(rightDistance),
+								   _leftFinalVelocity(leftFinalVelocity),
+								   _rightFinalVelocity(rightFinalVelocity)
 {
 	_drivetrain = Robot::drivetrain;
 	Requires(_drivetrain);
@@ -29,27 +29,15 @@ DriveSCurve::DriveSCurve(double totalTime,
 	_leftMiddleVelocity = 0;
 	_rightMiddleVelocity = 0;
 
-	_leftMiddleAcceleration1 = 0;
-	_rightMiddleAcceleration1 = 0;
+	_leftAcceleration1 = 0;
+	_rightAcceleration1 = 0;
 
-	_leftMiddleAcceleration2 = 0;
-	_rightMiddleAcceleration2 = 0;
-
-	_leftI = 0;
-	_rightI = 0;
-
-	_leftH = 0;
-	_rightH = 0;
-
-	_leftJ = 0;
-	_rightJ = 0;
-
-	_leftK = 0;
-	_rightK = 0;
+	_leftAcceleration2 = 0;
+	_rightAcceleration2 = 0;
 }
 
 // Called just before this Command runs the first time
-void DriveSCurve::Initialize()
+void DriveTrapezoidal::Initialize()
 {
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
@@ -61,60 +49,30 @@ void DriveSCurve::Initialize()
 
 	adjustTotalTime();
 
-	_leftMiddleAcceleration1 = (4.5 * ((_leftMiddleVelocity - _leftInitialVelocity) / (_totalTime)));
-	_rightMiddleAcceleration1 = (4.5 * ((_rightMiddleVelocity - _rightInitialVelocity) / (_totalTime)));
+	_leftAcceleration1 = (3 * (_leftMiddleVelocity - _leftInitialVelocity)) / _totalTime;
+	_rightAcceleration1 = (3 * (_rightMiddleVelocity - _rightInitialVelocity)) / _totalTime;
 
-	_leftMiddleAcceleration2 = (4.5 * ((_leftFinalVelocity - _leftMiddleVelocity) / (_totalTime)));
-	_rightMiddleAcceleration2 = (4.5 * ((_rightFinalVelocity - _rightMiddleVelocity) / (_totalTime)));
+	_leftAcceleration2 = (3 * (_leftFinalVelocity - _leftMiddleVelocity)) / _totalTime;
+	_rightAcceleration2 = (3 * (_rightFinalVelocity - _rightMiddleVelocity)) / _totalTime;
 
-	_leftH = (4.5 * (_leftMiddleAcceleration1 / _totalTime));
-	_rightH = (4.5 * (_rightMiddleAcceleration1 / _totalTime));
-
-	_leftI = ((_leftMiddleAcceleration1 * _totalTime) / 18);
-	_rightI = ((_rightMiddleAcceleration1 * _totalTime) / 18);
-
-	_leftJ = (4.5 * (_leftMiddleAcceleration2 / _totalTime));
-	_rightJ = (4.5 * (_rightMiddleAcceleration2 / _totalTime));
-
-	_leftK = (_leftMiddleAcceleration2 * _totalTime);
-	_rightK = (_rightMiddleAcceleration2 * _totalTime);
-
-	//_drivetrain->enableEnhancedDriving();
 	_timer->Reset();
 	_timer->Start();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveSCurve::Execute()
+void DriveTrapezoidal::Execute()
 {
 	double currentTime = _timer->Get();
 
-	if (currentTime < (.1111 * _totalTime)) {
-		double left = (_leftH * currentTime * currentTime) + _leftInitialVelocity;
-		double right = (_rightH * currentTime * currentTime) + _rightInitialVelocity;
-		_drivetrain->set(left, right);
-	} else if (currentTime < (.2222 * _totalTime)) {
-		double left = (_leftMiddleAcceleration1 * currentTime) - (_leftI) + _leftInitialVelocity;
-		double right = (_rightMiddleAcceleration1 * currentTime) - (_rightI) + _rightInitialVelocity;
-		_drivetrain->set(left, right);
-	} else if (currentTime < (.3333 * _totalTime)) {
-		double left = (3 * _leftMiddleAcceleration1 * currentTime) - (_leftH * currentTime * currentTime) - (5 * _leftI) + _leftInitialVelocity;
-		double right = (3 * _rightMiddleAcceleration1 * currentTime) - (_rightH * currentTime * currentTime) - (5 * _rightI) + _rightInitialVelocity;
+	if (currentTime < (.3333 * _totalTime)) {
+		double left = (_leftAcceleration1 * currentTime) + _leftInitialVelocity;
+		double right = (_rightAcceleration1 * currentTime) + _rightInitialVelocity;
 		_drivetrain->set(left, right);
 	} else if (currentTime < (.6666 * _totalTime)) {
 		_drivetrain->set(_leftMiddleVelocity, _rightMiddleVelocity);
-	} else if (currentTime < (.7777 * _totalTime)) {
-		double left = (_leftJ * currentTime * currentTime) - (6 * _leftMiddleAcceleration2 * currentTime) + (2 * _leftK) + _leftMiddleVelocity;
-		double right = (_rightJ * currentTime * currentTime) - (6 * _rightMiddleAcceleration2 * currentTime) + (2 * _rightK) + _rightMiddleVelocity;
-		_drivetrain->set(left, right);
-	} else if (currentTime < (.8888 * _totalTime)) {
-		double left = (_leftMiddleAcceleration2 * currentTime) - (.7222 * _leftK) + _leftMiddleVelocity;
-		double right = (_rightMiddleAcceleration2 * currentTime) - (.7222 * _rightK) + _rightMiddleVelocity;
-		_drivetrain->set(left, right);
 	} else if (currentTime < _totalTime) {
-		double left = (9 * _leftMiddleAcceleration2 * currentTime) - (_leftJ * currentTime * currentTime) - (4.278 * _leftK) + _leftMiddleVelocity;
-		double right = (9 * _rightMiddleAcceleration2 * currentTime) - (_rightJ * currentTime * currentTime) - (4.278 * _rightK) + _rightMiddleVelocity;
-		_drivetrain->set(left, right);
+		double left = (_leftAcceleration2 * currentTime) - (2 * _leftFinalVelocity) + (3 * _leftMiddleVelocity);
+		double right = (_rightAcceleration2 * currentTime) - (2 * _rightFinalVelocity) + (3 * _rightMiddleVelocity);
 	} else {
 		_isComplete = true;
 		_timer->Stop();
@@ -125,25 +83,25 @@ void DriveSCurve::Execute()
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DriveSCurve::IsFinished()
+bool DriveTrapezoidal::IsFinished()
 {
 	return _isComplete;
 }
 
 // Called once after isFinished returns true
-void DriveSCurve::End()
+void DriveTrapezoidal::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DriveSCurve::Interrupted()
+void DriveTrapezoidal::Interrupted()
 {
 	End();
 }
 
-void DriveSCurve::adjustFinalVelocities() {
+void DriveTrapezoidal::adjustFinalVelocities() {
 	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _leftFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
 		if (_leftFinalVelocity > _enhancedMaxVelocityHigh) {
@@ -167,7 +125,7 @@ void DriveSCurve::adjustFinalVelocities() {
 	}
 }
 
-void DriveSCurve::adjustTotalTime() {
+void DriveTrapezoidal::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
 
@@ -200,21 +158,3 @@ void DriveSCurve::adjustTotalTime() {
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

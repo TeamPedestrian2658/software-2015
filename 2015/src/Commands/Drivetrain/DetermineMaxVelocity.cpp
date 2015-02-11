@@ -5,7 +5,9 @@ DetermineMaxVelocity::DetermineMaxVelocity()
 {
 	_drivetrain = Robot::drivetrain;
 	_timer = new Timer();
-	_maxVelocity = 0;
+	_maxVelocityLeft = 0;
+	_maxVelocityRight = 0;
+	_numSamples = 0;
 	Requires(_drivetrain);
 	SetTimeout(RobotMap::constants->driveConstants.velocityTestSampleTime + RobotMap::constants->driveConstants.velocityTestAccelerationTime);
 }
@@ -23,10 +25,9 @@ void DetermineMaxVelocity::Execute()
 {
 	_drivetrain->setRaw(1, 1);
 	if (_timer->Get() > RobotMap::constants->driveConstants.velocityTestAccelerationTime) {
-		double avgVelocity = (RobotMap::driveEncoderLeft->GetRate() + RobotMap::driveEncoderRight->GetRate()) / 2;
-		if (avgVelocity > _maxVelocity) {
-			_maxVelocity = avgVelocity;
-		}
+		_maxVelocityLeft += RobotMap::driveEncoderLeft->GetRate();
+		_maxVelocityRight += RobotMap::driveEncoderRight->GetRate();
+		_numSamples++;
 	}
 }
 
@@ -41,7 +42,20 @@ void DetermineMaxVelocity::End()
 {
 	Robot::drivetrain->setRaw(0, 0);
 	Robot::drivetrain->enableEnhancedDriving();
-	SmartDashboard::PutNumber("Max Velocity", _maxVelocity);
+
+	_timer->Stop()
+	_maxVelocityLeft /= _numSamples;
+	_maxVelocityRight /= _numSamples;
+
+	if (_maxVelocityLeft >= _maxVelocityRight) {
+		SmartDashboard::PutNumber("Max Velocity", _maxVelocityLeft);
+	} else {
+		SmartDashboard::PutNumber("Max Velocity", _maxVelocityRight);
+	}
+
+	_maxVelocityLeft = 0;
+	_maxVelocityRight = 0;
+	_numSamples = 0;
 }
 
 // Called when another command which requires one or more of the same

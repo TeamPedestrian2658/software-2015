@@ -9,7 +9,9 @@ class DetermineMaxVelocity: public Command
 private:
 	Drivetrain *_drivetrain;
 	Timer *_timer;
-	double _maxVelocity;
+	double _maxVelocityLeft;
+	double _maxVelocityRight;
+	int _numSamples;
 public:
 	DetermineMaxVelocity();
 	void Initialize();
