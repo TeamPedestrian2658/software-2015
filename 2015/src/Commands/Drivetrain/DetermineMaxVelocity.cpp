@@ -48,9 +48,9 @@ void DetermineMaxVelocity::End()
 	_maxVelocityRight /= _numSamples;
 
 	if (_maxVelocityLeft >= _maxVelocityRight) {
-		SmartDashboard::PutNumber("Max Velocity", _maxVelocityLeft);
-	} else {
 		SmartDashboard::PutNumber("Max Velocity", _maxVelocityRight);
+	} else {
+		SmartDashboard::PutNumber("Max Velocity", _maxVelocityLeft);
 	}
 
 	_maxVelocityLeft = 0;
