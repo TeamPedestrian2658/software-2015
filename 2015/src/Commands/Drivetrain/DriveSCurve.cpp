@@ -155,7 +155,7 @@ void DriveSCurve::adjustFinalVelocities() {
 		_drivetrain->shiftLow();
 	}
 
-	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
+	if (_rightFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
 		if (_rightFinalVelocity > _enhancedMaxVelocityHigh) {
 			_rightFinalVelocity = _enhancedMaxVelocityHigh;
@@ -171,11 +171,14 @@ void DriveSCurve::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
 
-	if (_leftMiddleVelocity > _enhancedMaxVelocityLow) {
+	if (_leftMiddleVelocity < -_enhancedMaxVelocityLow || _leftMiddleVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
-		if (_leftMiddleVelocity > _enhancedMaxVelocityHigh) {
+		if (_leftMiddleVelocity < -_enhancedMaxVelocityHigh || _leftMiddleVelocity > _enhancedMaxVelocityHigh) {
 			actualTimeLeft = (3 * _leftDistance) /
 					((2 * _enhancedMaxVelocityHigh) + (_leftInitialVelocity / 2) + (_leftFinalVelocity / 2));
+			if (actualTimeLeft < 0) {
+				actualTimeLeft *= -1;
+			}
 		}
 	} else {
 		_drivetrain->shiftLow();
@@ -183,9 +186,12 @@ void DriveSCurve::adjustTotalTime() {
 
 	if (_rightMiddleVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
-		if (_rightMiddleVelocity > _enhancedMaxVelocityHigh) {
+		if (_rightMiddleVelocity < -_enhancedMaxVelocityHigh || _rightMiddleVelocity > _enhancedMaxVelocityHigh) {
 			actualTimeRight = (3 * _rightDistance) /
 					((2 * _enhancedMaxVelocityHigh) + (_rightInitialVelocity / 2) + (_rightFinalVelocity / 2));
+			if (actualTimeRight < 0) {
+				actualTimeRight *= -1;
+			}
 		}
 	} else {
 		_drivetrain->shiftLow();
@@ -200,21 +206,3 @@ void DriveSCurve::adjustTotalTime() {
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

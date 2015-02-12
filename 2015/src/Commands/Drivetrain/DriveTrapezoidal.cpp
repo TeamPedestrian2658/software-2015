@@ -93,7 +93,8 @@ bool DriveTrapezoidal::IsFinished()
 // Called once after isFinished returns true
 void DriveTrapezoidal::End()
 {
-
+	SmartDashboard::PutNumber("Right Distance", RobotMap::driveEncoderRight->GetDistance());
+	RobotMap::driveEncoderRight->Reset();
 }
 
 // Called when another command which requires one or more of the same
@@ -115,7 +116,7 @@ void DriveTrapezoidal::adjustFinalVelocities() {
 		_drivetrain->shiftLow();
 	}
 
-	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
+	if (_rightFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
 		if (_rightFinalVelocity > _enhancedMaxVelocityHigh) {
 			_rightFinalVelocity = _enhancedMaxVelocityHigh;
@@ -131,11 +132,14 @@ void DriveTrapezoidal::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
 
-	if (_leftMiddleVelocity > _enhancedMaxVelocityLow) {
+	if (_leftMiddleVelocity < -_enhancedMaxVelocityLow || _leftMiddleVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
-		if (_leftMiddleVelocity > _enhancedMaxVelocityHigh) {
+		if (_leftMiddleVelocity < -_enhancedMaxVelocityHigh || _leftMiddleVelocity > _enhancedMaxVelocityHigh) {
 			actualTimeLeft = (3 * _leftDistance) /
 					((2 * _enhancedMaxVelocityHigh) + (_leftInitialVelocity / 2) + (_leftFinalVelocity / 2));
+			if (actualTimeLeft < 0) {
+				actualTimeLeft *= -1;
+			}
 		}
 	} else {
 		_drivetrain->shiftLow();
@@ -143,9 +147,12 @@ void DriveTrapezoidal::adjustTotalTime() {
 
 	if (_rightMiddleVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
-		if (_rightMiddleVelocity > _enhancedMaxVelocityHigh) {
+		if (_rightMiddleVelocity < -_enhancedMaxVelocityHigh || _rightMiddleVelocity > _enhancedMaxVelocityHigh) {
 			actualTimeRight = (3 * _rightDistance) /
 					((2 * _enhancedMaxVelocityHigh) + (_rightInitialVelocity / 2) + (_rightFinalVelocity / 2));
+			if (actualTimeRight < 0) {
+				actualTimeRight *= -1;
+			}
 		}
 	} else {
 		_drivetrain->shiftLow();
