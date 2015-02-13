@@ -128,19 +128,11 @@ Constants::~Constants() {
 	// TODO Auto-generated destructor stub
 }
 
-PIDProfile Constants::getDriveProfile(bool highGear, bool encoderVelocityMode, int items) {
-	if (encoderVelocityMode) {
-		if (highGear == shifterStates.highGear) {
-			return driveProfiles[0 + items];		//high gear velocity
-		} else {
-			return driveProfiles[5 + items];		//low gear velocity
-		}
+PIDProfile Constants::getDriveProfile(bool highGear, int items) {
+	if (highGear == shifterStates.highGear) {
+		return driveProfiles[0 + items];
 	} else {
-		if (highGear == shifterStates.highGear) {
-			return driveProfiles[10 + items];		//high gear position
-		} else {
-			return driveProfiles[15 + items];		//low gear position
-		}
+		return driveProfiles[5 + items];
 	}
 }
 

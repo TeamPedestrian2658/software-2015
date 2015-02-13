@@ -27,10 +27,6 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_rumbleChooser->AddObject("Rumble Off", new bool(false));
 	SmartDashboard::PutData("Drive Rumble", _rumbleChooser);
 
-	_encoderVelocityMode = true;
-	setEncoderMode(_encoderVelocityMode);
-	SmartDashboard::PutString("Encoder Mode", "VELOCITY");
-
 	enableEnhancedDriving();
 	SmartDashboard::PutString("Enhanced Driving", "ENABLED");
 
@@ -44,7 +40,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 }
     
 void Drivetrain::InitDefaultCommand() {
-	//SetDefaultCommand(new DriveWithJoystick());
+	SetDefaultCommand(new DriveWithJoystick());
 }
 
 void Drivetrain::shiftHigh() {
@@ -82,23 +78,6 @@ void Drivetrain::set(double leftVelocity, double rightVelocity) {
 void Drivetrain::setRaw(double left, double right) {
 	_talonLeft->Set(-left);
 	_talonRight->Set(right);
-}
-
-void Drivetrain::setEncoderMode(bool velocity) {
-	_encoderVelocityMode = velocity;
-	if (velocity) {
-		_encoderLeft->SetPIDSourceParameter(PIDSource::kRate);
-		_encoderRight->SetPIDSourceParameter(PIDSource::kRate);
-		SmartDashboard::PutString("Encoder Mode", "VELOCITY");
-	} else {
-		_encoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
-		_encoderRight->SetPIDSourceParameter(PIDSource::kDistance);
-		SmartDashboard::PutString("Encoder Mode", "POSITION");
-	}
-}
-
-bool Drivetrain::encoderVelocityMode() {
-	return _encoderVelocityMode;
 }
 
 bool Drivetrain::tankEnabled() {
@@ -142,7 +121,7 @@ bool Drivetrain::slowEnabled() {
 }
 
 void Drivetrain::updatePIDCoefficients() {
-	PIDProfile profile = _constants->getDriveProfile(_highGear, _encoderVelocityMode, 0);
+	PIDProfile profile = _constants->getDriveProfile(_highGear, 0);
 	_profile.p = profile.p;
 	_profile.i = profile.i;
 	_profile.d = profile.d;

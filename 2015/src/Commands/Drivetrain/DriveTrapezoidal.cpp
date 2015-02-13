@@ -37,7 +37,7 @@ DriveTrapezoidal::DriveTrapezoidal(double totalTime,
 // Called just before this Command runs the first time
 void DriveTrapezoidal::Initialize()
 {
-	_drivetrain->shiftHigh();
+	_drivetrain->shiftLow();
 
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
@@ -104,7 +104,7 @@ void DriveTrapezoidal::Interrupted()
 	_drivetrain->set(0, 0);
 }
 
-/*
+
 void DriveTrapezoidal::adjustFinalVelocities() {
 	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _leftFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
@@ -113,8 +113,6 @@ void DriveTrapezoidal::adjustFinalVelocities() {
 		} else if (_leftFinalVelocity < -_enhancedMaxVelocityHigh) {
 			_leftFinalVelocity = -_enhancedMaxVelocityHigh;
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (_rightFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
@@ -124,11 +122,9 @@ void DriveTrapezoidal::adjustFinalVelocities() {
 		} else if (_rightFinalVelocity < -_enhancedMaxVelocityHigh) {
 			_rightFinalVelocity = -_enhancedMaxVelocityHigh;
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
-} */
-
+}
+/*
 void DriveTrapezoidal::adjustFinalVelocities() {
 	if (_leftFinalVelocity > _enhancedMaxVelocityHigh) {
 		_leftFinalVelocity = _enhancedMaxVelocityHigh;
@@ -141,8 +137,8 @@ void DriveTrapezoidal::adjustFinalVelocities() {
 	} else if (_rightFinalVelocity < -_enhancedMaxVelocityHigh) {
 		_rightFinalVelocity = -_enhancedMaxVelocityHigh;
 	}
-}
-/*
+} */
+
 void DriveTrapezoidal::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
@@ -156,8 +152,6 @@ void DriveTrapezoidal::adjustTotalTime() {
 				actualTimeLeft *= -1;
 			}
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (_rightMiddleVelocity > _enhancedMaxVelocityLow) {
@@ -169,8 +163,6 @@ void DriveTrapezoidal::adjustTotalTime() {
 				actualTimeRight *= -1;
 			}
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (actualTimeLeft >= actualTimeRight) {
@@ -182,8 +174,8 @@ void DriveTrapezoidal::adjustTotalTime() {
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 }
-*/
 
+/*
 void DriveTrapezoidal::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
@@ -214,3 +206,4 @@ void DriveTrapezoidal::adjustTotalTime() {
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
 
 }
+*/

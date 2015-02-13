@@ -143,10 +143,10 @@ public:
 		double lowerClawGrabberActuationLoss;
 		double lowerClawBrakeActuationLoss;
 	} pneumaticConstants;
-	PIDProfile driveProfiles[20];
+	PIDProfile driveProfiles[10];
 	virtual ~Constants();
 
-	PIDProfile getDriveProfile(bool highGear, bool encoderVelocityMode, int items);
+	PIDProfile getDriveProfile(bool highGear, int items);
 	void updatePIDProfiles();
 
 	void reducePressure(double pressureLoss);

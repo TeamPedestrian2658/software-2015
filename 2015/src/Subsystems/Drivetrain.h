@@ -25,7 +25,6 @@ private:
 	SendableChooser *_chooser;
 	SendableChooser *_rumbleChooser;
 
-	bool _encoderVelocityMode;
 	bool _enhanceEnabled;
 	bool _slowEnabled;
 	bool _highGear;
@@ -40,9 +39,6 @@ public:
 
 	void set(double leftVelocity, double rightVelocity);
 	void setRaw(double left, double right);
-
-	void setEncoderMode(bool velocity);
-	bool encoderVelocityMode();
 
 	bool tankEnabled();
 
