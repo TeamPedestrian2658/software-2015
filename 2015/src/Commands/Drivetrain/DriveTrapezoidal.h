@@ -35,6 +35,7 @@ private:
 
 	void adjustFinalVelocities();
 	void adjustTotalTime();
+	void determineInitialShifterState();
 public:
 	DriveTrapezoidal(double totalTime,
 					 double leftDistance,
