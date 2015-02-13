@@ -9,7 +9,6 @@ DriveWithJoystick::DriveWithJoystick()
 	_rightVelocity = 0;
 	_leftVelocity = 0;
 	MAX_VELOCITY = 0;
-	ENHANCE_SCALAR = _constants->driveConstants.enhanceScalar;
 	SLOW_SCALAR = _constants->driveConstants.slowScalar;
 	Requires(_drivetrain);
 }
@@ -24,19 +23,19 @@ void DriveWithJoystick::Initialize()
 void DriveWithJoystick::Execute()
 {
 	if (_drivetrain->isHighGear() == _constants->shifterStates.highGear) {
-		MAX_VELOCITY = _constants->driveConstants.maxVelocityHigh;
+		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityHigh;
 	} else {
-		MAX_VELOCITY = _constants->driveConstants.maxVelocityLow;
+		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityLow;
 	}
 
 	if (_drivetrain->enhanceEnabled()) {
 		if (_drivetrain->tankEnabled()) {
 			if (_drivetrain->slowEnabled()) {
-				_leftVelocity = -_oi->getDriverStickLeftY() * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = -_oi->getDriverStickRightY() * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = -_oi->getDriverStickLeftY() * SLOW_SCALAR * MAX_VELOCITY;
+				_rightVelocity = -_oi->getDriverStickRightY() * SLOW_SCALAR * MAX_VELOCITY;
 			} else {
-				_leftVelocity = -_oi->getDriverStickLeftY() * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = -_oi->getDriverStickRightY() * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = -_oi->getDriverStickLeftY() * MAX_VELOCITY;
+				_rightVelocity = -_oi->getDriverStickRightY() * MAX_VELOCITY;
 			}
 		} else {
 			double leftJoy = -_oi->getDriverStickLeftY() + _oi->getDriverStickRightX();
@@ -55,11 +54,11 @@ void DriveWithJoystick::Execute()
 			}
 
 			if (_drivetrain->slowEnabled()) {
-				_leftVelocity = leftJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = rightJoy * SLOW_SCALAR * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = leftJoy * SLOW_SCALAR * MAX_VELOCITY;
+				_rightVelocity = rightJoy * SLOW_SCALAR * MAX_VELOCITY;
 			} else {
-				_leftVelocity = leftJoy * ENHANCE_SCALAR * MAX_VELOCITY;
-				_rightVelocity = rightJoy * ENHANCE_SCALAR * MAX_VELOCITY;
+				_leftVelocity = leftJoy * MAX_VELOCITY;
+				_rightVelocity = rightJoy * MAX_VELOCITY;
 			}
 		}
 		_drivetrain->set(_leftVelocity, _rightVelocity);

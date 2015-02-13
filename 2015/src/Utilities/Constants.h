@@ -112,9 +112,8 @@ public:
 		double stop;
 	} toteMoverStates;
 	struct DriveConstants {
-		double maxVelocityHigh;
-		double maxVelocityLow;
-		double enhanceScalar;
+		double enhancedMaxVelocityHigh;
+		double enhancedMaxVelocityLow;
 		double slowScalar;
 		double distancePerPulse;
 		double shiftTime;

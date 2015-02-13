@@ -44,7 +44,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 }
     
 void Drivetrain::InitDefaultCommand() {
-	SetDefaultCommand(new DriveWithJoystick());
+	//SetDefaultCommand(new DriveWithJoystick());
 }
 
 void Drivetrain::shiftHigh() {

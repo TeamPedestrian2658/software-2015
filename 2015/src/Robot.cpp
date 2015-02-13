@@ -24,8 +24,8 @@ void Robot::RobotInit() {
 	liveWindow = LiveWindow::GetInstance();
 
 	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
-	SmartDashboard::PutData("S Curve", new DriveSCurve(1, 0, 500, 0, 0));
-	SmartDashboard::PutData("Trapezoidal", new DriveTrapezoidal(3, 120, 120, 0, 0));
+	//SmartDashboard::PutData("S Curve", new DriveSCurve(1, 0, 500, 0, 0));
+	SmartDashboard::PutData("Trapezoidal", new DriveTrapezoidal(2, -35, -35, 0, 0));
 }
 
 void Robot::DisabledInit() {

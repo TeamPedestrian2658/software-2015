@@ -14,7 +14,6 @@ private:
 	double _leftVelocity;
 	double _rightVelocity;
 	double MAX_VELOCITY;
-	double ENHANCE_SCALAR;
 	double SLOW_SCALAR;
 public:
 	DriveWithJoystick();

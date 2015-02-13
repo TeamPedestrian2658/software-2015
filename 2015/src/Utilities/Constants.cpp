@@ -88,11 +88,10 @@ Constants::Constants() {
 	toteMoverStates.moveTotesRight = _preferences->GetDouble("MoveTotesRight", 1);
 	toteMoverStates.stop = _preferences->GetDouble("ToteMoverStop", 0);
 
-	driveConstants.maxVelocityHigh = _preferences->GetDouble("MaxVelocityHigh", 470);
-	driveConstants.maxVelocityLow = _preferences->GetDouble("MaxVelocityLow", 140);
-	driveConstants.enhanceScalar = _preferences->GetDouble("EnhanceScalar", 0.9);
+	driveConstants.enhancedMaxVelocityHigh = _preferences->GetDouble("EnhancedMaxVelocityHigh", 270);
+	driveConstants.enhancedMaxVelocityLow = _preferences->GetDouble("EnhancedMaxVelocityLow", 75);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
-	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.0490874);
+	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.027271);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
 	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
 	driveConstants.velocityTestAccelerationTime = _preferences->GetDouble("VelocityTestAccelerationTime", 2);
@@ -110,7 +109,7 @@ Constants::Constants() {
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;
 	pneumaticConstants.compressorOnPressure = _preferences->GetDouble("CompressorOnPressure", 80);
-	pneumaticConstants.shifterActuationLoss = _preferences->GetDouble("ShifterActuationLoss", 5);
+	pneumaticConstants.shifterActuationLoss = _preferences->GetDouble("ShifterActuationLoss", 0);
 	pneumaticConstants.dollyActuationLoss = _preferences->GetDouble("DollyActuationLoss", 0);
 	pneumaticConstants.upperClawGrabberActuationLoss = _preferences->GetDouble("UpperClawGrabberActuationLoss", 0);
 	pneumaticConstants.upperClawBrakeActuationLoss = _preferences->GetDouble("UpperClawBrakeActuationLoss", 0);

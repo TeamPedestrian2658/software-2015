@@ -18,10 +18,8 @@ DriveSCurve::DriveSCurve(double totalTime,
 
 	_isComplete = false;
 
-	_enhancedMaxVelocityLow = RobotMap::constants->driveConstants.enhanceScalar
-			* RobotMap::constants->driveConstants.maxVelocityLow;
-	_enhancedMaxVelocityHigh = RobotMap::constants->driveConstants.enhanceScalar
-			* RobotMap::constants->driveConstants.maxVelocityHigh;
+	_enhancedMaxVelocityLow = RobotMap::constants->driveConstants.enhancedMaxVelocityLow;
+	_enhancedMaxVelocityHigh = RobotMap::constants->driveConstants.enhancedMaxVelocityHigh;
 
 	_leftInitialVelocity = 0;
 	_rightInitialVelocity = 0;

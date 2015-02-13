@@ -18,10 +18,8 @@ DriveTrapezoidal::DriveTrapezoidal(double totalTime,
 
 	_isComplete = false;
 
-	_enhancedMaxVelocityLow = RobotMap::constants->driveConstants.enhanceScalar
-			* RobotMap::constants->driveConstants.maxVelocityLow;
-	_enhancedMaxVelocityHigh = RobotMap::constants->driveConstants.enhanceScalar
-			* RobotMap::constants->driveConstants.maxVelocityHigh;
+	_enhancedMaxVelocityLow = RobotMap::constants->driveConstants.enhancedMaxVelocityLow;
+	_enhancedMaxVelocityHigh = RobotMap::constants->driveConstants.enhancedMaxVelocityHigh;
 
 	_leftInitialVelocity = 0;
 	_rightInitialVelocity = 0;
@@ -39,6 +37,8 @@ DriveTrapezoidal::DriveTrapezoidal(double totalTime,
 // Called just before this Command runs the first time
 void DriveTrapezoidal::Initialize()
 {
+	_drivetrain->shiftHigh();
+
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
 
@@ -76,6 +76,7 @@ void DriveTrapezoidal::Execute()
 		double right = (_rightAcceleration2 * currentTime) - (2 * _rightFinalVelocity) + (3 * _rightMiddleVelocity);
 		_drivetrain->set(left, right);
 	} else {
+		_drivetrain->set(_leftFinalVelocity, _rightFinalVelocity);
 		_isComplete = true;
 		_timer->Stop();
 	}
@@ -93,17 +94,17 @@ bool DriveTrapezoidal::IsFinished()
 // Called once after isFinished returns true
 void DriveTrapezoidal::End()
 {
-	SmartDashboard::PutNumber("Right Distance", RobotMap::driveEncoderRight->GetDistance());
-	RobotMap::driveEncoderRight->Reset();
+	_drivetrain->set(_leftFinalVelocity, _rightFinalVelocity);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveTrapezoidal::Interrupted()
 {
-	End();
+	_drivetrain->set(0, 0);
 }
 
+/*
 void DriveTrapezoidal::adjustFinalVelocities() {
 	if (_leftFinalVelocity < -_enhancedMaxVelocityLow || _leftFinalVelocity > _enhancedMaxVelocityLow) {
 		_drivetrain->shiftHigh();
@@ -126,8 +127,22 @@ void DriveTrapezoidal::adjustFinalVelocities() {
 	} else {
 		_drivetrain->shiftLow();
 	}
-}
+} */
 
+void DriveTrapezoidal::adjustFinalVelocities() {
+	if (_leftFinalVelocity > _enhancedMaxVelocityHigh) {
+		_leftFinalVelocity = _enhancedMaxVelocityHigh;
+	} else if (_leftFinalVelocity < -_enhancedMaxVelocityHigh) {
+		_leftFinalVelocity = -_enhancedMaxVelocityHigh;
+	}
+
+	if (_rightFinalVelocity > _enhancedMaxVelocityHigh) {
+		_rightFinalVelocity = _enhancedMaxVelocityHigh;
+	} else if (_rightFinalVelocity < -_enhancedMaxVelocityHigh) {
+		_rightFinalVelocity = -_enhancedMaxVelocityHigh;
+	}
+}
+/*
 void DriveTrapezoidal::adjustTotalTime() {
 	double actualTimeLeft = _totalTime;
 	double actualTimeRight = _totalTime;
@@ -166,4 +181,36 @@ void DriveTrapezoidal::adjustTotalTime() {
 
 	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
 	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
+}
+*/
+
+void DriveTrapezoidal::adjustTotalTime() {
+	double actualTimeLeft = _totalTime;
+	double actualTimeRight = _totalTime;
+
+	if (_leftMiddleVelocity < -_enhancedMaxVelocityHigh || _leftMiddleVelocity > _enhancedMaxVelocityHigh) {
+		actualTimeLeft = (3 * _leftDistance) /
+			((2 * _enhancedMaxVelocityHigh) + (_leftInitialVelocity / 2) + (_leftFinalVelocity / 2));
+		if (actualTimeLeft < 0) {
+			actualTimeLeft *= -1;
+		}
+	}
+
+	if (_rightMiddleVelocity < -_enhancedMaxVelocityHigh || _rightMiddleVelocity > _enhancedMaxVelocityHigh) {
+		actualTimeRight = (3 * _rightDistance) /
+			((2 * _enhancedMaxVelocityHigh) + (_rightInitialVelocity / 2) + (_rightFinalVelocity / 2));
+		if (actualTimeRight < 0) {
+			actualTimeRight *= -1;
+		}
+	}
+
+	if (actualTimeLeft >= actualTimeRight) {
+		_totalTime = actualTimeLeft;
+	} else if (actualTimeRight > actualTimeLeft) {
+		_totalTime = actualTimeRight;
+	}
+
+	_leftMiddleVelocity = (1.5 * (_leftDistance / _totalTime)) - (_leftInitialVelocity / 4) - (_leftFinalVelocity / 4);
+	_rightMiddleVelocity = (1.5 * (_rightDistance / _totalTime)) - (_rightInitialVelocity / 4) - (_rightFinalVelocity / 4);
+
 }
