@@ -28,8 +28,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 
 	grp = new CommandGroup();
-	grp->AddSequential(new DriveSCurve(4, 144, 144, 0, 0));
-	grp->AddSequential(new DriveSCurve(.5, 32 * 3.14159 * .27, -32 * 3.14159 * .27, 0, 0));
+	grp->AddSequential(new DriveSCurve(3, 36 * 3.14159 * .6666, 100 * 3.14159 * .6666, 0, 0));
 	SmartDashboard::PutData("Group", grp);
 }
 

@@ -88,7 +88,7 @@ Constants::Constants() {
 	toteMoverStates.moveTotesRight = _preferences->GetDouble("MoveTotesRight", 1);
 	toteMoverStates.stop = _preferences->GetDouble("ToteMoverStop", 0);
 
-	driveConstants.enhancedMaxVelocityHigh = _preferences->GetDouble("EnhancedMaxVelocityHigh", 270);
+	driveConstants.enhancedMaxVelocityHigh = _preferences->GetDouble("EnhancedMaxVelocityHigh", 190);
 	driveConstants.enhancedMaxVelocityLow = _preferences->GetDouble("EnhancedMaxVelocityLow", 75);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.027271);
