@@ -111,6 +111,9 @@ void DriveWithJoystick::Execute()
 		} else {
 			_oi->getDriverStick()->SetRumble(Joystick::kRightRumble, rightOutput);
 		}
+	} else {
+		_oi->getDriverStick()->SetRumble(Joystick::kLeftRumble, 0);
+		_oi->getDriverStick()->SetRumble(Joystick::kRightRumble, 0);
 	}
 }
 

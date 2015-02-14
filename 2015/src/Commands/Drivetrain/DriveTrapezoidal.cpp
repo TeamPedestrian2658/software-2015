@@ -37,10 +37,10 @@ DriveTrapezoidal::DriveTrapezoidal(double totalTime,
 // Called just before this Command runs the first time
 void DriveTrapezoidal::Initialize()
 {
+	_drivetrain->shiftHigh();
+
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
-
-	determineInitialShifterState();
 
 	adjustFinalVelocities();
 
@@ -65,11 +65,11 @@ void DriveTrapezoidal::Execute()
 {
 	double currentTime = _timer->Get();
 
-	if (currentTime < (.3333 * _totalTime)) {
+	if (currentTime < (_totalTime / 3)) {
 		double left = (_leftAcceleration1 * currentTime) + _leftInitialVelocity;
 		double right = (_rightAcceleration1 * currentTime) + _rightInitialVelocity;
 		_drivetrain->set(left, right);
-	} else if (currentTime < (.6666 * _totalTime)) {
+	} else if (currentTime < ((2 * _totalTime) / 3)) {
 		_drivetrain->set(_leftMiddleVelocity, _rightMiddleVelocity);
 	} else if (currentTime < _totalTime) {
 		double left = (_leftAcceleration2 * currentTime) - (2 * _leftFinalVelocity) + (3 * _leftMiddleVelocity);
@@ -94,7 +94,7 @@ bool DriveTrapezoidal::IsFinished()
 // Called once after isFinished returns true
 void DriveTrapezoidal::End()
 {
-	_drivetrain->set(_leftFinalVelocity, _rightFinalVelocity);
+
 }
 
 // Called when another command which requires one or more of the same
@@ -102,6 +102,7 @@ void DriveTrapezoidal::End()
 void DriveTrapezoidal::Interrupted()
 {
 	_drivetrain->set(0, 0);
+	_drivetrain->setRaw(0, 0);
 }
 
 
@@ -208,13 +209,3 @@ void DriveTrapezoidal::adjustTotalTime() {
 }
 */
 
-void DriveTrapezoidal::determineInitialShifterState() {
-	if (_leftInitialVelocity > -_enhancedMaxVelocityLow && _leftInitialVelocity < _enhancedMaxVelocityLow) {
-		_drivetrain->shiftLow();
-		return;
-	}
-	if (_rightInitialVelocity > -_enhancedMaxVelocityLow && _rightInitialVelocity < _enhancedMaxVelocityLow) {
-		_drivetrain->shiftLow();
-		return;
-	}
-}

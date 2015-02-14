@@ -49,6 +49,8 @@ DriveSCurve::DriveSCurve(double totalTime,
 // Called just before this Command runs the first time
 void DriveSCurve::Initialize()
 {
+	_drivetrain->shiftHigh();
+
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
 
@@ -114,6 +116,7 @@ void DriveSCurve::Execute()
 		double right = (9 * _rightMiddleAcceleration2 * currentTime) - (_rightJ * currentTime * currentTime) - (4.278 * _rightK) + _rightMiddleVelocity;
 		_drivetrain->set(left, right);
 	} else {
+		_drivetrain->set(_leftFinalVelocity, _rightFinalVelocity);
 		_isComplete = true;
 		_timer->Stop();
 	}
@@ -138,7 +141,8 @@ void DriveSCurve::End()
 // subsystems is scheduled to run
 void DriveSCurve::Interrupted()
 {
-	End();
+	_drivetrain->set(0, 0);
+	_drivetrain->setRaw(0, 0);
 }
 
 void DriveSCurve::adjustFinalVelocities() {
@@ -149,8 +153,6 @@ void DriveSCurve::adjustFinalVelocities() {
 		} else if (_leftFinalVelocity < -_enhancedMaxVelocityHigh) {
 			_leftFinalVelocity = -_enhancedMaxVelocityHigh;
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (_rightFinalVelocity < -_enhancedMaxVelocityLow || _rightFinalVelocity > _enhancedMaxVelocityLow) {
@@ -160,8 +162,6 @@ void DriveSCurve::adjustFinalVelocities() {
 		} else if (_rightFinalVelocity < -_enhancedMaxVelocityHigh) {
 			_rightFinalVelocity = -_enhancedMaxVelocityHigh;
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 }
 
@@ -178,8 +178,6 @@ void DriveSCurve::adjustTotalTime() {
 				actualTimeLeft *= -1;
 			}
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (_rightMiddleVelocity > _enhancedMaxVelocityLow) {
@@ -191,8 +189,6 @@ void DriveSCurve::adjustTotalTime() {
 				actualTimeRight *= -1;
 			}
 		}
-	} else {
-		_drivetrain->shiftLow();
 	}
 
 	if (actualTimeLeft >= actualTimeRight) {

@@ -34,6 +34,7 @@ public:
 	static Lift* lift;
 	static ToteMover* toteMover;
 	static PowerDistributionPanelMonitor *monitor;
+	static CommandGroup *grp;
 	//static AutoScriptSelector* selector;
 	virtual void RobotInit();
 	virtual void DisabledInit();
