@@ -26,10 +26,6 @@ void Robot::RobotInit() {
 	liveWindow = LiveWindow::GetInstance();
 
 	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
-
-	grp = new CommandGroup();
-	grp->AddSequential(new DriveSCurve(3, 36 * 3.14159 * .6666, 100 * 3.14159 * .6666, 0, 0));
-	SmartDashboard::PutData("Group", grp);
 }
 
 void Robot::DisabledInit() {

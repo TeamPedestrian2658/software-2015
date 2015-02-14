@@ -143,11 +143,25 @@ public:
 		double lowerClawGrabberActuationLoss;
 		double lowerClawBrakeActuationLoss;
 	} pneumaticConstants;
+	struct ItemCounts {
+		int lowerClawItems;
+		int upperClawItems;
+		int lowerClawMaxItems;
+		int upperClawMaxItems;
+	} itemCounts;
 	PIDProfile driveProfiles[10];
 	virtual ~Constants();
 
-	PIDProfile getDriveProfile(bool highGear, int items);
 	void updatePIDProfiles();
+	PIDProfile getDriveProfile(bool highGear);
+
+	void incrementLowerClawItems();
+	void decrementLowerClawItems();
+	void resetLowerClawItems();
+
+	void incrementUpperClawItems();
+	void decrementUpperClawItems();
+	void resetUpperClawItems();
 
 	void reducePressure(double pressureLoss);
 };

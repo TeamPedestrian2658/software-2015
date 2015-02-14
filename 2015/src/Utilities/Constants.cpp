@@ -116,6 +116,11 @@ Constants::Constants() {
 	pneumaticConstants.lowerClawGrabberActuationLoss = _preferences->GetDouble("LowerClawGrabberActuationLoss", 0);
 	pneumaticConstants.lowerClawBrakeActuationLoss = _preferences->GetDouble("LowerClawBrakeActuationLoss", 0);
 
+	itemCounts.lowerClawItems = 0;
+	itemCounts.upperClawItems = 0;
+	itemCounts.lowerClawMaxItems = _preferences->GetInt("LowerClawMaxItems", 4);
+	itemCounts.upperClawMaxItems = _preferences->GetInt("UpperClawMaxItems", 1);
+
 	updatePIDProfiles();
 	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
 	SmartDashboard::PutData("CompressorOn", new CompressorOn());
@@ -126,14 +131,6 @@ Constants::Constants() {
 
 Constants::~Constants() {
 	// TODO Auto-generated destructor stub
-}
-
-PIDProfile Constants::getDriveProfile(bool highGear, int items) {
-	if (highGear == shifterStates.highGear) {
-		return driveProfiles[0 + items];
-	} else {
-		return driveProfiles[5 + items];
-	}
 }
 
 void Constants::updatePIDProfiles() {
@@ -186,6 +183,48 @@ void Constants::updatePIDProfiles() {
 	driveProfiles[9].i = _preferences->GetDouble("DriveProfile9I", 0);
 	driveProfiles[9].d = _preferences->GetDouble("DriveProfile9D", 0);
 	driveProfiles[9].f = _preferences->GetDouble("DriveProfile9F", 0);
+}
+
+
+PIDProfile Constants::getDriveProfile(bool highGear) {
+	if (highGear == shifterStates.highGear) {
+		return driveProfiles[0 + itemCounts.lowerClawItems + itemCounts.upperClawItems];
+	} else {
+		return driveProfiles[5 + itemCounts.lowerClawItems + itemCounts.upperClawItems];
+	}
+}
+
+
+void Constants::incrementLowerClawItems() {
+	if (itemCounts.lowerClawItems < itemCounts.lowerClawMaxItems) {
+		itemCounts.lowerClawItems++;
+	}
+}
+
+void Constants::decrementLowerClawItems() {
+	if (itemCounts.lowerClawItems > 0) {
+		itemCounts.lowerClawItems--;
+	}
+}
+
+void Constants::resetLowerClawItems() {
+	itemCounts.lowerClawItems = 0;
+}
+
+void Constants::incrementUpperClawItems() {
+	if (itemCounts.upperClawItems < itemCounts.upperClawMaxItems) {
+		itemCounts.upperClawItems++;
+	}
+}
+
+void Constants::decrementUpperClawItems() {
+	if (itemCounts.upperClawItems > 0) {
+		itemCounts.upperClawItems--;
+	}
+}
+
+void Constants::resetUpperClawItems() {
+	itemCounts.upperClawItems = 0;
 }
 
 void Constants::reducePressure(double pressureLoss) {
