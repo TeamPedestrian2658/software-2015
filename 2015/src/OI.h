@@ -19,14 +19,15 @@ private:
 
 	JoystickButton *dollyToggle;
 
-	JoystickButton *toteMoverLeft;
-	JoystickButton *toteMoverRight;
-
 	JoystickButton *upperClawGrab;
 	JoystickButton *upperClawRelease;
 
 	JoystickButton *lowerClawGrab;
 	JoystickButton *lowerClawRelease;
+
+	JoystickButton *resetLowerClawCount;
+	JoystickButton *incrementLowerClawCount;
+	JoystickButton *decrementLowerClawCount;
 public:
 	OI();
  
@@ -42,6 +43,7 @@ public:
 	double getOperatorStickLeftY();
 	double getOperatorStickRightX();
 	double getOperatorStickRightY();
+	double getOperatorStickPOV();
 };
 
 #endif

@@ -10,11 +10,13 @@
 #include "Commands/Drivetrain/EnableSlow.h"
 #include "Commands/Drivetrain/DisableSlow.h"
 #include "Commands/Dolly/ToggleDolly.h"
-#include "Commands/ToteMover/SetToteMover.h"
 #include "Commands/UpperClaw/UpperClawGrab.h"
 #include "Commands/UpperClaw/UpperClawRelease.h"
 #include "Commands/LowerClaw/LowerClawGrab.h"
 #include "Commands/LowerClaw/LowerClawRelease.h"
+#include "Commands/Utilities/ResetLowerClawCount.h"
+#include "Commands/Utilities/IncrementLowerClawCount.h"
+#include "Commands/Utilities/DecrementLowerClawCount.h"
 
 #include "Commands/Drivetrain/DriveSCurve.h"
 
@@ -39,14 +41,6 @@ OI::OI() {
 	dollyToggle = new JoystickButton(operatorStick, constants->operatorButtons.toggleDollyButton);
 	dollyToggle->WhenPressed(new ToggleDolly());
 
-	toteMoverLeft = new JoystickButton(operatorStick, constants->operatorButtons.toteMoverLeftButton);
-	toteMoverLeft->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesLeft));
-	toteMoverLeft->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
-
-	toteMoverRight = new JoystickButton(operatorStick, constants->operatorButtons.toteMoverRightButton);
-	toteMoverRight->WhenPressed(new SetToteMover(constants->toteMoverStates.moveTotesRight));
-	toteMoverRight->WhenReleased(new SetToteMover(constants->toteMoverStates.stop));
-
 	upperClawGrab = new JoystickButton(operatorStick, constants->operatorButtons.upperClawGrabButton);
 	upperClawGrab->WhenPressed(new UpperClawGrab());
 
@@ -58,6 +52,15 @@ OI::OI() {
 
 	lowerClawRelease = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawReleaseButton);
 	lowerClawRelease->WhenPressed(new LowerClawRelease());
+
+	resetLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountResetButton);
+	resetLowerClawCount->WhenPressed(new ResetLowerClawCount());
+
+	incrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountIncrementButton);
+	incrementLowerClawCount->WhenPressed(new IncrementLowerClawCount());
+
+	decrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountDecrementButton);
+	decrementLowerClawCount->WhenPressed(new DecrementLowerClawCount());
 }
 
 Joystick* OI::getOperatorStick() {
@@ -100,6 +103,9 @@ double OI::getOperatorStickRightY() {
 	return operatorStick->GetRawAxis(constants->operatorAxes.rightY);
 }
 
+double OI::getOperatorStickPOV() {
+	return operatorStick->GetPOV();
+}
 
 
 

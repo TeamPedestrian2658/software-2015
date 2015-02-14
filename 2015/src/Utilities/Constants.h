@@ -73,12 +73,15 @@ public:
 	} driverButtons;
 	struct OperatorButtons {
 		int toggleDollyButton;
-		int toteMoverLeftButton;
-		int toteMoverRightButton;
+		int toteMoverLeftPOV;
+		int toteMoverRightPOV;
 		int upperClawGrabButton;
 		int upperClawReleaseButton;
 		int lowerClawGrabButton;
 		int lowerClawReleaseButton;
+		int lowerClawItemCountResetButton;
+		int lowerClawItemCountIncrementButton;
+		int lowerClawItemCountDecrementButton;
 	} operatorButtons;
 	struct DriverAxes {
 		int leftX;

@@ -1,15 +1,16 @@
-#ifndef SetToteMover_H
-#define SetToteMover_H
+#ifndef ToteMoverManager_H
+#define ToteMoverManager_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class SetToteMover: public Command
+class ToteMoverManager: public Command
 {
 private:
-	double _value;
+	OI *_oi;
+	Constants *_constants;
 public:
-	SetToteMover(double value);
+	ToteMoverManager();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

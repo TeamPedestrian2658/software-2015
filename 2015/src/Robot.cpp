@@ -10,8 +10,6 @@ PowerDistributionPanelMonitor *Robot::monitor = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
 
-CommandGroup* Robot::grp = 0;
-
 void Robot::RobotInit() {
 	RobotMap::init();
 	drivetrain = new Drivetrain();
@@ -24,8 +22,6 @@ void Robot::RobotInit() {
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");
 	liveWindow = LiveWindow::GetInstance();
-
-	SmartDashboard::PutData("Determine Max Velocity", new DetermineMaxVelocity());
 }
 
 void Robot::DisabledInit() {

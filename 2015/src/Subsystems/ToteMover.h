@@ -7,12 +7,15 @@
 
 class ToteMover: public Subsystem {
 private:
-	Talon *mover;
+	Constants *_constants;
+	Talon *_mover;
 public:
 	ToteMover();
 	void InitDefaultCommand();
-	void setToteMover(double value);
-	double getToteMover();
+
+	void moveTotesLeft();
+	void moveTotesRight();
+	void stop();
 };
 
 #endif

@@ -1,19 +1,30 @@
 #include "ToteMover.h"
 #include "../RobotMap.h"
+#include "../Commands/ToteMover/ToteMoverManager.h"
 
 ToteMover::ToteMover() : Subsystem("ToteMover") {
-	mover = RobotMap::toteMoverTalon;
+	_constants = RobotMap::constants;
+	_mover = RobotMap::toteMoverTalon;
+
+	SmartDashboard::PutString("Tote Mover", "STOPPED");
 }
 
 void ToteMover::InitDefaultCommand()
 {
-
+	SetDefaultCommand(new ToteMoverManager());
 }
 
-void ToteMover::setToteMover(double value) {
-	mover->Set(value);
+void ToteMover::moveTotesLeft() {
+	_mover->Set(_constants->toteMoverStates.moveTotesLeft);
+	SmartDashboard::PutString("Tote Mover", "LEFT");
 }
 
-double ToteMover::getToteMover() {
-	return mover->Get();
+void ToteMover::moveTotesRight() {
+	_mover->Set(_constants->toteMoverStates.moveTotesRight);
+	SmartDashboard::PutString("Tote Mover", "RIGHT");
+}
+
+void ToteMover::stop() {
+	_mover->Set(_constants->toteMoverStates.stop);
+	SmartDashboard::PutString("Tote Mover", "STOPPED");
 }

@@ -56,12 +56,15 @@ Constants::Constants() {
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
 
 	operatorButtons.toggleDollyButton = _preferences->GetInt("ToggleDollyButton", 2);
-	operatorButtons.toteMoverLeftButton = _preferences->GetInt("ToteMoverLeftButton", 1);
-	operatorButtons.toteMoverRightButton = _preferences->GetInt("ToteMoverRightButton", 3);
+	operatorButtons.toteMoverLeftPOV = _preferences->GetInt("ToteMoverLeftPOV", 270);
+	operatorButtons.toteMoverRightPOV = _preferences->GetInt("ToteMoverRightPOV", 90);
 	operatorButtons.upperClawGrabButton = _preferences->GetInt("UpperClawGrabButton", 6);
 	operatorButtons.upperClawReleaseButton = _preferences->GetInt("UpperClawReleaseButton", 8);
 	operatorButtons.lowerClawGrabButton = _preferences->GetInt("LowerClawGrabButton", 5);
 	operatorButtons.lowerClawReleaseButton = _preferences->GetInt("LowerClawReleaseButton", 7);
+	operatorButtons.lowerClawItemCountResetButton = _preferences->GetInt("LowerClawItemCountResetButton", 4);
+	operatorButtons.lowerClawItemCountIncrementButton = _preferences->GetInt("LowerClawItemCountIncrementButton", 3);
+	operatorButtons.lowerClawItemCountDecrementButton = _preferences->GetInt("LowerClawItemCountDecrementButton", 1);
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);
@@ -123,10 +126,14 @@ Constants::Constants() {
 
 	updatePIDProfiles();
 	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
+
 	SmartDashboard::PutData("CompressorOn", new CompressorOn());
 	SmartDashboard::PutData("CompressorOff", new CompressorOff());
 	SmartDashboard::PutNumber("Current Pressure", pneumaticConstants.currentPressure);
 	SmartDashboard::PutString("Compressor", "OFF");
+
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
 Constants::~Constants() {
@@ -199,32 +206,38 @@ void Constants::incrementLowerClawItems() {
 	if (itemCounts.lowerClawItems < itemCounts.lowerClawMaxItems) {
 		itemCounts.lowerClawItems++;
 	}
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::decrementLowerClawItems() {
 	if (itemCounts.lowerClawItems > 0) {
 		itemCounts.lowerClawItems--;
 	}
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::resetLowerClawItems() {
 	itemCounts.lowerClawItems = 0;
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::incrementUpperClawItems() {
 	if (itemCounts.upperClawItems < itemCounts.upperClawMaxItems) {
 		itemCounts.upperClawItems++;
 	}
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
 void Constants::decrementUpperClawItems() {
 	if (itemCounts.upperClawItems > 0) {
 		itemCounts.upperClawItems--;
 	}
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
 void Constants::resetUpperClawItems() {
 	itemCounts.upperClawItems = 0;
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
 void Constants::reducePressure(double pressureLoss) {
