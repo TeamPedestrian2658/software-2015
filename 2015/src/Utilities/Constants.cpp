@@ -107,9 +107,9 @@ Constants::Constants() {
 	liftConstants.bufferFromTop = _preferences->GetDouble("BufferFromTop", 0);
 	liftConstants.bufferBetweenClaws = _preferences->GetDouble("BufferBetweenClaws", 0);
 	liftConstants.bufferFromBottom = _preferences->GetDouble("BufferFromBottom", 0);
-
-	liftHeights.lowerClawMaxHeight = _preferences->GetDouble("LowerClawMaxHeight", 0);
-	liftHeights.upperClawMaxHeight = _preferences->GetDouble("UpperClawMaxHeight", 0);
+	liftConstants.minHeight = _preferences->GetDouble("MinHeight", 0);
+	liftConstants.maxHeight = _preferences->GetDouble("MaxHeight", 0);
+	liftConstants.heightFromGround = _preferences->GetDouble("HeightFromGround", 0);
 
 	pneumaticConstants.startingPressure = _preferences->GetDouble("StartingPressure", 115);
 	pneumaticConstants.currentPressure = pneumaticConstants.startingPressure;

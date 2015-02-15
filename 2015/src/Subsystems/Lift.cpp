@@ -59,11 +59,23 @@ bool Lift::upperControllerEnabled() {
 	return _upperAutomatic;
 }
 
-void Lift::setLowerHeight(double height) {
+void Lift::setLowerHeightFromGround(double heightFromGround) {
+	if (heightFromGround < (_constants->liftConstants.minHeight + _constants->liftConstants.bufferFromBottom)) {
+		heightFromGround = (_constants->liftConstants.minHeight + _constants->liftConstants.bufferFromBottom);
+	}
 
+	if (heightFromGround > (_constants->liftConstants.maxHeight - _constants->liftConstants.bufferFromTop - _constants->liftConstants.bufferBetweenClaws - _constants->liftConstants.upperClawWidth)) {
+		heightFromGround = (_constants->liftConstants.maxHeight - _constants->liftConstants.bufferFromTop - _constants->liftConstants.bufferBetweenClaws - _constants->liftConstants.upperClawWidth);
+	}
+
+	if (heightFromGround + _constants->liftConstants.lowerClawWidth + _constants->liftConstants.bufferBetweenClaws > getUpperHeightFromGround()) {
+		setUpperHeightFromGround(heightFromGround + _constants->liftConstants.lowerClawWidth + _constants->liftConstants.bufferBetweenClaws);
+	}
+
+	_lowerLeftController->SetSetpoint(heightFromGround - _constants->liftConstants.heightFromGround);
 }
 
-void Lift::setUpperHeight(double height) {
+void Lift::setUpperHeightFromGround(double heightFromGround) {
 
 }
 
@@ -88,8 +100,24 @@ double Lift::getLowerRightHeight() {
 	return _lowerRightEncoder->GetDistance();
 }
 
+double Lift::getLowerHeightFromGround() {
+	return getLowerHeight() + _constants->liftConstants.heightFromGround;
+}
+
+double Lift::getLowerLeftHeightFromGround() {
+	return getLowerLeftHeight() + _constants->liftConstants.heightFromGround;
+}
+
+double Lift::getLowerRightHeightFromGround() {
+	return getLowerRightHeight() + _constants->liftConstants.heightFromGround;
+}
+
 double Lift::getUpperHeight() {
-	return _upperEncoder->GetDistance();
+	return _upperEncoder->GetDistance() + _constants->liftConstants.lowerClawWidth;
+}
+
+double Lift::getUpperHeightFromGround() {
+	return getUpperHeight() + _constants->liftConstants.heightFromGround;
 }
 
 double Lift::getLowerRaw() {

@@ -132,10 +132,11 @@ public:
 		double bufferFromTop;
 		double bufferBetweenClaws;
 		double bufferFromBottom;
+		double minHeight;
+		double maxHeight;
+		double heightFromGround;
 	} liftConstants;
 	struct LiftHeights {
-		double lowerClawMaxHeight;
-		double upperClawMaxHeight;
 	} liftHeights;
 	struct PneumaticConstants {
 		double startingPressure;

@@ -39,8 +39,8 @@ public:
 	void disableUpperController();
 	bool upperControllerEnabled();
 
-	void setLowerHeight(double height);
-	void setUpperHeight(double height);
+	void setLowerHeightFromGround(double heightFromGround);
+	void setUpperHeightFromGround(double heightFromGround);
 
 	void setLowerRaw(double value);
 	void setUpperRaw(double value);
@@ -49,7 +49,12 @@ public:
 	double getLowerLeftHeight();
 	double getLowerRightHeight();
 
+	double getLowerHeightFromGround();
+	double getLowerLeftHeightFromGround();
+	double getLowerRightHeightFromGround();
+
 	double getUpperHeight();
+	double getUpperHeightFromGround();
 
 	double getLowerRaw();
 	double getLowerLeftRaw();
