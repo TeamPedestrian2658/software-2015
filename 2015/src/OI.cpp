@@ -17,8 +17,10 @@
 #include "Commands/Utilities/ResetLowerClawCount.h"
 #include "Commands/Utilities/IncrementLowerClawCount.h"
 #include "Commands/Utilities/DecrementLowerClawCount.h"
-
-#include "Commands/Drivetrain/DriveSCurve.h"
+#include "Commands/Lift/DisableLowerLiftController.h"
+#include "Commands/Lift/EnableLowerLiftController.h"
+#include "Commands/Lift/DisableUpperLiftController.h"
+#include "Commands/Lift/EnableUpperLiftController.h"
 
 OI::OI() {
 
@@ -61,6 +63,14 @@ OI::OI() {
 
 	decrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountDecrementButton);
 	decrementLowerClawCount->WhenPressed(new DecrementLowerClawCount());
+
+	disableLowerLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.lowerLiftAutomaticDisableButton);
+	disableLowerLiftAutomatic->WhenPressed(new DisableLowerLiftController());
+	disableLowerLiftAutomatic->WhenReleased(new EnableLowerLiftController());
+
+	disableUpperLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.upperLiftAutomaticDisableButton);
+	disableUpperLiftAutomatic->WhenPressed(new DisableUpperLiftController());
+	disableUpperLiftAutomatic->WhenReleased(new EnableUpperLiftController());
 }
 
 Joystick* OI::getOperatorStick() {

@@ -28,6 +28,9 @@ private:
 	JoystickButton *resetLowerClawCount;
 	JoystickButton *incrementLowerClawCount;
 	JoystickButton *decrementLowerClawCount;
+
+	JoystickButton *disableLowerLiftAutomatic;
+	JoystickButton *disableUpperLiftAutomatic;
 public:
 	OI();
  

@@ -1,38 +1,38 @@
-#include "EnableLowerClawController.h"
+#include "DisableUpperLiftController.h"
 
-EnableLowerClawController::EnableLowerClawController()
+DisableUpperLiftController::DisableUpperLiftController()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void EnableLowerClawController::Initialize()
+void DisableUpperLiftController::Initialize()
 {
-	Robot::lift->enableLowerController();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void EnableLowerClawController::Execute()
+void DisableUpperLiftController::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool EnableLowerClawController::IsFinished()
+bool DisableUpperLiftController::IsFinished()
 {
-	return true;
+	return false;
 }
 
 // Called once after isFinished returns true
-void EnableLowerClawController::End()
+void DisableUpperLiftController::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void EnableLowerClawController::Interrupted()
+void DisableUpperLiftController::Interrupted()
 {
 
 }

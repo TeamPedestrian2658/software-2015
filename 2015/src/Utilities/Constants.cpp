@@ -65,6 +65,8 @@ Constants::Constants() {
 	operatorButtons.lowerClawItemCountResetButton = _preferences->GetInt("LowerClawItemCountResetButton", 4);
 	operatorButtons.lowerClawItemCountIncrementButton = _preferences->GetInt("LowerClawItemCountIncrementButton", 3);
 	operatorButtons.lowerClawItemCountDecrementButton = _preferences->GetInt("LowerClawItemCountDecrementButton", 1);
+	operatorButtons.lowerLiftAutomaticDisableButton = _preferences->GetInt("LowerLiftAutomaticDisableButton", 11);
+	operatorButtons.upperLiftAutomaticDisableButton = _preferences->GetInt("UpperLiftAutomaticDisableButton", 12);
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);

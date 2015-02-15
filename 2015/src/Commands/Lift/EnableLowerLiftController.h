@@ -1,13 +1,13 @@
-#ifndef EnableLowerClawController_H
-#define EnableLowerClawController_H
+#ifndef EnableLowerLiftController_H
+#define EnableLowerLiftController_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class EnableLowerClawController: public Command
+class EnableLowerLiftController: public Command
 {
 public:
-	EnableLowerClawController();
+	EnableLowerLiftController();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

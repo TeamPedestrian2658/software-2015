@@ -82,6 +82,8 @@ public:
 		int lowerClawItemCountResetButton;
 		int lowerClawItemCountIncrementButton;
 		int lowerClawItemCountDecrementButton;
+		int lowerLiftAutomaticDisableButton;
+		int upperLiftAutomaticDisableButton;
 	} operatorButtons;
 	struct DriverAxes {
 		int leftX;

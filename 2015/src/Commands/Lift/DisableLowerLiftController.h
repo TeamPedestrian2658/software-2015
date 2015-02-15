@@ -1,13 +1,13 @@
-#ifndef EnableUpperClawController_H
-#define EnableUpperClawController_H
+#ifndef DisableLowerLiftController_H
+#define DisableLowerLiftController_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class EnableUpperClawController: public Command
+class DisableLowerLiftController: public Command
 {
 public:
-	EnableUpperClawController();
+	DisableLowerLiftController();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
