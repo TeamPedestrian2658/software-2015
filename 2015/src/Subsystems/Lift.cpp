@@ -51,7 +51,7 @@ void Lift::enableUpperController() {
 
 void Lift::disableUpperController() {
 	_upperController->Disable();
-	_lowerAutomatic = false;
+	_upperAutomatic = false;
 	SmartDashboard::PutString("Upper Controller", "DISABLED");
 }
 
@@ -69,7 +69,7 @@ void Lift::setUpperHeight(double height) {
 
 void Lift::setLowerRaw(double value) {
 	_lowerLeftTalon->Set(value);
-	_lowerRightTalon->Set(value);
+	_lowerRightTalon->Set(-value);
 }
 
 void Lift::setUpperRaw(double value) {
