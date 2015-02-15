@@ -33,9 +33,11 @@ public:
 
 	void enableLowerController();
 	void disableLowerController();
+	bool lowerControllerEnabled();
 
 	void enableUpperController();
 	void disableUpperController();
+	bool upperControllerEnabled();
 
 	void setLowerHeight(double height);
 	void setUpperHeight(double height);

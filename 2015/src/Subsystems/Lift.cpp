@@ -1,5 +1,6 @@
 #include "Lift.h"
 #include "../RobotMap.h"
+#include "../Commands/Lift/ControlLift.h"
 
 Lift::Lift() : Subsystem("Lift") {
 	_constants = RobotMap::constants;
@@ -21,7 +22,7 @@ Lift::Lift() : Subsystem("Lift") {
 }
     
 void Lift::InitDefaultCommand() {
-
+	SetDefaultCommand(new ControlLift());
 }
 
 void Lift::enableLowerController() {
@@ -38,6 +39,10 @@ void Lift::disableLowerController() {
 	SmartDashboard::PutString("Lower Controller", "DISABLED");
 }
 
+bool Lift::lowerControllerEnabled() {
+	return _lowerAutomatic;
+}
+
 void Lift::enableUpperController() {
 	_upperController->Enable();
 	_upperAutomatic = true;
@@ -48,6 +53,10 @@ void Lift::disableUpperController() {
 	_upperController->Disable();
 	_lowerAutomatic = false;
 	SmartDashboard::PutString("Upper Controller", "DISABLED");
+}
+
+bool Lift::upperControllerEnabled() {
+	return _upperAutomatic;
 }
 
 void Lift::setLowerHeight(double height) {
