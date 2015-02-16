@@ -138,7 +138,7 @@ void RobotMap::init() {
 	liveWindow->AddActuator("Upper Lift", "Controller", liftControllerUpper);
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
-	compressor->Stop();
+	compressor->Start();
 
 	powerDistributionPanel = new PowerDistributionPanel();
 	powerDistributionPanel->ClearStickyFaults();

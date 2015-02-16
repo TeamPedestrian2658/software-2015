@@ -9,6 +9,7 @@ LowerClawBrakeOff::LowerClawBrakeOff()
 void LowerClawBrakeOff::Initialize()
 {
 	Robot::lowerClaw->brakeOff();
+	Robot::lift->enableLowerController();
 }
 
 // Called repeatedly when this Command is scheduled to run

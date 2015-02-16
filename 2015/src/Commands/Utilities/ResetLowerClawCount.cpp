@@ -10,6 +10,7 @@ ResetLowerClawCount::ResetLowerClawCount()
 void ResetLowerClawCount::Initialize()
 {
 	RobotMap::constants->resetLowerClawItems();
+	Robot::drivetrain->updatePIDCoefficients();
 }
 
 // Called repeatedly when this Command is scheduled to run

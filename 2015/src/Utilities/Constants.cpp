@@ -31,7 +31,7 @@ Constants::Constants() {
 	clawPorts.lowerGrabberRightModule = _preferences->GetInt("LowerGrabberRightModule", 0);
 	clawPorts.lowerGrabberRightPort = _preferences->GetInt("LowerGrabberRightPort", 4);
 	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
-	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 3);
+	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 2);
 
 	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 1);
 	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 2);

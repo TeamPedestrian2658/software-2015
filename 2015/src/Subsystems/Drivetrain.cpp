@@ -18,8 +18,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_shifter = RobotMap::driveShifter;
 
 	_chooser = RobotMap::driveChooser;
-	_chooser->AddDefault("Tank", new bool(true));
-	_chooser->AddObject("Arcade", new bool(false));
+	_chooser->AddDefault("Arcade", new bool(false));
+	_chooser->AddObject("Tank", new bool(true));
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
 	_rumbleChooser = RobotMap::driveRumbleChooser;
@@ -44,23 +44,17 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::shiftHigh() {
-	if (!isHighGear()) {
-		_shifter->Set(_constants->shifterStates.highGear);
-		_highGear = _constants->shifterStates.highGear;
-		updatePIDCoefficients();
-		_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-		SmartDashboard::PutString("Gear", "HIGH");
-	}
+	_shifter->Set(_constants->shifterStates.highGear);
+	_highGear = _constants->shifterStates.highGear;
+	updatePIDCoefficients();
+	SmartDashboard::PutString("Gear", "HIGH");
 }
 
 void Drivetrain::shiftLow() {
-	if (isHighGear()) {
-		_shifter->Set(_constants->shifterStates.lowGear);
-		_highGear = _constants->shifterStates.lowGear;
-		updatePIDCoefficients();
-		_constants->reducePressure(_constants->pneumaticConstants.shifterActuationLoss);
-		SmartDashboard::PutString("Gear", "LOW");
-	}
+	_shifter->Set(_constants->shifterStates.lowGear);
+	_highGear = _constants->shifterStates.lowGear;
+	updatePIDCoefficients();
+	SmartDashboard::PutString("Gear", "LOW");
 }
 
 bool Drivetrain::isHighGear() {

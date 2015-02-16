@@ -8,6 +8,7 @@ LowerClawBrakeOn::LowerClawBrakeOn()
 // Called just before this Command runs the first time
 void LowerClawBrakeOn::Initialize()
 {
+	Robot::lift->disableLowerController();
 	Robot::lowerClaw->brakeOn();
 }
 

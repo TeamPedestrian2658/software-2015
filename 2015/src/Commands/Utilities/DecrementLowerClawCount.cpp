@@ -10,6 +10,7 @@ DecrementLowerClawCount::DecrementLowerClawCount()
 void DecrementLowerClawCount::Initialize()
 {
 	RobotMap::constants->decrementLowerClawItems();
+	Robot::drivetrain->updatePIDCoefficients();
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -16,7 +16,7 @@ void LowerClaw::InitDefaultCommand() {
 
 void LowerClaw::grabLeft() {
 	_leftGrabber->Set(_constants->clawStates.lowerClawLeftGrab);
-	if (isClawClosed()) {
+	if (isClawRightClosed()) {
 		SmartDashboard::PutString("Lower Claw", "CLOSED");
 	} else {
 		SmartDashboard::PutString("Lower Claw", "LEFT");
@@ -25,7 +25,7 @@ void LowerClaw::grabLeft() {
 
 void LowerClaw::grabRight() {
 	_rightGrabber->Set(_constants->clawStates.lowerClawRightGrab);
-	if (isClawClosed()) {
+	if (isClawLeftClosed()) {
 		SmartDashboard::PutString("Lower Claw", "CLOSED");
 	} else {
 		SmartDashboard::PutString("Lower Claw", "RIGHT");

@@ -14,35 +14,23 @@ void UpperClaw::InitDefaultCommand() {
 }
 
 void UpperClaw::grab() {
-	if (!isClawClosed()) {
-		_grabber->Set(_constants->clawStates.upperClawGrab);
-		_constants->reducePressure(_constants->pneumaticConstants.upperClawGrabberActuationLoss);
-		SmartDashboard::PutString("Upper Claw", "CLOSED");
-	}
+	_grabber->Set(_constants->clawStates.upperClawGrab);
+	SmartDashboard::PutString("Upper Claw", "CLOSED");
 }
 
 void UpperClaw::release() {
-	if (isClawClosed()) {
-		_grabber->Set(!_constants->clawStates.upperClawGrab);
-		_constants->reducePressure(_constants->pneumaticConstants.upperClawGrabberActuationLoss);
-		SmartDashboard::PutString("Upper Claw", "OPEN");
-	}
+	_grabber->Set(!_constants->clawStates.upperClawGrab);
+	SmartDashboard::PutString("Upper Claw", "OPEN");
 }
 
 void UpperClaw::brakeOn() {
-	if (!isBrakeOn()) {
-		_brake->Set(_constants->clawStates.upperClawBrakeOn);
-		_constants->reducePressure(_constants->pneumaticConstants.upperClawBrakeActuationLoss);
-		SmartDashboard::PutString("Upper Claw Brake", "ENGAGED");
-	}
+	_brake->Set(_constants->clawStates.upperClawBrakeOn);
+	SmartDashboard::PutString("Upper Claw Brake", "ENGAGED");
 }
 
 void UpperClaw::brakeOff() {
-	if (isBrakeOn()) {
-		_brake->Set(!_constants->clawStates.upperClawBrakeOn);
-		_constants->reducePressure(_constants->pneumaticConstants.upperClawBrakeActuationLoss);
-		SmartDashboard::PutString("Upper Claw Brake", "DISENGAGED");
-	}
+	_brake->Set(!_constants->clawStates.upperClawBrakeOn);
+	SmartDashboard::PutString("Upper Claw Brake", "DISENGAGED");
 }
 
 bool UpperClaw::isClawClosed() {
