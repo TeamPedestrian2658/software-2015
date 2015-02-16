@@ -27,13 +27,13 @@ Constants::Constants() {
 	clawPorts.upperBrakeModule = _preferences->GetInt("UpperBrakeModule", 0);
 	clawPorts.upperBrakePort = _preferences->GetInt("UpperBrakePort", 1);
 	clawPorts.lowerGrabberModule = _preferences->GetInt("LowerGrabberModule", 0);
-	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 2);
+	clawPorts.lowerGrabberPort = _preferences->GetInt("LowerGrabberPort", 4);
 	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
 	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 3);
 
-	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 0);
-	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 1);
-	liftPorts.upperTalonPort = _preferences->GetInt("LiftUpperTalonPort", 2);
+	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 1);
+	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 2);
+	liftPorts.upperTalonPort = _preferences->GetInt("LiftUpperTalonPort", 0);
 	liftPorts.lowerEncoderLeftPortA = _preferences->GetInt("LiftLowerEncoderLeftPortA", 4);
 	liftPorts.lowerEncoderLeftPortB = _preferences->GetInt("LiftLowerEncoderLeftPortB", 5);
 	liftPorts.lowerEncoderRightPortA = _preferences->GetInt("LiftLowerEncoderRightPortA", 6);
@@ -42,7 +42,7 @@ Constants::Constants() {
 	liftPorts.upperEncoderPortB = _preferences->GetInt("LiftUpperEncoderPortB", 9);
 
 	dollyPorts.dollyModule = _preferences->GetInt("DollyModule", 0);
-	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 4);
+	dollyPorts.dollyPort = _preferences->GetInt("DollyPort", 7);
 
 	toteMoverPorts.toteMoverPort = _preferences->GetInt("ToteMoverPort", 5);
 

@@ -17,8 +17,6 @@ private:
 	JoystickButton* driveEnhance;
 	JoystickButton* driveSlow;
 
-	JoystickButton *dollyToggle;
-
 	JoystickButton *upperClawGrab;
 	JoystickButton *upperClawRelease;
 

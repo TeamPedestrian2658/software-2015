@@ -31,10 +31,6 @@ public:
 	static Solenoid *lowerClawGrabber;
 	static Solenoid *lowerClawBrake;
 
-	static Solenoid *dollyCylinder;
-
-	static Talon *toteMoverTalon;
-
 	static Talon *lowerLiftTalonLeft;
 	static Talon *lowerLiftTalonRight;
 	static Talon *upperLiftTalon;

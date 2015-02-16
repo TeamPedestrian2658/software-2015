@@ -3,9 +3,7 @@
 Drivetrain* Robot::drivetrain = 0;
 UpperClaw* Robot::upperClaw = 0;
 LowerClaw* Robot::lowerClaw = 0;
-Dolly* Robot::dolly = 0;
 Lift* Robot::lift = 0;
-ToteMover* Robot::toteMover = 0;
 PowerDistributionPanelMonitor *Robot::monitor = 0;
 OI* Robot::oi = 0;
 //AutoScriptSelector* Robot::selector = 0;
@@ -15,9 +13,7 @@ void Robot::RobotInit() {
 	drivetrain = new Drivetrain();
 	upperClaw = new UpperClaw();
 	lowerClaw = new LowerClaw();
-	dolly = new Dolly();
 	lift = new Lift();
-	toteMover = new ToteMover();
 	monitor = new PowerDistributionPanelMonitor();
 	oi = new OI();
 	//selector = new AutoScriptSelector("/home/lvuser/scripts");

@@ -9,7 +9,6 @@
 #include "Commands/Drivetrain/ToggleEnhancedDriving.h"
 #include "Commands/Drivetrain/EnableSlow.h"
 #include "Commands/Drivetrain/DisableSlow.h"
-#include "Commands/Dolly/ToggleDolly.h"
 #include "Commands/UpperClaw/UpperClawGrab.h"
 #include "Commands/UpperClaw/UpperClawRelease.h"
 #include "Commands/LowerClaw/LowerClawGrab.h"
@@ -39,9 +38,6 @@ OI::OI() {
 	driveSlow = new JoystickButton(driverStick, constants->driverButtons.slowButton);
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
-
-	dollyToggle = new JoystickButton(operatorStick, constants->operatorButtons.toggleDollyButton);
-	dollyToggle->WhenPressed(new ToggleDolly());
 
 	upperClawGrab = new JoystickButton(operatorStick, constants->operatorButtons.upperClawGrabButton);
 	upperClawGrab->WhenPressed(new UpperClawGrab());

@@ -27,10 +27,6 @@ Solenoid *RobotMap::upperClawBrake = NULL;
 Solenoid *RobotMap::lowerClawGrabber = NULL;
 Solenoid *RobotMap::lowerClawBrake = NULL;
 
-Solenoid *RobotMap::dollyCylinder = NULL;
-
-Talon *RobotMap::toteMoverTalon = NULL;
-
 Talon *RobotMap::lowerLiftTalonLeft = NULL;
 Talon *RobotMap::lowerLiftTalonRight = NULL;
 Talon *RobotMap::upperLiftTalon = NULL;
@@ -97,12 +93,6 @@ void RobotMap::init() {
 	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
 	liveWindow->AddActuator("Lower Claw", "Grabber", lowerClawGrabber);
 	liveWindow->AddActuator("Lower Claw", "Brake", lowerClawBrake);
-
-	dollyCylinder = new Solenoid(constants->dollyPorts.dollyModule, constants->dollyPorts.dollyPort);
-	liveWindow->AddActuator("Dolly", "Cylinder", dollyCylinder);
-
-	toteMoverTalon = new Talon(constants->toteMoverPorts.toteMoverPort);
-	liveWindow->AddActuator("Tote Mover", "Talon", toteMoverTalon);
 
 	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);
 	lowerLiftTalonRight = new Talon(constants->liftPorts.lowerTalonRightPort);
