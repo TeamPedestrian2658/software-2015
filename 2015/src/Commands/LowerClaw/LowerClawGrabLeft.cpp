@@ -1,37 +1,37 @@
-#include "LowerClawGrab.h"
+#include "LowerClawGrabLeft.h"
 
-LowerClawGrab::LowerClawGrab()
+LowerClawGrabLeft::LowerClawGrabLeft()
 {
 	Requires(Robot::lowerClaw);
 }
 
 // Called just before this Command runs the first time
-void LowerClawGrab::Initialize()
+void LowerClawGrabLeft::Initialize()
 {
-	Robot::lowerClaw->grabBoth();
+	Robot::lowerClaw->grabLeft();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void LowerClawGrab::Execute()
+void LowerClawGrabLeft::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool LowerClawGrab::IsFinished()
+bool LowerClawGrabLeft::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void LowerClawGrab::End()
+void LowerClawGrabLeft::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void LowerClawGrab::Interrupted()
+void LowerClawGrabLeft::Interrupted()
 {
 
 }

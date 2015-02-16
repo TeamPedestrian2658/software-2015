@@ -8,7 +8,7 @@ LowerClawRelease::LowerClawRelease()
 // Called just before this Command runs the first time
 void LowerClawRelease::Initialize()
 {
-	Robot::lowerClaw->release();
+	Robot::lowerClaw->releaseBoth();
 }
 
 // Called repeatedly when this Command is scheduled to run
