@@ -1,5 +1,6 @@
 #include "LowerClaw.h"
 #include "../RobotMap.h"
+#include "../Commands/LowerClaw/LowerClawPOVManager.h"
 
 LowerClaw::LowerClaw() : Subsystem("LowerClaw") {
 	_constants = RobotMap::constants;
@@ -11,7 +12,7 @@ LowerClaw::LowerClaw() : Subsystem("LowerClaw") {
 }
     
 void LowerClaw::InitDefaultCommand() {
-
+	SetDefaultCommand(new LowerClawPOVManager());
 }
 
 void LowerClaw::grabLeft() {
