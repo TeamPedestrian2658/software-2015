@@ -24,7 +24,8 @@ SendableChooser *RobotMap::driveRumbleChooser = NULL;
 Solenoid *RobotMap::upperClawGrabber = NULL;
 Solenoid *RobotMap::upperClawBrake = NULL;
 
-Solenoid *RobotMap::lowerClawGrabber = NULL;
+Solenoid *RobotMap::lowerClawLeftGrabber = NULL;
+Solenoid *RobotMap::lowerClawRightGrabber = NULL;
 Solenoid *RobotMap::lowerClawBrake = NULL;
 
 Talon *RobotMap::lowerLiftTalonLeft = NULL;
@@ -89,9 +90,11 @@ void RobotMap::init() {
 	liveWindow->AddActuator("Upper Claw", "Grabber", upperClawGrabber);
 	liveWindow->AddActuator("Upper Claw", "Brake", upperClawBrake);
 
-	lowerClawGrabber = new Solenoid(constants->clawPorts.lowerGrabberModule, constants->clawPorts.lowerGrabberPort);
+	lowerClawLeftGrabber = new Solenoid(constants->clawPorts.lowerGrabberLeftModule, constants->clawPorts.lowerGrabberLeftPort);
+	lowerClawRightGrabber = new Solenoid(constants->clawPorts.lowerGrabberRightModule, constants->clawPorts.lowerGrabberRightPort);
 	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
-	liveWindow->AddActuator("Lower Claw", "Grabber", lowerClawGrabber);
+	liveWindow->AddActuator("Lower Claw", "Left Grabber", lowerClawLeftGrabber);
+	liveWindow->AddActuator("Lower Claw", "Right Grabber", lowerClawRightGrabber);
 	liveWindow->AddActuator("Lower Claw", "Brake", lowerClawBrake);
 
 	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);

@@ -36,8 +36,10 @@ public:
 		int upperGrabberPort;
 		int upperBrakeModule;
 		int upperBrakePort;
-		int lowerGrabberModule;
-		int lowerGrabberPort;
+		int lowerGrabberLeftModule;
+		int lowerGrabberLeftPort;
+		int lowerGrabberRightModule;
+		int lowerGrabberRightPort;
 		int lowerBrakeModule;
 		int lowerBrakePort;
 	} clawPorts;
@@ -52,13 +54,6 @@ public:
 		int upperEncoderPortA;
 		int upperEncoderPortB;
 	} liftPorts;
-	struct DollyPorts {
-		int dollyModule;
-		int dollyPort;
-	} dollyPorts;
-	struct ToteMoverPorts {
-		int toteMoverPort;
-	} toteMoverPorts;
 	struct CompressorPorts {
 		int compressorModule;
 	} compressorPorts;
@@ -72,9 +67,6 @@ public:
 		int toggleEnhancedDriveButton;
 	} driverButtons;
 	struct OperatorButtons {
-		int toggleDollyButton;
-		int toteMoverLeftPOV;
-		int toteMoverRightPOV;
 		int upperClawGrabButton;
 		int upperClawReleaseButton;
 		int lowerClawGrabButton;
@@ -104,18 +96,10 @@ public:
 	struct ClawStates {
 		bool upperClawGrab;
 		bool upperClawBrakeOn;
-		bool lowerClawGrab;
+		bool lowerClawLeftGrab;
+		bool lowerClawRightGrab;
 		bool lowerClawBrakeOn;
 	} clawStates;
-	struct DollyStates {
-		bool back;
-		bool forward;
-	} dollyStates;
-	struct ToteMoverStates {
-		double moveTotesLeft;
-		double moveTotesRight;
-		double stop;
-	} toteMoverStates;
 	struct DriveConstants {
 		double enhancedMaxVelocityHigh;
 		double enhancedMaxVelocityLow;
@@ -138,17 +122,6 @@ public:
 	} liftConstants;
 	struct LiftHeights {
 	} liftHeights;
-	struct PneumaticConstants {
-		double startingPressure;
-		double currentPressure;
-		double compressorOnPressure;
-		double shifterActuationLoss;
-		double dollyActuationLoss;
-		double upperClawGrabberActuationLoss;
-		double upperClawBrakeActuationLoss;
-		double lowerClawGrabberActuationLoss;
-		double lowerClawBrakeActuationLoss;
-	} pneumaticConstants;
 	struct ItemCounts {
 		int lowerClawItems;
 		int upperClawItems;
@@ -168,8 +141,6 @@ public:
 	void incrementUpperClawItems();
 	void decrementUpperClawItems();
 	void resetUpperClawItems();
-
-	void reducePressure(double pressureLoss);
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */

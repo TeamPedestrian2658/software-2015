@@ -80,8 +80,8 @@ void Lift::setUpperHeightFromGround(double heightFromGround) {
 }
 
 void Lift::setLowerRaw(double value) {
-	_lowerLeftTalon->Set(value);
-	_lowerRightTalon->Set(-value);
+	_lowerLeftTalon->Set(-value);
+	_lowerRightTalon->Set(value);
 }
 
 void Lift::setUpperRaw(double value) {

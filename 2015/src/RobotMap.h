@@ -28,7 +28,8 @@ public:
 	static Solenoid *upperClawGrabber;
 	static Solenoid *upperClawBrake;
 
-	static Solenoid *lowerClawGrabber;
+	static Solenoid *lowerClawLeftGrabber;
+	static Solenoid *lowerClawRightGrabber;
 	static Solenoid *lowerClawBrake;
 
 	static Talon *lowerLiftTalonLeft;

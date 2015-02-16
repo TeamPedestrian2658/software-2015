@@ -7,17 +7,26 @@
 class LowerClaw: public Subsystem {
 private:
 	Constants *_constants;
-	Solenoid *_grabber;
+	Solenoid *_leftGrabber;
+	Solenoid *_rightGrabber;
 	Solenoid *_brake;
 public:
 	LowerClaw();
 	void InitDefaultCommand();
 
-	void grab();
-	void release();
+	void grabLeft();
+	void grabRight();
+	void grabBoth();
+
+	void releaseLeft();
+	void releaseRight();
+	void releaseBoth();
+
 	void brakeOn();
 	void brakeOff();
 
+	bool isClawLeftClosed();
+	bool isClawRightClosed();
 	bool isClawClosed();
 	bool isBrakeOn();
 };
