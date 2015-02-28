@@ -22,9 +22,9 @@ void DriveWithJoystick::Initialize()
 void DriveWithJoystick::Execute()
 {
 	if (_drivetrain->isHighGear() == _constants->shifterStates.highGear) {
-		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityHigh;
+		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityHigh[_constants->itemCounts.totalItems];
 	} else {
-		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityLow;
+		MAX_VELOCITY = _constants->driveConstants.enhancedMaxVelocityLow[_constants->itemCounts.totalItems];
 	}
 
 	if (_drivetrain->enhanceEnabled()) {

@@ -83,8 +83,22 @@ Constants::Constants() {
 	clawStates.lowerClawRightGrab = _preferences->GetBoolean("LowerClawRightGrab", true);
 	clawStates.lowerClawBrakeOn = _preferences->GetBoolean("LowerClawBrakeOn", true);
 
-	driveConstants.enhancedMaxVelocityHigh = _preferences->GetDouble("EnhancedMaxVelocityHigh", 190);
-	driveConstants.enhancedMaxVelocityLow = _preferences->GetDouble("EnhancedMaxVelocityLow", 75);
+	driveConstants.enhancedMaxVelocityHigh[0] = _preferences->GetDouble("EnhancedMaxVelocityHigh0", 190);
+	driveConstants.enhancedMaxVelocityLow[0] = _preferences->GetDouble("EnhancedMaxVelocityLow0", 75);
+	driveConstants.enhancedMaxVelocityHigh[1] = _preferences->GetDouble("EnhancedMaxVelocityHigh1", 190);
+	driveConstants.enhancedMaxVelocityLow[1] = _preferences->GetDouble("EnhancedMaxVelocityLow1", 75);
+	driveConstants.enhancedMaxVelocityHigh[2] = _preferences->GetDouble("EnhancedMaxVelocityHigh2", 190);
+	driveConstants.enhancedMaxVelocityLow[2] = _preferences->GetDouble("EnhancedMaxVelocityLow2", 75);
+	driveConstants.enhancedMaxVelocityHigh[3] = _preferences->GetDouble("EnhancedMaxVelocityHigh3", 190);
+	driveConstants.enhancedMaxVelocityLow[3] = _preferences->GetDouble("EnhancedMaxVelocityLow3", 75);
+	driveConstants.enhancedMaxVelocityHigh[4] = _preferences->GetDouble("EnhancedMaxVelocityHigh4", 190);
+	driveConstants.enhancedMaxVelocityLow[4] = _preferences->GetDouble("EnhancedMaxVelocityLow4", 75);
+	driveConstants.enhancedMaxVelocityHigh[5] = _preferences->GetDouble("EnhancedMaxVelocityHigh5", 190);
+	driveConstants.enhancedMaxVelocityLow[5] = _preferences->GetDouble("EnhancedMaxVelocityLow5", 75);
+	driveConstants.enhancedMaxVelocityHigh[6] = _preferences->GetDouble("EnhancedMaxVelocityHigh6", 190);
+	driveConstants.enhancedMaxVelocityLow[6] = _preferences->GetDouble("EnhancedMaxVelocityLow6", 75);
+	driveConstants.enhancedMaxVelocityHigh[7] = _preferences->GetDouble("EnhancedMaxVelocityHigh7", 190);
+	driveConstants.enhancedMaxVelocityLow[7] = _preferences->GetDouble("EnhancedMaxVelocityLow7", 75);
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.027271);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
@@ -171,6 +185,36 @@ void Constants::updatePIDProfiles() {
 	driveProfiles[9].i = _preferences->GetDouble("DriveProfile9I", 0);
 	driveProfiles[9].d = _preferences->GetDouble("DriveProfile9D", 0);
 	driveProfiles[9].f = _preferences->GetDouble("DriveProfile9F", 0);
+
+	driveProfiles[10].p = _preferences->GetDouble("DriveProfile10P", 0);
+	driveProfiles[10].i = _preferences->GetDouble("DriveProfile10I", 0);
+	driveProfiles[10].d = _preferences->GetDouble("DriveProfile10D", 0);
+	driveProfiles[10].f = _preferences->GetDouble("DriveProfile10F", 0);
+
+	driveProfiles[11].p = _preferences->GetDouble("DriveProfile11P", 0);
+	driveProfiles[11].i = _preferences->GetDouble("DriveProfile11I", 0);
+	driveProfiles[11].d = _preferences->GetDouble("DriveProfile11D", 0);
+	driveProfiles[11].f = _preferences->GetDouble("DriveProfile11F", 0);
+
+	driveProfiles[12].p = _preferences->GetDouble("DriveProfile12P", 0);
+	driveProfiles[12].i = _preferences->GetDouble("DriveProfile12I", 0);
+	driveProfiles[12].d = _preferences->GetDouble("DriveProfile12D", 0);
+	driveProfiles[12].f = _preferences->GetDouble("DriveProfile12F", 0);
+
+	driveProfiles[13].p = _preferences->GetDouble("DriveProfile13P", 0);
+	driveProfiles[13].i = _preferences->GetDouble("DriveProfile13I", 0);
+	driveProfiles[13].d = _preferences->GetDouble("DriveProfile13D", 0);
+	driveProfiles[13].f = _preferences->GetDouble("DriveProfile13F", 0);
+
+	driveProfiles[14].p = _preferences->GetDouble("DriveProfile14P", 0);
+	driveProfiles[14].i = _preferences->GetDouble("DriveProfile14I", 0);
+	driveProfiles[14].d = _preferences->GetDouble("DriveProfile14D", 0);
+	driveProfiles[14].f = _preferences->GetDouble("DriveProfile14F", 0);
+
+	driveProfiles[15].p = _preferences->GetDouble("DriveProfile15P", 0);
+	driveProfiles[15].i = _preferences->GetDouble("DriveProfile15I", 0);
+	driveProfiles[15].d = _preferences->GetDouble("DriveProfile15D", 0);
+	driveProfiles[15].f = _preferences->GetDouble("DriveProfile15F", 0);
 }
 
 
@@ -186,6 +230,7 @@ PIDProfile Constants::getDriveProfile(bool highGear) {
 void Constants::incrementLowerClawItems() {
 	if (itemCounts.lowerClawItems < itemCounts.lowerClawMaxItems) {
 		itemCounts.lowerClawItems++;
+		itemCounts.totalItems++;
 	}
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
@@ -193,11 +238,13 @@ void Constants::incrementLowerClawItems() {
 void Constants::decrementLowerClawItems() {
 	if (itemCounts.lowerClawItems > 0) {
 		itemCounts.lowerClawItems--;
+		itemCounts.totalItems--;
 	}
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::resetLowerClawItems() {
+	itemCounts.totalItems -= itemCounts.lowerClawItems;
 	itemCounts.lowerClawItems = 0;
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
@@ -205,6 +252,7 @@ void Constants::resetLowerClawItems() {
 void Constants::incrementUpperClawItems() {
 	if (itemCounts.upperClawItems < itemCounts.upperClawMaxItems) {
 		itemCounts.upperClawItems++;
+		itemCounts.totalItems++;
 	}
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
@@ -212,11 +260,13 @@ void Constants::incrementUpperClawItems() {
 void Constants::decrementUpperClawItems() {
 	if (itemCounts.upperClawItems > 0) {
 		itemCounts.upperClawItems--;
+		itemCounts.totalItems--;
 	}
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
 void Constants::resetUpperClawItems() {
+	itemCounts.totalItems -= itemCounts.upperClawItems;
 	itemCounts.upperClawItems = 0;
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }

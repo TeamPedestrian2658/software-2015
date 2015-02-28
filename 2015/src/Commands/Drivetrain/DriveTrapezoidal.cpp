@@ -37,8 +37,6 @@ DriveTrapezoidal::DriveTrapezoidal(double totalTime,
 // Called just before this Command runs the first time
 void DriveTrapezoidal::Initialize()
 {
-	_drivetrain->shiftHigh();
-
 	_leftInitialVelocity = RobotMap::driveEncoderLeft->GetRate();
 	_rightInitialVelocity = RobotMap::driveEncoderRight->GetRate();
 

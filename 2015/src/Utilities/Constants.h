@@ -103,8 +103,8 @@ public:
 		bool lowerClawBrakeOn;
 	} clawStates;
 	struct DriveConstants {
-		double enhancedMaxVelocityHigh;
-		double enhancedMaxVelocityLow;
+		double enhancedMaxVelocityHigh[8];
+		double enhancedMaxVelocityLow[8];
 		double slowScalar;
 		double distancePerPulse;
 		double shiftTime;
@@ -125,12 +125,13 @@ public:
 	struct LiftHeights {
 	} liftHeights;
 	struct ItemCounts {
+		int totalItems;
 		int lowerClawItems;
 		int upperClawItems;
 		int lowerClawMaxItems;
 		int upperClawMaxItems;
 	} itemCounts;
-	PIDProfile driveProfiles[10];
+	PIDProfile driveProfiles[16];  //0-8 are high gear, 9-15 are low gear
 	virtual ~Constants();
 
 	void updatePIDProfiles();
