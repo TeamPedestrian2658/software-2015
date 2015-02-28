@@ -130,14 +130,28 @@ public:
 		int totalItems;
 		int lowerClawItems;
 		int upperClawItems;
+		int totalMaxItems;
 		int lowerClawMaxItems;
 		int upperClawMaxItems;
 	} itemCounts;
 	PIDProfile driveProfiles[16];  //0-8 are high gear, 9-15 are low gear
+	PIDProfile upperLiftProfiles[8];
+	PIDProfile lowerLiftProfiles[8];
 	virtual ~Constants();
 
 	void updatePIDProfiles();
 	PIDProfile getDriveProfile(bool highGear);
+	PIDProfile getUpperLiftProfile();
+	PIDProfile getLowerLiftProfile();
+
+	void incrementTotalItems();
+	void decrementTotalItems();
+	void resetTotalItems();
+
+	void calculateClawItems(int lowerClawPosition,
+							int upperClawPosition,
+							bool lowerClawClosed,
+							bool upperClawClosed);
 
 	void incrementLowerClawItems();
 	void decrementLowerClawItems();

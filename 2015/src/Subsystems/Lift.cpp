@@ -17,6 +17,8 @@ Lift::Lift() : Subsystem("Lift") {
 	_lowerRightController = RobotMap::liftControllerLowerRight;
 	_upperController = RobotMap::liftControllerUpper;
 
+	updatePIDCoefficients();
+
 	enableLowerController();
 	enableUpperController();
 }
@@ -134,4 +136,24 @@ double Lift::getLowerRightRaw() {
 
 double Lift::getUpperRaw() {
 	return _upperTalon->Get();
+}
+
+void Lift::updatePIDCoefficients() {
+	_lowerProfile = _constants->getLowerLiftProfile();
+	_upperProfile = _constants->getUpperLiftProfile();
+
+	_lowerLeftController->SetPID(-_lowerProfile.p,
+								 -_lowerProfile.i,
+								 -_lowerProfile.d,
+								 -_lowerProfile.f);
+
+	_lowerRightController->SetPID(_lowerProfile.p,
+								  _lowerProfile.i,
+								  _lowerProfile.d,
+								  _lowerProfile.f);
+
+	_upperController->SetPID(_upperProfile.p,
+			   	   	   	   	 _upperProfile.i,
+							 _upperProfile.d,
+							 _upperProfile.f);
 }

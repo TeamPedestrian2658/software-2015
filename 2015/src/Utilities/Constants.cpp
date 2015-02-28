@@ -117,10 +117,12 @@ Constants::Constants() {
 	liftConstants.maxHeight = _preferences->GetDouble("MaxHeight", 0);
 	liftConstants.heightFromGround = _preferences->GetDouble("HeightFromGround", 0);
 
+	itemCounts.totalItems = 0;
 	itemCounts.lowerClawItems = 0;
 	itemCounts.upperClawItems = 0;
-	itemCounts.lowerClawMaxItems = _preferences->GetInt("LowerClawMaxItems", 4);
-	itemCounts.upperClawMaxItems = _preferences->GetInt("UpperClawMaxItems", 1);
+	itemCounts.totalMaxItems = _preferences->GetInt("TotalMaxItems", 7);
+	itemCounts.lowerClawMaxItems = _preferences->GetInt("LowerClawMaxItems", 7);
+	itemCounts.upperClawMaxItems = _preferences->GetInt("UpperClawMaxItems", 7);
 
 	updatePIDProfiles();
 	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
@@ -129,6 +131,7 @@ Constants::Constants() {
 	SmartDashboard::PutData("CompressorOff", new CompressorOff());
 	SmartDashboard::PutString("Compressor", "ON");
 
+	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
@@ -222,12 +225,58 @@ void Constants::updatePIDProfiles() {
 
 PIDProfile Constants::getDriveProfile(bool highGear) {
 	if (highGear == shifterStates.highGear) {
-		return driveProfiles[0 + itemCounts.lowerClawItems + itemCounts.upperClawItems];
+		return driveProfiles[0 + itemCounts.totalItems];
 	} else {
-		return driveProfiles[5 + itemCounts.lowerClawItems + itemCounts.upperClawItems];
+		return driveProfiles[8 + itemCounts.totalItems];
 	}
 }
 
+PIDProfile Constants::getUpperLiftProfile() {
+	return upperLiftProfiles[itemCounts.upperClawItems];
+}
+
+PIDProfile Constants::getLowerLiftProfile() {
+	return lowerLiftProfiles[itemCounts.lowerClawItems];
+}
+
+void Constants::incrementTotalItems() {
+	if (itemCounts.totalItems < itemCounts.totalMaxItems) {
+		itemCounts.totalItems++;
+	}
+	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
+}
+
+void Constants::decrementTotalItems() {
+	if (itemCounts.totalItems > 0) {
+		itemCounts.totalItems--;
+	}
+	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
+}
+
+void Constants::resetTotalItems() {
+	itemCounts.totalItems = 0;
+	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
+}
+
+void Constants::calculateClawItems(int lowerClawPosition,
+								   int upperClawPosition,
+								   bool lowerClawClosed,
+								   bool upperClawClosed) {
+	if (!upperClawClosed) {
+		itemCounts.upperClawItems = 0;
+	} else {
+		itemCounts.upperClawItems = itemCounts.totalItems - upperClawPosition;
+	}
+
+	if (!lowerClawClosed) {
+		itemCounts.lowerClawItems = 0;
+	} else {
+		itemCounts.lowerClawItems = itemCounts.totalItems - lowerClawPosition - itemCounts.upperClawItems;
+	}
+
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
+}
 
 void Constants::incrementLowerClawItems() {
 	if (itemCounts.lowerClawItems < itemCounts.lowerClawMaxItems) {

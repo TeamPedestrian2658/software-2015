@@ -115,11 +115,7 @@ bool Drivetrain::slowEnabled() {
 }
 
 void Drivetrain::updatePIDCoefficients() {
-	PIDProfile profile = _constants->getDriveProfile(_highGear);
-	_profile.p = profile.p;
-	_profile.i = profile.i;
-	_profile.d = profile.d;
-	_profile.f = profile.f;
+	_profile = _constants->getDriveProfile(_highGear);
 	_controllerLeft->SetPID(-_profile.p, -_profile.i, -_profile.d, -_profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
