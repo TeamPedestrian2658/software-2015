@@ -105,6 +105,8 @@ public:
 	struct DriveConstants {
 		double enhancedMaxVelocityHigh[8];
 		double enhancedMaxVelocityLow[8];
+		double currentEnhancedMaxVelocityHigh;
+		double currentEnhancedMaxVelocityLow;
 		double slowScalar;
 		double distancePerPulse;
 		double shiftTime;

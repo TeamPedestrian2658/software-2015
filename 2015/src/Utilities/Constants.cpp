@@ -99,6 +99,8 @@ Constants::Constants() {
 	driveConstants.enhancedMaxVelocityLow[6] = _preferences->GetDouble("EnhancedMaxVelocityLow6", 75);
 	driveConstants.enhancedMaxVelocityHigh[7] = _preferences->GetDouble("EnhancedMaxVelocityHigh7", 190);
 	driveConstants.enhancedMaxVelocityLow[7] = _preferences->GetDouble("EnhancedMaxVelocityLow7", 75);
+	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[0];
+	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[0];
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.027271);
 	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
