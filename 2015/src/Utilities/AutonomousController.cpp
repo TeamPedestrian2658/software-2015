@@ -7,9 +7,11 @@
 
 #include "AutonomousController.h"
 
-AutonomousController::AutonomousController(string directory) {
-	_selector = new AutoScriptSelector(directory);
+AutonomousController::AutonomousController() {
+	_constants = RobotMap::constants;
+	_selector = new AutoScriptSelector(_constants->autonomousConstants.autoScriptsDirectory);
 	_runner = new AutoScriptRunner();
+	//register commands
 }
 
 AutonomousController::~AutonomousController() {
@@ -17,6 +19,6 @@ AutonomousController::~AutonomousController() {
 }
 
 void AutonomousController::Run() {
-
+	_runner->executeFile(_selector->getSelectedFileName());
 }
 

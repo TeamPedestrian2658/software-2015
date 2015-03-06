@@ -18,7 +18,7 @@ AutoScriptSelector::AutoScriptSelector(string directory) :
 }
 
 AutoScriptSelector::~AutoScriptSelector() {
-	delete _chooser;
+
 }
 
 int AutoScriptSelector::discoverFiles() {

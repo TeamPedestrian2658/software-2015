@@ -12,13 +12,16 @@
 #include "string"
 #include "AutoScriptSelector.cpp"
 #include "AutoScriptRunner.cpp"
+#include "Constants.h"
+#include "RobotMap.h"
 
 class AutonomousController {
 private:
+	Constants *_constants;
 	AutoScriptSelector *_selector;
 	AutoScriptRunner *_runner;
 public:
-	AutonomousController(string directory);
+	AutonomousController();
 	virtual ~AutonomousController();
 
 	void Run();

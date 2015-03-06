@@ -9,6 +9,7 @@
 #define SRC_UTILITIES_CONSTANTS_H_
 
 #include "WPILib.h"
+#include <string>
 
 struct PIDProfile {
 		double p;
@@ -21,6 +22,9 @@ class Constants {
 public:
 	Constants();
 	Preferences *_preferences;
+	struct AutonomousConstants {
+		std::string autoScriptsDirectory;
+	} autonomousConstants;
 	struct DrivePorts {
 		int talonLeftPort;
 		int talonRightPort;
