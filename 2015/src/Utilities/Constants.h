@@ -114,7 +114,8 @@ public:
 		double velocityTestAccelerationTime;
 	} driveConstants;
 	struct LiftConstants {
-		double distancePerPulse;
+		double lowerDistancePerPulse;
+		double upperDistancePerPulse;
 		double lowerClawWidth;
 		double upperClawWidth;
 		double bufferFromTop;
@@ -123,9 +124,11 @@ public:
 		double minHeight;
 		double maxHeight;
 		double heightFromGround;
+		double upperLiftTotalLevels;
+		double lowerLiftTotalLevels;
+		double upperLiftLevels[4];
+		double lowerLiftLevels[3];
 	} liftConstants;
-	struct LiftHeights {
-	} liftHeights;
 	struct ItemCounts {
 		int totalItems;
 		int lowerClawItems;

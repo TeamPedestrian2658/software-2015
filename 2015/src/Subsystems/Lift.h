@@ -24,6 +24,9 @@ private:
 	PIDProfile _lowerProfile;
 	PIDProfile _upperProfile;
 
+	int _lowerLevel;
+	int _upperLevel;
+
 	bool _lowerAutomatic;
 	bool _upperAutomatic;
 
@@ -39,11 +42,21 @@ public:
 	void disableUpperController();
 	bool upperControllerEnabled();
 
-	void setLowerHeightFromGround(double heightFromGround);
-	void setUpperHeightFromGround(double heightFromGround);
+	void lowerUpOneLevel();
+	void lowerDownOneLevel();
+	void resetLowerLevel();
+	int getLowerLevel();
+
+	void upperUpOneLevel();
+	void upperDownOneLevel();
+	void resetUpperLevel();
+	int getUpperLevel();
 
 	void setLowerRaw(double value);
 	void setUpperRaw(double value);
+
+	void setLowerHeightFromGround(double heightFromGround);
+	void setUpperHeightFromGround(double heightFromGround);
 
 	double getLowerHeight();
 	double getLowerLeftHeight();

@@ -105,17 +105,17 @@ void RobotMap::init() {
 	liveWindow->AddActuator("Upper Lift", "Talon", upperLiftTalon);
 
 	lowerLiftEncoderLeft = new Encoder(constants->liftPorts.lowerEncoderLeftPortA, constants->liftPorts.lowerEncoderLeftPortB, false);
-	lowerLiftEncoderLeft->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	lowerLiftEncoderLeft->SetDistancePerPulse(constants->liftConstants.lowerDistancePerPulse);
 	lowerLiftEncoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
 	liveWindow->AddSensor("Lower Lift", "Encoder Left", lowerLiftEncoderLeft);
 
 	lowerLiftEncoderRight = new Encoder(constants->liftPorts.lowerEncoderRightPortA, constants->liftPorts.lowerEncoderRightPortB, false);
-	lowerLiftEncoderRight->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	lowerLiftEncoderRight->SetDistancePerPulse(constants->liftConstants.lowerDistancePerPulse);
 	lowerLiftEncoderRight->SetPIDSourceParameter(PIDSource::kDistance);
 	liveWindow->AddSensor("Lower Lift", "Encoder Right", lowerLiftEncoderRight);
 
 	upperLiftEncoder = new Encoder(constants->liftPorts.upperEncoderPortA, constants->liftPorts.upperEncoderPortB, false);
-	upperLiftEncoder->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	upperLiftEncoder->SetDistancePerPulse(constants->liftConstants.upperDistancePerPulse);
 	upperLiftEncoder->SetPIDSourceParameter(PIDSource::kDistance);
 	liveWindow->AddSensor("Upper Lift", "Encoder", upperLiftEncoder);
 

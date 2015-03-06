@@ -107,7 +107,8 @@ Constants::Constants() {
 	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
 	driveConstants.velocityTestAccelerationTime = _preferences->GetDouble("VelocityTestAccelerationTime", 2);
 
-	liftConstants.distancePerPulse = _preferences->GetDouble("LiftDistancePerPulse", 0);
+	liftConstants.lowerDistancePerPulse = _preferences->GetDouble("LowerLiftDistancePerPulse", 0);
+	liftConstants.upperDistancePerPulse = _preferences->GetDouble("UpperDistancePerPulse", 0);
 	liftConstants.lowerClawWidth = _preferences->GetDouble("LowerClawWidth", 0);
 	liftConstants.upperClawWidth = _preferences->GetDouble("UpperClawWidth", 0);
 	liftConstants.bufferFromTop = _preferences->GetDouble("BufferFromTop", 0);
@@ -116,6 +117,16 @@ Constants::Constants() {
 	liftConstants.minHeight = _preferences->GetDouble("MinHeight", 0);
 	liftConstants.maxHeight = _preferences->GetDouble("MaxHeight", 0);
 	liftConstants.heightFromGround = _preferences->GetDouble("HeightFromGround", 0);
+
+	liftConstants.upperLiftTotalLevels = 4;
+	liftConstants.lowerLiftTotalLevels = 3;
+	liftConstants.upperLiftLevels[0] = _preferences->GetDouble("UpperLiftLevel0", 0);
+	liftConstants.upperLiftLevels[1] = _preferences->GetDouble("UpperLiftLevel1", 0);
+	liftConstants.upperLiftLevels[2] = _preferences->GetDouble("UpperLiftLevel2", 0);
+	liftConstants.upperLiftLevels[3] = _preferences->GetDouble("UpperLiftLevel3", 0);
+	liftConstants.lowerLiftLevels[0] = _preferences->GetDouble("LowerLiftLevel0", 0);
+	liftConstants.lowerLiftLevels[1] = _preferences->GetDouble("LowerLiftLevel1", 0);
+	liftConstants.lowerLiftLevels[2] = _preferences->GetDouble("LowerLiftLevel2", 0);
 
 	itemCounts.totalItems = 0;
 	itemCounts.lowerClawItems = 0;
@@ -242,6 +253,8 @@ PIDProfile Constants::getLowerLiftProfile() {
 void Constants::incrementTotalItems() {
 	if (itemCounts.totalItems < itemCounts.totalMaxItems) {
 		itemCounts.totalItems++;
+		driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
+		driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	}
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
 }
@@ -249,12 +262,16 @@ void Constants::incrementTotalItems() {
 void Constants::decrementTotalItems() {
 	if (itemCounts.totalItems > 0) {
 		itemCounts.totalItems--;
+		driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
+		driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	}
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
 }
 
 void Constants::resetTotalItems() {
 	itemCounts.totalItems = 0;
+	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
+	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
 }
 
@@ -281,7 +298,7 @@ void Constants::calculateClawItems(int lowerClawPosition,
 void Constants::incrementLowerClawItems() {
 	if (itemCounts.lowerClawItems < itemCounts.lowerClawMaxItems) {
 		itemCounts.lowerClawItems++;
-		itemCounts.totalItems++;
+		incrementTotalItems();
 	}
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
@@ -289,7 +306,7 @@ void Constants::incrementLowerClawItems() {
 void Constants::decrementLowerClawItems() {
 	if (itemCounts.lowerClawItems > 0) {
 		itemCounts.lowerClawItems--;
-		itemCounts.totalItems--;
+		decrementTotalItems();
 	}
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
@@ -297,13 +314,15 @@ void Constants::decrementLowerClawItems() {
 void Constants::resetLowerClawItems() {
 	itemCounts.totalItems -= itemCounts.lowerClawItems;
 	itemCounts.lowerClawItems = 0;
+	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
+	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::incrementUpperClawItems() {
 	if (itemCounts.upperClawItems < itemCounts.upperClawMaxItems) {
 		itemCounts.upperClawItems++;
-		itemCounts.totalItems++;
+		incrementTotalItems();
 	}
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
@@ -311,7 +330,7 @@ void Constants::incrementUpperClawItems() {
 void Constants::decrementUpperClawItems() {
 	if (itemCounts.upperClawItems > 0) {
 		itemCounts.upperClawItems--;
-		itemCounts.totalItems--;
+		decrementTotalItems();
 	}
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
@@ -319,6 +338,8 @@ void Constants::decrementUpperClawItems() {
 void Constants::resetUpperClawItems() {
 	itemCounts.totalItems -= itemCounts.upperClawItems;
 	itemCounts.upperClawItems = 0;
+	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
+	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 }
 
