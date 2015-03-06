@@ -7,8 +7,7 @@
 
 #include "AutoScriptRunner.h"
 
-AutoScriptRunner::AutoScriptRunner() {
-	// TODO Auto-generated constructor stub
+AutoScriptRunner::AutoScriptRunner(string filename) {
 
 }
 

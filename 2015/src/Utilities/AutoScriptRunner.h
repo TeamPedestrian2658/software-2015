@@ -9,9 +9,15 @@
 #define SRC_UTILITIES_AUTOSCRIPTRUNNER_H_
 
 class AutoScriptRunner {
+private:
+	void parseFile();
+	void createCommandGroup();
 public:
 	AutoScriptRunner();
 	virtual ~AutoScriptRunner();
+
+	void executeFile(string filename);
+	void registerCommand(string name, int args);
 };
 
 #endif /* SRC_UTILITIES_AUTOSCRIPTRUNNER_H_ */
