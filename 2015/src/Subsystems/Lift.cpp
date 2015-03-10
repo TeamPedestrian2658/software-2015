@@ -17,10 +17,10 @@ Lift::Lift() : Subsystem("Lift") {
 	_lowerRightController = RobotMap::liftControllerLowerRight;
 	_upperController = RobotMap::liftControllerUpper;
 
-	updatePIDCoefficients();
-
 	_lowerLevels = _constants->liftConstants.lowerLiftLevels;
 	_upperLevels = _constants->liftConstants.upperLiftLevels;
+
+	updatePIDCoefficients();
 
 	resetLowerLevel();
 	resetUpperLevel();
@@ -76,6 +76,7 @@ void Lift::lowerUpOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
 void Lift::lowerDownOneLevel() {
@@ -84,12 +85,14 @@ void Lift::lowerDownOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
 void Lift::resetLowerLevel() {
 	_lowerLevel = 0;
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
 int Lift::getLowerLevel() {
@@ -101,6 +104,7 @@ void Lift::upperUpOneLevel() {
 		_upperLevel++;
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 
 void Lift::upperDownOneLevel() {
@@ -111,11 +115,13 @@ void Lift::upperDownOneLevel() {
 		lowerDownOneLevel();
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 
 void Lift::resetUpperLevel() {
 	_upperLevel = 0;
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 
 int Lift::getUpperLevel() {
