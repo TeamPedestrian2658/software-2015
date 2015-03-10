@@ -111,24 +111,7 @@ Constants::Constants() {
 
 	liftConstants.lowerDistancePerPulse = _preferences->GetDouble("LowerLiftDistancePerPulse", 0);
 	liftConstants.upperDistancePerPulse = _preferences->GetDouble("UpperDistancePerPulse", 0);
-	liftConstants.lowerClawWidth = _preferences->GetDouble("LowerClawWidth", 0);
-	liftConstants.upperClawWidth = _preferences->GetDouble("UpperClawWidth", 0);
-	liftConstants.bufferFromTop = _preferences->GetDouble("BufferFromTop", 0);
-	liftConstants.bufferBetweenClaws = _preferences->GetDouble("BufferBetweenClaws", 0);
-	liftConstants.bufferFromBottom = _preferences->GetDouble("BufferFromBottom", 0);
-	liftConstants.minHeight = _preferences->GetDouble("MinHeight", 0);
-	liftConstants.maxHeight = _preferences->GetDouble("MaxHeight", 0);
-	liftConstants.heightFromGround = _preferences->GetDouble("HeightFromGround", 0);
-
-	liftConstants.upperLiftTotalLevels = 4;
-	liftConstants.lowerLiftTotalLevels = 3;
-	liftConstants.upperLiftLevels[0] = _preferences->GetDouble("UpperLiftLevel0", 0);
-	liftConstants.upperLiftLevels[1] = _preferences->GetDouble("UpperLiftLevel1", 0);
-	liftConstants.upperLiftLevels[2] = _preferences->GetDouble("UpperLiftLevel2", 0);
-	liftConstants.upperLiftLevels[3] = _preferences->GetDouble("UpperLiftLevel3", 0);
-	liftConstants.lowerLiftLevels[0] = _preferences->GetDouble("LowerLiftLevel0", 0);
-	liftConstants.lowerLiftLevels[1] = _preferences->GetDouble("LowerLiftLevel1", 0);
-	liftConstants.lowerLiftLevels[2] = _preferences->GetDouble("LowerLiftLevel2", 0);
+	//hardcode levels here
 
 	itemCounts.totalItems = 0;
 	itemCounts.lowerClawItems = 0;

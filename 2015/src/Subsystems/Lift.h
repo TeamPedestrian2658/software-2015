@@ -4,6 +4,10 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "../Utilities/Constants.h"
+#include <vector>
+#include <tuple>
+
+using namespace std;
 
 class Lift: public Subsystem {
 private:
@@ -23,6 +27,9 @@ private:
 
 	PIDProfile _lowerProfile;
 	PIDProfile _upperProfile;
+
+	vector<tuple<double, int, string>> _lowerLevels;
+	vector<tuple<double, int, string>> _upperLevels;
 
 	int _lowerLevel;
 	int _upperLevel;
@@ -55,21 +62,13 @@ public:
 	void setLowerRaw(double value);
 	void setUpperRaw(double value);
 
-	void setLowerHeightFromGround(double heightFromGround);
-	void setUpperHeightFromGround(double heightFromGround);
-
-	double getLowerHeight();
+	double getLowerAverageHeight();
 	double getLowerLeftHeight();
 	double getLowerRightHeight();
 
-	double getLowerHeightFromGround();
-	double getLowerLeftHeightFromGround();
-	double getLowerRightHeightFromGround();
-
 	double getUpperHeight();
-	double getUpperHeightFromGround();
 
-	double getLowerRaw();
+	double getLowerAverageRaw();
 	double getLowerLeftRaw();
 	double getLowerRightRaw();
 

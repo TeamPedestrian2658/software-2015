@@ -19,6 +19,9 @@ Lift::Lift() : Subsystem("Lift") {
 
 	updatePIDCoefficients();
 
+	_lowerLevels = _constants->liftConstants.lowerLiftLevels;
+	_upperLevels = _constants->liftConstants.upperLiftLevels;
+
 	resetLowerLevel();
 	resetUpperLevel();
 
@@ -64,46 +67,29 @@ bool Lift::upperControllerEnabled() {
 	return _upperAutomatic;
 }
 
-void Lift::setLowerHeightFromGround(double heightFromGround) {
-	if (heightFromGround < (_constants->liftConstants.minHeight + _constants->liftConstants.bufferFromBottom)) {
-		heightFromGround = (_constants->liftConstants.minHeight + _constants->liftConstants.bufferFromBottom);
-	}
-
-	if (heightFromGround > (_constants->liftConstants.maxHeight - _constants->liftConstants.bufferFromTop - _constants->liftConstants.bufferBetweenClaws - _constants->liftConstants.upperClawWidth)) {
-		heightFromGround = (_constants->liftConstants.maxHeight - _constants->liftConstants.bufferFromTop - _constants->liftConstants.bufferBetweenClaws - _constants->liftConstants.upperClawWidth);
-	}
-
-	if (heightFromGround + _constants->liftConstants.lowerClawWidth + _constants->liftConstants.bufferBetweenClaws > getUpperHeightFromGround()) {
-		setUpperHeightFromGround(heightFromGround + _constants->liftConstants.lowerClawWidth + _constants->liftConstants.bufferBetweenClaws);
-	}
-
-	_lowerLeftController->SetSetpoint(heightFromGround - _constants->liftConstants.heightFromGround);
-}
-
-void Lift::setUpperHeightFromGround(double heightFromGround) {
-
-}
-
 void Lift::lowerUpOneLevel() {
-	if (_lowerLevel < _constants->liftConstants.lowerLiftTotalLevels) {
+	if (_lowerLevel < _lowerLevels.size()) {
 		_lowerLevel++;
 	}
-	_lowerLeftController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
-	_lowerRightController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
+	while (get<0>(_lowerLevels[_lowerLevel]) > get<0>(_upperLevels[_upperLevel])) {
+		upperUpOneLevel();
+	}
+	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 }
 
 void Lift::lowerDownOneLevel() {
 	if (_lowerLevel > 0) {
 		_lowerLevel--;
 	}
-	_lowerLeftController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
-	_lowerRightController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
+	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 }
 
 void Lift::resetLowerLevel() {
 	_lowerLevel = 0;
-	_lowerLeftController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
-	_lowerRightController->SetSetpoint(_constants->liftConstants.lowerLiftLevels[_lowerLevel]);
+	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 }
 
 int Lift::getLowerLevel() {
@@ -111,22 +97,25 @@ int Lift::getLowerLevel() {
 }
 
 void Lift::upperUpOneLevel() {
-	if (_upperLevel < _constants->liftConstants.upperLiftTotalLevels) {
+	if (_upperLevel < _upperLevels.size()) {
 		_upperLevel++;
 	}
-	_upperController->SetSetpoint(_constants->liftConstants.upperLiftLevels[_upperLevel]);
+	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
 }
 
 void Lift::upperDownOneLevel() {
 	if (_upperLevel > 0) {
 		_upperLevel--;
 	}
-	_upperController->SetSetpoint(_constants->liftConstants.upperLiftLevels[_upperLevel]);
+	while (get<0>(_upperLevels[_upperLevel]) < get<0>(_lowerLevels[_lowerLevel])) {
+		lowerDownOneLevel();
+	}
+	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
 }
 
 void Lift::resetUpperLevel() {
 	_upperLevel = 0;
-	_upperController->SetSetpoint(_constants->liftConstants.upperLiftLevels[_upperLevel]);
+	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
 }
 
 int Lift::getUpperLevel() {
@@ -142,7 +131,7 @@ void Lift::setUpperRaw(double value) {
 	_upperTalon->Set(value);
 }
 
-double Lift::getLowerHeight() {
+double Lift::getLowerAverageHeight() {
 	return (_lowerLeftEncoder->GetDistance() + _lowerRightEncoder->GetDistance()) / 2;
 }
 
@@ -154,27 +143,11 @@ double Lift::getLowerRightHeight() {
 	return _lowerRightEncoder->GetDistance();
 }
 
-double Lift::getLowerHeightFromGround() {
-	return getLowerHeight() + _constants->liftConstants.heightFromGround;
-}
-
-double Lift::getLowerLeftHeightFromGround() {
-	return getLowerLeftHeight() + _constants->liftConstants.heightFromGround;
-}
-
-double Lift::getLowerRightHeightFromGround() {
-	return getLowerRightHeight() + _constants->liftConstants.heightFromGround;
-}
-
 double Lift::getUpperHeight() {
-	return _upperEncoder->GetDistance() + _constants->liftConstants.lowerClawWidth;
+	return _upperEncoder->GetDistance();
 }
 
-double Lift::getUpperHeightFromGround() {
-	return getUpperHeight() + _constants->liftConstants.heightFromGround;
-}
-
-double Lift::getLowerRaw() {
+double Lift::getLowerAverageRaw() {
 	return (_lowerLeftTalon->Get() + _lowerRightTalon->Get()) / 2;
 }
 
@@ -208,4 +181,12 @@ void Lift::updatePIDCoefficients() {
 			   	   	   	   	 _upperProfile.i,
 							 _upperProfile.d,
 							 _upperProfile.f);
+}
+
+PIDProfile Lift::getLowerPIDCoefficients() {
+	return _lowerProfile;
+}
+
+PIDProfile Lift::getUpperPIDCoefficients() {
+	return _upperProfile;
 }

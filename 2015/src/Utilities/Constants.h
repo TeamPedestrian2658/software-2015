@@ -11,6 +11,8 @@
 #include "WPILib.h"
 #include <string>
 
+using namespace std;
+
 struct PIDProfile {
 		double p;
 		double i;
@@ -23,7 +25,7 @@ public:
 	Constants();
 	Preferences *_preferences;
 	struct AutonomousConstants {
-		std::string autoScriptsDirectory;
+		string autoScriptsDirectory;
 	} autonomousConstants;
 	struct DrivePorts {
 		int talonLeftPort;
@@ -120,18 +122,8 @@ public:
 	struct LiftConstants {
 		double lowerDistancePerPulse;
 		double upperDistancePerPulse;
-		double lowerClawWidth;
-		double upperClawWidth;
-		double bufferFromTop;
-		double bufferBetweenClaws;
-		double bufferFromBottom;
-		double minHeight;
-		double maxHeight;
-		double heightFromGround;
-		double upperLiftTotalLevels;
-		double lowerLiftTotalLevels;
-		double upperLiftLevels[4];
-		double lowerLiftLevels[3];
+		vector<tuple<double, int, string>> upperLiftLevels;
+		vector<tuple<double, int, string>> lowerLiftLevels;
 	} liftConstants;
 	struct ItemCounts {
 		int totalItems;
