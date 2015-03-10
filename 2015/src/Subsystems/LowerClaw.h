@@ -9,7 +9,6 @@ private:
 	Constants *_constants;
 	Solenoid *_leftGrabber;
 	Solenoid *_rightGrabber;
-	Solenoid *_brake;
 public:
 	LowerClaw();
 	void InitDefaultCommand();
@@ -22,13 +21,9 @@ public:
 	void releaseRight();
 	void releaseBoth();
 
-	void brakeOn();
-	void brakeOff();
-
 	bool isClawLeftClosed();
 	bool isClawRightClosed();
 	bool isClawClosed();
-	bool isBrakeOn();
 };
 
 #endif

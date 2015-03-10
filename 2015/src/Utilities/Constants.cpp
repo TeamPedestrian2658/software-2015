@@ -26,14 +26,10 @@ Constants::Constants() {
 
 	clawPorts.upperGrabberModule = _preferences->GetInt("UpperGrabberModule, 0");
 	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 0);
-	clawPorts.upperBrakeModule = _preferences->GetInt("UpperBrakeModule", 0);
-	clawPorts.upperBrakePort = _preferences->GetInt("UpperBrakePort", 1);
 	clawPorts.lowerGrabberLeftModule = _preferences->GetInt("LowerGrabberLeftModule", 0);
 	clawPorts.lowerGrabberLeftPort = _preferences->GetInt("LowerGrabberLeftPort", 3);
 	clawPorts.lowerGrabberRightModule = _preferences->GetInt("LowerGrabberRightModule", 0);
 	clawPorts.lowerGrabberRightPort = _preferences->GetInt("LowerGrabberRightPort", 4);
-	clawPorts.lowerBrakeModule = _preferences->GetInt("LowerBrakeModule", 0);
-	clawPorts.lowerBrakePort = _preferences->GetInt("LowerBrakePort", 2);
 
 	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 1);
 	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 2);
@@ -58,8 +54,6 @@ Constants::Constants() {
 	operatorButtons.lowerClawGrabRightButton = _preferences->GetInt("LowerClawGrabRightButton", 6);
 	operatorButtons.lowerClawReleaseLeftButton = _preferences->GetInt("LowerClawReleaseLeftButton", 7);
 	operatorButtons.lowerClawReleaseRightButton = _preferences->GetInt("LowerClawReleaseRightButton", 8);
-	operatorButtons.lowerClawBrakeHoldButton = _preferences->GetInt("LowerClawBrakeHoldButton", 9);
-	operatorButtons.upperClawBrakeHoldButton = _preferences->GetInt("UpperClawBrakeHoldButton", 10);
 	operatorButtons.lowerClawItemCountResetButton = _preferences->GetInt("LowerClawItemCountResetButton", 4);
 	operatorButtons.lowerClawItemCountIncrementButton = _preferences->GetInt("LowerClawItemCountIncrementButton", 3);
 	operatorButtons.lowerClawItemCountDecrementButton = _preferences->GetInt("LowerClawItemCountDecrementButton", 1);
@@ -80,10 +74,8 @@ Constants::Constants() {
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
 	clawStates.upperClawGrab = _preferences->GetBoolean("UpperClawGrab", true);
-	clawStates.upperClawBrakeOn = _preferences->GetBoolean("UpperClawBrakeOn", true);
 	clawStates.lowerClawLeftGrab = _preferences->GetBoolean("LowerClawLeftGrab", true);
 	clawStates.lowerClawRightGrab = _preferences->GetBoolean("LowerClawRightGrab", true);
-	clawStates.lowerClawBrakeOn = _preferences->GetBoolean("LowerClawBrakeOn", true);
 
 	driveConstants.enhancedMaxVelocityHigh[0] = _preferences->GetDouble("EnhancedMaxVelocityHigh0", 190);
 	driveConstants.enhancedMaxVelocityLow[0] = _preferences->GetDouble("EnhancedMaxVelocityLow0", 75);

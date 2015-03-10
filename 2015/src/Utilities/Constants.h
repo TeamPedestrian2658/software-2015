@@ -40,14 +40,10 @@ public:
 	struct ClawPorts {
 		int upperGrabberModule;
 		int upperGrabberPort;
-		int upperBrakeModule;
-		int upperBrakePort;
 		int lowerGrabberLeftModule;
 		int lowerGrabberLeftPort;
 		int lowerGrabberRightModule;
 		int lowerGrabberRightPort;
-		int lowerBrakeModule;
-		int lowerBrakePort;
 	} clawPorts;
 	struct LiftPorts {
 		int lowerTalonLeftPort;
@@ -77,8 +73,6 @@ public:
 		int lowerClawGrabRightButton;
 		int lowerClawReleaseLeftButton;
 		int lowerClawReleaseRightButton;
-		int lowerClawBrakeHoldButton;
-		int upperClawBrakeHoldButton;
 		int lowerClawItemCountResetButton;
 		int lowerClawItemCountIncrementButton;
 		int lowerClawItemCountDecrementButton;
@@ -103,10 +97,8 @@ public:
 	} shifterStates;
 	struct ClawStates {
 		bool upperClawGrab;
-		bool upperClawBrakeOn;
 		bool lowerClawLeftGrab;
 		bool lowerClawRightGrab;
-		bool lowerClawBrakeOn;
 	} clawStates;
 	struct DriveConstants {
 		double enhancedMaxVelocityHigh[8];

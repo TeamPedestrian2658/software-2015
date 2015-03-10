@@ -6,9 +6,7 @@ LowerClaw::LowerClaw() : Subsystem("LowerClaw") {
 	_constants = RobotMap::constants;
 	_leftGrabber = RobotMap::lowerClawLeftGrabber;
 	_rightGrabber = RobotMap::lowerClawRightGrabber;
-	_brake = RobotMap::lowerClawBrake;
 	SmartDashboard::PutString("Lower Claw", "OPEN");
-	SmartDashboard::PutString("Lower Claw Brake", "DISENGAGED");
 }
     
 void LowerClaw::InitDefaultCommand() {
@@ -63,16 +61,6 @@ void LowerClaw::releaseBoth() {
 	SmartDashboard::PutString("Lower Claw", "OPEN");
 }
 
-void LowerClaw::brakeOn() {
-	_brake->Set(_constants->clawStates.lowerClawBrakeOn);
-	SmartDashboard::PutString("Lower Claw Brake", "ENGAGED");
-}
-
-void LowerClaw::brakeOff() {
-	_brake->Set(!_constants->clawStates.lowerClawBrakeOn);
-	SmartDashboard::PutString("Lower Claw Brake", "DISENGAGED");
-}
-
 bool LowerClaw::isClawLeftClosed() {
 	return (_leftGrabber->Get() == _constants->clawStates.lowerClawLeftGrab);
 }
@@ -83,8 +71,4 @@ bool LowerClaw::isClawRightClosed() {
 
 bool LowerClaw::isClawClosed() {
 	return (isClawLeftClosed() && isClawRightClosed());
-}
-
-bool LowerClaw::isBrakeOn() {
-	return (_brake->Get() == _constants->clawStates.lowerClawBrakeOn);
 }
