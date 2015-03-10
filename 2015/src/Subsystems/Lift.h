@@ -59,6 +59,9 @@ public:
 	void resetUpperLevel();
 	int getUpperLevel();
 
+	int getLowerPossessionLevel();
+	int getUpperPossessionLevel();
+
 	void setLowerRaw(double value);
 	void setUpperRaw(double value);
 

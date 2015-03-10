@@ -128,6 +128,14 @@ int Lift::getUpperLevel() {
 	return _upperLevel;
 }
 
+int Lift::getLowerPossessionLevel() {
+	return get<1>(_lowerLevels[_lowerLevel]);
+}
+
+int Lift::getUpperPossessionLevel() {
+	return get<1>(_upperLevels[_upperLevel]);
+}
+
 void Lift::setLowerRaw(double value) {
 	_lowerLeftTalon->Set(-value);
 	_lowerRightTalon->Set(value);
