@@ -216,6 +216,86 @@ void Constants::updatePIDProfiles() {
 	driveProfiles[15].i = _preferences->GetDouble("DriveProfile15I", 0);
 	driveProfiles[15].d = _preferences->GetDouble("DriveProfile15D", 0);
 	driveProfiles[15].f = _preferences->GetDouble("DriveProfile15F", 0);
+
+	upperLiftProfiles[0].p = _preferences->GetDouble("UpperLiftProfiles0P", 0);
+	upperLiftProfiles[0].i = _preferences->GetDouble("UpperLiftProfiles0I", 0);
+	upperLiftProfiles[0].d = _preferences->GetDouble("UpperLiftProfiles0D", 0);
+	upperLiftProfiles[0].f = _preferences->GetDouble("UpperLiftProfiles0F", 0);
+
+	upperLiftProfiles[1].p = _preferences->GetDouble("UpperLiftProfiles1P", 0);
+	upperLiftProfiles[1].i = _preferences->GetDouble("UpperLiftProfiles1I", 0);
+	upperLiftProfiles[1].d = _preferences->GetDouble("UpperLiftProfiles1D", 0);
+	upperLiftProfiles[1].f = _preferences->GetDouble("UpperLiftProfiles1F", 0);
+
+	upperLiftProfiles[2].p = _preferences->GetDouble("UpperLiftProfiles2P", 0);
+	upperLiftProfiles[2].i = _preferences->GetDouble("UpperLiftProfiles2I", 0);
+	upperLiftProfiles[2].d = _preferences->GetDouble("UpperLiftProfiles2D", 0);
+	upperLiftProfiles[2].f = _preferences->GetDouble("UpperLiftProfiles2F", 0);
+
+	upperLiftProfiles[3].p = _preferences->GetDouble("UpperLiftProfiles3P", 0);
+	upperLiftProfiles[3].i = _preferences->GetDouble("UpperLiftProfiles3I", 0);
+	upperLiftProfiles[3].d = _preferences->GetDouble("UpperLiftProfiles3D", 0);
+	upperLiftProfiles[3].f = _preferences->GetDouble("UpperLiftProfiles3F", 0);
+
+	upperLiftProfiles[4].p = _preferences->GetDouble("UpperLiftProfiles4P", 0);
+	upperLiftProfiles[4].i = _preferences->GetDouble("UpperLiftProfiles4I", 0);
+	upperLiftProfiles[4].d = _preferences->GetDouble("UpperLiftProfiles4D", 0);
+	upperLiftProfiles[4].f = _preferences->GetDouble("UpperLiftProfiles4F", 0);
+
+	upperLiftProfiles[5].p = _preferences->GetDouble("UpperLiftProfiles5P", 0);
+	upperLiftProfiles[5].i = _preferences->GetDouble("UpperLiftProfiles5I", 0);
+	upperLiftProfiles[5].d = _preferences->GetDouble("UpperLiftProfiles5D", 0);
+	upperLiftProfiles[5].f = _preferences->GetDouble("UpperLiftProfiles5F", 0);
+
+	upperLiftProfiles[6].p = _preferences->GetDouble("UpperLiftProfiles6P", 0);
+	upperLiftProfiles[6].i = _preferences->GetDouble("UpperLiftProfiles6I", 0);
+	upperLiftProfiles[6].d = _preferences->GetDouble("UpperLiftProfiles6D", 0);
+	upperLiftProfiles[6].f = _preferences->GetDouble("UpperLiftProfiles6F", 0);
+
+	upperLiftProfiles[7].p = _preferences->GetDouble("UpperLiftProfiles7P", 0);
+	upperLiftProfiles[7].i = _preferences->GetDouble("UpperLiftProfiles7I", 0);
+	upperLiftProfiles[7].d = _preferences->GetDouble("UpperLiftProfiles7D", 0);
+	upperLiftProfiles[7].f = _preferences->GetDouble("UpperLiftProfiles7F", 0);
+
+	lowerLiftProfiles[0].p = _preferences->GetDouble("LowerLiftProfiles0P", 0);
+	lowerLiftProfiles[0].i = _preferences->GetDouble("LowerLiftProfiles0I", 0);
+	lowerLiftProfiles[0].d = _preferences->GetDouble("LowerLiftProfiles0D", 0);
+	lowerLiftProfiles[0].f = _preferences->GetDouble("LowerLiftProfiles0F", 0);
+
+	lowerLiftProfiles[1].p = _preferences->GetDouble("LowerLiftProfiles1P", 0);
+	lowerLiftProfiles[1].i = _preferences->GetDouble("LowerLiftProfiles1I", 0);
+	lowerLiftProfiles[1].d = _preferences->GetDouble("LowerLiftProfiles1D", 0);
+	lowerLiftProfiles[1].f = _preferences->GetDouble("LowerLiftProfiles1F", 0);
+
+	lowerLiftProfiles[2].p = _preferences->GetDouble("LowerLiftProfiles2P", 0);
+	lowerLiftProfiles[2].i = _preferences->GetDouble("LowerLiftProfiles2I", 0);
+	lowerLiftProfiles[2].d = _preferences->GetDouble("LowerLiftProfiles2D", 0);
+	lowerLiftProfiles[2].f = _preferences->GetDouble("LowerLiftProfiles2F", 0);
+
+	lowerLiftProfiles[3].p = _preferences->GetDouble("LowerLiftProfiles3P", 0);
+	lowerLiftProfiles[3].i = _preferences->GetDouble("LowerLiftProfiles3I", 0);
+	lowerLiftProfiles[3].d = _preferences->GetDouble("LowerLiftProfiles3D", 0);
+	lowerLiftProfiles[3].f = _preferences->GetDouble("LowerLiftProfiles3F", 0);
+
+	lowerLiftProfiles[4].p = _preferences->GetDouble("LowerLiftProfiles4P", 0);
+	lowerLiftProfiles[4].i = _preferences->GetDouble("LowerLiftProfiles4I", 0);
+	lowerLiftProfiles[4].d = _preferences->GetDouble("LowerLiftProfiles4D", 0);
+	lowerLiftProfiles[4].f = _preferences->GetDouble("LowerLiftProfiles4F", 0);
+
+	lowerLiftProfiles[5].p = _preferences->GetDouble("LowerLiftProfiles5P", 0);
+	lowerLiftProfiles[5].i = _preferences->GetDouble("LowerLiftProfiles5I", 0);
+	lowerLiftProfiles[5].d = _preferences->GetDouble("LowerLiftProfiles5D", 0);
+	lowerLiftProfiles[5].f = _preferences->GetDouble("LowerLiftProfiles5F", 0);
+
+	lowerLiftProfiles[6].p = _preferences->GetDouble("LowerLiftProfiles6P", 0);
+	lowerLiftProfiles[6].i = _preferences->GetDouble("LowerLiftProfiles6I", 0);
+	lowerLiftProfiles[6].d = _preferences->GetDouble("LowerLiftProfiles6D", 0);
+	lowerLiftProfiles[6].f = _preferences->GetDouble("LowerLiftProfiles6F", 0);
+
+	lowerLiftProfiles[7].p = _preferences->GetDouble("LowerLiftProfiles7P", 0);
+	lowerLiftProfiles[7].i = _preferences->GetDouble("LowerLiftProfiles7I", 0);
+	lowerLiftProfiles[7].d = _preferences->GetDouble("LowerLiftProfiles7D", 0);
+	lowerLiftProfiles[7].f = _preferences->GetDouble("LowerLiftProfiles7F", 0);
 }
 
 
