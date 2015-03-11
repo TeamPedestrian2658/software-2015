@@ -23,8 +23,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	SmartDashboard::PutData("Drive Mode", _chooser);
 
 	_rumbleChooser = RobotMap::driveRumbleChooser;
-	_rumbleChooser->AddDefault("Rumble On", new bool(true));
-	_rumbleChooser->AddObject("Rumble Off", new bool(false));
+	_rumbleChooser->AddDefault("Rumble Off", new bool(false));
+	_rumbleChooser->AddObject("Rumble On", new bool(true));
 	SmartDashboard::PutData("Drive Rumble", _rumbleChooser);
 
 	enableEnhancedDriving();

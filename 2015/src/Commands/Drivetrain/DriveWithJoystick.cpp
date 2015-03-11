@@ -21,7 +21,7 @@ void DriveWithJoystick::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute()
 {
-	if (_drivetrain->isHighGear() == _constants->shifterStates.highGear) {
+	if (_drivetrain->isHighGear()) {
 		MAX_VELOCITY = _constants->driveConstants.currentEnhancedMaxVelocityHigh;
 	} else {
 		MAX_VELOCITY = _constants->driveConstants.currentEnhancedMaxVelocityLow;
