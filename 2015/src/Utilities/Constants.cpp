@@ -24,8 +24,10 @@ Constants::Constants() {
 	drivePorts.encoderRightPortA = _preferences->GetInt("DriveEncoderRightPortA", 2);
 	drivePorts.encoderRightPortB = _preferences->GetInt("DriveEncoderRightPortB", 3);
 
-	clawPorts.upperGrabberModule = _preferences->GetInt("UpperGrabberModule, 0");
-	clawPorts.upperGrabberPort = _preferences->GetInt("UpperGrabberPort", 0);
+	clawPorts.upperGrabberLeftModule = _preferences->GetInt("UpperGrabberLeftModule, 0");
+	clawPorts.upperGrabberLeftPort = _preferences->GetInt("UpperGrabberLeftPort", 0);
+	clawPorts.upperGrabberRightModule = _preferences->GetInt("UpperGrabberRightModule", 0);
+	clawPorts.upperGrabberRightPort = _preferences->GetInt("UpperGrabberRightPort", 1);
 	clawPorts.lowerGrabberLeftModule = _preferences->GetInt("LowerGrabberLeftModule", 0);
 	clawPorts.lowerGrabberLeftPort = _preferences->GetInt("LowerGrabberLeftPort", 3);
 	clawPorts.lowerGrabberRightModule = _preferences->GetInt("LowerGrabberRightModule", 0);
@@ -73,7 +75,8 @@ Constants::Constants() {
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
-	clawStates.upperClawGrab = _preferences->GetBoolean("UpperClawGrab", true);
+	clawStates.upperClawLeftGrab = _preferences->GetBoolean("UpperClawGrab", false);
+	clawStates.upperClawRightGrab = _preferences->GetBoolean("UpperClawRightGrab", false);
 	clawStates.lowerClawLeftGrab = _preferences->GetBoolean("LowerClawLeftGrab", true);
 	clawStates.lowerClawRightGrab = _preferences->GetBoolean("LowerClawRightGrab", true);
 

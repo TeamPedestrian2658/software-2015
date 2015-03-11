@@ -2,13 +2,13 @@
 
 UpperClawGrab::UpperClawGrab()
 {
-	Requires(Robot::upperClaw);
+
 }
 
 // Called just before this Command runs the first time
 void UpperClawGrab::Initialize()
 {
-	Robot::upperClaw->grab();
+	Robot::upperClaw->grabBoth();
 }
 
 // Called repeatedly when this Command is scheduled to run

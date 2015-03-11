@@ -38,8 +38,10 @@ public:
 		int encoderRightPortB;
 	} drivePorts;
 	struct ClawPorts {
-		int upperGrabberModule;
-		int upperGrabberPort;
+		int upperGrabberLeftModule;
+		int upperGrabberLeftPort;
+		int upperGrabberRightModule;
+		int upperGrabberRightPort;
 		int lowerGrabberLeftModule;
 		int lowerGrabberLeftPort;
 		int lowerGrabberRightModule;
@@ -96,7 +98,8 @@ public:
 		bool lowGear;
 	} shifterStates;
 	struct ClawStates {
-		bool upperClawGrab;
+		bool upperClawLeftGrab;
+		bool upperClawRightGrab;
 		bool lowerClawLeftGrab;
 		bool lowerClawRightGrab;
 	} clawStates;

@@ -1,37 +1,37 @@
-#include "LowerClawReleaseRight.h"
+#include "UpperClawGrabRight.h"
 
-LowerClawReleaseRight::LowerClawReleaseRight()
+UpperClawGrabRight::UpperClawGrabRight()
 {
 
 }
 
 // Called just before this Command runs the first time
-void LowerClawReleaseRight::Initialize()
+void UpperClawGrabRight::Initialize()
 {
-	Robot::lowerClaw->releaseRight();
+	Robot::lowerClaw->grabRight();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void LowerClawReleaseRight::Execute()
+void UpperClawGrabRight::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool LowerClawReleaseRight::IsFinished()
+bool UpperClawGrabRight::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void LowerClawReleaseRight::End()
+void UpperClawGrabRight::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void LowerClawReleaseRight::Interrupted()
+void UpperClawGrabRight::Interrupted()
 {
 
 }

@@ -21,12 +21,11 @@ PIDController *RobotMap::driveControllerRight = NULL;
 SendableChooser *RobotMap::driveChooser = NULL;
 SendableChooser *RobotMap::driveRumbleChooser = NULL;
 
-Solenoid *RobotMap::upperClawGrabber = NULL;
-Solenoid *RobotMap::upperClawBrake = NULL;
+Solenoid *RobotMap::upperClawLeftGrabber = NULL;
+Solenoid *RobotMap::upperClawRightGrabber = NULL;
 
 Solenoid *RobotMap::lowerClawLeftGrabber = NULL;
 Solenoid *RobotMap::lowerClawRightGrabber = NULL;
-Solenoid *RobotMap::lowerClawBrake = NULL;
 
 Talon *RobotMap::lowerLiftTalonLeft = NULL;
 Talon *RobotMap::lowerLiftTalonRight = NULL;
@@ -85,8 +84,10 @@ void RobotMap::init() {
 	driveChooser = new SendableChooser();
 	driveRumbleChooser = new SendableChooser();
 
-	upperClawGrabber = new Solenoid(constants->clawPorts.upperGrabberModule, constants->clawPorts.upperGrabberPort);
-	liveWindow->AddActuator("Upper Claw", "Grabber", upperClawGrabber);
+	upperClawLeftGrabber = new Solenoid(constants->clawPorts.upperGrabberLeftModule, constants->clawPorts.upperGrabberLeftPort);
+	upperClawRightGrabber = new Solenoid(constants->clawPorts.upperGrabberRightModule, constants->clawPorts.upperGrabberRightPort);
+	liveWindow->AddActuator("Upper Claw", "Left Grabber", upperClawLeftGrabber);
+	liveWindow->AddActuator("Upper Claw", "Right Grabber", upperClawRightGrabber);
 
 	lowerClawLeftGrabber = new Solenoid(constants->clawPorts.lowerGrabberLeftModule, constants->clawPorts.lowerGrabberLeftPort);
 	lowerClawRightGrabber = new Solenoid(constants->clawPorts.lowerGrabberRightModule, constants->clawPorts.lowerGrabberRightPort);

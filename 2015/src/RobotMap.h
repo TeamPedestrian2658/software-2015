@@ -25,12 +25,11 @@ public:
 	static SendableChooser *driveChooser;
 	static SendableChooser *driveRumbleChooser;
 
-	static Solenoid *upperClawGrabber;
-	static Solenoid *upperClawBrake;
+	static Solenoid *upperClawLeftGrabber;
+	static Solenoid *upperClawRightGrabber;
 
 	static Solenoid *lowerClawLeftGrabber;
 	static Solenoid *lowerClawRightGrabber;
-	static Solenoid *lowerClawBrake;
 
 	static Talon *lowerLiftTalonLeft;
 	static Talon *lowerLiftTalonRight;

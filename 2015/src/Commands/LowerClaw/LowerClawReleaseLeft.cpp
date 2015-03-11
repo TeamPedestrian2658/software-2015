@@ -2,7 +2,7 @@
 
 LowerClawReleaseLeft::LowerClawReleaseLeft()
 {
-	Requires(Robot::lowerClaw);
+
 }
 
 // Called just before this Command runs the first time
