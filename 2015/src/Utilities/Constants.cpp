@@ -13,7 +13,7 @@
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
 
-	autonomousConstants.autoScriptsDirectory = _preferences->GetString("AutoScriptDirectory", "/home/lvuser/scripts")
+	autonomousConstants.autoScriptsDirectory = _preferences->GetString("AutoScriptDirectory", "/home/lvuser/scripts");
 
 	drivePorts.talonLeftPort = _preferences->GetInt("DriveTalonLeftPort", 3);
 	drivePorts.talonRightPort = _preferences->GetInt("DriveTalonRightPort", 4);

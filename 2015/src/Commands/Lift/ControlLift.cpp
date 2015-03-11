@@ -16,14 +16,11 @@ void ControlLift::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ControlLift::Execute()
 {
-	if (Robot::lowerClaw->isBrakeOn()) {
-		_lift->setLowerRaw(0);
+
+	if (_lift->lowerControllerEnabled()) {
+		//implement this
 	} else {
-		if (_lift->lowerControllerEnabled()) {
-			//implement this
-		} else {
-			_lift->setLowerRaw(_oi->getOperatorStickLeftY());
-		}
+		_lift->setLowerRaw(_oi->getOperatorStickLeftY());
 	}
 
 	if (_lift->upperControllerEnabled()) {

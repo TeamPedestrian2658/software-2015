@@ -86,16 +86,12 @@ void RobotMap::init() {
 	driveRumbleChooser = new SendableChooser();
 
 	upperClawGrabber = new Solenoid(constants->clawPorts.upperGrabberModule, constants->clawPorts.upperGrabberPort);
-	upperClawBrake = new Solenoid(constants->clawPorts.upperBrakeModule, constants->clawPorts.upperBrakePort);
 	liveWindow->AddActuator("Upper Claw", "Grabber", upperClawGrabber);
-	liveWindow->AddActuator("Upper Claw", "Brake", upperClawBrake);
 
 	lowerClawLeftGrabber = new Solenoid(constants->clawPorts.lowerGrabberLeftModule, constants->clawPorts.lowerGrabberLeftPort);
 	lowerClawRightGrabber = new Solenoid(constants->clawPorts.lowerGrabberRightModule, constants->clawPorts.lowerGrabberRightPort);
-	lowerClawBrake = new Solenoid(constants->clawPorts.lowerBrakeModule, constants->clawPorts.lowerBrakePort);
 	liveWindow->AddActuator("Lower Claw", "Left Grabber", lowerClawLeftGrabber);
 	liveWindow->AddActuator("Lower Claw", "Right Grabber", lowerClawRightGrabber);
-	liveWindow->AddActuator("Lower Claw", "Brake", lowerClawBrake);
 
 	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);
 	lowerLiftTalonRight = new Talon(constants->liftPorts.lowerTalonRightPort);

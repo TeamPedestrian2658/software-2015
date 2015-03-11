@@ -15,8 +15,6 @@
 #include "Commands/LowerClaw/LowerClawGrabRight.h"
 #include "Commands/LowerClaw/LowerClawReleaseLeft.h"
 #include "Commands/LowerClaw/LowerClawReleaseRight.h"
-#include "Commands/LowerClaw/LowerClawBrakeOn.h"
-#include "Commands/LowerClaw/LowerClawBrakeOff.h"
 #include "Commands/Utilities/ResetLowerClawCount.h"
 #include "Commands/Utilities/IncrementLowerClawCount.h"
 #include "Commands/Utilities/DecrementLowerClawCount.h"
@@ -57,10 +55,6 @@ OI::OI() {
 
 	resetLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountResetButton);
 	resetLowerClawCount->WhenPressed(new ResetLowerClawCount());
-
-	lowerClawBrakeHold = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawBrakeHoldButton);
-	lowerClawBrakeHold->WhenPressed(new LowerClawBrakeOn());
-	lowerClawBrakeHold->WhenReleased(new LowerClawBrakeOff());
 
 	incrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountIncrementButton);
 	incrementLowerClawCount->WhenPressed(new IncrementLowerClawCount());

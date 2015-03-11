@@ -18,7 +18,7 @@ using namespace std;
 class AutoScriptRunner {
 private:
 	string _selectedFile;
-	map<string, tuple<Command, int>> _registry;
+	map<string, tuple<Command*, int>> _registry;
 	CommandGroup *_group;
 	void parseFile();
 	void initCommandGroup();

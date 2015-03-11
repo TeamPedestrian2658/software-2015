@@ -10,10 +10,10 @@
 
 #include "WPILib.h"
 #include "string"
-#include "AutoScriptSelector.cpp"
-#include "AutoScriptRunner.cpp"
+#include "AutoScriptSelector.h"
+#include "AutoScriptRunner.h"
 #include "Constants.h"
-#include "RobotMap.h"
+#include "../RobotMap.h"
 
 class AutonomousController {
 private:

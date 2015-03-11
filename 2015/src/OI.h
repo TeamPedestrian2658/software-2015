@@ -22,9 +22,6 @@ private:
 	JoystickButton *lowerClawReleaseLeft;
 	JoystickButton *lowerClawReleaseRight;
 
-	JoystickButton *lowerClawBrakeHold;
-	JoystickButton *upperClawBrakeHold;
-
 	JoystickButton *resetLowerClawCount;
 	JoystickButton *incrementLowerClawCount;
 	JoystickButton *decrementLowerClawCount;

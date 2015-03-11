@@ -25,5 +25,5 @@ void AutoScriptRunner::executeFile(string filename) {
 }
 
 void AutoScriptRunner::registerCommand(string name, Command *command, int args) {
-	_registry[name] = tuple<command, args>;
+	_registry[name] = tuple<Command*, int>(command, args);
 }
