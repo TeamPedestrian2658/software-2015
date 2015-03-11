@@ -13,6 +13,7 @@ void LowerClawReleaseRight::Initialize()
 											Robot::lift->getUpperPossessionLevel(),
 											Robot::lowerClaw->isClawClosed(),
 											Robot::upperClaw->isClawClosed());
+	Robot::lift->updatePIDCoefficients();
 }
 
 // Called repeatedly when this Command is scheduled to run
