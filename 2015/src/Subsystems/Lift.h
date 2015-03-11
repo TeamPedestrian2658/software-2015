@@ -31,8 +31,8 @@ private:
 	vector<tuple<double, int, string>> _lowerLevels;
 	vector<tuple<double, int, string>> _upperLevels;
 
-	int _lowerLevel;
-	int _upperLevel;
+	unsigned int _lowerLevel;
+	unsigned int _upperLevel;
 
 	bool _lowerAutomatic;
 	bool _upperAutomatic;
