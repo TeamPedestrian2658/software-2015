@@ -117,7 +117,7 @@ public:
 	struct LiftConstants {
 		double lowerDistancePerPulse;
 		double upperDistancePerPulse;
-		vector<tuple<double, int, string>> upperLiftLevels;
+		vector<tuple<double, int, string>> upperLiftLevels;			//setpoint, possession level, name
 		vector<tuple<double, int, string>> lowerLiftLevels;
 	} liftConstants;
 	struct ItemCounts {
@@ -128,7 +128,8 @@ public:
 		int lowerClawMaxItems;
 		int upperClawMaxItems;
 	} itemCounts;
-	PIDProfile driveProfiles[16];  //0-8 are high gear, 9-15 are low gear
+	PIDProfile lowGearDriveProfiles[8];
+	PIDProfile highGearDriveProfiles[8];
 	PIDProfile upperLiftProfiles[8];
 	PIDProfile lowerLiftProfiles[8];
 	virtual ~Constants();
@@ -138,14 +139,14 @@ public:
 	PIDProfile getUpperLiftProfile();
 	PIDProfile getLowerLiftProfile();
 
-	void incrementTotalItems();
-	void decrementTotalItems();
-	void resetTotalItems();
-
 	void calculateClawItems(int lowerClawPosition,
 							int upperClawPosition,
 							bool lowerClawClosed,
 							bool upperClawClosed);
+
+	void incrementTotalItems();
+	void decrementTotalItems();
+	void resetTotalItems();
 
 	void incrementLowerClawItems();
 	void decrementLowerClawItems();

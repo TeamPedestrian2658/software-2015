@@ -132,85 +132,85 @@ Constants::~Constants() {
 }
 
 void Constants::updatePIDProfiles() {
-	driveProfiles[0].p = _preferences->GetDouble("DriveProfile0P", 0);
-	driveProfiles[0].i = _preferences->GetDouble("DriveProfile0I", 0);
-	driveProfiles[0].d = _preferences->GetDouble("DriveProfile0D", 0);
-	driveProfiles[0].f = _preferences->GetDouble("DriveProfile0F", 0);
+	lowGearDriveProfiles[0].p = _preferences->GetDouble("LowGearDriveProfile0P", 0);
+	lowGearDriveProfiles[0].i = _preferences->GetDouble("LowGearDriveProfile0I", 0);
+	lowGearDriveProfiles[0].d = _preferences->GetDouble("LowGearDriveProfile0D", 0);
+	lowGearDriveProfiles[0].f = _preferences->GetDouble("LowGearDriveProfile0F", 0);
 
-	driveProfiles[1].p = _preferences->GetDouble("DriveProfile1P", 0);
-	driveProfiles[1].i = _preferences->GetDouble("DriveProfile1I", 0);
-	driveProfiles[1].d = _preferences->GetDouble("DriveProfile1D", 0);
-	driveProfiles[1].f = _preferences->GetDouble("DriveProfile1F", 0);
+	lowGearDriveProfiles[1].p = _preferences->GetDouble("LowGearDriveProfile1P", 0);
+	lowGearDriveProfiles[1].i = _preferences->GetDouble("LowGearDriveProfile1I", 0);
+	lowGearDriveProfiles[1].d = _preferences->GetDouble("LowGearDriveProfile1D", 0);
+	lowGearDriveProfiles[1].f = _preferences->GetDouble("LowGearDriveProfile1F", 0);
 
-	driveProfiles[2].p = _preferences->GetDouble("DriveProfile2P", 0);
-	driveProfiles[2].i = _preferences->GetDouble("DriveProfile2I", 0);
-	driveProfiles[2].d = _preferences->GetDouble("DriveProfile2D", 0);
-	driveProfiles[2].f = _preferences->GetDouble("DriveProfile2F", 0);
+	lowGearDriveProfiles[2].p = _preferences->GetDouble("LowGearDriveProfile2P", 0);
+	lowGearDriveProfiles[2].i = _preferences->GetDouble("LowGearDriveProfile2I", 0);
+	lowGearDriveProfiles[2].d = _preferences->GetDouble("LowGearDriveProfile2D", 0);
+	lowGearDriveProfiles[2].f = _preferences->GetDouble("LowGearDriveProfile2F", 0);
 
-	driveProfiles[3].p = _preferences->GetDouble("DriveProfile3P", 0);
-	driveProfiles[3].i = _preferences->GetDouble("DriveProfile3I", 0);
-	driveProfiles[3].d = _preferences->GetDouble("DriveProfile3D", 0);
-	driveProfiles[3].f = _preferences->GetDouble("DriveProfile3F", 0);
+	lowGearDriveProfiles[3].p = _preferences->GetDouble("LowGearDriveProfile3P", 0);
+	lowGearDriveProfiles[3].i = _preferences->GetDouble("LowGearDriveProfile3I", 0);
+	lowGearDriveProfiles[3].d = _preferences->GetDouble("LowGearDriveProfile3D", 0);
+	lowGearDriveProfiles[3].f = _preferences->GetDouble("LowGearDriveProfile3F", 0);
 
-	driveProfiles[4].p = _preferences->GetDouble("DriveProfile4P", 0);
-	driveProfiles[4].i = _preferences->GetDouble("DriveProfile4I", 0);
-	driveProfiles[4].d = _preferences->GetDouble("DriveProfile4D", 0);
-	driveProfiles[4].f = _preferences->GetDouble("DriveProfile4F", 0);
+	lowGearDriveProfiles[4].p = _preferences->GetDouble("LowGearDriveProfile4P", 0);
+	lowGearDriveProfiles[4].i = _preferences->GetDouble("LowGearDriveProfile4I", 0);
+	lowGearDriveProfiles[4].d = _preferences->GetDouble("LowGearDriveProfile4D", 0);
+	lowGearDriveProfiles[4].f = _preferences->GetDouble("LowGearDriveProfile4F", 0);
 
-	driveProfiles[5].p = _preferences->GetDouble("DriveProfile5P", 0);
-	driveProfiles[5].i = _preferences->GetDouble("DriveProfile5I", 0);
-	driveProfiles[5].d = _preferences->GetDouble("DriveProfile5D", 0);
-	driveProfiles[5].f = _preferences->GetDouble("DriveProfile5F", 0);
+	lowGearDriveProfiles[5].p = _preferences->GetDouble("LowGearDriveProfile5P", 0);
+	lowGearDriveProfiles[5].i = _preferences->GetDouble("LowGearDriveProfile5I", 0);
+	lowGearDriveProfiles[5].d = _preferences->GetDouble("LowGearDriveProfile5D", 0);
+	lowGearDriveProfiles[5].f = _preferences->GetDouble("LowGearDriveProfile5F", 0);
 
-	driveProfiles[6].p = _preferences->GetDouble("DriveProfile6P", 0);
-	driveProfiles[6].i = _preferences->GetDouble("DriveProfile6I", 0);
-	driveProfiles[6].d = _preferences->GetDouble("DriveProfile6D", 0);
-	driveProfiles[6].f = _preferences->GetDouble("DriveProfile6F", 0);
+	lowGearDriveProfiles[6].p = _preferences->GetDouble("LowGearDriveProfile6P", 0);
+	lowGearDriveProfiles[6].i = _preferences->GetDouble("LowGearDriveProfile6I", 0);
+	lowGearDriveProfiles[6].d = _preferences->GetDouble("LowGearDriveProfile6D", 0);
+	lowGearDriveProfiles[6].f = _preferences->GetDouble("LowGearDriveProfile6F", 0);
 
-	driveProfiles[7].p = _preferences->GetDouble("DriveProfile7P", 0);
-	driveProfiles[7].i = _preferences->GetDouble("DriveProfile7I", 0);
-	driveProfiles[7].d = _preferences->GetDouble("DriveProfile7D", 0);
-	driveProfiles[7].f = _preferences->GetDouble("DriveProfile7F", 0);
+	lowGearDriveProfiles[7].p = _preferences->GetDouble("LowGearDriveProfile7P", 0);
+	lowGearDriveProfiles[7].i = _preferences->GetDouble("LowGearDriveProfile7I", 0);
+	lowGearDriveProfiles[7].d = _preferences->GetDouble("LowGearDriveProfile7D", 0);
+	lowGearDriveProfiles[7].f = _preferences->GetDouble("LowGearDriveProfile7F", 0);
 
-	driveProfiles[8].p = _preferences->GetDouble("DriveProfile8P", 0);
-	driveProfiles[8].i = _preferences->GetDouble("DriveProfile8I", 0);
-	driveProfiles[8].d = _preferences->GetDouble("DriveProfile8D", 0);
-	driveProfiles[8].f = _preferences->GetDouble("DriveProfile8F", 0);
+	highGearDriveProfiles[0].p = _preferences->GetDouble("HighGearDriveProfile0P", 0);
+	highGearDriveProfiles[0].i = _preferences->GetDouble("HighGearDriveProfile0I", 0);
+	highGearDriveProfiles[0].d = _preferences->GetDouble("HighGearDriveProfile0D", 0);
+	highGearDriveProfiles[0].f = _preferences->GetDouble("HighGearDriveProfile0F", 0);
 
-	driveProfiles[9].p = _preferences->GetDouble("DriveProfile9P", 0);
-	driveProfiles[9].i = _preferences->GetDouble("DriveProfile9I", 0);
-	driveProfiles[9].d = _preferences->GetDouble("DriveProfile9D", 0);
-	driveProfiles[9].f = _preferences->GetDouble("DriveProfile9F", 0);
+	highGearDriveProfiles[1].p = _preferences->GetDouble("HighGearDriveProfile1P", 0);
+	highGearDriveProfiles[1].i = _preferences->GetDouble("HighGearDriveProfile1I", 0);
+	highGearDriveProfiles[1].d = _preferences->GetDouble("HighGearDriveProfile1D", 0);
+	highGearDriveProfiles[1].f = _preferences->GetDouble("HighGearDriveProfile1F", 0);
 
-	driveProfiles[10].p = _preferences->GetDouble("DriveProfile10P", 0);
-	driveProfiles[10].i = _preferences->GetDouble("DriveProfile10I", 0);
-	driveProfiles[10].d = _preferences->GetDouble("DriveProfile10D", 0);
-	driveProfiles[10].f = _preferences->GetDouble("DriveProfile10F", 0);
+	highGearDriveProfiles[2].p = _preferences->GetDouble("HighGearDriveProfile2P", 0);
+	highGearDriveProfiles[2].i = _preferences->GetDouble("HighGearDriveProfile2I", 0);
+	highGearDriveProfiles[2].d = _preferences->GetDouble("HighGearDriveProfile2D", 0);
+	highGearDriveProfiles[2].f = _preferences->GetDouble("HighGearDriveProfile2F", 0);
 
-	driveProfiles[11].p = _preferences->GetDouble("DriveProfile11P", 0);
-	driveProfiles[11].i = _preferences->GetDouble("DriveProfile11I", 0);
-	driveProfiles[11].d = _preferences->GetDouble("DriveProfile11D", 0);
-	driveProfiles[11].f = _preferences->GetDouble("DriveProfile11F", 0);
+	highGearDriveProfiles[3].p = _preferences->GetDouble("HighGearDriveProfile3P", 0);
+	highGearDriveProfiles[3].i = _preferences->GetDouble("HighGearDriveProfile3I", 0);
+	highGearDriveProfiles[3].d = _preferences->GetDouble("HighGearDriveProfile3D", 0);
+	highGearDriveProfiles[3].f = _preferences->GetDouble("HighGearDriveProfile3F", 0);
 
-	driveProfiles[12].p = _preferences->GetDouble("DriveProfile12P", 0);
-	driveProfiles[12].i = _preferences->GetDouble("DriveProfile12I", 0);
-	driveProfiles[12].d = _preferences->GetDouble("DriveProfile12D", 0);
-	driveProfiles[12].f = _preferences->GetDouble("DriveProfile12F", 0);
+	highGearDriveProfiles[4].p = _preferences->GetDouble("HighGearDriveProfile4P", 0);
+	highGearDriveProfiles[4].i = _preferences->GetDouble("HighGearDriveProfile4I", 0);
+	highGearDriveProfiles[4].d = _preferences->GetDouble("HighGearDriveProfile4D", 0);
+	highGearDriveProfiles[4].f = _preferences->GetDouble("HighGearDriveProfile4F", 0);
 
-	driveProfiles[13].p = _preferences->GetDouble("DriveProfile13P", 0);
-	driveProfiles[13].i = _preferences->GetDouble("DriveProfile13I", 0);
-	driveProfiles[13].d = _preferences->GetDouble("DriveProfile13D", 0);
-	driveProfiles[13].f = _preferences->GetDouble("DriveProfile13F", 0);
+	highGearDriveProfiles[5].p = _preferences->GetDouble("HighGearDriveProfile5P", 0);
+	highGearDriveProfiles[5].i = _preferences->GetDouble("HighGearDriveProfile5I", 0);
+	highGearDriveProfiles[5].d = _preferences->GetDouble("HighGearDriveProfile5D", 0);
+	highGearDriveProfiles[5].f = _preferences->GetDouble("HighGearDriveProfile5F", 0);
 
-	driveProfiles[14].p = _preferences->GetDouble("DriveProfile14P", 0);
-	driveProfiles[14].i = _preferences->GetDouble("DriveProfile14I", 0);
-	driveProfiles[14].d = _preferences->GetDouble("DriveProfile14D", 0);
-	driveProfiles[14].f = _preferences->GetDouble("DriveProfile14F", 0);
+	highGearDriveProfiles[6].p = _preferences->GetDouble("HighGearDriveProfile6P", 0);
+	highGearDriveProfiles[6].i = _preferences->GetDouble("HighGearDriveProfile6I", 0);
+	highGearDriveProfiles[6].d = _preferences->GetDouble("HighGearDriveProfile6D", 0);
+	highGearDriveProfiles[6].f = _preferences->GetDouble("HighGearDriveProfile6F", 0);
 
-	driveProfiles[15].p = _preferences->GetDouble("DriveProfile15P", 0);
-	driveProfiles[15].i = _preferences->GetDouble("DriveProfile15I", 0);
-	driveProfiles[15].d = _preferences->GetDouble("DriveProfile15D", 0);
-	driveProfiles[15].f = _preferences->GetDouble("DriveProfile15F", 0);
+	highGearDriveProfiles[7].p = _preferences->GetDouble("HighGearDriveProfile7P", 0);
+	highGearDriveProfiles[7].i = _preferences->GetDouble("HighGearDriveProfile7I", 0);
+	highGearDriveProfiles[7].d = _preferences->GetDouble("HighGearDriveProfile7D", 0);
+	highGearDriveProfiles[7].f = _preferences->GetDouble("HighGearDriveProfile7F", 0);
 
 	upperLiftProfiles[0].p = _preferences->GetDouble("UpperLiftProfiles0P", 0);
 	upperLiftProfiles[0].i = _preferences->GetDouble("UpperLiftProfiles0I", 0);
@@ -296,9 +296,9 @@ void Constants::updatePIDProfiles() {
 
 PIDProfile Constants::getDriveProfile(bool highGear) {
 	if (highGear == shifterStates.highGear) {
-		return driveProfiles[0 + itemCounts.totalItems];
+		return highGearDriveProfiles[itemCounts.totalItems];
 	} else {
-		return driveProfiles[8 + itemCounts.totalItems];
+		return lowGearDriveProfiles[itemCounts.totalItems];
 	}
 }
 
@@ -308,6 +308,26 @@ PIDProfile Constants::getUpperLiftProfile() {
 
 PIDProfile Constants::getLowerLiftProfile() {
 	return lowerLiftProfiles[itemCounts.lowerClawItems];
+}
+
+void Constants::calculateClawItems(int lowerClawPosition,
+								   int upperClawPosition,
+								   bool lowerClawClosed,
+								   bool upperClawClosed) {
+	if (!upperClawClosed) {
+		itemCounts.upperClawItems = 0;
+	} else {
+		itemCounts.upperClawItems = itemCounts.totalItems - upperClawPosition;
+	}
+
+	if (!lowerClawClosed) {
+		itemCounts.lowerClawItems = 0;
+	} else {
+		itemCounts.lowerClawItems = itemCounts.totalItems - lowerClawPosition - itemCounts.upperClawItems;
+	}
+
+	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
+	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::incrementTotalItems() {
@@ -333,26 +353,6 @@ void Constants::resetTotalItems() {
 	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
 	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
-}
-
-void Constants::calculateClawItems(int lowerClawPosition,
-								   int upperClawPosition,
-								   bool lowerClawClosed,
-								   bool upperClawClosed) {
-	if (!upperClawClosed) {
-		itemCounts.upperClawItems = 0;
-	} else {
-		itemCounts.upperClawItems = itemCounts.totalItems - upperClawPosition;
-	}
-
-	if (!lowerClawClosed) {
-		itemCounts.lowerClawItems = 0;
-	} else {
-		itemCounts.lowerClawItems = itemCounts.totalItems - lowerClawPosition - itemCounts.upperClawItems;
-	}
-
-	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
-	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 }
 
 void Constants::incrementLowerClawItems() {
