@@ -70,7 +70,7 @@ Constants::Constants() {
 	operatorAxes.leftX = _preferences->GetInt("OperatorLeftX", 0);
 	operatorAxes.leftY = _preferences->GetInt("OperatorLeftY", 1);
 	operatorAxes.rightX = _preferences->GetInt("OperatorRightX", 2);
-	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 3);
+	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 5);	//Change to 3 later
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
@@ -106,7 +106,19 @@ Constants::Constants() {
 
 	liftConstants.lowerDistancePerPulse = _preferences->GetDouble("LowerLiftDistancePerPulse", 0);
 	liftConstants.upperDistancePerPulse = _preferences->GetDouble("UpperDistancePerPulse", 0);
+
 	//hardcode levels here
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(0,0,"Bottom"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(10,0,"Lvl 1"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(15, 0, "Lvl 1.5"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(20,0,"Lvl 2"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(30,0,"Lvl 3"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(40,0,"Top"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(0,0,"Bottom"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(10,0,"Lvl 1"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(20,0,"Lvl 2"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(30,0,"Lvl 3"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(40,0,"Top"));
 
 	itemCounts.totalItems = 0;
 	itemCounts.lowerClawItems = 0;

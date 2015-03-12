@@ -9,6 +9,8 @@ class ControlLift: public Command
 private:
 	Lift *_lift;
 	OI *_oi;
+	bool _upperReadyForInput;
+	bool _lowerReadyForInput;
 public:
 	ControlLift();
 	void Initialize();

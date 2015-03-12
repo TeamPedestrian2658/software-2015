@@ -68,7 +68,7 @@ bool Lift::upperControllerEnabled() {
 }
 
 void Lift::lowerUpOneLevel() {
-	if (_lowerLevel < _lowerLevels.size()) {
+	if (_lowerLevel < _lowerLevels.size() - 1) {
 		_lowerLevel++;
 	}
 	while (get<0>(_lowerLevels[_lowerLevel]) > get<0>(_upperLevels[_upperLevel])) {
@@ -76,6 +76,7 @@ void Lift::lowerUpOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
@@ -85,6 +86,7 @@ void Lift::lowerDownOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
@@ -92,6 +94,7 @@ void Lift::resetLowerLevel() {
 	_lowerLevel = 0;
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
+	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
 }
 
@@ -100,10 +103,11 @@ int Lift::getLowerLevel() {
 }
 
 void Lift::upperUpOneLevel() {
-	if (_upperLevel < _upperLevels.size()) {
+	if (_upperLevel < _upperLevels.size() - 1) {
 		_upperLevel++;
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 
@@ -115,12 +119,14 @@ void Lift::upperDownOneLevel() {
 		lowerDownOneLevel();
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 
 void Lift::resetUpperLevel() {
 	_upperLevel = 0;
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
+	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
 }
 

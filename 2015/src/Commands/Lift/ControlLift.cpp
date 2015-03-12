@@ -4,6 +4,8 @@ ControlLift::ControlLift()
 {
 	_lift = Robot::lift;
 	_oi = Robot::oi;
+	_upperReadyForInput = true;
+	_lowerReadyForInput = true;
 	Requires(_lift);
 }
 
@@ -18,13 +20,33 @@ void ControlLift::Execute()
 {
 
 	if (_lift->lowerControllerEnabled()) {
-		//implement this
+		if (_lowerReadyForInput) {
+			if (-_oi->getOperatorStickLeftY() >= 0.6) {
+				_lift->lowerUpOneLevel();
+				_lowerReadyForInput = false;
+			} else if (-_oi->getOperatorStickLeftY() <= -0.6){
+				_lift->lowerDownOneLevel();
+				_lowerReadyForInput = false;
+			}
+		} else if (-_oi->getOperatorStickLeftY() < 0.6 && -_oi->getOperatorStickLeftY() > -0.6) {
+			_lowerReadyForInput = true;
+		}
 	} else {
 		_lift->setLowerRaw(_oi->getOperatorStickLeftY());
 	}
 
 	if (_lift->upperControllerEnabled()) {
-		//implement this
+		if (_upperReadyForInput) {
+			if (-_oi->getOperatorStickRightY() >= 0.6) {
+				_lift->upperUpOneLevel();
+				_upperReadyForInput = false;
+			}  else if (-_oi->getOperatorStickRightY() <= -0.6) {
+				_lift->upperDownOneLevel();
+				_upperReadyForInput = false;
+			}
+		} else if (-_oi->getOperatorStickRightY() < 0.6 && -_oi->getOperatorStickRightY() > -0.6) {
+			_upperReadyForInput = true;
+		}
 	} else {
 		_lift->setUpperRaw(_oi->getOperatorStickRightY());
 	}
