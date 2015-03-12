@@ -18,10 +18,8 @@
 #include "Commands/Utilities/ResetLowerClawCount.h"
 #include "Commands/Utilities/IncrementLowerClawCount.h"
 #include "Commands/Utilities/DecrementLowerClawCount.h"
-#include "Commands/Lift/DisableLowerLiftController.h"
-#include "Commands/Lift/EnableLowerLiftController.h"
-#include "Commands/Lift/DisableUpperLiftController.h"
-#include "Commands/Lift/EnableUpperLiftController.h"
+#include "Commands/Lift/ToggleLowerLiftController.h"
+#include "Commands/Lift/ToggleUpperLiftController.h"
 
 OI::OI() {
 
@@ -62,13 +60,11 @@ OI::OI() {
 	decrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountDecrementButton);
 	decrementLowerClawCount->WhenPressed(new DecrementLowerClawCount());
 
-	disableLowerLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.lowerLiftAutomaticDisableButton);
-	disableLowerLiftAutomatic->WhenPressed(new DisableLowerLiftController());
-	disableLowerLiftAutomatic->WhenReleased(new EnableLowerLiftController());
+	toggleLowerLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleLowerLiftAutomaticButton);
+	toggleLowerLiftAutomatic->WhenPressed(new ToggleLowerLiftController());
 
-	disableUpperLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.upperLiftAutomaticDisableButton);
-	disableUpperLiftAutomatic->WhenPressed(new DisableUpperLiftController());
-	disableUpperLiftAutomatic->WhenReleased(new EnableUpperLiftController());
+	toggleUpperLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleUpperLiftAutomaticButton);
+	toggleUpperLiftAutomatic->WhenPressed(new ToggleUpperLiftController());
 }
 
 Joystick* OI::getOperatorStick() {
