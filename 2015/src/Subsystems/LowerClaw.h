@@ -9,6 +9,8 @@ private:
 	Constants *_constants;
 	Solenoid *_leftGrabber;
 	Solenoid *_rightGrabber;
+	bool _leftState;
+	bool _rightState;
 public:
 	LowerClaw();
 	void InitDefaultCommand();

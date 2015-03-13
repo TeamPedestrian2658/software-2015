@@ -9,15 +9,12 @@
 #include "Commands/Drivetrain/ToggleEnhancedDriving.h"
 #include "Commands/Drivetrain/EnableSlow.h"
 #include "Commands/Drivetrain/DisableSlow.h"
-#include "Commands/UpperClaw/UpperClawGrab.h"
-#include "Commands/UpperClaw/UpperClawRelease.h"
-#include "Commands/LowerClaw/LowerClawGrabLeft.h"
-#include "Commands/LowerClaw/LowerClawGrabRight.h"
-#include "Commands/LowerClaw/LowerClawReleaseLeft.h"
-#include "Commands/LowerClaw/LowerClawReleaseRight.h"
-#include "Commands/Utilities/ResetLowerClawCount.h"
-#include "Commands/Utilities/IncrementLowerClawCount.h"
-#include "Commands/Utilities/DecrementLowerClawCount.h"
+#include "Commands/LowerClaw/LowerClawToggleGrab.h"
+#include "Commands/LowerClaw/LowerClawToggleGrabLeft.h"
+#include "Commands/LowerClaw/LowerClawToggleGrabRight.h"
+#include "Commands/UpperClaw/UpperClawToggleGrab.h"
+#include "Commands/UpperClaw/UpperClawToggleGrabLeft.h"
+#include "Commands/UpperClaw/UpperClawToggleGrabRight.h"
 #include "Commands/Lift/ToggleLowerLiftController.h"
 #include "Commands/Lift/ToggleUpperLiftController.h"
 
@@ -39,26 +36,23 @@ OI::OI() {
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
 
-	lowerClawGrabLeft = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawGrabLeftButton);
-	lowerClawGrabLeft->WhenPressed(new LowerClawGrabLeft());
+	lowerClawToggleGrab = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawToggleGrabButton);
+	lowerClawToggleGrab->WhenPressed(new LowerClawToggleGrab());
 
-	lowerClawGrabRight = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawGrabRightButton);
-	lowerClawGrabRight->WhenPressed(new LowerClawGrabRight());
+	lowerClawToggleGrabLeft = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawToggleGrabLeftButton);
+	lowerClawToggleGrabLeft->WhenPressed(new LowerClawToggleGrabLeft());
 
-	lowerClawReleaseLeft = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawReleaseLeftButton);
-	lowerClawReleaseLeft->WhenPressed(new LowerClawReleaseLeft());
+	lowerClawToggleGrabRight = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawToggleGrabRightButton);
+	lowerClawToggleGrabRight->WhenPressed(new LowerClawToggleGrabRight());
 
-	lowerClawReleaseRight = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawReleaseRightButton);
-	lowerClawReleaseRight->WhenPressed(new LowerClawReleaseRight());
+	upperClawToggleGrab = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabButton);
+	upperClawToggleGrab->WhenPressed(new UpperClawToggleGrab());
 
-	resetLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountResetButton);
-	resetLowerClawCount->WhenPressed(new ResetLowerClawCount());
+	upperClawToggleGrabLeft = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabLeftButton);
+	upperClawToggleGrabLeft->WhenPressed(new UpperClawToggleGrabLeft());
 
-	incrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountIncrementButton);
-	incrementLowerClawCount->WhenPressed(new IncrementLowerClawCount());
-
-	decrementLowerClawCount = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawItemCountDecrementButton);
-	decrementLowerClawCount->WhenPressed(new DecrementLowerClawCount());
+	upperClawToggleGrabRight = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabRightButton);
+	upperClawToggleGrabRight->WhenPressed(new UpperClawToggleGrabRight());
 
 	toggleLowerLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleLowerLiftAutomaticButton);
 	toggleLowerLiftAutomatic->WhenPressed(new ToggleLowerLiftController());

@@ -17,14 +17,13 @@ private:
 	JoystickButton* driveEnhance;
 	JoystickButton* driveSlow;
 
-	JoystickButton *lowerClawGrabLeft;
-	JoystickButton *lowerClawGrabRight;
-	JoystickButton *lowerClawReleaseLeft;
-	JoystickButton *lowerClawReleaseRight;
+	JoystickButton *lowerClawToggleGrab;
+	JoystickButton *lowerClawToggleGrabLeft;
+	JoystickButton *lowerClawToggleGrabRight;
 
-	JoystickButton *resetLowerClawCount;
-	JoystickButton *incrementLowerClawCount;
-	JoystickButton *decrementLowerClawCount;
+	JoystickButton *upperClawToggleGrab;
+	JoystickButton *upperClawToggleGrabLeft;
+	JoystickButton *upperClawToggleGrabRight;
 
 	JoystickButton *toggleLowerLiftAutomatic;
 	JoystickButton *toggleUpperLiftAutomatic;

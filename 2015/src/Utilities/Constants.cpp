@@ -52,13 +52,12 @@ Constants::Constants() {
 	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
 
-	operatorButtons.lowerClawGrabLeftButton = _preferences->GetInt("LowerClawGrabLeftButton", 5);
-	operatorButtons.lowerClawGrabRightButton = _preferences->GetInt("LowerClawGrabRightButton", 6);
-	operatorButtons.lowerClawReleaseLeftButton = _preferences->GetInt("LowerClawReleaseLeftButton", 7);
-	operatorButtons.lowerClawReleaseRightButton = _preferences->GetInt("LowerClawReleaseRightButton", 8);
-	operatorButtons.lowerClawItemCountResetButton = _preferences->GetInt("LowerClawItemCountResetButton", 4);
-	operatorButtons.lowerClawItemCountIncrementButton = _preferences->GetInt("LowerClawItemCountIncrementButton", 3);
-	operatorButtons.lowerClawItemCountDecrementButton = _preferences->GetInt("LowerClawItemCountDecrementButton", 1);
+	operatorButtons.lowerClawToggleGrabButton = _preferences->GetInt("LowerClawToggleGrabButton", 5);
+	operatorButtons.lowerClawToggleGrabLeftButton = _preferences->GetInt("LowerClawToggleGrabLeftButton", 3);
+	operatorButtons.lowerClawToggleGrabRightButton = _preferences->GetInt("LowerClawToggleGrabRightButton", 4);
+	operatorButtons.upperClawToggleGrabButton = _preferences->GetInt("UpperClawToggleGrabButton", 6);
+	operatorButtons.upperClawToggleGrabLeftButton = _preferences->GetInt("UpperClawToggleGrabLeftButton", 1);
+	operatorButtons.upperClawToggleGrabRightButton = _preferences->GetInt("UpperClawToggleGrabRightButton", 2);
 	operatorButtons.toggleLowerLiftAutomaticButton = _preferences->GetInt("ToggleLowerLiftAutomaticButton", 9);
 	operatorButtons.toggleUpperLiftAutomaticButton = _preferences->GetInt("ToggleUpperLiftAutomaticButton", 10);
 

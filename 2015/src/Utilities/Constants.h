@@ -71,13 +71,12 @@ public:
 		int toggleEnhancedDriveButton;
 	} driverButtons;
 	struct OperatorButtons {
-		int lowerClawGrabLeftButton;
-		int lowerClawGrabRightButton;
-		int lowerClawReleaseLeftButton;
-		int lowerClawReleaseRightButton;
-		int lowerClawItemCountResetButton;
-		int lowerClawItemCountIncrementButton;
-		int lowerClawItemCountDecrementButton;
+		int lowerClawToggleGrabButton;
+		int lowerClawToggleGrabLeftButton;
+		int lowerClawToggleGrabRightButton;
+		int upperClawToggleGrabButton;
+		int upperClawToggleGrabLeftButton;
+		int upperClawToggleGrabRightButton;
 		int toggleLowerLiftAutomaticButton;
 		int toggleUpperLiftAutomaticButton;
 	} operatorButtons;
