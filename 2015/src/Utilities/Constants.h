@@ -69,6 +69,9 @@ public:
 		int shiftButton;
 		int slowButton;
 		int toggleEnhancedDriveButton;
+		int incrementTotalItemCountButton;
+		int decrementTotalItemCountButton;
+		int resetTotalItemCountButton;
 	} driverButtons;
 	struct OperatorButtons {
 		int lowerClawToggleGrabButton;
@@ -134,7 +137,7 @@ public:
 	virtual ~Constants();
 
 	void updatePIDProfiles();
-	PIDProfile getDriveProfile(bool highGear);
+	PIDProfile getDriveProfile(bool shifterState);
 	PIDProfile getUpperLiftProfile();
 	PIDProfile getLowerLiftProfile();
 

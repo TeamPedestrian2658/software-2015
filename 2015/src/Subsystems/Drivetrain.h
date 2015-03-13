@@ -27,7 +27,7 @@ private:
 
 	bool _enhanceEnabled;
 	bool _slowEnabled;
-	bool _highGear;
+	bool _shifterState;
 
 public:
 	Drivetrain();

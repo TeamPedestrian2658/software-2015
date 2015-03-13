@@ -9,6 +9,9 @@
 #include "Commands/Drivetrain/ToggleEnhancedDriving.h"
 #include "Commands/Drivetrain/EnableSlow.h"
 #include "Commands/Drivetrain/DisableSlow.h"
+#include "Commands/Utilities/IncrementTotalCount.h"
+#include "Commands/Utilities/DecrementTotalCount.h"
+#include "Commands/Utilities/ResetTotalCount.h"
 #include "Commands/LowerClaw/LowerClawToggleGrab.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabLeft.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabRight.h"
@@ -35,6 +38,15 @@ OI::OI() {
 	driveSlow = new JoystickButton(driverStick, constants->driverButtons.slowButton);
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
+
+	incrementTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.incrementTotalItemCountButton);
+	incrementTotalItemCount->WhenPressed(new IncrementTotalCount());
+
+	decrementTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.decrementTotalItemCountButton);
+	decrementTotalItemCount->WhenPressed(new DecrementTotalCount());
+
+	resetTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.resetTotalItemCountButton);
+	resetTotalItemCount->WhenPressed(new ResetTotalCount());
 
 	lowerClawToggleGrab = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawToggleGrabButton);
 	lowerClawToggleGrab->WhenPressed(new LowerClawToggleGrab());

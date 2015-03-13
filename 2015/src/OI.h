@@ -10,12 +10,16 @@ private:
 
 	Constants *constants;
 
-	Joystick* operatorStick;
-	Joystick* driverStick;
+	Joystick *operatorStick;
+	Joystick *driverStick;
 
-	JoystickButton* driveShifter;
-	JoystickButton* driveEnhance;
-	JoystickButton* driveSlow;
+	JoystickButton *driveShifter;
+	JoystickButton *driveEnhance;
+	JoystickButton *driveSlow;
+
+	JoystickButton *incrementTotalItemCount;
+	JoystickButton *decrementTotalItemCount;
+	JoystickButton *resetTotalItemCount;
 
 	JoystickButton *lowerClawToggleGrab;
 	JoystickButton *lowerClawToggleGrabLeft;

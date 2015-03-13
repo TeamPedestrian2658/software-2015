@@ -45,20 +45,20 @@ void Drivetrain::InitDefaultCommand() {
 
 void Drivetrain::shiftHigh() {
 	_shifter->Set(_constants->shifterStates.highGear);
-	_highGear = _constants->shifterStates.highGear;
+	_shifterState = _constants->shifterStates.highGear;
 	updatePIDCoefficients();
 	SmartDashboard::PutString("Gear", "HIGH");
 }
 
 void Drivetrain::shiftLow() {
 	_shifter->Set(_constants->shifterStates.lowGear);
-	_highGear = _constants->shifterStates.lowGear;
+	_shifterState = _constants->shifterStates.lowGear;
 	updatePIDCoefficients();
 	SmartDashboard::PutString("Gear", "LOW");
 }
 
 bool Drivetrain::isHighGear() {
-	return (_shifter->Get() == _constants->shifterStates.highGear);
+	return (_shifterState == _constants->shifterStates.highGear);
 }
 
 void Drivetrain::set(double leftVelocity, double rightVelocity) {
@@ -115,7 +115,7 @@ bool Drivetrain::slowEnabled() {
 }
 
 void Drivetrain::updatePIDCoefficients() {
-	_profile = _constants->getDriveProfile(_highGear);
+	_profile = _constants->getDriveProfile(_shifterState);
 	_controllerLeft->SetPID(-_profile.p, -_profile.i, -_profile.d, -_profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
