@@ -11,6 +11,7 @@
 
 
 AutoScriptRunner::AutoScriptRunner() {
+	_constants = RobotMap::constants;
 	_selectedFile = "";
 	_group = new CommandGroup();
 }
@@ -32,10 +33,17 @@ vector<string> AutoScriptRunner::splitString(string &str, string regexStr) {
 }
 
 void AutoScriptRunner::executeFile(string filename) {
-	_selectedFile = filename;
+	_selectedFile = _constants->autonomousConstants.autoScriptsDirectory + "/" + filename;
 	cout << _selectedFile << endl;
+
 	ifstream stream(_selectedFile.c_str());
 	string line;
+	if (!stream) {
+		cout << "ERR BAD FILE" << endl;
+	}
+
+	CommandGroup *group = new CommandGroup();
+
 	while (getline(stream, line)) {
 		cout << "GOT: ";
 		vector<string> args = splitString(line);
@@ -43,22 +51,23 @@ void AutoScriptRunner::executeFile(string filename) {
 			cout << "SEQUENTIAL ";
 			if (args[1] == "SHIFTHIGH") {
 				cout << "SHIFTHIGH" << endl;
-				_group->AddSequential(new ShiftHigh());
+				group->AddSequential(new ShiftHigh());
 			} else if (args[1] == "SHIFTLOW") {
 				cout << "SHIFTLOW" << endl;
-				_group->AddSequential(new ShiftLow());
+				group->AddSequential(new ShiftLow());
 			}
 		} else {
 			cout << "PARALLEL ";
 			if (args[1] == "SHIFTHIGH") {
 				cout << "SHIFTHIGH" << endl;
-				_group->AddParallel(new ShiftHigh());
+				group->AddParallel(new ShiftHigh());
 			} else if (args[1] == "SHIFTLOW") {
 				cout << "SHIFTLOW" << endl;
-				_group->AddParallel(new ShiftLow());
+				group->AddParallel(new ShiftLow());
 			}
 		}
 	}
+	_group = group;
 	_group->Start();
 }
 

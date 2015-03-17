@@ -9,16 +9,17 @@
 #define SRC_UTILITIES_AUTOSCRIPTRUNNER_H_
 
 #include <string>
-#include <map>
-#include <tuple>
 #include <fstream>
 #include <regex>
 #include "WPILib.h"
+#include "Constants.h"
+#include "../RobotMap.h"
 
 using namespace std;
 
 class AutoScriptRunner {
 private:
+	Constants *_constants;
 	string _selectedFile;
 	CommandGroup *_group;
 
