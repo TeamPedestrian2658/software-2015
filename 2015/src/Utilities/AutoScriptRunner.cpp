@@ -39,7 +39,7 @@ void AutoScriptRunner::executeFile(string filename) {
 	ifstream stream(_selectedFile.c_str());
 	string line;
 	if (!stream) {
-		cout << "ERR BAD FILE" << endl;
+		cout << "ERROR BAD FILE" << endl;
 	}
 
 	CommandGroup *group = new CommandGroup();
@@ -47,6 +47,9 @@ void AutoScriptRunner::executeFile(string filename) {
 	while (getline(stream, line)) {
 		cout << "GOT: ";
 		vector<string> args = splitString(line);
+		if (args.size() < 2) {
+			cout << "NOT ENOUGH ARGUMENTS" << endl;
+		}
 		if (args[0] == "S") {
 			cout << "SEQUENTIAL ";
 			if (args[1] == "SHIFTHIGH") {
@@ -55,8 +58,23 @@ void AutoScriptRunner::executeFile(string filename) {
 			} else if (args[1] == "SHIFTLOW") {
 				cout << "SHIFTLOW" << endl;
 				group->AddSequential(new ShiftLow());
+			} else if (args[1] == "DRIVESCURVE") {
+				if (args.size() < 7) {
+					cout << "NOT ENOUGH ARGUMENTS" << endl;
+				} else {
+					cout << "DRIVESCURVE ";
+					for (unsigned int i = 2;i < args.size();i++) {
+						cout << args[i] << " ";
+					}
+					cout << endl;
+					group->AddSequential(new DriveSCurve(stod(args[2]),
+														 stod(args[3]),
+														 stod(args[4]),
+														 stod(args[5]),
+														 stod(args[6])));
+				}
 			}
-		} else {
+		} else if (args[0] == "P") {
 			cout << "PARALLEL ";
 			if (args[1] == "SHIFTHIGH") {
 				cout << "SHIFTHIGH" << endl;
@@ -65,6 +83,8 @@ void AutoScriptRunner::executeFile(string filename) {
 				cout << "SHIFTLOW" << endl;
 				group->AddParallel(new ShiftLow());
 			}
+		} else {
+			cout << "UNKNOWN SEQUENTIAL/PARALLEL" << endl;
 		}
 	}
 	_group = group;
