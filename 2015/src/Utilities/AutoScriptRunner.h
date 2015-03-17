@@ -11,6 +11,8 @@
 #include <string>
 #include <map>
 #include <tuple>
+#include <fstream>
+#include <regex>
 #include "WPILib.h"
 
 using namespace std;
@@ -18,16 +20,15 @@ using namespace std;
 class AutoScriptRunner {
 private:
 	string _selectedFile;
-	map<string, tuple<Command*, int>> _registry;
 	CommandGroup *_group;
-	void parseFile();
-	void initCommandGroup();
+
+	vector<string> splitString(string &str, string regexStr = "\\s+");
 public:
 	AutoScriptRunner();
 	virtual ~AutoScriptRunner();
 
 	void executeFile(string filename);
-	void registerCommand(string name, Command *command, int args);
+	void stop();
 };
 
 #endif /* SRC_UTILITIES_AUTOSCRIPTRUNNER_H_ */

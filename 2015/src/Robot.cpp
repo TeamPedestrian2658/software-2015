@@ -6,7 +6,7 @@ LowerClaw* Robot::lowerClaw = 0;
 Lift* Robot::lift = 0;
 PowerDistributionPanelMonitor *Robot::monitor = 0;
 OI* Robot::oi = 0;
-//AutoScriptSelector* Robot::selector = 0;
+AutonomousController* Robot::autoController = 0;
 
 void Robot::RobotInit() {
 	RobotMap::init();
@@ -16,7 +16,7 @@ void Robot::RobotInit() {
 	lift = new Lift();
 	monitor = new PowerDistributionPanelMonitor();
 	oi = new OI();
-	//selector = new AutoScriptSelector("/home/lvuser/scripts");
+	autoController = new AutonomousController();
 	liveWindow = LiveWindow::GetInstance();
 }
 
@@ -33,6 +33,7 @@ void Robot::AutonomousInit() {
 	if (!monitor->IsRunning()) {
 		monitor->Start();
 	}
+	autoController->run();
 }
 
 void Robot::AutonomousPeriodic() {
@@ -43,6 +44,7 @@ void Robot::TeleopInit() {
 	if (!monitor->IsRunning()) {
 		monitor->Start();
 	}
+	autoController->stop();
 }
 
 void Robot::TeleopPeriodic() {

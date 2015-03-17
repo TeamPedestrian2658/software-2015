@@ -18,7 +18,10 @@ AutonomousController::~AutonomousController() {
 	// TODO Auto-generated destructor stub
 }
 
-void AutonomousController::Run() {
+void AutonomousController::run() {
 	_runner->executeFile(_selector->getSelectedFileName());
 }
 
+void AutonomousController::stop() {
+	_runner->stop();
+}

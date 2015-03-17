@@ -24,7 +24,8 @@ public:
 	AutonomousController();
 	virtual ~AutonomousController();
 
-	void Run();
+	void run();
+	void stop();
 };
 
 #endif /* SRC_UTILITIES_AUTONOMOUSCONTROLLER_H_ */

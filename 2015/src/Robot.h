@@ -13,7 +13,7 @@
 
 #include "OI.h"
 
-#include "Utilities/AutoScriptSelector.h"
+#include "Utilities/AutonomousController.h"
 #include "Utilities/Constants.h"
 
 #include "Commands/Utilities/PowerDistributionPanelMonitor.h"
@@ -30,7 +30,7 @@ public:
 	static LowerClaw* lowerClaw;
 	static Lift* lift;
 	static PowerDistributionPanelMonitor *monitor;
-	//static AutoScriptSelector* selector;
+	static AutonomousController* autoController;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();
