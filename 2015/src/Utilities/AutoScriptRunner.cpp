@@ -32,6 +32,7 @@
 #include "../Commands/Utilities/IncrementTotalCount.h"
 #include "../Commands/Utilities/DecrementTotalCount.h"
 #include "../Commands/Utilities/ResetTotalCount.h"
+#include "../Commands/Utilities/Delay.h"
 
 AutoScriptRunner::AutoScriptRunner() {
 	_constants = RobotMap::constants;
@@ -174,6 +175,13 @@ void AutoScriptRunner::executeFile(string filename) {
 				} else if (args[1] == "RESETCOUNT") {
 					cout << args[1] << endl;
 					group->AddSequential(new ResetTotalCount());
+				} else if (args[1] == "DELAY") {
+					if (args.size() < 3) {
+						cout << "NOT ENOUGH ARGUMENTS" << endl;
+					} else {
+						cout << args[1] << " " << args[2] << endl;
+						group->AddSequential(new Delay(stod(args[2])));
+					}
 				} else {
 					cout << "UNKNOWN COMMAND" << endl;
 				}
@@ -278,6 +286,13 @@ void AutoScriptRunner::executeFile(string filename) {
 				} else if (args[1] == "RESETCOUNT") {
 					cout << args[1] << endl;
 					group->AddParallel(new ResetTotalCount());
+				} else if (args[1] == "DELAY") {
+					if (args.size() < 3) {
+						cout << "NOT ENOUGH ARGUMENTS" << endl;
+					} else {
+						cout << args[1] << " " << args[2] << endl;
+						group->AddParallel(new Delay(stod(args[2])));
+					}
 				} else {
 					cout << "UNKNOWN COMMAND" << endl;
 				}
