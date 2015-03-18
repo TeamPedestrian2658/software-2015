@@ -136,6 +136,10 @@ Constants::Constants() {
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 
+	SmartDashboard::PutNumber("Voltage", 0);
+	SmartDashboard::PutNumber("Current", 0);
+	SmartDashboard::PutNumber("Power", 0);
+
 	if (debug) {
 		SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
 		SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);

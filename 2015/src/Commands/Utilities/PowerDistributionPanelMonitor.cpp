@@ -14,7 +14,7 @@ void PowerDistributionPanelMonitor::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void PowerDistributionPanelMonitor::Execute()
 {
-	SmartDashboard::PutNumber("Total Current", panel->GetTotalCurrent());
+	SmartDashboard::PutNumber("Current", panel->GetTotalCurrent());
 	SmartDashboard::PutNumber("Voltage", panel->GetVoltage());
 	SmartDashboard::PutNumber("Power", panel->GetTotalPower());
 }

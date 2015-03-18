@@ -37,6 +37,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	SmartDashboard::PutString("Gear", "LOW");
 
 	if (_constants->debug) {
+		SmartDashboard::PutNumber("Left Setpoint", 0);
+		SmartDashboard::PutNumber("Right Setpoint", 0);
 		SmartDashboard::PutNumber("Left Velocity", 0);
 		SmartDashboard::PutNumber("Right Velocity", 0);
 	}
