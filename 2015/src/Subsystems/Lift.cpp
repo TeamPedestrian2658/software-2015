@@ -22,6 +22,11 @@ Lift::Lift() : Subsystem("Lift") {
 
 	updatePIDCoefficients();
 
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Lower Height", 0);
+		SmartDashboard::PutNumber("Upper Height", 0);
+	}
+
 	resetLowerLevel();
 	resetUpperLevel();
 
@@ -76,8 +81,11 @@ void Lift::lowerUpOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+	}
 }
 
 void Lift::lowerDownOneLevel() {
@@ -86,16 +94,22 @@ void Lift::lowerDownOneLevel() {
 	}
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+	}
 }
 
 void Lift::resetLowerLevel() {
 	_lowerLevel = 0;
 	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
 	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
 	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+	}
 }
 
 int Lift::getLowerLevel() {
@@ -107,8 +121,11 @@ void Lift::upperUpOneLevel() {
 		_upperLevel++;
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
+	}
 }
 
 void Lift::upperDownOneLevel() {
@@ -119,15 +136,21 @@ void Lift::upperDownOneLevel() {
 		lowerDownOneLevel();
 	}
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
+	}
 }
 
 void Lift::resetUpperLevel() {
 	_upperLevel = 0;
 	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
 	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
+	}
 }
 
 int Lift::getUpperLevel() {
@@ -201,6 +224,23 @@ void Lift::updatePIDCoefficients() {
 			   	   	   	   	 _upperProfile.i,
 							 _upperProfile.d,
 							 _upperProfile.f);
+
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Lower Left P", _lowerLeftController->GetP());
+		SmartDashboard::PutNumber("Lower Left I", _lowerLeftController->GetI());
+		SmartDashboard::PutNumber("Lower Left D", _lowerLeftController->GetD());
+		SmartDashboard::PutNumber("Lower Left F", _lowerLeftController->GetF());
+
+		SmartDashboard::PutNumber("Lower Right P", _lowerRightController->GetP());
+		SmartDashboard::PutNumber("Lower Right I", _lowerRightController->GetI());
+		SmartDashboard::PutNumber("Lower Right D", _lowerRightController->GetD());
+		SmartDashboard::PutNumber("Lower Right F", _lowerRightController->GetF());
+
+		SmartDashboard::PutNumber("Upper P", _upperController->GetP());
+		SmartDashboard::PutNumber("Upper I", _upperController->GetI());
+		SmartDashboard::PutNumber("Upper D", _upperController->GetD());
+		SmartDashboard::PutNumber("Upper F", _upperController->GetF());
+	}
 }
 
 PIDProfile Lift::getLowerPIDCoefficients() {

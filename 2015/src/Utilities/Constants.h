@@ -24,6 +24,7 @@ class Constants {
 public:
 	Constants();
 	Preferences *_preferences;
+	bool debug;
 	struct AutonomousConstants {
 		string autoScriptsDirectory;
 	} autonomousConstants;

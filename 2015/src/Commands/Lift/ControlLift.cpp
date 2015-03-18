@@ -42,6 +42,11 @@ void ControlLift::Execute()
 				_upperReadyForInput = false;
 			}  else if (-_oi->getOperatorStickRightY() <= -0.6) {
 				_lift->upperDownOneLevel();
+				RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
+														Robot::lift->getUpperPossessionLevel(),
+														Robot::lowerClaw->isClawClosed(),
+														Robot::upperClaw->isClawClosed());
+				Robot::lift->updatePIDCoefficients();
 				_upperReadyForInput = false;
 			}
 		} else if (-_oi->getOperatorStickRightY() < 0.6 && -_oi->getOperatorStickRightY() > -0.6) {
@@ -49,6 +54,11 @@ void ControlLift::Execute()
 		}
 	} else {
 		_lift->setUpperRaw(_oi->getOperatorStickRightY());
+	}
+
+	if (RobotMap::constants->debug) {
+		SmartDashboard::PutNumber("Lower Height", _lift->getLowerAverageHeight());
+		SmartDashboard::PutNumber("Upper Height", _lift->getUpperHeight());
 	}
 }
 

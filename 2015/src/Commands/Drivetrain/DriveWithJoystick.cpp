@@ -92,8 +92,10 @@ void DriveWithJoystick::Execute()
 		}
 	}
 
-	SmartDashboard::PutNumber("Left Velocity", RobotMap::driveEncoderLeft->GetRate());
-	SmartDashboard::PutNumber("Right Velocity", RobotMap::driveEncoderRight->GetRate());
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Left Velocity", RobotMap::driveEncoderLeft->GetRate());
+		SmartDashboard::PutNumber("Right Velocity", RobotMap::driveEncoderRight->GetRate());
+	}
 
 	if (_drivetrain->rumbleEnabled()) {
 		double leftOutput = RobotMap::driveTalonLeft->Get();

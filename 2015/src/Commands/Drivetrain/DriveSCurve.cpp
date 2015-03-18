@@ -119,8 +119,10 @@ void DriveSCurve::Execute()
 		_timer->Stop();
 	}
 
-	SmartDashboard::PutNumber("Left Velocity", RobotMap::driveEncoderLeft->GetRate());
-	SmartDashboard::PutNumber("Right Velocity", RobotMap::driveEncoderRight->GetRate());
+	if (RobotMap::constants->debug) {
+		SmartDashboard::PutNumber("Left Velocity", RobotMap::driveEncoderLeft->GetRate());
+		SmartDashboard::PutNumber("Right Velocity", RobotMap::driveEncoderRight->GetRate());
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

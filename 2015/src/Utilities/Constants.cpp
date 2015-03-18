@@ -13,6 +13,8 @@
 Constants::Constants() {
 	_preferences = Preferences::GetInstance();
 
+	debug = _preferences->GetBoolean("Debug", true);
+
 	autonomousConstants.autoScriptsDirectory = _preferences->GetString("AutoScriptDirectory", "/home/lvuser/scripts");
 
 	drivePorts.talonLeftPort = _preferences->GetInt("DriveTalonLeftPort", 3);
@@ -56,13 +58,13 @@ Constants::Constants() {
 	driverButtons.resetTotalItemCountButton = _preferences->GetInt("ResetTotalItemCountButton", 9);
 
 	operatorButtons.lowerClawToggleGrabButton = _preferences->GetInt("LowerClawToggleGrabButton", 5);
-	operatorButtons.lowerClawToggleGrabLeftButton = _preferences->GetInt("LowerClawToggleGrabLeftButton", 3);
-	operatorButtons.lowerClawToggleGrabRightButton = _preferences->GetInt("LowerClawToggleGrabRightButton", 4);
+	operatorButtons.lowerClawToggleGrabLeftButton = _preferences->GetInt("LowerClawToggleGrabLeftButton", 7);
+	operatorButtons.lowerClawToggleGrabRightButton = _preferences->GetInt("LowerClawToggleGrabRightButton", 8);
 	operatorButtons.upperClawToggleGrabButton = _preferences->GetInt("UpperClawToggleGrabButton", 6);
 	operatorButtons.upperClawToggleGrabLeftButton = _preferences->GetInt("UpperClawToggleGrabLeftButton", 1);
-	operatorButtons.upperClawToggleGrabRightButton = _preferences->GetInt("UpperClawToggleGrabRightButton", 2);
-	operatorButtons.toggleLowerLiftAutomaticButton = _preferences->GetInt("ToggleLowerLiftAutomaticButton", 9);
-	operatorButtons.toggleUpperLiftAutomaticButton = _preferences->GetInt("ToggleUpperLiftAutomaticButton", 10);
+	operatorButtons.upperClawToggleGrabRightButton = _preferences->GetInt("UpperClawToggleGrabRightButton", 3);
+	operatorButtons.toggleLowerLiftAutomaticButton = _preferences->GetInt("ToggleLowerLiftAutomaticButton", 11);
+	operatorButtons.toggleUpperLiftAutomaticButton = _preferences->GetInt("ToggleUpperLiftAutomaticButton", 12);
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);
@@ -72,7 +74,7 @@ Constants::Constants() {
 	operatorAxes.leftX = _preferences->GetInt("OperatorLeftX", 0);
 	operatorAxes.leftY = _preferences->GetInt("OperatorLeftY", 1);
 	operatorAxes.rightX = _preferences->GetInt("OperatorRightX", 2);
-	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 5);
+	operatorAxes.rightY = _preferences->GetInt("OperatorRightY", 3);
 
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
@@ -110,17 +112,14 @@ Constants::Constants() {
 	liftConstants.upperDistancePerPulse = _preferences->GetDouble("UpperDistancePerPulse", 0);
 
 	//hardcode levels here
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(0,0,"Bottom"));
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(10,0,"Lvl 1"));
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(15, 0, "Lvl 1.5"));
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(20,0,"Lvl 2"));
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(30,0,"Lvl 3"));
-	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(40,0,"Top"));
-	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(0,0,"Bottom"));
-	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(10,0,"Lvl 1"));
-	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(20,0,"Lvl 2"));
-	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(30,0,"Lvl 3"));
-	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(40,0,"Top"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(0,0,"Lvl 0"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(10,1,"Lvl 1"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(20,2,"Lvl 2"));
+	liftConstants.lowerLiftLevels.push_back(tuple<double, int, string>(30,3,"Lvl 3"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(0,1,"Lvl 1"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(10,2,"Lvl 2"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(20,3,"Lvl 3"));
+	liftConstants.upperLiftLevels.push_back(tuple<double, int, string>(30,4,"Lvl 4"));
 
 	itemCounts.totalItems = 0;
 	itemCounts.lowerClawItems = 0;
@@ -131,16 +130,16 @@ Constants::Constants() {
 
 	updatePIDProfiles();
 
-	SmartDashboard::PutData("CompressorOn", new CompressorOn());
-	SmartDashboard::PutData("CompressorOff", new CompressorOff());
 	SmartDashboard::PutString("Compressor", "ON");
 
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
 	SmartDashboard::PutNumber("Lower Claw Items", itemCounts.lowerClawItems);
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
 
-	SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
-	SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+	if (debug) {
+		SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
+		SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+	}
 }
 
 Constants::~Constants() {
@@ -233,80 +232,80 @@ void Constants::updatePIDProfiles() {
 	upperLiftProfiles[0].d = _preferences->GetDouble("UpperLiftProfiles0D", 0);
 	upperLiftProfiles[0].f = _preferences->GetDouble("UpperLiftProfiles0F", 0);
 
-	upperLiftProfiles[1].p = _preferences->GetDouble("UpperLiftProfiles1P", 0);
-	upperLiftProfiles[1].i = _preferences->GetDouble("UpperLiftProfiles1I", 0);
-	upperLiftProfiles[1].d = _preferences->GetDouble("UpperLiftProfiles1D", 0);
-	upperLiftProfiles[1].f = _preferences->GetDouble("UpperLiftProfiles1F", 0);
+	upperLiftProfiles[1].p = _preferences->GetDouble("UpperLiftProfiles1P", 1);
+	upperLiftProfiles[1].i = _preferences->GetDouble("UpperLiftProfiles1I", 1);
+	upperLiftProfiles[1].d = _preferences->GetDouble("UpperLiftProfiles1D", 1);
+	upperLiftProfiles[1].f = _preferences->GetDouble("UpperLiftProfiles1F", 1);
 
-	upperLiftProfiles[2].p = _preferences->GetDouble("UpperLiftProfiles2P", 0);
-	upperLiftProfiles[2].i = _preferences->GetDouble("UpperLiftProfiles2I", 0);
-	upperLiftProfiles[2].d = _preferences->GetDouble("UpperLiftProfiles2D", 0);
-	upperLiftProfiles[2].f = _preferences->GetDouble("UpperLiftProfiles2F", 0);
+	upperLiftProfiles[2].p = _preferences->GetDouble("UpperLiftProfiles2P", 2);
+	upperLiftProfiles[2].i = _preferences->GetDouble("UpperLiftProfiles2I", 2);
+	upperLiftProfiles[2].d = _preferences->GetDouble("UpperLiftProfiles2D", 2);
+	upperLiftProfiles[2].f = _preferences->GetDouble("UpperLiftProfiles2F", 2);
 
-	upperLiftProfiles[3].p = _preferences->GetDouble("UpperLiftProfiles3P", 0);
-	upperLiftProfiles[3].i = _preferences->GetDouble("UpperLiftProfiles3I", 0);
-	upperLiftProfiles[3].d = _preferences->GetDouble("UpperLiftProfiles3D", 0);
-	upperLiftProfiles[3].f = _preferences->GetDouble("UpperLiftProfiles3F", 0);
+	upperLiftProfiles[3].p = _preferences->GetDouble("UpperLiftProfiles3P", 3);
+	upperLiftProfiles[3].i = _preferences->GetDouble("UpperLiftProfiles3I", 3);
+	upperLiftProfiles[3].d = _preferences->GetDouble("UpperLiftProfiles3D", 3);
+	upperLiftProfiles[3].f = _preferences->GetDouble("UpperLiftProfiles3F", 3);
 
-	upperLiftProfiles[4].p = _preferences->GetDouble("UpperLiftProfiles4P", 0);
-	upperLiftProfiles[4].i = _preferences->GetDouble("UpperLiftProfiles4I", 0);
-	upperLiftProfiles[4].d = _preferences->GetDouble("UpperLiftProfiles4D", 0);
-	upperLiftProfiles[4].f = _preferences->GetDouble("UpperLiftProfiles4F", 0);
+	upperLiftProfiles[4].p = _preferences->GetDouble("UpperLiftProfiles4P", 4);
+	upperLiftProfiles[4].i = _preferences->GetDouble("UpperLiftProfiles4I", 4);
+	upperLiftProfiles[4].d = _preferences->GetDouble("UpperLiftProfiles4D", 4);
+	upperLiftProfiles[4].f = _preferences->GetDouble("UpperLiftProfiles4F", 4);
 
-	upperLiftProfiles[5].p = _preferences->GetDouble("UpperLiftProfiles5P", 0);
-	upperLiftProfiles[5].i = _preferences->GetDouble("UpperLiftProfiles5I", 0);
-	upperLiftProfiles[5].d = _preferences->GetDouble("UpperLiftProfiles5D", 0);
-	upperLiftProfiles[5].f = _preferences->GetDouble("UpperLiftProfiles5F", 0);
+	upperLiftProfiles[5].p = _preferences->GetDouble("UpperLiftProfiles5P", 5);
+	upperLiftProfiles[5].i = _preferences->GetDouble("UpperLiftProfiles5I", 5);
+	upperLiftProfiles[5].d = _preferences->GetDouble("UpperLiftProfiles5D", 5);
+	upperLiftProfiles[5].f = _preferences->GetDouble("UpperLiftProfiles5F", 5);
 
-	upperLiftProfiles[6].p = _preferences->GetDouble("UpperLiftProfiles6P", 0);
-	upperLiftProfiles[6].i = _preferences->GetDouble("UpperLiftProfiles6I", 0);
-	upperLiftProfiles[6].d = _preferences->GetDouble("UpperLiftProfiles6D", 0);
-	upperLiftProfiles[6].f = _preferences->GetDouble("UpperLiftProfiles6F", 0);
+	upperLiftProfiles[6].p = _preferences->GetDouble("UpperLiftProfiles6P", 6);
+	upperLiftProfiles[6].i = _preferences->GetDouble("UpperLiftProfiles6I", 6);
+	upperLiftProfiles[6].d = _preferences->GetDouble("UpperLiftProfiles6D", 6);
+	upperLiftProfiles[6].f = _preferences->GetDouble("UpperLiftProfiles6F", 6);
 
-	upperLiftProfiles[7].p = _preferences->GetDouble("UpperLiftProfiles7P", 0);
-	upperLiftProfiles[7].i = _preferences->GetDouble("UpperLiftProfiles7I", 0);
-	upperLiftProfiles[7].d = _preferences->GetDouble("UpperLiftProfiles7D", 0);
-	upperLiftProfiles[7].f = _preferences->GetDouble("UpperLiftProfiles7F", 0);
+	upperLiftProfiles[7].p = _preferences->GetDouble("UpperLiftProfiles7P", 7);
+	upperLiftProfiles[7].i = _preferences->GetDouble("UpperLiftProfiles7I", 7);
+	upperLiftProfiles[7].d = _preferences->GetDouble("UpperLiftProfiles7D", 7);
+	upperLiftProfiles[7].f = _preferences->GetDouble("UpperLiftProfiles7F", 7);
 
 	lowerLiftProfiles[0].p = _preferences->GetDouble("LowerLiftProfiles0P", 0);
 	lowerLiftProfiles[0].i = _preferences->GetDouble("LowerLiftProfiles0I", 0);
 	lowerLiftProfiles[0].d = _preferences->GetDouble("LowerLiftProfiles0D", 0);
 	lowerLiftProfiles[0].f = _preferences->GetDouble("LowerLiftProfiles0F", 0);
 
-	lowerLiftProfiles[1].p = _preferences->GetDouble("LowerLiftProfiles1P", 0);
-	lowerLiftProfiles[1].i = _preferences->GetDouble("LowerLiftProfiles1I", 0);
-	lowerLiftProfiles[1].d = _preferences->GetDouble("LowerLiftProfiles1D", 0);
-	lowerLiftProfiles[1].f = _preferences->GetDouble("LowerLiftProfiles1F", 0);
+	lowerLiftProfiles[1].p = _preferences->GetDouble("LowerLiftProfiles1P", 1);
+	lowerLiftProfiles[1].i = _preferences->GetDouble("LowerLiftProfiles1I", 1);
+	lowerLiftProfiles[1].d = _preferences->GetDouble("LowerLiftProfiles1D", 1);
+	lowerLiftProfiles[1].f = _preferences->GetDouble("LowerLiftProfiles1F", 1);
 
-	lowerLiftProfiles[2].p = _preferences->GetDouble("LowerLiftProfiles2P", 0);
-	lowerLiftProfiles[2].i = _preferences->GetDouble("LowerLiftProfiles2I", 0);
-	lowerLiftProfiles[2].d = _preferences->GetDouble("LowerLiftProfiles2D", 0);
-	lowerLiftProfiles[2].f = _preferences->GetDouble("LowerLiftProfiles2F", 0);
+	lowerLiftProfiles[2].p = _preferences->GetDouble("LowerLiftProfiles2P", 2);
+	lowerLiftProfiles[2].i = _preferences->GetDouble("LowerLiftProfiles2I", 2);
+	lowerLiftProfiles[2].d = _preferences->GetDouble("LowerLiftProfiles2D", 2);
+	lowerLiftProfiles[2].f = _preferences->GetDouble("LowerLiftProfiles2F", 2);
 
-	lowerLiftProfiles[3].p = _preferences->GetDouble("LowerLiftProfiles3P", 0);
-	lowerLiftProfiles[3].i = _preferences->GetDouble("LowerLiftProfiles3I", 0);
-	lowerLiftProfiles[3].d = _preferences->GetDouble("LowerLiftProfiles3D", 0);
-	lowerLiftProfiles[3].f = _preferences->GetDouble("LowerLiftProfiles3F", 0);
+	lowerLiftProfiles[3].p = _preferences->GetDouble("LowerLiftProfiles3P", 3);
+	lowerLiftProfiles[3].i = _preferences->GetDouble("LowerLiftProfiles3I", 3);
+	lowerLiftProfiles[3].d = _preferences->GetDouble("LowerLiftProfiles3D", 3);
+	lowerLiftProfiles[3].f = _preferences->GetDouble("LowerLiftProfiles3F", 3);
 
-	lowerLiftProfiles[4].p = _preferences->GetDouble("LowerLiftProfiles4P", 0);
-	lowerLiftProfiles[4].i = _preferences->GetDouble("LowerLiftProfiles4I", 0);
-	lowerLiftProfiles[4].d = _preferences->GetDouble("LowerLiftProfiles4D", 0);
-	lowerLiftProfiles[4].f = _preferences->GetDouble("LowerLiftProfiles4F", 0);
+	lowerLiftProfiles[4].p = _preferences->GetDouble("LowerLiftProfiles4P", 4);
+	lowerLiftProfiles[4].i = _preferences->GetDouble("LowerLiftProfiles4I", 4);
+	lowerLiftProfiles[4].d = _preferences->GetDouble("LowerLiftProfiles4D", 4);
+	lowerLiftProfiles[4].f = _preferences->GetDouble("LowerLiftProfiles4F", 4);
 
-	lowerLiftProfiles[5].p = _preferences->GetDouble("LowerLiftProfiles5P", 0);
-	lowerLiftProfiles[5].i = _preferences->GetDouble("LowerLiftProfiles5I", 0);
-	lowerLiftProfiles[5].d = _preferences->GetDouble("LowerLiftProfiles5D", 0);
-	lowerLiftProfiles[5].f = _preferences->GetDouble("LowerLiftProfiles5F", 0);
+	lowerLiftProfiles[5].p = _preferences->GetDouble("LowerLiftProfiles5P", 5);
+	lowerLiftProfiles[5].i = _preferences->GetDouble("LowerLiftProfiles5I", 5);
+	lowerLiftProfiles[5].d = _preferences->GetDouble("LowerLiftProfiles5D", 5);
+	lowerLiftProfiles[5].f = _preferences->GetDouble("LowerLiftProfiles5F", 5);
 
-	lowerLiftProfiles[6].p = _preferences->GetDouble("LowerLiftProfiles6P", 0);
-	lowerLiftProfiles[6].i = _preferences->GetDouble("LowerLiftProfiles6I", 0);
-	lowerLiftProfiles[6].d = _preferences->GetDouble("LowerLiftProfiles6D", 0);
-	lowerLiftProfiles[6].f = _preferences->GetDouble("LowerLiftProfiles6F", 0);
+	lowerLiftProfiles[6].p = _preferences->GetDouble("LowerLiftProfiles6P", 6);
+	lowerLiftProfiles[6].i = _preferences->GetDouble("LowerLiftProfiles6I", 6);
+	lowerLiftProfiles[6].d = _preferences->GetDouble("LowerLiftProfiles6D", 6);
+	lowerLiftProfiles[6].f = _preferences->GetDouble("LowerLiftProfiles6F", 6);
 
-	lowerLiftProfiles[7].p = _preferences->GetDouble("LowerLiftProfiles7P", 0);
-	lowerLiftProfiles[7].i = _preferences->GetDouble("LowerLiftProfiles7I", 0);
-	lowerLiftProfiles[7].d = _preferences->GetDouble("LowerLiftProfiles7D", 0);
-	lowerLiftProfiles[7].f = _preferences->GetDouble("LowerLiftProfiles7F", 0);
+	lowerLiftProfiles[7].p = _preferences->GetDouble("LowerLiftProfiles7P", 7);
+	lowerLiftProfiles[7].i = _preferences->GetDouble("LowerLiftProfiles7I", 7);
+	lowerLiftProfiles[7].d = _preferences->GetDouble("LowerLiftProfiles7D", 7);
+	lowerLiftProfiles[7].f = _preferences->GetDouble("LowerLiftProfiles7F", 7);
 }
 
 
@@ -334,12 +333,18 @@ void Constants::calculateClawItems(int lowerClawPosition,
 		itemCounts.upperClawItems = 0;
 	} else {
 		itemCounts.upperClawItems = itemCounts.totalItems - upperClawPosition;
+		if (itemCounts.upperClawItems < 0) {
+			itemCounts.upperClawItems = 0;
+		}
 	}
 
 	if (!lowerClawClosed) {
 		itemCounts.lowerClawItems = 0;
 	} else {
 		itemCounts.lowerClawItems = itemCounts.totalItems - lowerClawPosition - itemCounts.upperClawItems;
+		if (itemCounts.lowerClawItems < 0) {
+			itemCounts.lowerClawItems = 0;
+		}
 	}
 
 	SmartDashboard::PutNumber("Upper Claw Items", itemCounts.upperClawItems);
@@ -353,8 +358,11 @@ void Constants::incrementTotalItems() {
 		driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	}
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
-	SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
-	SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+
+	if (debug) {
+		SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
+		SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+	}
 }
 
 void Constants::decrementTotalItems() {
@@ -364,8 +372,11 @@ void Constants::decrementTotalItems() {
 		driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	}
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
-	SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
-	SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+
+	if (debug) {
+		SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
+		SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+	}
 }
 
 void Constants::resetTotalItems() {
@@ -373,8 +384,11 @@ void Constants::resetTotalItems() {
 	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.totalItems];
 	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.totalItems];
 	SmartDashboard::PutNumber("Total Items", itemCounts.totalItems);
-	SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
-	SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+
+	if (debug) {
+		SmartDashboard::PutNumber("Max Velocity High", driveConstants.currentEnhancedMaxVelocityHigh);
+		SmartDashboard::PutNumber("Max Velocity Low", driveConstants.currentEnhancedMaxVelocityLow);
+	}
 }
 
 void Constants::incrementLowerClawItems() {

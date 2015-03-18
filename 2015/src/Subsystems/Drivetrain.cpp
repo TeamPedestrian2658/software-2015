@@ -36,6 +36,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	shiftLow();
 	SmartDashboard::PutString("Gear", "LOW");
 
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Left Velocity", 0);
+		SmartDashboard::PutNumber("Right Velocity", 0);
+	}
+
 	updatePIDCoefficients();
 }
     
@@ -64,9 +69,10 @@ bool Drivetrain::isHighGear() {
 void Drivetrain::set(double leftVelocity, double rightVelocity) {
 	_controllerLeft->SetSetpoint(leftVelocity);
 	_controllerRight->SetSetpoint(rightVelocity);
-
-	SmartDashboard::PutNumber("Left Setpoint", leftVelocity);
-	SmartDashboard::PutNumber("Right Setpoint", rightVelocity);
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Left Setpoint", leftVelocity);
+		SmartDashboard::PutNumber("Right Setpoint", rightVelocity);
+	}
 }
 
 void Drivetrain::setRaw(double left, double right) {
@@ -119,15 +125,18 @@ void Drivetrain::updatePIDCoefficients() {
 	_controllerLeft->SetPID(-_profile.p, -_profile.i, -_profile.d, -_profile.f);
 	_controllerRight->SetPID(_profile.p, _profile.i, _profile.d, _profile.f);
 
-	SmartDashboard::PutNumber("Left Drive P", _controllerLeft->GetP());
-	SmartDashboard::PutNumber("Left Drive I", _controllerLeft->GetI());
-	SmartDashboard::PutNumber("Left Drive D", _controllerLeft->GetD());
-	SmartDashboard::PutNumber("Left Drive F", _controllerLeft->GetF());
+	if (_constants->debug) {
+		SmartDashboard::PutNumber("Left Drive P", _controllerLeft->GetP());
+		SmartDashboard::PutNumber("Left Drive I", _controllerLeft->GetI());
+		SmartDashboard::PutNumber("Left Drive D", _controllerLeft->GetD());
+		SmartDashboard::PutNumber("Left Drive F", _controllerLeft->GetF());
 
-	SmartDashboard::PutNumber("Right Drive P", _controllerRight->GetP());
-	SmartDashboard::PutNumber("Right Drive I", _controllerRight->GetI());
-	SmartDashboard::PutNumber("Right Drive D", _controllerRight->GetD());
-	SmartDashboard::PutNumber("Right Drive F", _controllerRight->GetF());
+		SmartDashboard::PutNumber("Right Drive P", _controllerRight->GetP());
+		SmartDashboard::PutNumber("Right Drive I", _controllerRight->GetI());
+		SmartDashboard::PutNumber("Right Drive D", _controllerRight->GetD());
+		SmartDashboard::PutNumber("Right Drive F", _controllerRight->GetF());
+
+	}
 }
 
 PIDProfile Drivetrain::getPIDCoefficients() {
