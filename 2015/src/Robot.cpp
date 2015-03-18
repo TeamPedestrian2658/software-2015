@@ -5,8 +5,8 @@ UpperClaw* Robot::upperClaw = 0;
 LowerClaw* Robot::lowerClaw = 0;
 Lift* Robot::lift = 0;
 PowerDistributionPanelMonitor *Robot::monitor = 0;
-OI* Robot::oi = 0;
 AutonomousController* Robot::autoController = 0;
+OI* Robot::oi = 0;
 
 void Robot::RobotInit() {
 	RobotMap::init();
@@ -15,8 +15,8 @@ void Robot::RobotInit() {
 	lowerClaw = new LowerClaw();
 	lift = new Lift();
 	monitor = new PowerDistributionPanelMonitor();
-	oi = new OI();
 	autoController = new AutonomousController();
+	oi = new OI();
 	liveWindow = LiveWindow::GetInstance();
 }
 

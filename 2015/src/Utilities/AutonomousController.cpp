@@ -11,7 +11,6 @@ AutonomousController::AutonomousController() {
 	_constants = RobotMap::constants;
 	_selector = new AutoScriptSelector(_constants->autonomousConstants.autoScriptsDirectory);
 	_runner = new AutoScriptRunner();
-	//register commands
 }
 
 AutonomousController::~AutonomousController() {

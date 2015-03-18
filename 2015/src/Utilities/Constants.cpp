@@ -130,7 +130,6 @@ Constants::Constants() {
 	itemCounts.upperClawMaxItems = _preferences->GetInt("UpperClawMaxItems", 7);
 
 	updatePIDProfiles();
-	SmartDashboard::PutData("UpdatePIDProfiles", new UpdatePIDProfiles());
 
 	SmartDashboard::PutData("CompressorOn", new CompressorOn());
 	SmartDashboard::PutData("CompressorOff", new CompressorOff());
