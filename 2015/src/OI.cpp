@@ -12,6 +12,8 @@
 #include "Commands/Utilities/IncrementTotalCount.h"
 #include "Commands/Utilities/DecrementTotalCount.h"
 #include "Commands/Utilities/ResetTotalCount.h"
+#include "Commands/Utilities/CompressorOn.h"
+#include "Commands/Utilities/CompressorOff.h"
 #include "Commands/LowerClaw/LowerClawToggleGrab.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabLeft.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabRight.h"
@@ -47,6 +49,12 @@ OI::OI() {
 
 	resetTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.resetTotalItemCountButton);
 	resetTotalItemCount->WhenPressed(new ResetTotalCount());
+
+	compressorOn = new JoystickButton(driverStick, constants->driverButtons.compressorOnButton);
+	compressorOn->WhenPressed(new CompressorOn());
+
+	compressorOff = new JoystickButton(driverStick, constants->driverButtons.compressorOffButton);
+	compressorOff->WhenPressed(new CompressorOff());
 
 	lowerClawToggleGrab = new JoystickButton(operatorStick, constants->operatorButtons.lowerClawToggleGrabButton);
 	lowerClawToggleGrab->WhenPressed(new LowerClawToggleGrab());

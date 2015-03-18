@@ -21,6 +21,9 @@ private:
 	JoystickButton *decrementTotalItemCount;
 	JoystickButton *resetTotalItemCount;
 
+	JoystickButton *compressorOn;
+	JoystickButton *compressorOff;
+
 	JoystickButton *lowerClawToggleGrab;
 	JoystickButton *lowerClawToggleGrabLeft;
 	JoystickButton *lowerClawToggleGrabRight;

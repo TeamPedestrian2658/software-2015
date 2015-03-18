@@ -73,6 +73,8 @@ public:
 		int incrementTotalItemCountButton;
 		int decrementTotalItemCountButton;
 		int resetTotalItemCountButton;
+		int compressorOnButton;
+		int compressorOffButton;
 	} driverButtons;
 	struct OperatorButtons {
 		int lowerClawToggleGrabButton;

@@ -69,8 +69,12 @@ void AutoScriptRunner::executeFile(string filename) {
 	CommandGroup *group = new CommandGroup();
 
 	while (getline(stream, line)) {
-		cout << "GOT: ";
 		vector<string> args = splitString(line);
+		if (args.size() > 0) {
+			cout << "GOT: ";
+		} else {
+			break;
+		}
 		if (args.size() < 2) {
 			cout << "NOT ENOUGH ARGUMENTS" << endl;
 		} else {

@@ -6,7 +6,6 @@
  */
 
 #include "Constants.h"
-#include "../Commands/Utilities/UpdatePIDProfiles.h"
 #include "../Commands/Utilities/CompressorOn.h"
 #include "../Commands/Utilities/CompressorOff.h"
 
@@ -56,6 +55,8 @@ Constants::Constants() {
 	driverButtons.incrementTotalItemCountButton = _preferences->GetInt("IncrementTotalItemCountButton", 10);
 	driverButtons.decrementTotalItemCountButton = _preferences->GetInt("DecrementTotalItemCountButton", 1);
 	driverButtons.resetTotalItemCountButton = _preferences->GetInt("ResetTotalItemCountButton", 9);
+	driverButtons.compressorOnButton = _preferences->GetInt("CompressorOnButton", 3);
+	driverButtons.compressorOffButton = _preferences->GetInt("CompressorOffButton", 4);
 
 	operatorButtons.lowerClawToggleGrabButton = _preferences->GetInt("LowerClawToggleGrabButton", 5);
 	operatorButtons.lowerClawToggleGrabLeftButton = _preferences->GetInt("LowerClawToggleGrabLeftButton", 7);
