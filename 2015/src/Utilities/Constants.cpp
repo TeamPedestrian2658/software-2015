@@ -80,8 +80,8 @@ Constants::Constants() {
 	shifterStates.highGear = _preferences->GetBoolean("HighGear", true);
 	shifterStates.lowGear = _preferences->GetBoolean("LowGear", false);
 
-	clawStates.upperClawLeftGrab = _preferences->GetBoolean("UpperClawGrab", false);
-	clawStates.upperClawRightGrab = _preferences->GetBoolean("UpperClawRightGrab", false);
+	clawStates.upperClawLeftGrab = _preferences->GetBoolean("UpperClawGrab", true);
+	clawStates.upperClawRightGrab = _preferences->GetBoolean("UpperClawRightGrab", true);
 	clawStates.lowerClawLeftGrab = _preferences->GetBoolean("LowerClawLeftGrab", true);
 	clawStates.lowerClawRightGrab = _preferences->GetBoolean("LowerClawRightGrab", true);
 
