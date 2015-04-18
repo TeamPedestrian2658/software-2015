@@ -10,19 +10,10 @@ UpperClawToggleGrab::UpperClawToggleGrab()
 void UpperClawToggleGrab::Initialize()
 {
 	if (Robot::upperClaw->isClawClosed()) {
-			Robot::upperClaw->releaseBoth();
-	} else if (Robot::upperClaw->isClawLeftClosed()) {
-		Robot::upperClaw->releaseLeft();
-	} else if (Robot::upperClaw->isClawRightClosed()) {
-		Robot::upperClaw->releaseRight();
+		Robot::upperClaw->release();
 	} else {
-		Robot::upperClaw->grabBoth();
+		Robot::upperClaw->grab();
 	}
-	RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
-											Robot::lift->getUpperPossessionLevel(),
-											Robot::lowerClaw->isClawClosed(),
-											Robot::upperClaw->isClawClosed());
-	Robot::lift->updatePIDCoefficients();
 }
 
 // Called repeatedly when this Command is scheduled to run

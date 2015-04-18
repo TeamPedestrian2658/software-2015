@@ -45,9 +45,9 @@ Constants::Constants() {
 	driverButtons.shiftButton = _preferences->GetInt("ShiftButton", 6);
 	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
-	driverButtons.incrementTotalItemCountButton = _preferences->GetInt("IncrementTotalItemCountButton", 10);
-	driverButtons.decrementTotalItemCountButton = _preferences->GetInt("DecrementTotalItemCountButton", 1);
-	driverButtons.resetTotalItemCountButton = _preferences->GetInt("ResetTotalItemCountButton", 9);
+	driverButtons.incrementItemCountButton = _preferences->GetInt("IncrementItemCountButton", 10);
+	driverButtons.decrementItemCountButton = _preferences->GetInt("DecrementItemCountButton", 1);
+	driverButtons.resetItemCountButton = _preferences->GetInt("ResetItemCountButton", 9);
 	driverButtons.compressorOnButton = _preferences->GetInt("CompressorOnButton", 3);
 	driverButtons.compressorOffButton = _preferences->GetInt("CompressorOffButton", 4);
 

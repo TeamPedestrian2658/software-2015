@@ -63,9 +63,9 @@ public:
 		int shiftButton;
 		int slowButton;
 		int toggleEnhancedDriveButton;
-		int incrementTotalItemCountButton;
-		int decrementTotalItemCountButton;
-		int resetTotalItemCountButton;
+		int incrementItemCountButton;
+		int decrementItemCountButton;
+		int resetItemCountButton;
 		int compressorOnButton;
 		int compressorOffButton;
 	} driverButtons;

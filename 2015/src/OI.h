@@ -17,9 +17,9 @@ private:
 	JoystickButton *driveEnhance;
 	JoystickButton *driveSlow;
 
-	JoystickButton *incrementTotalItemCount;
-	JoystickButton *decrementTotalItemCount;
-	JoystickButton *resetTotalItemCount;
+	JoystickButton *incrementItemCount;
+	JoystickButton *decrementItemCount;
+	JoystickButton *resetItemCount;
 
 	JoystickButton *compressorOn;
 	JoystickButton *compressorOff;
@@ -29,12 +29,9 @@ private:
 	JoystickButton *lowerClawToggleGrabRight;
 
 	JoystickButton *upperClawToggleGrab;
-	JoystickButton *upperClawToggleGrabLeft;
-	JoystickButton *upperClawToggleGrabRight;
 
-	JoystickButton *toggleLowerLiftAutomatic;
-	JoystickButton *toggleUpperLiftAutomatic;
-public:
+	JoystickButton *toggleLiftAutomatic;
+	public:
 	OI();
  
 	Joystick* getDriverStick();

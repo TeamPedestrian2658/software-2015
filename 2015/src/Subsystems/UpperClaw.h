@@ -7,24 +7,15 @@
 class UpperClaw: public Subsystem {
 private:
 	Constants *_constants;
-	Solenoid *_leftGrabber;
-	Solenoid *_rightGrabber;
-	bool _leftState;
-	bool _rightState;
+	Solenoid *_grabber;
+	bool _clawState;
 public:
 	UpperClaw();
 	void InitDefaultCommand();
 
-	void grabLeft();
-	void grabRight();
-	void grabBoth();
+	void grab();
+	void release();
 
-	void releaseLeft();
-	void releaseRight();
-	void releaseBoth();
-
-	bool isClawLeftClosed();
-	bool isClawRightClosed();
 	bool isClawClosed();
 };
 

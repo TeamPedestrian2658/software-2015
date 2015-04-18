@@ -8,12 +8,7 @@ UpperClawGrab::UpperClawGrab()
 // Called just before this Command runs the first time
 void UpperClawGrab::Initialize()
 {
-	Robot::upperClaw->grabBoth();
-	RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
-											Robot::lift->getUpperPossessionLevel(),
-											Robot::lowerClaw->isClawClosed(),
-											Robot::upperClaw->isClawClosed());
-	Robot::lift->updatePIDCoefficients();
+	Robot::upperClaw->grab();
 }
 
 // Called repeatedly when this Command is scheduled to run

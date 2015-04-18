@@ -8,12 +8,7 @@ UpperClawRelease::UpperClawRelease()
 // Called just before this Command runs the first time
 void UpperClawRelease::Initialize()
 {
-	Robot::upperClaw->releaseBoth();
-	RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
-											Robot::lift->getUpperPossessionLevel(),
-											Robot::lowerClaw->isClawClosed(),
-											Robot::upperClaw->isClawClosed());
-	Robot::lift->updatePIDCoefficients();
+	Robot::upperClaw->release();
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -41,14 +41,14 @@ OI::OI() {
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
 
-	incrementTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.incrementTotalItemCountButton);
-	incrementTotalItemCount->WhenPressed(new IncrementTotalCount());
+	incrementItemCount = new JoystickButton(driverStick, constants->driverButtons.incrementItemCountButton);
+	incrementItemCount->WhenPressed(new IncrementTotalCount());
 
-	decrementTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.decrementTotalItemCountButton);
-	decrementTotalItemCount->WhenPressed(new DecrementTotalCount());
+	decrementItemCount = new JoystickButton(driverStick, constants->driverButtons.decrementItemCountButton);
+	decrementItemCount->WhenPressed(new DecrementTotalCount());
 
-	resetTotalItemCount = new JoystickButton(driverStick, constants->driverButtons.resetTotalItemCountButton);
-	resetTotalItemCount->WhenPressed(new ResetTotalCount());
+	resetItemCount = new JoystickButton(driverStick, constants->driverButtons.resetItemCountButton);
+	resetItemCount->WhenPressed(new ResetTotalCount());
 
 	compressorOn = new JoystickButton(driverStick, constants->driverButtons.compressorOnButton);
 	compressorOn->WhenPressed(new CompressorOn());
@@ -68,17 +68,8 @@ OI::OI() {
 	upperClawToggleGrab = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabButton);
 	upperClawToggleGrab->WhenPressed(new UpperClawToggleGrab());
 
-	upperClawToggleGrabLeft = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabLeftButton);
-	upperClawToggleGrabLeft->WhenPressed(new UpperClawToggleGrabLeft());
-
-	upperClawToggleGrabRight = new JoystickButton(operatorStick, constants->operatorButtons.upperClawToggleGrabRightButton);
-	upperClawToggleGrabRight->WhenPressed(new UpperClawToggleGrabRight());
-
-	toggleLowerLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleLowerLiftAutomaticButton);
-	toggleLowerLiftAutomatic->WhenPressed(new ToggleLowerLiftController());
-
-	toggleUpperLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleUpperLiftAutomaticButton);
-	toggleUpperLiftAutomatic->WhenPressed(new ToggleUpperLiftController());
+	toggleLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleLiftAutomaticButton);
+	toggleLiftAutomatic->WhenPressed(new ToggleLowerLiftController());
 }
 
 Joystick* OI::getOperatorStick() {
