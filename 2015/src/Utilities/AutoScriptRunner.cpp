@@ -11,10 +11,8 @@
 #include "../Commands/Drivetrain/ShiftLow.h"
 #include "../Commands/Drivetrain/DriveSCurve.h"
 #include "../Commands/Drivetrain/DriveTrapezoidal.h"
-#include "../Commands/Lift/UpperUpOneLevel.h"
-#include "../Commands/Lift/UpperDownOneLevel.h"
-#include "../Commands/Lift/LowerUpOneLevel.h"
-#include "../Commands/Lift/LowerDownOneLevel.h"
+#include "../Commands/Lift/LiftUpOneLevel.h"
+#include "../Commands/Lift/LiftDownOneLevel.h"
 #include "../Commands/LowerClaw/LowerClawGrab.h"
 #include "../Commands/LowerClaw/LowerClawRelease.h"
 #include "../Commands/LowerClaw/LowerClawGrabRight.h"
@@ -23,15 +21,11 @@
 #include "../Commands/LowerClaw/LowerClawReleaseLeft.h"
 #include "../Commands/UpperClaw/UpperClawGrab.h"
 #include "../Commands/UpperClaw/UpperClawRelease.h"
-#include "../Commands/UpperClaw/UpperClawGrabRight.h"
-#include "../Commands/UpperClaw/UpperClawReleaseRight.h"
-#include "../Commands/UpperClaw/UpperClawGrabLeft.h"
-#include "../Commands/UpperClaw/UpperClawReleaseLeft.h"
 #include "../Commands/Utilities/CompressorOn.h"
 #include "../Commands/Utilities/CompressorOff.h"
-#include "../Commands/Utilities/IncrementTotalCount.h"
-#include "../Commands/Utilities/DecrementTotalCount.h"
-#include "../Commands/Utilities/ResetTotalCount.h"
+#include "../Commands/Utilities/IncrementItemCount.h"
+#include "../Commands/Utilities/DecrementItemCount.h"
+#include "../Commands/Utilities/ResetItemCount.h"
 #include "../Commands/Utilities/Delay.h"
 
 AutoScriptRunner::AutoScriptRunner() {
@@ -116,18 +110,12 @@ void AutoScriptRunner::executeFile(string filename) {
 																  stod(args[5]),
 																  stod(args[6])));
 					}
-				} else if (args[1] == "UPPERUPLEVEL") {
+				} else if (args[1] == "UPLEVEL") {
 					cout << args[1] << endl;
-					group->AddSequential(new UpperUpOneLevel());
-				} else if (args[1] == "UPPERDOWNLEVEL") {
+					group->AddSequential(new LiftUpOneLevel());
+				} else if (args[1] == "DOWNLEVEL") {
 					cout << args[1] << endl;
-					group->AddSequential(new UpperDownOneLevel());
-				} else if (args[1] == "LOWERUPLEVEL") {
-					cout << args[1] << endl;
-					group->AddSequential(new LowerUpOneLevel());
-				} else if (args[1] == "LOWERDOWNLEVEL") {
-					cout << args[1] << endl;
-					group->AddSequential(new LowerDownOneLevel());
+					group->AddSequential(new LiftDownOneLevel());
 				} else if (args[1] == "LOWEROPEN") {
 					cout << args[1] << endl;
 					group->AddSequential(new LowerClawRelease());
@@ -145,25 +133,13 @@ void AutoScriptRunner::executeFile(string filename) {
 					group->AddSequential(new LowerClawReleaseLeft());
 				} else if (args[1] == "LOWERLEFTCLOSE") {
 					cout << args[1] << endl;
-					group->AddSequential(new UpperClawGrabLeft());
+					group->AddSequential(new LowerClawGrabLeft());
 				} else if (args[1] == "UPPEROPEN") {
 					cout << args[1] << endl;
 					group->AddSequential(new UpperClawRelease());
 				} else if (args[1] == "UPPERCLOSE") {
 					cout << args[1] << endl;
 					group->AddSequential(new UpperClawGrab());
-				} else if (args[1] == "UPPERRIGHTOPEN") {
-					cout << args[1] << endl;
-					group->AddSequential(new UpperClawReleaseRight());
-				} else if (args[1] == "UPPERRIGHTCLOSE") {
-					cout << args[1] << endl;
-					group->AddSequential(new UpperClawGrabRight());
-				} else if (args[1] == "UPPERLEFTOPEN") {
-					cout << args[1] << endl;
-					group->AddSequential(new UpperClawReleaseLeft());
-				} else if (args[1] == "UPPERLEFTCLOSE") {
-					cout << args[1] << endl;
-					group->AddSequential(new UpperClawGrabLeft());
 				} else if (args[1] == "COMPRESSORON") {
 					cout << args[1] << endl;
 					group->AddSequential(new CompressorOn());
@@ -172,13 +148,13 @@ void AutoScriptRunner::executeFile(string filename) {
 					group->AddSequential(new CompressorOff());
 				} else if (args[1] == "INCREMENTCOUNT") {
 					cout << args[1] << endl;
-					group->AddSequential(new IncrementTotalCount());
+					group->AddSequential(new IncrementItemCount());
 				} else if (args[1] == "DECREMENTCOUNT") {
 					cout << args[1] << endl;
-					group->AddSequential(new DecrementTotalCount());
+					group->AddSequential(new DecrementItemCount());
 				} else if (args[1] == "RESETCOUNT") {
 					cout << args[1] << endl;
-					group->AddSequential(new ResetTotalCount());
+					group->AddSequential(new ResetItemCount());
 				} else if (args[1] == "DELAY") {
 					if (args.size() < 3) {
 						cout << "NOT ENOUGH ARGUMENTS" << endl;
@@ -227,18 +203,12 @@ void AutoScriptRunner::executeFile(string filename) {
 																stod(args[5]),
 																stod(args[6])));
 					}
-				} else if (args[1] == "UPPERUPLEVEL") {
+				} else if (args[1] == "UPLEVEL") {
 					cout << args[1] << endl;
-					group->AddParallel(new UpperUpOneLevel());
-				} else if (args[1] == "UPPERDOWNLEVEL") {
+					group->AddParallel(new LiftUpOneLevel());
+				} else if (args[1] == "DOWNLEVEL") {
 					cout << args[1] << endl;
-					group->AddParallel(new UpperDownOneLevel());
-				} else if (args[1] == "LOWERUPLEVEL") {
-					cout << args[1] << endl;
-					group->AddParallel(new LowerUpOneLevel());
-				} else if (args[1] == "LOWERDOWNLEVEL") {
-					cout << args[1] << endl;
-					group->AddParallel(new LowerDownOneLevel());
+					group->AddParallel(new LiftDownOneLevel());
 				} else if (args[1] == "LOWEROPEN") {
 					cout << args[1] << endl;
 					group->AddParallel(new LowerClawRelease());
@@ -256,25 +226,13 @@ void AutoScriptRunner::executeFile(string filename) {
 					group->AddParallel(new LowerClawReleaseLeft());
 				} else if (args[1] == "LOWERLEFTCLOSE") {
 					cout << args[1] << endl;
-					group->AddParallel(new UpperClawGrabLeft());
+					group->AddParallel(new LowerClawGrabLeft());
 				} else if (args[1] == "UPPEROPEN") {
 					cout << args[1] << endl;
 					group->AddParallel(new UpperClawRelease());
 				} else if (args[1] == "UPPERCLOSE") {
 					cout << args[1] << endl;
 					group->AddParallel(new UpperClawGrab());
-				} else if (args[1] == "UPPERRIGHTOPEN") {
-					cout << args[1] << endl;
-					group->AddParallel(new UpperClawReleaseRight());
-				} else if (args[1] == "UPPERRIGHTCLOSE") {
-					cout << args[1] << endl;
-					group->AddParallel(new UpperClawGrabRight());
-				} else if (args[1] == "UPPERLEFTOPEN") {
-					cout << args[1] << endl;
-					group->AddParallel(new UpperClawReleaseLeft());
-				} else if (args[1] == "UPPERLEFTCLOSE") {
-					cout << args[1] << endl;
-					group->AddParallel(new UpperClawGrabLeft());
 				} else if (args[1] == "COMPRESSORON") {
 					cout << args[1] << endl;
 					group->AddParallel(new CompressorOn());
@@ -283,13 +241,13 @@ void AutoScriptRunner::executeFile(string filename) {
 					group->AddParallel(new CompressorOff());
 				} else if (args[1] == "INCREMENTCOUNT") {
 					cout << args[1] << endl;
-					group->AddParallel(new IncrementTotalCount());
+					group->AddParallel(new IncrementItemCount());
 				} else if (args[1] == "DECREMENTCOUNT") {
 					cout << args[1] << endl;
-					group->AddParallel(new DecrementTotalCount());
+					group->AddParallel(new DecrementItemCount());
 				} else if (args[1] == "RESETCOUNT") {
 					cout << args[1] << endl;
-					group->AddParallel(new ResetTotalCount());
+					group->AddParallel(new ResetItemCount());
 				} else if (args[1] == "DELAY") {
 					if (args.size() < 3) {
 						cout << "NOT ENOUGH ARGUMENTS" << endl;
