@@ -1,38 +1,38 @@
-#include "EnableLowerLiftController.h"
+#include "LiftEnableAutomatic.h"
 
-EnableLowerLiftController::EnableLowerLiftController()
+LiftEnableAutomatic::LiftEnableAutomatic()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void EnableLowerLiftController::Initialize()
+void LiftEnableAutomatic::Initialize()
 {
-	Robot::lift->enableLowerController();
+	Robot::lift->enableAutomatic();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void EnableLowerLiftController::Execute()
+void LiftEnableAutomatic::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool EnableLowerLiftController::IsFinished()
+bool LiftEnableAutomatic::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void EnableLowerLiftController::End()
+void LiftEnableAutomatic::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void EnableLowerLiftController::Interrupted()
+void LiftEnableAutomatic::Interrupted()
 {
 
 }

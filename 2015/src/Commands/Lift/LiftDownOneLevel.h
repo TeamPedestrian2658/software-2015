@@ -1,13 +1,13 @@
-#ifndef LowerDownOneLevel_H
-#define LowerDownOneLevel_H
+#ifndef LiftDownOneLevel_H
+#define LiftDownOneLevel_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class LowerDownOneLevel: public Command
+class LiftDownOneLevel: public Command
 {
 public:
-	LowerDownOneLevel();
+	LiftDownOneLevel();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

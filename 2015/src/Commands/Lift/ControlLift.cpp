@@ -4,8 +4,7 @@ ControlLift::ControlLift()
 {
 	_lift = Robot::lift;
 	_oi = Robot::oi;
-	_upperReadyForInput = true;
-	_lowerReadyForInput = true;
+	_readyForInput = true;
 	Requires(_lift);
 }
 
@@ -19,46 +18,24 @@ void ControlLift::Initialize()
 void ControlLift::Execute()
 {
 
-	if (_lift->lowerControllerEnabled()) {
-		if (_lowerReadyForInput) {
+	if (_lift->automaticEnabled()) {
+		if (_readyForInput) {
 			if (-_oi->getOperatorStickLeftY() >= 0.6) {
-				_lift->lowerUpOneLevel();
-				_lowerReadyForInput = false;
+				_lift->upOneLevel();
+				_readyForInput = false;
 			} else if (-_oi->getOperatorStickLeftY() <= -0.6){
-				_lift->lowerDownOneLevel();
-				_lowerReadyForInput = false;
+				_lift->downOneLevel();
+				_readyForInput = false;
 			}
 		} else if (-_oi->getOperatorStickLeftY() < 0.6 && -_oi->getOperatorStickLeftY() > -0.6) {
-			_lowerReadyForInput = true;
+			_readyForInput = true;
 		}
 	} else {
-		_lift->setLowerRaw(_oi->getOperatorStickLeftY());
-	}
-
-	if (_lift->upperControllerEnabled()) {
-		if (_upperReadyForInput) {
-			if (-_oi->getOperatorStickRightY() >= 0.6) {
-				_lift->upperUpOneLevel();
-				_upperReadyForInput = false;
-			}  else if (-_oi->getOperatorStickRightY() <= -0.6) {
-				_lift->upperDownOneLevel();
-				RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
-														Robot::lift->getUpperPossessionLevel(),
-														Robot::lowerClaw->isClawClosed(),
-														Robot::upperClaw->isClawClosed());
-				Robot::lift->updatePIDCoefficients();
-				_upperReadyForInput = false;
-			}
-		} else if (-_oi->getOperatorStickRightY() < 0.6 && -_oi->getOperatorStickRightY() > -0.6) {
-			_upperReadyForInput = true;
-		}
-	} else {
-		_lift->setUpperRaw(_oi->getOperatorStickRightY());
+		_lift->setRaw(_oi->getOperatorStickLeftY());
 	}
 
 	if (RobotMap::constants->debug) {
-		SmartDashboard::PutNumber("Lower Height", _lift->getLowerAverageHeight());
-		SmartDashboard::PutNumber("Upper Height", _lift->getUpperHeight());
+		SmartDashboard::PutNumber("Lift Height", _lift->getHeight());
 	}
 }
 

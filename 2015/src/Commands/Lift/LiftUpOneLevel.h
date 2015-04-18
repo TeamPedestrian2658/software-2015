@@ -1,13 +1,13 @@
-#ifndef ToggleLowerLiftController_H
-#define ToggleLowerLiftController_H
+#ifndef LiftUpOneLevel_H
+#define LiftUpOneLevel_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class ToggleLowerLiftController: public Command
+class LiftUpOneLevel: public Command
 {
 public:
-	ToggleLowerLiftController();
+	LiftUpOneLevel();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

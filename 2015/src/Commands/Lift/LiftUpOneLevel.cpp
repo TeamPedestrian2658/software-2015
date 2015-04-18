@@ -1,42 +1,38 @@
-#include "ToggleLowerLiftController.h"
+#include "LiftUpOneLevel.h"
 
-ToggleLowerLiftController::ToggleLowerLiftController()
+LiftUpOneLevel::LiftUpOneLevel()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void ToggleLowerLiftController::Initialize()
+void LiftUpOneLevel::Initialize()
 {
-	if (Robot::lift->lowerControllerEnabled()) {
-		Robot::lift->disableLowerController();
-	} else {
-		Robot::lift->enableLowerController();
-	}
+	Robot::lift->upOneLevel();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ToggleLowerLiftController::Execute()
+void LiftUpOneLevel::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ToggleLowerLiftController::IsFinished()
+bool LiftUpOneLevel::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void ToggleLowerLiftController::End()
+void LiftUpOneLevel::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ToggleLowerLiftController::Interrupted()
+void LiftUpOneLevel::Interrupted()
 {
 
 }

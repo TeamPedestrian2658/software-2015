@@ -1,38 +1,38 @@
-#include "LowerDownOneLevel.h"
+#include "LiftDownOneLevel.h"
 
-LowerDownOneLevel::LowerDownOneLevel()
+LiftDownOneLevel::LiftDownOneLevel()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void LowerDownOneLevel::Initialize()
+void LiftDownOneLevel::Initialize()
 {
-	Robot::lift->lowerDownOneLevel();
+	Robot::lift->downOneLevel();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void LowerDownOneLevel::Execute()
+void LiftDownOneLevel::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool LowerDownOneLevel::IsFinished()
+bool LiftDownOneLevel::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void LowerDownOneLevel::End()
+void LiftDownOneLevel::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void LowerDownOneLevel::Interrupted()
+void LiftDownOneLevel::Interrupted()
 {
 
 }

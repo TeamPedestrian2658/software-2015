@@ -1,13 +1,13 @@
-#ifndef UpperDownOneLevel_H
-#define UpperDownOneLevel_H
+#ifndef LiftDisableAutomatic_H
+#define LiftDisableAutomatic_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class UpperDownOneLevel: public Command
+class LiftDisableAutomatic: public Command
 {
 public:
-	UpperDownOneLevel();
+	LiftDisableAutomatic();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

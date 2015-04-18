@@ -1,38 +1,42 @@
-#include "UpperUpOneLevel.h"
+#include "LiftToggleAutomatic.h"
 
-UpperUpOneLevel::UpperUpOneLevel()
+LiftToggleAutomatic::LiftToggleAutomatic()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void UpperUpOneLevel::Initialize()
+void LiftToggleAutomatic::Initialize()
 {
-	Robot::lift->upperUpOneLevel();
+	if (Robot::lift->automaticEnabled()) {
+		Robot::lift->disableAutomatic();
+	} else {
+		Robot::lift->enableAutomatic();
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
-void UpperUpOneLevel::Execute()
+void LiftToggleAutomatic::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool UpperUpOneLevel::IsFinished()
+bool LiftToggleAutomatic::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void UpperUpOneLevel::End()
+void LiftToggleAutomatic::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void UpperUpOneLevel::Interrupted()
+void LiftToggleAutomatic::Interrupted()
 {
 
 }
