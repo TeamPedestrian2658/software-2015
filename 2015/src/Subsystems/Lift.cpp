@@ -30,21 +30,21 @@ void Lift::InitDefaultCommand() {
 	SetDefaultCommand(new ControlLift());
 }
 
-void Lift::enableLowerController() {
+void Lift::enableAutomatic() {
 	_leftController->Enable();
 	_rightController->Enable();
 	_automatic = true;
 	SmartDashboard::PutString("Lift Automatic", "ENABLED");
 }
 
-void Lift::disableLowerController() {
+void Lift::disableAutomatic() {
 	_leftController->Disable();
 	_rightController->Disable();
 	_automatic = false;
 	SmartDashboard::PutString("Lift Automatic", "DISABLED");
 }
 
-bool Lift::lowerControllerEnabled() {
+bool Lift::automaticEnabled() {
 	return _automatic;
 }
 
