@@ -39,25 +39,18 @@ public:
 		int encoderRightPortB;
 	} drivePorts;
 	struct ClawPorts {
-		int upperGrabberLeftModule;
-		int upperGrabberLeftPort;
-		int upperGrabberRightModule;
-		int upperGrabberRightPort;
+		int upperGrabberModule;
+		int upperGrabberPort;
 		int lowerGrabberLeftModule;
 		int lowerGrabberLeftPort;
 		int lowerGrabberRightModule;
 		int lowerGrabberRightPort;
 	} clawPorts;
 	struct LiftPorts {
-		int lowerTalonLeftPort;
-		int lowerTalonRightPort;
-		int upperTalonPort;
-		int lowerEncoderLeftPortA;
-		int lowerEncoderLeftPortB;
-		int lowerEncoderRightPortA;
-		int lowerEncoderRightPortB;
-		int upperEncoderPortA;
-		int upperEncoderPortB;
+		int talonLeftPort;
+		int talonRightPort;
+		int encoderPortA;
+		int encoderPortB;
 	} liftPorts;
 	struct CompressorPorts {
 		int compressorModule;
@@ -81,10 +74,7 @@ public:
 		int lowerClawToggleGrabLeftButton;
 		int lowerClawToggleGrabRightButton;
 		int upperClawToggleGrabButton;
-		int upperClawToggleGrabLeftButton;
-		int upperClawToggleGrabRightButton;
-		int toggleLowerLiftAutomaticButton;
-		int toggleUpperLiftAutomaticButton;
+		int toggleLiftAutomaticButton;
 	} operatorButtons;
 	struct DriverAxes {
 		int leftX;
@@ -103,8 +93,7 @@ public:
 		bool lowGear;
 	} shifterStates;
 	struct ClawStates {
-		bool upperClawLeftGrab;
-		bool upperClawRightGrab;
+		bool upperClawGrab;
 		bool lowerClawLeftGrab;
 		bool lowerClawRightGrab;
 	} clawStates;
@@ -116,50 +105,28 @@ public:
 		double slowScalar;
 		double distancePerPulse;
 		double shiftTime;
-		double velocityTestSampleTime;
-		double velocityTestAccelerationTime;
 	} driveConstants;
 	struct LiftConstants {
-		double lowerDistancePerPulse;
-		double upperDistancePerPulse;
-		vector<tuple<double, int, string>> upperLiftLevels;			//setpoint, possession level, name
-		vector<tuple<double, int, string>> lowerLiftLevels;
+		double distancePerPulse;			//setpoint, possession level, name
+		vector<tuple<double, int, string>> liftLevels;
 	} liftConstants;
 	struct ItemCounts {
-		int totalItems;
-		int lowerClawItems;
-		int upperClawItems;
-		int totalMaxItems;
-		int lowerClawMaxItems;
-		int upperClawMaxItems;
+		int items;
+		int maxItems;
 	} itemCounts;
 	PIDProfile lowGearDriveProfiles[8];
 	PIDProfile highGearDriveProfiles[8];
-	PIDProfile upperLiftProfiles[8];
-	PIDProfile lowerLiftProfiles[8];
+	PIDProfile liftProfiles[8];
 	virtual ~Constants();
 
 	void updatePIDProfiles();
 	PIDProfile getDriveProfile(bool shifterState);
-	PIDProfile getUpperLiftProfile();
-	PIDProfile getLowerLiftProfile();
+	PIDProfile getLiftProfile(int lowerClawPosition,
+							  bool lowerClawClosed);
 
-	void calculateClawItems(int lowerClawPosition,
-							int upperClawPosition,
-							bool lowerClawClosed,
-							bool upperClawClosed);
-
-	void incrementTotalItems();
-	void decrementTotalItems();
-	void resetTotalItems();
-
-	void incrementLowerClawItems();
-	void decrementLowerClawItems();
-	void resetLowerClawItems();
-
-	void incrementUpperClawItems();
-	void decrementUpperClawItems();
-	void resetUpperClawItems();
+	void incrementItemCount();
+	void decrementItemCount();
+	void resetItemCount();
 };
 
 #endif /* SRC_UTILITIES_CONSTANTS_H_ */

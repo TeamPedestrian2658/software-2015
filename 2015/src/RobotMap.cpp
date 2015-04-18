@@ -21,23 +21,19 @@ PIDController *RobotMap::driveControllerRight = NULL;
 SendableChooser *RobotMap::driveChooser = NULL;
 SendableChooser *RobotMap::driveRumbleChooser = NULL;
 
-Solenoid *RobotMap::upperClawLeftGrabber = NULL;
-Solenoid *RobotMap::upperClawRightGrabber = NULL;
+Solenoid *RobotMap::upperClawGrabber = NULL;
 
 Solenoid *RobotMap::lowerClawLeftGrabber = NULL;
 Solenoid *RobotMap::lowerClawRightGrabber = NULL;
 
 Talon *RobotMap::lowerLiftTalonLeft = NULL;
 Talon *RobotMap::lowerLiftTalonRight = NULL;
-Talon *RobotMap::upperLiftTalon = NULL;
 
 Encoder *RobotMap::lowerLiftEncoderLeft = NULL;
 Encoder *RobotMap::lowerLiftEncoderRight = NULL;
-Encoder *RobotMap::upperLiftEncoder = NULL;
 
 PIDController *RobotMap::liftControllerLowerLeft = NULL;
 PIDController *RobotMap::liftControllerLowerRight = NULL;
-PIDController *RobotMap::liftControllerUpper = NULL;
 
 Compressor *RobotMap::compressor = NULL;
 

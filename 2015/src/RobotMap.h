@@ -25,23 +25,19 @@ public:
 	static SendableChooser *driveChooser;
 	static SendableChooser *driveRumbleChooser;
 
-	static Solenoid *upperClawLeftGrabber;
-	static Solenoid *upperClawRightGrabber;
+	static Solenoid *upperClawGrabber;
 
 	static Solenoid *lowerClawLeftGrabber;
 	static Solenoid *lowerClawRightGrabber;
 
 	static Talon *lowerLiftTalonLeft;
 	static Talon *lowerLiftTalonRight;
-	static Talon *upperLiftTalon;
 
 	static Encoder *lowerLiftEncoderLeft;
 	static Encoder *lowerLiftEncoderRight;
-	static Encoder *upperLiftEncoder;
 
 	static PIDController *liftControllerLowerLeft;
 	static PIDController *liftControllerLowerRight;
-	static PIDController *liftControllerUpper;
 
 	static Compressor *compressor;
 
