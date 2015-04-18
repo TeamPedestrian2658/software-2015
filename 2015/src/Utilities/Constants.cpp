@@ -26,13 +26,13 @@ Constants::Constants() {
 	drivePorts.encoderRightPortB = _preferences->GetInt("DriveEncoderRightPortB", 3);
 
 	clawPorts.upperGrabberLeftModule = _preferences->GetInt("UpperGrabberLeftModule, 0");
-	clawPorts.upperGrabberLeftPort = _preferences->GetInt("UpperGrabberLeftPort", 0);
+	clawPorts.upperGrabberLeftPort = _preferences->GetInt("UpperGrabberLeftPort", 1);
 	clawPorts.upperGrabberRightModule = _preferences->GetInt("UpperGrabberRightModule", 0);
-	clawPorts.upperGrabberRightPort = _preferences->GetInt("UpperGrabberRightPort", 1);
+	clawPorts.upperGrabberRightPort = _preferences->GetInt("UpperGrabberRightPort", 2);
 	clawPorts.lowerGrabberLeftModule = _preferences->GetInt("LowerGrabberLeftModule", 0);
-	clawPorts.lowerGrabberLeftPort = _preferences->GetInt("LowerGrabberLeftPort", 3);
+	clawPorts.lowerGrabberLeftPort = _preferences->GetInt("LowerGrabberLeftPort", 4);
 	clawPorts.lowerGrabberRightModule = _preferences->GetInt("LowerGrabberRightModule", 0);
-	clawPorts.lowerGrabberRightPort = _preferences->GetInt("LowerGrabberRightPort", 4);
+	clawPorts.lowerGrabberRightPort = _preferences->GetInt("LowerGrabberRightPort", 3);
 
 	liftPorts.lowerTalonLeftPort = _preferences->GetInt("LiftLowerTalonLeftPort", 1);
 	liftPorts.lowerTalonRightPort = _preferences->GetInt("LiftLowerTalonRightPort", 2);
@@ -85,27 +85,27 @@ Constants::Constants() {
 	clawStates.lowerClawLeftGrab = _preferences->GetBoolean("LowerClawLeftGrab", true);
 	clawStates.lowerClawRightGrab = _preferences->GetBoolean("LowerClawRightGrab", true);
 
-	driveConstants.enhancedMaxVelocityHigh[0] = _preferences->GetDouble("EnhancedMaxVelocityHigh0", 10);
-	driveConstants.enhancedMaxVelocityLow[0] = _preferences->GetDouble("EnhancedMaxVelocityLow0", 1);
-	driveConstants.enhancedMaxVelocityHigh[1] = _preferences->GetDouble("EnhancedMaxVelocityHigh1", 20);
-	driveConstants.enhancedMaxVelocityLow[1] = _preferences->GetDouble("EnhancedMaxVelocityLow1", 2);
-	driveConstants.enhancedMaxVelocityHigh[2] = _preferences->GetDouble("EnhancedMaxVelocityHigh2", 30);
-	driveConstants.enhancedMaxVelocityLow[2] = _preferences->GetDouble("EnhancedMaxVelocityLow2", 3);
-	driveConstants.enhancedMaxVelocityHigh[3] = _preferences->GetDouble("EnhancedMaxVelocityHigh3", 40);
-	driveConstants.enhancedMaxVelocityLow[3] = _preferences->GetDouble("EnhancedMaxVelocityLow3", 4);
-	driveConstants.enhancedMaxVelocityHigh[4] = _preferences->GetDouble("EnhancedMaxVelocityHigh4", 50);
-	driveConstants.enhancedMaxVelocityLow[4] = _preferences->GetDouble("EnhancedMaxVelocityLow4", 5);
-	driveConstants.enhancedMaxVelocityHigh[5] = _preferences->GetDouble("EnhancedMaxVelocityHigh5", 60);
-	driveConstants.enhancedMaxVelocityLow[5] = _preferences->GetDouble("EnhancedMaxVelocityLow5", 6);
-	driveConstants.enhancedMaxVelocityHigh[6] = _preferences->GetDouble("EnhancedMaxVelocityHigh6", 70);
-	driveConstants.enhancedMaxVelocityLow[6] = _preferences->GetDouble("EnhancedMaxVelocityLow6", 7);
-	driveConstants.enhancedMaxVelocityHigh[7] = _preferences->GetDouble("EnhancedMaxVelocityHigh7", 80);
-	driveConstants.enhancedMaxVelocityLow[7] = _preferences->GetDouble("EnhancedMaxVelocityLow7", 8);
+	driveConstants.enhancedMaxVelocityHigh[0] = _preferences->GetDouble("EnhancedMaxVelocityHigh0", 190);
+	driveConstants.enhancedMaxVelocityLow[0] = _preferences->GetDouble("EnhancedMaxVelocityLow0", 75);
+	driveConstants.enhancedMaxVelocityHigh[1] = _preferences->GetDouble("EnhancedMaxVelocityHigh1", 190);
+	driveConstants.enhancedMaxVelocityLow[1] = _preferences->GetDouble("EnhancedMaxVelocityLow1", 75);
+	driveConstants.enhancedMaxVelocityHigh[2] = _preferences->GetDouble("EnhancedMaxVelocityHigh2", 190);
+	driveConstants.enhancedMaxVelocityLow[2] = _preferences->GetDouble("EnhancedMaxVelocityLow2", 75);
+	driveConstants.enhancedMaxVelocityHigh[3] = _preferences->GetDouble("EnhancedMaxVelocityHigh3", 190);
+	driveConstants.enhancedMaxVelocityLow[3] = _preferences->GetDouble("EnhancedMaxVelocityLow3", 75);
+	driveConstants.enhancedMaxVelocityHigh[4] = _preferences->GetDouble("EnhancedMaxVelocityHigh4", 190);
+	driveConstants.enhancedMaxVelocityLow[4] = _preferences->GetDouble("EnhancedMaxVelocityLow4", 75);
+	driveConstants.enhancedMaxVelocityHigh[5] = _preferences->GetDouble("EnhancedMaxVelocityHigh5", 190);
+	driveConstants.enhancedMaxVelocityLow[5] = _preferences->GetDouble("EnhancedMaxVelocityLow5", 75);
+	driveConstants.enhancedMaxVelocityHigh[6] = _preferences->GetDouble("EnhancedMaxVelocityHigh6", 190);
+	driveConstants.enhancedMaxVelocityLow[6] = _preferences->GetDouble("EnhancedMaxVelocityLow6", 75);
+	driveConstants.enhancedMaxVelocityHigh[7] = _preferences->GetDouble("EnhancedMaxVelocityHigh7", 190);
+	driveConstants.enhancedMaxVelocityLow[7] = _preferences->GetDouble("EnhancedMaxVelocityLow7", 75);
 	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[0];
 	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[0];
 	driveConstants.slowScalar = _preferences->GetDouble("SlowScalar", 0.6);
 	driveConstants.distancePerPulse = _preferences->GetDouble("DriveDistancePerPulse", 0.027271);
-	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.25);
+	driveConstants.shiftTime = _preferences->GetDouble("ShiftTime", 0.1);
 	driveConstants.velocityTestSampleTime = _preferences->GetDouble("VelocityTestSampleTime", 1);
 	driveConstants.velocityTestAccelerationTime = _preferences->GetDouble("VelocityTestAccelerationTime", 2);
 
@@ -152,85 +152,85 @@ Constants::~Constants() {
 }
 
 void Constants::updatePIDProfiles() {
-	lowGearDriveProfiles[0].p = _preferences->GetDouble("LowGearDriveProfile0P", 1);
-	lowGearDriveProfiles[0].i = _preferences->GetDouble("LowGearDriveProfile0I", 1);
-	lowGearDriveProfiles[0].d = _preferences->GetDouble("LowGearDriveProfile0D", 1);
-	lowGearDriveProfiles[0].f = _preferences->GetDouble("LowGearDriveProfile0F", 1);
+	lowGearDriveProfiles[0].p = _preferences->GetDouble("LowGearDriveProfile0P", 0);
+	lowGearDriveProfiles[0].i = _preferences->GetDouble("LowGearDriveProfile0I", 0.003);
+	lowGearDriveProfiles[0].d = _preferences->GetDouble("LowGearDriveProfile0D", 0);
+	lowGearDriveProfiles[0].f = _preferences->GetDouble("LowGearDriveProfile0F", 0.012);
 
-	lowGearDriveProfiles[1].p = _preferences->GetDouble("LowGearDriveProfile1P", 2);
-	lowGearDriveProfiles[1].i = _preferences->GetDouble("LowGearDriveProfile1I", 2);
-	lowGearDriveProfiles[1].d = _preferences->GetDouble("LowGearDriveProfile1D", 2);
-	lowGearDriveProfiles[1].f = _preferences->GetDouble("LowGearDriveProfile1F", 2);
+	lowGearDriveProfiles[1].p = _preferences->GetDouble("LowGearDriveProfile1P", 0);
+	lowGearDriveProfiles[1].i = _preferences->GetDouble("LowGearDriveProfile1I", 0.003);
+	lowGearDriveProfiles[1].d = _preferences->GetDouble("LowGearDriveProfile1D", 0);
+	lowGearDriveProfiles[1].f = _preferences->GetDouble("LowGearDriveProfile1F", 0.012);
 
-	lowGearDriveProfiles[2].p = _preferences->GetDouble("LowGearDriveProfile2P", 3);
-	lowGearDriveProfiles[2].i = _preferences->GetDouble("LowGearDriveProfile2I", 3);
-	lowGearDriveProfiles[2].d = _preferences->GetDouble("LowGearDriveProfile2D", 3);
-	lowGearDriveProfiles[2].f = _preferences->GetDouble("LowGearDriveProfile2F", 3);
+	lowGearDriveProfiles[2].p = _preferences->GetDouble("LowGearDriveProfile2P", 0);
+	lowGearDriveProfiles[2].i = _preferences->GetDouble("LowGearDriveProfile2I", 0.003);
+	lowGearDriveProfiles[2].d = _preferences->GetDouble("LowGearDriveProfile2D", 0);
+	lowGearDriveProfiles[2].f = _preferences->GetDouble("LowGearDriveProfile2F", 0.012);
 
-	lowGearDriveProfiles[3].p = _preferences->GetDouble("LowGearDriveProfile3P", 4);
-	lowGearDriveProfiles[3].i = _preferences->GetDouble("LowGearDriveProfile3I", 4);
-	lowGearDriveProfiles[3].d = _preferences->GetDouble("LowGearDriveProfile3D", 4);
-	lowGearDriveProfiles[3].f = _preferences->GetDouble("LowGearDriveProfile3F", 4);
+	lowGearDriveProfiles[3].p = _preferences->GetDouble("LowGearDriveProfile3P", 0);
+	lowGearDriveProfiles[3].i = _preferences->GetDouble("LowGearDriveProfile3I", 0.003);
+	lowGearDriveProfiles[3].d = _preferences->GetDouble("LowGearDriveProfile3D", 0);
+	lowGearDriveProfiles[3].f = _preferences->GetDouble("LowGearDriveProfile3F", 0.012);
 
-	lowGearDriveProfiles[4].p = _preferences->GetDouble("LowGearDriveProfile4P", 5);
-	lowGearDriveProfiles[4].i = _preferences->GetDouble("LowGearDriveProfile4I", 5);
-	lowGearDriveProfiles[4].d = _preferences->GetDouble("LowGearDriveProfile4D", 5);
-	lowGearDriveProfiles[4].f = _preferences->GetDouble("LowGearDriveProfile4F", 5);
+	lowGearDriveProfiles[4].p = _preferences->GetDouble("LowGearDriveProfile4P", 0);
+	lowGearDriveProfiles[4].i = _preferences->GetDouble("LowGearDriveProfile4I", 0.003);
+	lowGearDriveProfiles[4].d = _preferences->GetDouble("LowGearDriveProfile4D", 0);
+	lowGearDriveProfiles[4].f = _preferences->GetDouble("LowGearDriveProfile4F", 0.012);
 
-	lowGearDriveProfiles[5].p = _preferences->GetDouble("LowGearDriveProfile5P", 6);
-	lowGearDriveProfiles[5].i = _preferences->GetDouble("LowGearDriveProfile5I", 6);
-	lowGearDriveProfiles[5].d = _preferences->GetDouble("LowGearDriveProfile5D", 6);
-	lowGearDriveProfiles[5].f = _preferences->GetDouble("LowGearDriveProfile5F", 6);
+	lowGearDriveProfiles[5].p = _preferences->GetDouble("LowGearDriveProfile5P", 0);
+	lowGearDriveProfiles[5].i = _preferences->GetDouble("LowGearDriveProfile5I", 0.003);
+	lowGearDriveProfiles[5].d = _preferences->GetDouble("LowGearDriveProfile5D", 0);
+	lowGearDriveProfiles[5].f = _preferences->GetDouble("LowGearDriveProfile5F", 0.012);
 
-	lowGearDriveProfiles[6].p = _preferences->GetDouble("LowGearDriveProfile6P", 7);
-	lowGearDriveProfiles[6].i = _preferences->GetDouble("LowGearDriveProfile6I", 7);
-	lowGearDriveProfiles[6].d = _preferences->GetDouble("LowGearDriveProfile6D", 7);
-	lowGearDriveProfiles[6].f = _preferences->GetDouble("LowGearDriveProfile6F", 7);
+	lowGearDriveProfiles[6].p = _preferences->GetDouble("LowGearDriveProfile6P", 0);
+	lowGearDriveProfiles[6].i = _preferences->GetDouble("LowGearDriveProfile6I", 0.003);
+	lowGearDriveProfiles[6].d = _preferences->GetDouble("LowGearDriveProfile6D", 0);
+	lowGearDriveProfiles[6].f = _preferences->GetDouble("LowGearDriveProfile6F", 0.012);
 
-	lowGearDriveProfiles[7].p = _preferences->GetDouble("LowGearDriveProfile7P", 8);
-	lowGearDriveProfiles[7].i = _preferences->GetDouble("LowGearDriveProfile7I", 8);
-	lowGearDriveProfiles[7].d = _preferences->GetDouble("LowGearDriveProfile7D", 8);
-	lowGearDriveProfiles[7].f = _preferences->GetDouble("LowGearDriveProfile7F", 8);
+	lowGearDriveProfiles[7].p = _preferences->GetDouble("LowGearDriveProfile7P", 0);
+	lowGearDriveProfiles[7].i = _preferences->GetDouble("LowGearDriveProfile7I", 0.003);
+	lowGearDriveProfiles[7].d = _preferences->GetDouble("LowGearDriveProfile7D", 0);
+	lowGearDriveProfiles[7].f = _preferences->GetDouble("LowGearDriveProfile7F", 0.012);
 
-	highGearDriveProfiles[0].p = _preferences->GetDouble("HighGearDriveProfile0P", 10);
-	highGearDriveProfiles[0].i = _preferences->GetDouble("HighGearDriveProfile0I", 10);
-	highGearDriveProfiles[0].d = _preferences->GetDouble("HighGearDriveProfile0D", 10);
-	highGearDriveProfiles[0].f = _preferences->GetDouble("HighGearDriveProfile0F", 10);
+	highGearDriveProfiles[0].p = _preferences->GetDouble("HighGearDriveProfile0P", 0);
+	highGearDriveProfiles[0].i = _preferences->GetDouble("HighGearDriveProfile0I", 0.003);
+	highGearDriveProfiles[0].d = _preferences->GetDouble("HighGearDriveProfile0D", 0);
+	highGearDriveProfiles[0].f = _preferences->GetDouble("HighGearDriveProfile0F", 0.005);
 
-	highGearDriveProfiles[1].p = _preferences->GetDouble("HighGearDriveProfile1P", 20);
-	highGearDriveProfiles[1].i = _preferences->GetDouble("HighGearDriveProfile1I", 20);
-	highGearDriveProfiles[1].d = _preferences->GetDouble("HighGearDriveProfile1D", 20);
-	highGearDriveProfiles[1].f = _preferences->GetDouble("HighGearDriveProfile1F", 20);
+	highGearDriveProfiles[1].p = _preferences->GetDouble("HighGearDriveProfile1P", 0);
+	highGearDriveProfiles[1].i = _preferences->GetDouble("HighGearDriveProfile1I", 0.003);
+	highGearDriveProfiles[1].d = _preferences->GetDouble("HighGearDriveProfile1D", 0);
+	highGearDriveProfiles[1].f = _preferences->GetDouble("HighGearDriveProfile1F", 0.005);
 
-	highGearDriveProfiles[2].p = _preferences->GetDouble("HighGearDriveProfile2P", 30);
-	highGearDriveProfiles[2].i = _preferences->GetDouble("HighGearDriveProfile2I", 30);
-	highGearDriveProfiles[2].d = _preferences->GetDouble("HighGearDriveProfile2D", 30);
-	highGearDriveProfiles[2].f = _preferences->GetDouble("HighGearDriveProfile2F", 30);
+	highGearDriveProfiles[2].p = _preferences->GetDouble("HighGearDriveProfile2P", 0);
+	highGearDriveProfiles[2].i = _preferences->GetDouble("HighGearDriveProfile2I", 0.003);
+	highGearDriveProfiles[2].d = _preferences->GetDouble("HighGearDriveProfile2D", 0);
+	highGearDriveProfiles[2].f = _preferences->GetDouble("HighGearDriveProfile2F", 0.005);
 
-	highGearDriveProfiles[3].p = _preferences->GetDouble("HighGearDriveProfile3P", 40);
-	highGearDriveProfiles[3].i = _preferences->GetDouble("HighGearDriveProfile3I", 40);
-	highGearDriveProfiles[3].d = _preferences->GetDouble("HighGearDriveProfile3D", 40);
-	highGearDriveProfiles[3].f = _preferences->GetDouble("HighGearDriveProfile3F", 40);
+	highGearDriveProfiles[3].p = _preferences->GetDouble("HighGearDriveProfile3P", 0);
+	highGearDriveProfiles[3].i = _preferences->GetDouble("HighGearDriveProfile3I", 0.003);
+	highGearDriveProfiles[3].d = _preferences->GetDouble("HighGearDriveProfile3D", 0);
+	highGearDriveProfiles[3].f = _preferences->GetDouble("HighGearDriveProfile3F", 0.005);
 
-	highGearDriveProfiles[4].p = _preferences->GetDouble("HighGearDriveProfile4P", 50);
-	highGearDriveProfiles[4].i = _preferences->GetDouble("HighGearDriveProfile4I", 50);
-	highGearDriveProfiles[4].d = _preferences->GetDouble("HighGearDriveProfile4D", 50);
-	highGearDriveProfiles[4].f = _preferences->GetDouble("HighGearDriveProfile4F", 50);
+	highGearDriveProfiles[4].p = _preferences->GetDouble("HighGearDriveProfile4P", 0);
+	highGearDriveProfiles[4].i = _preferences->GetDouble("HighGearDriveProfile4I", 0.003);
+	highGearDriveProfiles[4].d = _preferences->GetDouble("HighGearDriveProfile4D", 0);
+	highGearDriveProfiles[4].f = _preferences->GetDouble("HighGearDriveProfile4F", 0.005);
 
-	highGearDriveProfiles[5].p = _preferences->GetDouble("HighGearDriveProfile5P", 60);
-	highGearDriveProfiles[5].i = _preferences->GetDouble("HighGearDriveProfile5I", 60);
-	highGearDriveProfiles[5].d = _preferences->GetDouble("HighGearDriveProfile5D", 60);
-	highGearDriveProfiles[5].f = _preferences->GetDouble("HighGearDriveProfile5F", 60);
+	highGearDriveProfiles[5].p = _preferences->GetDouble("HighGearDriveProfile5P", 0);
+	highGearDriveProfiles[5].i = _preferences->GetDouble("HighGearDriveProfile5I", 0.003);
+	highGearDriveProfiles[5].d = _preferences->GetDouble("HighGearDriveProfile5D", 0);
+	highGearDriveProfiles[5].f = _preferences->GetDouble("HighGearDriveProfile5F", 0.005);
 
-	highGearDriveProfiles[6].p = _preferences->GetDouble("HighGearDriveProfile6P", 70);
-	highGearDriveProfiles[6].i = _preferences->GetDouble("HighGearDriveProfile6I", 70);
-	highGearDriveProfiles[6].d = _preferences->GetDouble("HighGearDriveProfile6D", 70);
-	highGearDriveProfiles[6].f = _preferences->GetDouble("HighGearDriveProfile6F", 70);
+	highGearDriveProfiles[6].p = _preferences->GetDouble("HighGearDriveProfile6P", 0);
+	highGearDriveProfiles[6].i = _preferences->GetDouble("HighGearDriveProfile6I", 0.003);
+	highGearDriveProfiles[6].d = _preferences->GetDouble("HighGearDriveProfile6D", 0);
+	highGearDriveProfiles[6].f = _preferences->GetDouble("HighGearDriveProfile6F", 0.005);
 
-	highGearDriveProfiles[7].p = _preferences->GetDouble("HighGearDriveProfile7P", 80);
-	highGearDriveProfiles[7].i = _preferences->GetDouble("HighGearDriveProfile7I", 80);
-	highGearDriveProfiles[7].d = _preferences->GetDouble("HighGearDriveProfile7D", 80);
-	highGearDriveProfiles[7].f = _preferences->GetDouble("HighGearDriveProfile7F", 80);
+	highGearDriveProfiles[7].p = _preferences->GetDouble("HighGearDriveProfile7P", 0);
+	highGearDriveProfiles[7].i = _preferences->GetDouble("HighGearDriveProfile7I", 0.003);
+	highGearDriveProfiles[7].d = _preferences->GetDouble("HighGearDriveProfile7D", 0);
+	highGearDriveProfiles[7].f = _preferences->GetDouble("HighGearDriveProfile7F", 0.005);
 
 	upperLiftProfiles[0].p = _preferences->GetDouble("UpperLiftProfiles0P", 0);
 	upperLiftProfiles[0].i = _preferences->GetDouble("UpperLiftProfiles0I", 0);

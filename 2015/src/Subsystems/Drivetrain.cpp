@@ -27,14 +27,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	_rumbleChooser->AddObject("Rumble On", new bool(true));
 	SmartDashboard::PutData("Drive Rumble", _rumbleChooser);
 
-	enableEnhancedDriving();
-	SmartDashboard::PutString("Enhanced Driving", "ENABLED");
+	disableEnhancedDriving();
 
 	disableSlow();
-	SmartDashboard::PutString("Slow Mode", "DISABLED");
 
 	shiftLow();
-	SmartDashboard::PutString("Gear", "LOW");
 
 	if (_constants->debug) {
 		SmartDashboard::PutNumber("Left Setpoint", 0);

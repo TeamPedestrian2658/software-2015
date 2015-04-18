@@ -30,8 +30,8 @@ Lift::Lift() : Subsystem("Lift") {
 	resetLowerLevel();
 	resetUpperLevel();
 
-	enableLowerController();
-	enableUpperController();
+	disableLowerController();
+	disableUpperController();
 }
     
 void Lift::InitDefaultCommand() {
