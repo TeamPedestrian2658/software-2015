@@ -45,9 +45,6 @@ Constants::Constants() {
 	driverButtons.shiftButton = _preferences->GetInt("ShiftButton", 6);
 	driverButtons.slowButton = _preferences->GetInt("SlowButton", 5);
 	driverButtons.toggleEnhancedDriveButton = _preferences->GetInt("ToggleEnhancedDriveButton", 8);
-	driverButtons.incrementItemCountButton = _preferences->GetInt("IncrementItemCountButton", 10);
-	driverButtons.decrementItemCountButton = _preferences->GetInt("DecrementItemCountButton", 1);
-	driverButtons.resetItemCountButton = _preferences->GetInt("ResetItemCountButton", 9);
 	driverButtons.compressorOnButton = _preferences->GetInt("CompressorOnButton", 3);
 	driverButtons.compressorOffButton = _preferences->GetInt("CompressorOffButton", 4);
 
@@ -56,6 +53,10 @@ Constants::Constants() {
 	operatorButtons.lowerClawToggleGrabRightButton = _preferences->GetInt("LowerClawToggleGrabRightButton", 8);
 	operatorButtons.upperClawToggleGrabButton = _preferences->GetInt("UpperClawToggleGrabButton", 6);
 	operatorButtons.toggleLiftAutomaticButton = _preferences->GetInt("ToggleLiftAutomaticButton", 11);
+	operatorButtons.incrementItemCountButton = _preferences->GetInt("IncrementItemCountButton", 2);
+	operatorButtons.decrementItemCountButton = _preferences->GetInt("DecrementItemCountButton", 1);
+	operatorButtons.resetItemCountButton = _preferences->GetInt("ResetItemCountButton", 3);
+
 
 	driverAxes.leftX = _preferences->GetInt("DriverLeftX", 0);
 	driverAxes.leftY = _preferences->GetInt("DriverLeftY", 1);

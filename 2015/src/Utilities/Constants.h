@@ -63,9 +63,6 @@ public:
 		int shiftButton;
 		int slowButton;
 		int toggleEnhancedDriveButton;
-		int incrementItemCountButton;
-		int decrementItemCountButton;
-		int resetItemCountButton;
 		int compressorOnButton;
 		int compressorOffButton;
 	} driverButtons;
@@ -75,6 +72,9 @@ public:
 		int lowerClawToggleGrabRightButton;
 		int upperClawToggleGrabButton;
 		int toggleLiftAutomaticButton;
+		int incrementItemCountButton;
+		int decrementItemCountButton;
+		int resetItemCountButton;
 	} operatorButtons;
 	struct DriverAxes {
 		int leftX;

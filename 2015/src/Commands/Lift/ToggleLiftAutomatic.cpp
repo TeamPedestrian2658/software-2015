@@ -1,13 +1,13 @@
-#include "LiftToggleAutomatic.h"
+#include "ToggleLiftAutomatic.h"
 
-LiftToggleAutomatic::LiftToggleAutomatic()
+ToggleLiftAutomatic::ToggleLiftAutomatic()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void LiftToggleAutomatic::Initialize()
+void ToggleLiftAutomatic::Initialize()
 {
 	if (Robot::lift->automaticEnabled()) {
 		Robot::lift->disableAutomatic();
@@ -17,26 +17,26 @@ void LiftToggleAutomatic::Initialize()
 }
 
 // Called repeatedly when this Command is scheduled to run
-void LiftToggleAutomatic::Execute()
+void ToggleLiftAutomatic::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool LiftToggleAutomatic::IsFinished()
+bool ToggleLiftAutomatic::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void LiftToggleAutomatic::End()
+void ToggleLiftAutomatic::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void LiftToggleAutomatic::Interrupted()
+void ToggleLiftAutomatic::Interrupted()
 {
 
 }

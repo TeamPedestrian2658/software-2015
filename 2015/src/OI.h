@@ -17,10 +17,6 @@ private:
 	JoystickButton *driveEnhance;
 	JoystickButton *driveSlow;
 
-	JoystickButton *incrementItemCount;
-	JoystickButton *decrementItemCount;
-	JoystickButton *resetItemCount;
-
 	JoystickButton *compressorOn;
 	JoystickButton *compressorOff;
 
@@ -31,6 +27,11 @@ private:
 	JoystickButton *upperClawToggleGrab;
 
 	JoystickButton *toggleLiftAutomatic;
+
+	JoystickButton *incrementItemCount;
+	JoystickButton *decrementItemCount;
+	JoystickButton *resetItemCount;
+
 	public:
 	OI();
  

@@ -9,19 +9,16 @@
 #include "Commands/Drivetrain/ToggleEnhancedDriving.h"
 #include "Commands/Drivetrain/EnableSlow.h"
 #include "Commands/Drivetrain/DisableSlow.h"
-#include "Commands/Utilities/IncrementTotalCount.h"
-#include "Commands/Utilities/DecrementTotalCount.h"
-#include "Commands/Utilities/ResetTotalCount.h"
+#include "Commands/Utilities/IncrementItemCount.h"
+#include "Commands/Utilities/DecrementItemCount.h"
+#include "Commands/Utilities/ResetItemCount.h"
 #include "Commands/Utilities/CompressorOn.h"
 #include "Commands/Utilities/CompressorOff.h"
 #include "Commands/LowerClaw/LowerClawToggleGrab.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabLeft.h"
 #include "Commands/LowerClaw/LowerClawToggleGrabRight.h"
 #include "Commands/UpperClaw/UpperClawToggleGrab.h"
-#include "Commands/UpperClaw/UpperClawToggleGrabLeft.h"
-#include "Commands/UpperClaw/UpperClawToggleGrabRight.h"
-#include "Commands/Lift/ToggleLowerLiftController.h"
-#include "Commands/Lift/ToggleUpperLiftController.h"
+#include "Commands/Lift/ToggleLiftAutomatic.h"
 
 OI::OI() {
 
@@ -40,15 +37,6 @@ OI::OI() {
 	driveSlow = new JoystickButton(driverStick, constants->driverButtons.slowButton);
 	driveSlow->WhenPressed(new EnableSlow());
 	driveSlow->WhenReleased(new DisableSlow());
-
-	incrementItemCount = new JoystickButton(driverStick, constants->driverButtons.incrementItemCountButton);
-	incrementItemCount->WhenPressed(new IncrementTotalCount());
-
-	decrementItemCount = new JoystickButton(driverStick, constants->driverButtons.decrementItemCountButton);
-	decrementItemCount->WhenPressed(new DecrementTotalCount());
-
-	resetItemCount = new JoystickButton(driverStick, constants->driverButtons.resetItemCountButton);
-	resetItemCount->WhenPressed(new ResetTotalCount());
 
 	compressorOn = new JoystickButton(driverStick, constants->driverButtons.compressorOnButton);
 	compressorOn->WhenPressed(new CompressorOn());
@@ -69,7 +57,16 @@ OI::OI() {
 	upperClawToggleGrab->WhenPressed(new UpperClawToggleGrab());
 
 	toggleLiftAutomatic = new JoystickButton(operatorStick, constants->operatorButtons.toggleLiftAutomaticButton);
-	toggleLiftAutomatic->WhenPressed(new ToggleLowerLiftController());
+	toggleLiftAutomatic->WhenPressed(new ToggleLiftAutomatic());
+
+	incrementItemCount = new JoystickButton(operatorStick, constants->operatorButtons.incrementItemCountButton);
+	incrementItemCount->WhenPressed(new IncrementItemCount());
+
+	decrementItemCount = new JoystickButton(operatorStick, constants->operatorButtons.decrementItemCountButton);
+	decrementItemCount->WhenPressed(new DecrementItemCount());
+
+	resetItemCount = new JoystickButton(operatorStick, constants->operatorButtons.resetItemCountButton);
+	resetItemCount->WhenPressed(new ResetItemCount());
 }
 
 Joystick* OI::getOperatorStick() {

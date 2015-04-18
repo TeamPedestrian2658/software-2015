@@ -1,13 +1,13 @@
-#ifndef LiftToggleAutomatic_H
-#define LiftToggleAutomatic_H
+#ifndef ToggleLiftAutomatic_H
+#define ToggleLiftAutomatic_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class LiftToggleAutomatic: public Command
+class ToggleLiftAutomatic: public Command
 {
 public:
-	LiftToggleAutomatic();
+	ToggleLiftAutomatic();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
