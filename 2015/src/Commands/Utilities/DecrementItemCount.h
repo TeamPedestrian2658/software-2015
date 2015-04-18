@@ -1,13 +1,13 @@
-#ifndef IncrementLowerClawCount_H
-#define IncrementLowerClawCount_H
+#ifndef DecrementItemCount_H
+#define DecrementItemCount_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class IncrementLowerClawCount: public Command
+class DecrementItemCount: public Command
 {
 public:
-	IncrementLowerClawCount();
+	DecrementItemCount();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

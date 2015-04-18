@@ -1,39 +1,39 @@
-#include "ResetLowerClawCount.h"
+#include "ResetItemCount.h"
 
-ResetLowerClawCount::ResetLowerClawCount()
+ResetItemCount::ResetItemCount()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void ResetLowerClawCount::Initialize()
+void ResetItemCount::Initialize()
 {
-	RobotMap::constants->resetLowerClawItems();
-	Robot::drivetrain->updatePIDCoefficients();
+	RobotMap::constants->resetItemCount();
+	Robot::lift->updatePIDCoefficients(Robot::lowerClaw->isClawClosed());
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ResetLowerClawCount::Execute()
+void ResetItemCount::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ResetLowerClawCount::IsFinished()
+bool ResetItemCount::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void ResetLowerClawCount::End()
+void ResetItemCount::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ResetLowerClawCount::Interrupted()
+void ResetItemCount::Interrupted()
 {
 
 }

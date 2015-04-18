@@ -1,13 +1,13 @@
-#ifndef ResetLowerClawCount_H
-#define ResetLowerClawCount_H
+#ifndef IncrementItemCount_H
+#define IncrementItemCount_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class ResetLowerClawCount: public Command
+class IncrementItemCount: public Command
 {
 public:
-	ResetLowerClawCount();
+	IncrementItemCount();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

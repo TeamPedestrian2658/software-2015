@@ -266,7 +266,7 @@ PIDProfile Constants::getLiftProfile(int lowerClawPosition,
 		return liftProfiles[itemCounts.items - lowerClawPosition];
 	}
 }
-void Constants::incrementTotalItems() {
+void Constants::incrementItemCount() {
 	if (itemCounts.items < itemCounts.maxItems) {
 		itemCounts.items++;
 		driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.items];
@@ -280,7 +280,7 @@ void Constants::incrementTotalItems() {
 	}
 }
 
-void Constants::decrementTotalItems() {
+void Constants::decrementItemCount() {
 	if (itemCounts.items > 0) {
 		itemCounts.items--;
 		driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.items];
@@ -294,7 +294,7 @@ void Constants::decrementTotalItems() {
 	}
 }
 
-void Constants::resetTotalItems() {
+void Constants::resetItemCount() {
 	itemCounts.items = 0;
 	driveConstants.currentEnhancedMaxVelocityHigh = driveConstants.enhancedMaxVelocityHigh[itemCounts.items];
 	driveConstants.currentEnhancedMaxVelocityLow = driveConstants.enhancedMaxVelocityLow[itemCounts.items];

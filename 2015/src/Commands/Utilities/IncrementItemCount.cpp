@@ -1,39 +1,39 @@
-#include "IncrementLowerClawCount.h"
+#include "IncrementItemCount.h"
 
-IncrementLowerClawCount::IncrementLowerClawCount()
+IncrementItemCount::IncrementItemCount()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void IncrementLowerClawCount::Initialize()
+void IncrementItemCount::Initialize()
 {
-	RobotMap::constants->incrementLowerClawItems();
-	Robot::drivetrain->updatePIDCoefficients();
+	RobotMap::constants->incrementItemCount();
+	Robot::lift->updatePIDCoefficients(Robot::lowerClaw->isClawClosed());
 }
 
 // Called repeatedly when this Command is scheduled to run
-void IncrementLowerClawCount::Execute()
+void IncrementItemCount::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool IncrementLowerClawCount::IsFinished()
+bool IncrementItemCount::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void IncrementLowerClawCount::End()
+void IncrementItemCount::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void IncrementLowerClawCount::Interrupted()
+void IncrementItemCount::Interrupted()
 {
 
 }

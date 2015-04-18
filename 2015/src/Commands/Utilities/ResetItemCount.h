@@ -1,13 +1,13 @@
-#ifndef ResetTotalCount_H
-#define ResetTotalCount_H
+#ifndef ResetItemCount_H
+#define ResetItemCount_H
 
 #include "../../Robot.h"
 #include "WPILib.h"
 
-class ResetTotalCount: public Command
+class ResetItemCount: public Command
 {
 public:
-	ResetTotalCount();
+	ResetItemCount();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
