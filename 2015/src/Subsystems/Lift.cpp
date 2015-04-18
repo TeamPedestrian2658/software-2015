@@ -74,7 +74,7 @@ void Lift::downOneLevel() {
 	}
 }
 
-void Lift::resetLowerLevel() {
+void Lift::resetLevel() {
 	_level = 0;
 	_leftController->SetSetpoint(get<0>(_levels[_level]));
 	_rightController->SetSetpoint(get<0>(_levels[_level]));

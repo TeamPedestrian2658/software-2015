@@ -9,11 +9,7 @@ LowerClawRelease::LowerClawRelease()
 void LowerClawRelease::Initialize()
 {
 	Robot::lowerClaw->releaseBoth();
-	RobotMap::constants->calculateClawItems(Robot::lift->getLowerPossessionLevel(),
-											Robot::lift->getUpperPossessionLevel(),
-											Robot::lowerClaw->isClawClosed(),
-											Robot::upperClaw->isClawClosed());
-	Robot::lift->updatePIDCoefficients();
+	Robot::lift->updatePIDCoefficients(Robot::lowerClaw->isClawClosed());
 }
 
 // Called repeatedly when this Command is scheduled to run
