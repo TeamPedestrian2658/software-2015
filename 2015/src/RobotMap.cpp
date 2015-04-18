@@ -26,14 +26,13 @@ Solenoid *RobotMap::upperClawGrabber = NULL;
 Solenoid *RobotMap::lowerClawLeftGrabber = NULL;
 Solenoid *RobotMap::lowerClawRightGrabber = NULL;
 
-Talon *RobotMap::lowerLiftTalonLeft = NULL;
-Talon *RobotMap::lowerLiftTalonRight = NULL;
+Talon *RobotMap::liftTalonLeft = NULL;
+Talon *RobotMap::liftTalonRight = NULL;
 
-Encoder *RobotMap::lowerLiftEncoderLeft = NULL;
-Encoder *RobotMap::lowerLiftEncoderRight = NULL;
+Encoder *RobotMap::liftEncoder = NULL;
 
-PIDController *RobotMap::liftControllerLowerLeft = NULL;
-PIDController *RobotMap::liftControllerLowerRight = NULL;
+PIDController *RobotMap::liftControllerLeft = NULL;
+PIDController *RobotMap::liftControllerRight = NULL;
 
 Compressor *RobotMap::compressor = NULL;
 
@@ -80,55 +79,35 @@ void RobotMap::init() {
 	driveChooser = new SendableChooser();
 	driveRumbleChooser = new SendableChooser();
 
-	upperClawLeftGrabber = new Solenoid(constants->clawPorts.upperGrabberLeftModule, constants->clawPorts.upperGrabberLeftPort);
-	upperClawRightGrabber = new Solenoid(constants->clawPorts.upperGrabberRightModule, constants->clawPorts.upperGrabberRightPort);
-	liveWindow->AddActuator("Upper Claw", "Left Grabber", upperClawLeftGrabber);
-	liveWindow->AddActuator("Upper Claw", "Right Grabber", upperClawRightGrabber);
+	upperClawGrabber = new Solenoid(constants->clawPorts.upperGrabberModule, constants->clawPorts.upperGrabberPort);
+	liveWindow->AddActuator("Upper Claw", "Grabber", upperClawGrabber);
 
 	lowerClawLeftGrabber = new Solenoid(constants->clawPorts.lowerGrabberLeftModule, constants->clawPorts.lowerGrabberLeftPort);
 	lowerClawRightGrabber = new Solenoid(constants->clawPorts.lowerGrabberRightModule, constants->clawPorts.lowerGrabberRightPort);
 	liveWindow->AddActuator("Lower Claw", "Left Grabber", lowerClawLeftGrabber);
 	liveWindow->AddActuator("Lower Claw", "Right Grabber", lowerClawRightGrabber);
 
-	lowerLiftTalonLeft = new Talon(constants->liftPorts.lowerTalonLeftPort);
-	lowerLiftTalonRight = new Talon(constants->liftPorts.lowerTalonRightPort);
-	upperLiftTalon = new Talon(constants->liftPorts.upperTalonPort);
-	liveWindow->AddActuator("Lower Lift", "Left Talon", lowerLiftTalonLeft);
-	liveWindow->AddActuator("Lower Lift", "Right Talon", lowerLiftTalonRight);
-	liveWindow->AddActuator("Upper Lift", "Talon", upperLiftTalon);
+	liftTalonLeft = new Talon(constants->liftPorts.talonLeftPort);
+	liftTalonRight = new Talon(constants->liftPorts.talonRightPort);
+	liveWindow->AddActuator("Lift", "Left Talon", liftTalonLeft);
+	liveWindow->AddActuator("Lift", "Right Talon", liftTalonRight);
 
-	lowerLiftEncoderLeft = new Encoder(constants->liftPorts.lowerEncoderLeftPortA, constants->liftPorts.lowerEncoderLeftPortB, false);
-	lowerLiftEncoderLeft->SetDistancePerPulse(constants->liftConstants.lowerDistancePerPulse);
-	lowerLiftEncoderLeft->SetPIDSourceParameter(PIDSource::kDistance);
-	liveWindow->AddSensor("Lower Lift", "Encoder Left", lowerLiftEncoderLeft);
+	liftEncoder = new Encoder(constants->liftPorts.encoderPortA, constants->liftPorts.encoderPortB, false);
+	liftEncoder->SetDistancePerPulse(constants->liftConstants.distancePerPulse);
+	liftEncoder->SetPIDSourceParameter(PIDSource::kDistance);
+	liveWindow->AddSensor("Lift", "Encoder", liftEncoder);
 
-	lowerLiftEncoderRight = new Encoder(constants->liftPorts.lowerEncoderRightPortA, constants->liftPorts.lowerEncoderRightPortB, false);
-	lowerLiftEncoderRight->SetDistancePerPulse(constants->liftConstants.lowerDistancePerPulse);
-	lowerLiftEncoderRight->SetPIDSourceParameter(PIDSource::kDistance);
-	liveWindow->AddSensor("Lower Lift", "Encoder Right", lowerLiftEncoderRight);
+	liftControllerLeft = new PIDController(0, 0, 0, 0, liftEncoder, liftTalonLeft);
+	liftControllerLeft->SetContinuous(false);
+	liftControllerLeft->SetOutputRange(-1, 1);
+	liftControllerLeft->Reset();
+	liveWindow->AddActuator("Lift", "Left Controller", liftControllerLeft);
 
-	upperLiftEncoder = new Encoder(constants->liftPorts.upperEncoderPortA, constants->liftPorts.upperEncoderPortB, false);
-	upperLiftEncoder->SetDistancePerPulse(constants->liftConstants.upperDistancePerPulse);
-	upperLiftEncoder->SetPIDSourceParameter(PIDSource::kDistance);
-	liveWindow->AddSensor("Upper Lift", "Encoder", upperLiftEncoder);
-
-	liftControllerLowerLeft = new PIDController(0, 0, 0, 0, lowerLiftEncoderLeft, lowerLiftTalonLeft);
-	liftControllerLowerLeft->SetContinuous(false);
-	liftControllerLowerLeft->SetOutputRange(-1, 1);
-	liftControllerLowerLeft->Reset();
-	liveWindow->AddActuator("Lower Lift", "Left Controller", liftControllerLowerLeft);
-
-	liftControllerLowerRight = new PIDController(0, 0, 0, 0, lowerLiftEncoderRight, lowerLiftTalonRight);
-	liftControllerLowerRight->SetContinuous(false);
-	liftControllerLowerRight->SetOutputRange(-1, 1);
-	liftControllerLowerRight->Reset();
-	liveWindow->AddActuator("Lower Lift", "Right Controller", liftControllerLowerRight);
-
-	liftControllerUpper = new PIDController(0, 0, 0, 0, upperLiftEncoder, upperLiftTalon);
-	liftControllerUpper->SetContinuous(false);
-	liftControllerUpper->SetOutputRange(-1, 1);
-	liftControllerUpper->Reset();
-	liveWindow->AddActuator("Upper Lift", "Controller", liftControllerUpper);
+	liftControllerRight = new PIDController(0, 0, 0, 0, liftEncoder, liftTalonRight);
+	liftControllerRight->SetContinuous(false);
+	liftControllerRight->SetOutputRange(-1, 1);
+	liftControllerRight->Reset();
+	liveWindow->AddActuator("Lift", "Right Controller", liftControllerRight);
 
 	compressor = new Compressor(constants->compressorPorts.compressorModule);
 	compressor->Start();

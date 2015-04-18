@@ -30,14 +30,13 @@ public:
 	static Solenoid *lowerClawLeftGrabber;
 	static Solenoid *lowerClawRightGrabber;
 
-	static Talon *lowerLiftTalonLeft;
-	static Talon *lowerLiftTalonRight;
+	static Talon *liftTalonLeft;
+	static Talon *liftTalonRight;
 
-	static Encoder *lowerLiftEncoderLeft;
-	static Encoder *lowerLiftEncoderRight;
+	static Encoder *liftEncoder;
 
-	static PIDController *liftControllerLowerLeft;
-	static PIDController *liftControllerLowerRight;
+	static PIDController *liftControllerLeft;
+	static PIDController *liftControllerRight;
 
 	static Compressor *compressor;
 
