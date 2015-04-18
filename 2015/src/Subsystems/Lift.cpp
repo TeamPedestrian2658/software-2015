@@ -5,33 +5,25 @@
 Lift::Lift() : Subsystem("Lift") {
 	_constants = RobotMap::constants;
 
-	_lowerLeftTalon = RobotMap::lowerLiftTalonLeft;
-	_lowerRightTalon = RobotMap::lowerLiftTalonRight;
-	_upperTalon = RobotMap::upperLiftTalon;
+	_leftTalon = RobotMap::liftTalonLeft;
+	_rightTalon = RobotMap::liftTalonRight;
 
-	_lowerLeftEncoder = RobotMap::lowerLiftEncoderLeft;
-	_lowerRightEncoder = RobotMap::lowerLiftEncoderRight;
-	_upperEncoder = RobotMap::upperLiftEncoder;
+	_encoder = RobotMap::liftEncoder;
 
-	_lowerLeftController = RobotMap::liftControllerLowerLeft;
-	_lowerRightController = RobotMap::liftControllerLowerRight;
-	_upperController = RobotMap::liftControllerUpper;
+	_leftController = RobotMap::liftControllerLeft;
+	_rightController = RobotMap::liftControllerRight;
 
-	_lowerLevels = _constants->liftConstants.lowerLiftLevels;
-	_upperLevels = _constants->liftConstants.upperLiftLevels;
-
-	updatePIDCoefficients();
+	_levels = _constants->liftConstants.liftLevels;
 
 	if (_constants->debug) {
-		SmartDashboard::PutNumber("Lower Height", 0);
-		SmartDashboard::PutNumber("Upper Height", 0);
+		SmartDashboard::PutNumber("Lift Height", 0);
 	}
 
-	resetLowerLevel();
-	resetUpperLevel();
+	resetLevel();
 
-	disableLowerController();
-	disableUpperController();
+	updatePIDCoefficients(false);
+
+	disableAutomatic();
 }
     
 void Lift::InitDefaultCommand() {
@@ -39,214 +31,114 @@ void Lift::InitDefaultCommand() {
 }
 
 void Lift::enableLowerController() {
-	_lowerLeftController->Enable();
-	_lowerRightController->Enable();
-	_lowerAutomatic = true;
-	SmartDashboard::PutString("Lower Controller", "ENABLED");
+	_leftController->Enable();
+	_rightController->Enable();
+	_automatic = true;
+	SmartDashboard::PutString("Lift Automatic", "ENABLED");
 }
 
 void Lift::disableLowerController() {
-	_lowerLeftController->Disable();
-	_lowerRightController->Disable();
-	_lowerAutomatic = false;
-	SmartDashboard::PutString("Lower Controller", "DISABLED");
+	_leftController->Disable();
+	_rightController->Disable();
+	_automatic = false;
+	SmartDashboard::PutString("Lift Automatic", "DISABLED");
 }
 
 bool Lift::lowerControllerEnabled() {
-	return _lowerAutomatic;
+	return _automatic;
 }
 
-void Lift::enableUpperController() {
-	_upperController->Enable();
-	_upperAutomatic = true;
-	SmartDashboard::PutString("Upper Controller", "ENABLED");
-}
-
-void Lift::disableUpperController() {
-	_upperController->Disable();
-	_upperAutomatic = false;
-	SmartDashboard::PutString("Upper Controller", "DISABLED");
-}
-
-bool Lift::upperControllerEnabled() {
-	return _upperAutomatic;
-}
-
-void Lift::lowerUpOneLevel() {
-	if (_lowerLevel < _lowerLevels.size() - 1) {
-		_lowerLevel++;
+void Lift::upOneLevel() {
+	if (_level < _levels.size() - 1) {
+		_level++;
 	}
-	while (get<0>(_lowerLevels[_lowerLevel]) > get<0>(_upperLevels[_upperLevel])) {
-		upperUpOneLevel();
-	}
-	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+	_leftController->SetSetpoint(get<0>(_levels[_level]));
+	_rightController->SetSetpoint(get<0>(_levels[_level]));
+	SmartDashboard::PutString("Lift Level", get<2>(_levels[_level]));
 
 	if (_constants->debug) {
-		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+		SmartDashboard::PutNumber("Lift Setpoint", get<0>(_levels[_level]));
 	}
 }
 
-void Lift::lowerDownOneLevel() {
-	if (_lowerLevel > 0) {
-		_lowerLevel--;
+void Lift::downOneLevel() {
+	if (_level > 0) {
+		_level--;
 	}
-	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+	_leftController->SetSetpoint(get<0>(_levels[_level]));
+	_rightController->SetSetpoint(get<0>(_levels[_level]));
+	SmartDashboard::PutString("Lift Level", get<2>(_levels[_level]));
 
 	if (_constants->debug) {
-		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+		SmartDashboard::PutNumber("Lift Setpoint", get<0>(_levels[_level]));
 	}
 }
 
 void Lift::resetLowerLevel() {
-	_lowerLevel = 0;
-	_lowerLeftController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	_lowerRightController->SetSetpoint(get<0>(_lowerLevels[_lowerLevel]));
-	SmartDashboard::PutString("Lower Level", get<2>(_lowerLevels[_lowerLevel]));
+	_level = 0;
+	_leftController->SetSetpoint(get<0>(_levels[_level]));
+	_rightController->SetSetpoint(get<0>(_levels[_level]));
+	SmartDashboard::PutString("Lift Level", get<2>(_levels[_level]));
 
 	if (_constants->debug) {
-		SmartDashboard::PutNumber("Lower Setpoint", get<0>(_lowerLevels[_lowerLevel]));
+		SmartDashboard::PutNumber("Lift Setpoint", get<0>(_levels[_level]));
 	}
 }
 
-int Lift::getLowerLevel() {
-	return _lowerLevel;
+int Lift::getLevel() {
+	return _level;
 }
 
-void Lift::upperUpOneLevel() {
-	if (_upperLevel < _upperLevels.size() - 1) {
-		_upperLevel++;
-	}
-	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
+int Lift::getPossessionLevel() {
+	return get<1>(_levels[_level]);
+}
+
+void Lift::setRaw(double value) {
+	_leftTalon->Set(-value);
+	_rightTalon->Set(value);
+}
+
+double Lift::getHeight() {
+	return _encoder->GetDistance();
+}
+
+double Lift::getAverageRaw() {
+	return (_leftTalon->Get() + _rightTalon->Get()) / 2;
+}
+
+double Lift::getLeftRaw() {
+	return _leftTalon->Get();
+}
+
+double Lift::getRightRaw() {
+	return _rightTalon->Get();
+}
+
+void Lift::updatePIDCoefficients(bool lowerClawClosed) {
+	_profile = _constants->getLiftProfile(get<1>(_levels[_level]), lowerClawClosed);
+	_leftController->SetPID(-_profile.p,
+							-_profile.i,
+							-_profile.d,
+							-_profile.f);
+
+	_rightController->SetPID(_profile.p,
+							 _profile.i,
+							 _profile.d,
+							 _profile.f);
 
 	if (_constants->debug) {
-		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
+		SmartDashboard::PutNumber("Left P", _leftController->GetP());
+		SmartDashboard::PutNumber("Left I", _leftController->GetI());
+		SmartDashboard::PutNumber("Left D", _leftController->GetD());
+		SmartDashboard::PutNumber("Left F", _leftController->GetF());
+
+		SmartDashboard::PutNumber("Right P", _rightController->GetP());
+		SmartDashboard::PutNumber("Right I", _rightController->GetI());
+		SmartDashboard::PutNumber("Right D", _rightController->GetD());
+		SmartDashboard::PutNumber("Right F", _rightController->GetF());
 	}
 }
 
-void Lift::upperDownOneLevel() {
-	if (_upperLevel > 0) {
-		_upperLevel--;
-	}
-	while (get<0>(_upperLevels[_upperLevel]) < get<0>(_lowerLevels[_lowerLevel])) {
-		lowerDownOneLevel();
-	}
-	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
-
-	if (_constants->debug) {
-		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
-	}
-}
-
-void Lift::resetUpperLevel() {
-	_upperLevel = 0;
-	_upperController->SetSetpoint(get<0>(_upperLevels[_upperLevel]));
-	SmartDashboard::PutString("Upper Level", get<2>(_upperLevels[_upperLevel]));
-
-	if (_constants->debug) {
-		SmartDashboard::PutNumber("Upper Setpoint", get<0>(_upperLevels[_upperLevel]));
-	}
-}
-
-int Lift::getUpperLevel() {
-	return _upperLevel;
-}
-
-int Lift::getLowerPossessionLevel() {
-	return get<1>(_lowerLevels[_lowerLevel]);
-}
-
-int Lift::getUpperPossessionLevel() {
-	return get<1>(_upperLevels[_upperLevel]);
-}
-
-void Lift::setLowerRaw(double value) {
-	_lowerLeftTalon->Set(-value);
-	_lowerRightTalon->Set(value);
-}
-
-void Lift::setUpperRaw(double value) {
-	_upperTalon->Set(value);
-}
-
-double Lift::getLowerAverageHeight() {
-	return (_lowerLeftEncoder->GetDistance() + _lowerRightEncoder->GetDistance()) / 2;
-}
-
-double Lift::getLowerLeftHeight() {
-	return _lowerLeftEncoder->GetDistance();
-}
-
-double Lift::getLowerRightHeight() {
-	return _lowerRightEncoder->GetDistance();
-}
-
-double Lift::getUpperHeight() {
-	return _upperEncoder->GetDistance();
-}
-
-double Lift::getLowerAverageRaw() {
-	return (_lowerLeftTalon->Get() + _lowerRightTalon->Get()) / 2;
-}
-
-double Lift::getLowerLeftRaw() {
-	return _lowerLeftTalon->Get();
-}
-
-double Lift::getLowerRightRaw() {
-	return _lowerRightTalon->Get();
-}
-
-double Lift::getUpperRaw() {
-	return _upperTalon->Get();
-}
-
-void Lift::updatePIDCoefficients() {
-	_lowerProfile = _constants->getLowerLiftProfile();
-	_upperProfile = _constants->getUpperLiftProfile();
-
-	_lowerLeftController->SetPID(-_lowerProfile.p,
-								 -_lowerProfile.i,
-								 -_lowerProfile.d,
-								 -_lowerProfile.f);
-
-	_lowerRightController->SetPID(_lowerProfile.p,
-								  _lowerProfile.i,
-								  _lowerProfile.d,
-								  _lowerProfile.f);
-
-	_upperController->SetPID(_upperProfile.p,
-			   	   	   	   	 _upperProfile.i,
-							 _upperProfile.d,
-							 _upperProfile.f);
-
-	if (_constants->debug) {
-		SmartDashboard::PutNumber("Lower Left P", _lowerLeftController->GetP());
-		SmartDashboard::PutNumber("Lower Left I", _lowerLeftController->GetI());
-		SmartDashboard::PutNumber("Lower Left D", _lowerLeftController->GetD());
-		SmartDashboard::PutNumber("Lower Left F", _lowerLeftController->GetF());
-
-		SmartDashboard::PutNumber("Lower Right P", _lowerRightController->GetP());
-		SmartDashboard::PutNumber("Lower Right I", _lowerRightController->GetI());
-		SmartDashboard::PutNumber("Lower Right D", _lowerRightController->GetD());
-		SmartDashboard::PutNumber("Lower Right F", _lowerRightController->GetF());
-
-		SmartDashboard::PutNumber("Upper P", _upperController->GetP());
-		SmartDashboard::PutNumber("Upper I", _upperController->GetI());
-		SmartDashboard::PutNumber("Upper D", _upperController->GetD());
-		SmartDashboard::PutNumber("Upper F", _upperController->GetF());
-	}
-}
-
-PIDProfile Lift::getLowerPIDCoefficients() {
-	return _lowerProfile;
-}
-
-PIDProfile Lift::getUpperPIDCoefficients() {
-	return _upperProfile;
+PIDProfile Lift::getPIDCoefficients() {
+	return _profile;
 }

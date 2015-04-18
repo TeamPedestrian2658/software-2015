@@ -13,73 +13,47 @@ class Lift: public Subsystem {
 private:
 	Constants *_constants;
 
-	Talon *_lowerLeftTalon;
-	Talon *_lowerRightTalon;
-	Talon *_upperTalon;
+	Talon *_leftTalon;
+	Talon *_rightTalon;
 
-	Encoder *_lowerLeftEncoder;
-	Encoder *_lowerRightEncoder;
-	Encoder *_upperEncoder;
+	Encoder *_encoder;
 
-	PIDController *_lowerLeftController;
-	PIDController *_lowerRightController;
-	PIDController *_upperController;
+	PIDController *_leftController;
+	PIDController *_rightController;
 
-	PIDProfile _lowerProfile;
-	PIDProfile _upperProfile;
+	PIDProfile _profile;
 
-	vector<tuple<double, int, string>> _lowerLevels;
-	vector<tuple<double, int, string>> _upperLevels;
+	vector<tuple<double, int, string>> _levels;
 
-	unsigned int _lowerLevel;
-	unsigned int _upperLevel;
+	unsigned int _level;
 
-	bool _lowerAutomatic;
-	bool _upperAutomatic;
+	bool _automatic;
 
 public:
 	Lift();
 	void InitDefaultCommand();
 
-	void enableLowerController();
-	void disableLowerController();
-	bool lowerControllerEnabled();
+	void enableAutomatic();
+	void disableAutomatic();
+	bool automaticEnabled();
 
-	void enableUpperController();
-	void disableUpperController();
-	bool upperControllerEnabled();
+	void upOneLevel();
+	void downOneLevel();
+	void resetLevel();
+	int getLevel();
 
-	void lowerUpOneLevel();
-	void lowerDownOneLevel();
-	void resetLowerLevel();
-	int getLowerLevel();
+	int getPossessionLevel();
 
-	void upperUpOneLevel();
-	void upperDownOneLevel();
-	void resetUpperLevel();
-	int getUpperLevel();
+	void setRaw(double value);
 
-	int getLowerPossessionLevel();
-	int getUpperPossessionLevel();
+	double getHeight();
 
-	void setLowerRaw(double value);
-	void setUpperRaw(double value);
+	double getAverageRaw();
+	double getLeftRaw();
+	double getRightRaw();
 
-	double getLowerAverageHeight();
-	double getLowerLeftHeight();
-	double getLowerRightHeight();
-
-	double getUpperHeight();
-
-	double getLowerAverageRaw();
-	double getLowerLeftRaw();
-	double getLowerRightRaw();
-
-	double getUpperRaw();
-
-	void updatePIDCoefficients();
-	PIDProfile getLowerPIDCoefficients();
-	PIDProfile getUpperPIDCoefficients();
+	void updatePIDCoefficients(bool lowerClawClosed);
+	PIDProfile getPIDCoefficients();
 };
 
 #endif
